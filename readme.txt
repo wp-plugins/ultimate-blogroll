@@ -41,7 +41,7 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 3. In this screen you will find an overview of all your linktrades
 4. The widget control, which you can also find on the settings page
 5. A pic how it might look in action, this is the widget where you will find your linktrades
-6. Here you find an overview with stats, this pages requires the &lt;!--ultimate-blogroll--&gt; to function. It is also on this page that visitors can add a their own link.
+6. Here you find an overview with stats, this pages requires the &lt;!--ultimate-blogroll--&gt; <!--ultimate-blogroll--> to function. It is also on this page that visitors can add a their own link.
 7. This is the confirmation mail that you will receive everytime a trade was made
 
 == Changelog ==
