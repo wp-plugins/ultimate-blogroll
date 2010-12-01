@@ -3,7 +3,7 @@ Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: links, manage, counter, admin
 Requires at least: 3.0.1
-Tested up to: 3.0.1
+Tested up to: 3.0.2
 Stable tag: 1.0
 
 Enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
