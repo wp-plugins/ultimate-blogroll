@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
-Tags: links, manage, counter, admin
+Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar
 Requires at least: 3.0.1
 Tested up to: 3.0.2
 Stable tag: 1.0
