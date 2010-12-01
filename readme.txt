@@ -18,7 +18,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Easily approve or discard a new linktrade
     * Check for a reciprocal link
     * Prevent spam with Recaptcha
-    * …
+    * ...
 
 
 == Installation ==
@@ -26,7 +26,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
 
    1. Upload Ultimate-blogroll to the /wp-content/plugins/ directory
    2. Activate the plugin through the Plugins menu in WordPress
-   3. Create/edit a page and add the <!–ultimate-blogroll–> tag
+   3. Create/edit a page and add the <!--ultimate-blogroll--> tag
    4. Add the Ultimate Blogroll widget under the widget menu in WordPress
 
 
