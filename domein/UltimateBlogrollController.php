@@ -68,7 +68,7 @@ class UltimateBlogrollController  {
         if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
         {
             echo '<div class="updated fade"><p>';
-            printf('<b><a href="%s">Ultimate Blogroll</a> Info:</b> The tag <b>%s</b> has not been set on any <a href="edit.php?post_type=page">page</a>.', 
+            printf('<b><a href="%s">Ultimate Blogroll</a> '.__("Info").':</b> '.__("The tag").' <b>%s</b> '.__("has not been set on any").' <a href="edit.php?post_type=page">'.__("page").'</a>.',
                 admin_url('admin.php?page=ultimate-blogroll-overview'),
                 htmlentities("<!--ultimate-blogroll-->")
             );
@@ -97,27 +97,27 @@ class UltimateBlogrollController  {
         if(get_option("ultimate_blogroll_general_settings") === false)
         {
             $default = array();
-            $default["website_url"] = get_bloginfo('siteurl');
-            $default["website_title"] = get_bloginfo('blogname');
+            $default["website_url"]         = get_bloginfo('siteurl');
+            $default["website_title"]       = get_bloginfo('blogname');
             $default["website_description"] = get_bloginfo('description');
-            $default["blogroll_contact"] = get_bloginfo('admin_email');
-            $default['send_mail'] = "yes";
-            $default['reciprocal_link'] = "yes";
-            $default['fight_spam'] = "no";
-            $default['target'] = "_blank";
-            $default['nofollow'] = "yes";
-            $default['support'] = "yes";
+            $default["blogroll_contact"]    = get_bloginfo('admin_email');
+            $default['send_mail']           = "yes";
+            $default['reciprocal_link']     = "yes";
+            $default['fight_spam']          = "no";
+            $default['target']              = "_blank";
+            $default['nofollow']            = "yes";
+            $default['support']             = "yes";
             add_option("ultimate_blogroll_general_settings", $default, "", "yes");
         }
         //default settings for the widget settings
         if(get_option("ultimate_blogroll_widget_settings") === false)
         {
             $default = array();
-            $default["widget_title"] = "Ultimate Blogroll";
-            $default["limit_linkpartners"] = 10;
-            $default["order_by"] = "inlinks";
-            $default["ascending"] = "desc";
-            $default['permalink'] = "none";
+            $default["widget_title"]        = "Ultimate Blogroll";
+            $default["limit_linkpartners"]  = 10;
+            $default["order_by"]            = "inlinks";
+            $default["ascending"]           = "desc";
+            $default['permalink']           = "none";
             add_option("ultimate_blogroll_widget_settings", $default, "", "yes");
         }
         
@@ -202,59 +202,59 @@ class UltimateBlogrollController  {
     {
         global $gui;
         if(isset($_POST["add_linkpartner"])) {
-            $gui["value"]["your_name"] = $_POST["your_name"];
-            $gui["value"]["your_email"] = $_POST["your_email"];
-            $gui["value"]["website_url"] = $_POST["website_url"];
-            $gui["value"]["website_title"] = $_POST["website_title"];
-            $gui["value"]["website_description"] = $_POST["website_description"];
-            $gui["value"]["website_domain"] = $_POST["website_domain"];
-            $gui["value"]["website_reciprocal"] = $_POST["website_reciprocal"];
+            $gui["value"]["your_name"]              = $_POST["your_name"];
+            $gui["value"]["your_email"]             = $_POST["your_email"];
+            $gui["value"]["website_url"]            = $_POST["website_url"];
+            $gui["value"]["website_title"]          = $_POST["website_title"];
+            $gui["value"]["website_description"]    = $_POST["website_description"];
+            $gui["value"]["website_domain"]         = $_POST["website_domain"];
+            $gui["value"]["website_reciprocal"]     = $_POST["website_reciprocal"];
             
 
             if(empty($gui["value"]["your_name"])) {
-                $gui["error"]["your_name"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website owner's name is empty</li>";
+                $gui["error"]["your_name"]                  = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's name")." ".__("is empty")."</li>";
             }
 
             if(empty($gui["value"]["your_email"])) {
-                $gui["error"]["your_email"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website owner's email is empty</li>";
+                $gui["error"]["your_email"]                 = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's email")." ".__("is empty")."</li>";
             } elseif (filter_var($gui["value"]["your_email"], FILTER_VALIDATE_EMAIL) === FALSE) {
-                $gui["error"]["your_email"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website owner's email is not a valid email address</li>";
+                $gui["error"]["your_email"]                 = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's email")." ".__("is not a valid email address")."</li>";
             }
 
             if(empty($gui["value"]["website_url"])) {
-                $gui["error"]["website_url"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website url is empty</li>";
+                $gui["error"]["website_url"]                = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url")." ".__("is empty")."</li>";
             } elseif (filter_var($gui["value"]["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_url"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website url is not a valid url</li>";
+                $gui["error"]["website_url"]                = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url")." ".__("is not a valid url")."</li>";
             }
 
             if(empty($gui["value"]["website_title"])) {
-                $gui["error"]["website_title"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website title is empty</li>";
+                $gui["error"]["website_title"]              = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website title")." ".__("is empty")."</li>";
             }
 
             if(empty($gui["value"]["website_description"])) {
-                $gui["error"]["website_description"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website description is empty</li>";
+                $gui["error"]["website_description"]        = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website description")." ".__("is empty")."</li>";
             }
 
             if(empty($gui["value"]["website_domain"])) {
-                $gui["error"]["website_domain"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website domain is empty</li>";
+                $gui["error"]["website_domain"]             = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website domain")." ".__("is empty")."</li>";
             }
 
             if(empty($gui["value"]["website_reciprocal"]) && isset($gui["public_add"])) {
-                $gui["error"]["website_reciprocal"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website reciprocal is empty</li>";
+                $gui["error"]["website_reciprocal"]         = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website reciprocal")." ".__("is empty")."</li>";
             }
 
             if (!empty($gui["value"]["website_reciprocal"]) && filter_var($gui["value"]["website_reciprocal"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_reciprocal"] = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website reciprocal is not a valid url</li>";
+                $gui["error"]["website_reciprocal"]         = "class=\"red\"";
+                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website reciprocal")." ".__("is not a valid url")."</li>";
             }
 
             if(isset($gui["fight_spam"]) && $gui["fight_spam"] == "yes")
@@ -269,29 +269,29 @@ class UltimateBlogrollController  {
                                     @$_POST["recaptcha_response_field"]);
                 if(!$resp->is_valid) {
                     $gui["error"]["captcha"] = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][] = "<li>Captcha was wrong</li>";
+                    $gui["error"]["msg"]["addlinkpartner"][] = "<li>".__("Captcha")." ".__("was wrong")."</li>";
                 }
             }
 
             if(!isset($gui["error"]["website_url"]) && !isset($gui["error"]["website_reciprocal"]) && !empty($gui["value"]["website_reciprocal"])) {
                 if(parse_url($gui["value"]["website_url"], PHP_URL_HOST) != parse_url($gui["value"]["website_reciprocal"], PHP_URL_HOST)) {
                     $gui["error"]["website_url"] = "class=\"red\"";
-                    $gui["error"]["website_reciprocal"] = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][] = "<li>The \"website reciprocal\" must be under the same (sub)domain as the \"Website url\"</li>";
+                    $gui["error"]["website_reciprocal"]             = "class=\"red\"";
+                    $gui["error"]["msg"]["addlinkpartner"][]        = "<li>".__("The")." &quot;".__("website reciprocal")."&quot; ".__("must be under the same (sub)domain as the")." &quot;".__("Website url")."&quot;.</li>";
                 } else {
                     $link_back = $this->checkreciprocalLink($gui["value"]["website_reciprocal"]);
                     if($link_back !== true)
                     {
-                        $gui["error"]["website_reciprocal"] = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][] = "<li>The \"website reciprocal\" does not have a link back.</li>";
+                        $gui["error"]["website_reciprocal"]         = "class=\"red\"";
+                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("The \"website reciprocal\" does not have a link back.")."</li>";
                     }
                     $gui["value"]["website_has_backlink"] = (int)$link_back;
                 }
             }
             if(!empty($gui["value"]["website_url"]) && !empty($gui["value"]["website_domain"])) {
                 if(strpos($gui["value"]["website_url"], $gui["value"]["website_domain"]) === false) {
-                    $gui["error"]["website_domain"] = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website domain does not fetch with Website url.</li>";
+                    $gui["error"]["website_domain"]                 = "class=\"red\"";
+                    $gui["error"]["msg"]["addlinkpartner"][]        = "<li>".__("Website domain")." ".__("does not fetch with")." ".__("Website url").".</li>";
                 }
             }
             if($gui["edit"] === false) {
@@ -299,15 +299,15 @@ class UltimateBlogrollController  {
                 foreach($links as $link)
                 {
                     ///////////////////////////////////
-                    $db = @$link["website_url"];
-                    $form = @$gui["value"]["website_url"];
+                    $db     = @$link["website_url"];
+                    $form   = @$gui["value"]["website_url"];
 
-                    $db = parse_url($db);
-                    $form = parse_url($form);
+                    $db     = parse_url($db);
+                    $form   = parse_url($form);
 
                     if(isset($db["host"]) && isset($form["host"]) && $db["host"] == $form["host"]) {
-                        $gui["error"]["website_url"] = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website url is already in our system.</li>";
+                        $gui["error"]["website_url"]                = "class=\"red\"";
+                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url")." ".__("is already in our system.")."</li>";
                     }
                     ///////////////////////////////////
                     $db = @$link["website_reciprocal"];
@@ -319,8 +319,8 @@ class UltimateBlogrollController  {
                         $form = parse_url($form);
 
                         if(isset($db["host"]) && isset($form["host"]) && $db["host"] == $form["host"]) {
-                            $gui["error"]["website_backlink"] = "class=\"red\"";
-                            $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website reciprocal is already in our system.</li>";
+                            $gui["error"]["website_backlink"]        = "class=\"red\"";
+                            $gui["error"]["msg"]["addlinkpartner"][] = "<li>".__("Website reciprocal")." ".__("is already in our system.")."</li>";
                         }
                     }
                     /////////////////////////////////////
@@ -328,8 +328,8 @@ class UltimateBlogrollController  {
                     $form = $gui["value"]["website_domain"];
 
                     if($db == $form) {
-                        $gui["error"]["website_domain"] = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][] = "<li>Website domain is already in our system.</li>";
+                        $gui["error"]["website_domain"]             = "class=\"red\"";
+                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website domain")." ".__("is already in our system.")."</li>";
                     }
                 }
             }
@@ -345,21 +345,21 @@ class UltimateBlogrollController  {
                     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                     $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
 
-                    $subject = 'New link submitted at '.get_bloginfo('siteurl').''."\r\n";
+                    $subject = __("New link submitted at").get_bloginfo('siteurl').''."\r\n";
 
-                    $message = "Hi,<br /><br />Somebody added a new link in Wordpress Ultimate Blogroll.<br />";
+                    $message = __("Hi").",<br /><br />".__("Somebody added a new link in")." Wordpress Ultimate Blogroll<br />";
                     $message .= "<table>";
-                    $message .= "<tr><td style=\"width: 250px;\">Website owner's name:</td><td>".$gui["value"]["your_name"]."</td></tr>";
-                    $message .= "<tr><td>Website owner's email:</td><td>".$gui["value"]["your_email"]."</td></tr>";
+                    $message .= "<tr><td style=\"width: 250px;\">".__("Website owner's name").":</td><td>".$gui["value"]["your_name"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website owner's email").":</td><td>".$gui["value"]["your_email"]."</td></tr>";
                     $message .= "<tr><td><br /></td></tr>";
-                    $message .= "<tr><td>Website url:</td><td>".$gui["value"]["website_url"]."</td></tr>";
-                    $message .= "<tr><td>Website title:</td><td>".$gui["value"]["website_title"]."</td></tr>";
-                    $message .= "<tr><td>Website description:</td><td>".$gui["value"]["website_description"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website url").":</td><td>".$gui["value"]["website_url"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website title").":</td><td>".$gui["value"]["website_title"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website description").":</td><td>".$gui["value"]["website_description"]."</td></tr>";
                     $message .= "<tr><td><br /></td></tr>";
-                    $message .= "<tr><td>Website domain:</td><td>".$gui["value"]["website_domain"]."</td></tr>";
-                    $message .= "<tr><td>Website reciprocal:</td><td>".$gui["value"]["website_reciprocal"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website domain").":</td><td>".$gui["value"]["website_domain"]."</td></tr>";
+                    $message .= "<tr><td>".__("Website reciprocal").":</td><td>".$gui["value"]["website_reciprocal"]."</td></tr>";
                     $id = PersistentieMapper::Instance()->GetLastAddedLinkpartner();
-                    $message .= "</table>Do you want to <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">View details</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Approve</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Delete</a>";
+                    $message .= "</table>".__("Do you want to")." <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">".__("View details")."</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">".__("Approve")."</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">".__("Delete")."</a>";
 
                     $data = PersistentieMapper::Instance()->GetGeneralSettings();
                     $m = @mail($data["blogroll_contact"], $subject, $message, $headers);

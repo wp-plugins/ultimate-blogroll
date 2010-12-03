@@ -60,33 +60,33 @@ class SettingsController extends UltimateBlogrollController {
             //We don't check these values, because in the gui we check for the literal values "yes" "no"
             //If those were not found nothing happens so we don't really need anything fancy to catch these
             //We strip xss and sql injections and save the values without any use, they will simply be ignored.
-            $gui["value"]["send_mail"] = $_POST["send_mail"];
-            $gui["value"]["reciprocal_link"] = @$_POST["reciprocal_link"];
-            $gui["value"]["fight_spam"] = @$_POST["fight_spam"]; //@ because if we have no recaptcha data available we disable this option until data received. If an input element is disabled it simply sends nothing.
-            $gui["value"]["target"] = @$_POST["target"];
-            $gui["value"]["nofollow"] = @$_POST["nofollow"];
+            $gui["value"]["send_mail"]          = $_POST["send_mail"];
+            $gui["value"]["reciprocal_link"]    = @$_POST["reciprocal_link"];
+            $gui["value"]["fight_spam"]         = @$_POST["fight_spam"]; //@ because if we have no recaptcha data available we disable this option until data received. If an input element is disabled it simply sends nothing.
+            $gui["value"]["target"]             = @$_POST["target"];
+            $gui["value"]["nofollow"]           = @$_POST["nofollow"];
 
             if(empty($gui["value"]["website_url"])) {
-                $gui["error"]["website_url"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Website url is empty</li>";
+                $gui["error"]["website_url"]            = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Website url")." ".__("is empty")."</li>";
             } elseif (filter_var($gui["value"]["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_url"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Website url is not a valid url</li>";
+                $gui["error"]["website_url"]            = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Website url")." ".__("is not a valid url")."</li>";
             }
             if(empty($gui["value"]["website_title"])) {
-                $gui["error"]["website_title"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Website title is empty</li>";
+                $gui["error"]["website_title"]          = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Website title")." ".__("is empty")."</li>";
             }
             if(empty($gui["value"]["website_description"])) {
-                $gui["error"]["website_description"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Website description is empty</li>";
+                $gui["error"]["website_description"]    = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Website description")." ".__("is empty")."</li>";
             }
             if(empty($gui["value"]["blogroll_contact"])) {
-                $gui["error"]["blogroll_contact"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Email address is empty</li>";
+                $gui["error"]["blogroll_contact"]       = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Email address")." ".__("is empty")."</li>";
             } elseif(!is_email($gui["value"]["blogroll_contact"])) {
-                $gui["error"]["blogroll_contact"] = "class=\"red\"";
-                $gui["error"]["msg"]["general"][] = "<li>Email address is wrong</li>";
+                $gui["error"]["blogroll_contact"]       = "class=\"red\"";
+                $gui["error"]["msg"]["general"][]       = "<li>".__("Email address")." ".__("is wrong")."</li>";
             }
             
             if(!isset($gui["error"]))
@@ -96,17 +96,17 @@ class SettingsController extends UltimateBlogrollController {
             }
         } else {
             $data = PersistentieMapper::Instance()->GetGeneralSettings();
-            $gui["value"]["website_url"] = $data["website_url"];
-            $gui["value"]["website_title"] = $data["website_title"];
-            $gui["value"]["website_description"] = $data["website_description"];
-            $gui["value"]["blogroll_contact"] = $data["blogroll_contact"];
+            $gui["value"]["website_url"]            = $data["website_url"];
+            $gui["value"]["website_title"]          = $data["website_title"];
+            $gui["value"]["website_description"]    = $data["website_description"];
+            $gui["value"]["blogroll_contact"]       = $data["blogroll_contact"];
             //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
-            $gui["value"]["send_mail"] = $data["send_mail"];
-            $gui["value"]["reciprocal_link"] = $data["reciprocal_link"];
-            $gui["value"]["fight_spam"] = $data["fight_spam"];
-            $gui["value"]["target"] = $data["target"];
-            $gui["value"]["nofollow"] = $data["nofollow"];
-            $gui["value"]["support"] = $data["support"];
+            $gui["value"]["send_mail"]              = $data["send_mail"];
+            $gui["value"]["reciprocal_link"]        = $data["reciprocal_link"];
+            $gui["value"]["fight_spam"]             = $data["fight_spam"];
+            $gui["value"]["target"]                 = $data["target"];
+            $gui["value"]["nofollow"]               = $data["nofollow"];
+            $gui["value"]["support"]                = $data["support"];
             /*
             if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
                 $gui["error"]["no_tag"] = true;//if no page with a <--blogroll--> tag was found, then give an error.
@@ -127,41 +127,41 @@ class SettingsController extends UltimateBlogrollController {
         
         if(isset($_POST["widget_settings"])) {
             
-            $gui["value"]["widget_title"] = @$_POST["widget_title"];
+            $gui["value"]["widget_title"]       = @$_POST["widget_title"];
             $gui["value"]["limit_linkpartners"] = @$_POST["limit_linkpartners"];
-            $gui["value"]["order_by"] = @$_POST["order_by"];
-            $gui["value"]["ascending"] = @$_POST["ascending"];
-            $gui["value"]["permalink"] = @$_POST["permalink"];
+            $gui["value"]["order_by"]           = @$_POST["order_by"];
+            $gui["value"]["ascending"]          = @$_POST["ascending"];
+            $gui["value"]["permalink"]          = @$_POST["permalink"];
             
             if(empty($gui["value"]["widget_title"])) {
                 $gui["error"]["widget_title"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Widget title is empty</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Widget title")." ".__("is empty")."</li>";
             }
             if(empty($gui["value"]["limit_linkpartners"])) {
                 $gui["error"]["limit_linkpartners"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Limit of linkpartners is empty</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Limit of linkpartners")." ".__("is empty")."</li>";
             } elseif(!is_numeric($gui["value"]["limit_linkpartners"])) {
                 $gui["error"]["limit_linkpartners"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Limit of linkpartners is not a number</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Limit of linkpartners")." ".__("is not a number")."</li>";
             } elseif($gui["value"]["limit_linkpartners"] < 0){
                 $gui["error"]["limit_linkpartners"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Limit of linkpartners is negative</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Limit of linkpartners")." ".__("is negative")."</li>";
             }
             if(!in_array($gui["value"]["order_by"], array("id", "name", "inlinks", "outlinks")))
             {
                 $gui["error"]["order_by"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Order by contains an unexpected value</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Order by")." ".__("contains an unexpected value")."</li>";
             }
             if(!in_array($gui["value"]["ascending"], array("asc", "desc")))
             {
                 $gui["error"]["ascending"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Ascending/Descending contains an unexpected value</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Ascending/Descending")." ".__("contains an unexpected value")."</li>";
             }
             
             if(!empty($valid_page_ids) && !in_array($gui["value"]["permalink"], $valid_page_ids))
             {
                 $gui["error"]["permalink"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>Link exchange page contains an unexpected value</li>";
+                $gui["error"]["msg"]["widget"][] = "<li>".__("Link exchange page")." ".__("contains an unexpected value")."</li>";
             }
             
             if(!isset($gui["error"]))
@@ -177,11 +177,11 @@ class SettingsController extends UltimateBlogrollController {
         } else {
             $data = PersistentieMapper::Instance()->GetWidgetSettings();
             
-            $gui["value"]["widget_title"] = $data["widget_title"];
+            $gui["value"]["widget_title"]       = $data["widget_title"];
             $gui["value"]["limit_linkpartners"] = $data["limit_linkpartners"];
-            $gui["value"]["order_by"] = $data["order_by"];
-            $gui["value"]["ascending"] = $data["ascending"];
-            $gui["value"]["permalink"] = $data["permalink"];
+            $gui["value"]["order_by"]           = $data["order_by"];
+            $gui["value"]["ascending"]          = $data["ascending"];
+            $gui["value"]["permalink"]          = $data["permalink"];
         }
     }
     
@@ -199,23 +199,23 @@ class SettingsController extends UltimateBlogrollController {
         }
         
         if(isset($_POST["recaptcha_settings"])) {
-            $gui["value"]["recaptcha_public_key"] = $_POST["recaptcha_public_key"];
-            $gui["value"]["recaptcha_private_key"] = $_POST["recaptcha_private_key"];
+            $gui["value"]["recaptcha_public_key"]       = $_POST["recaptcha_public_key"];
+            $gui["value"]["recaptcha_private_key"]      = $_POST["recaptcha_private_key"];
             
             if(empty($gui["value"]["recaptcha_public_key"])) {
-                $gui["error"]["recaptcha_public_key"] = "class=\"red\"";
-                $gui["error"]["msg"]["recaptcha"][] = "<li>Public key is empty</li>";
+                $gui["error"]["recaptcha_public_key"]   = "class=\"red\"";
+                $gui["error"]["msg"]["recaptcha"][]     = "<li>".__("Public key")." ".__("is empty")."</li>";
             }
             if(empty($gui["value"]["recaptcha_private_key"])) {
-                $gui["error"]["recaptcha_private_key"] = "class=\"red\"";
-                $gui["error"]["msg"]["recaptcha"][] = "<li>Private key is empty</li>";
+                $gui["error"]["recaptcha_private_key"]  = "class=\"red\"";
+                $gui["error"]["msg"]["recaptcha"][]     = "<li>".__("Private key")." ".__("is empty")."</li>";
             }
             
             if(!isset($gui["error"]))
             {
                 $data = array();
-                $data["recaptcha_public_key"] = attribute_escape($gui["value"]["recaptcha_public_key"]);
-                $data["recaptcha_private_key"] = attribute_escape($gui["value"]["recaptcha_private_key"]);
+                $data["recaptcha_public_key"]           = attribute_escape($gui["value"]["recaptcha_public_key"]);
+                $data["recaptcha_private_key"]          = attribute_escape($gui["value"]["recaptcha_private_key"]);
                 PersistentieMapper::Instance()->SaveRecaptchaSettings($data);
                 $gui["succes"]["recaptcha"] = true;
                 //PersistentieMapper::Instance()->SaveWidgetSettings($gui["value"]);
@@ -223,8 +223,8 @@ class SettingsController extends UltimateBlogrollController {
             
         } else {
             $data = PersistentieMapper::Instance()->GetRecaptchaSettings();
-            $gui["value"]["recaptcha_public_key"] = $data["recaptcha_public_key"];
-            $gui["value"]["recaptcha_private_key"] = $data["recaptcha_private_key"];
+            $gui["value"]["recaptcha_public_key"]       = $data["recaptcha_public_key"];
+            $gui["value"]["recaptcha_private_key"]      = $data["recaptcha_private_key"];
         }
     }
 }

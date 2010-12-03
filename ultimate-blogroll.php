@@ -28,6 +28,7 @@ Author URI: http://www.gheerardyn.be
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/config.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/UltimateBlogrollController.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/WidgetController.php");
+load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 //save on load, this is the admin panel and doesn't need to be loaded outside the wp admin panel.
 if (is_admin()) {

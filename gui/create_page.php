@@ -90,15 +90,15 @@
         theme : 'white'
      };
 </script>
-<p>The following links are from yesterday and today.<br />You can add your website at the bottom of this page.</p>
+<p><?= __("The following links are from yesterday and today.<br />You can add your website at the bottom of this page.") ?></p>
 <table class="ub_table" cellspacing="1" id="ultimate-blogroll-table">
     <tr class="first">
-        <td class="first">Website</td>
-        <td class="wb-data">Last 48h in</td>
-        <td class="wb-data">Last 48h out</td>
-        <td class="wb-data">Total in</td>
-        <td class="wb-data">Total out</td>
-        <td class="wb-data">Ratio</td>
+        <td class="first"><?= __("Website", "ultimate-blogroll") ?></td>
+        <td class="wb-data"><?= __("Last 48h in", "ultimate-blogroll") ?></td>
+        <td class="wb-data"><?= __("Last 48h out", "ultimate-blogroll") ?></td>
+        <td class="wb-data"><?= __("Total in", "ultimate-blogroll") ?></td>
+        <td class="wb-data"><?= __("Total out", "ultimate-blogroll") ?></td>
+        <td class="wb-data"><?= __("Ratio", "ultimate-blogroll") ?></td>
     </tr>
     <?php
     if(!empty($gui["table_links"])) {
@@ -140,19 +140,19 @@
     }
     ?>
 </table>
-<h3 id="wp-add-your-site" style="margin-top: 30px; margin-bottom: 10px;">Add your site</h3>
-<h4>Step 1: First things first: Add our link to your website.</h4>
+<h3 id="wp-add-your-site" style="margin-top: 30px; margin-bottom: 10px;"><?= __("Add your site") ?></h3>
+<h4><?= __("Step 1: First things first: Add our link to your website.") ?></h4>
 <table width="100%">
     <tr>
-        <td class="column1">Website url:</td>
+        <td class="column1"><?= __("Website url") ?>:</td>
         <td class="column2"><?= $gui["url"] ?></td>
     </tr>
     <tr>
-        <td>Website title:</td>
+        <td><?= __("Website title") ?>:</td>
         <td><?= $gui["title"] ?></td>
     </tr>
     <tr>
-        <td>Website description:</td>
+        <td><?= __("Website description") ?>:</td>
         <td><?= $gui["description"] ?></td>
     </tr>
 </table>
@@ -160,11 +160,11 @@
     <legend>Code:</legend>
     &lt; a href="<?= $gui["url"] ?>" title="<?= $gui["description"] ?>" <?= $gui["table_links_target"]?>&gt;<?= $gui["title"] ?>&lt;/a&gt;
 </fieldset>
-<h4 style="margin-top: 20px;">Step 2: Submit your linktrade</h4>
+<h4 style="margin-top: 20px;"><?= __("Step 2: Submit your linktrade") ?></h4>
 <form method="POST" action="#wp-add-your-site">
 <?php
 if(isset($gui["error"]["msg"]["addlinkpartner"])) {
-    echo "<ul class=\"error\">";
+    echo "<ul class=\"ub_error\">";
     foreach($gui["error"]["msg"]["addlinkpartner"] as $error)
     {
         echo html_entity_decode($error);
@@ -173,58 +173,58 @@ if(isset($gui["error"]["msg"]["addlinkpartner"])) {
 }
 if(isset($gui["success"])) {
     //echo "<div>".$gui["success"]."</div>";
-    echo "<ul class=\"succes updated\"><li>Your website was successfully added.</li><li>Your website is awaiting approval, it will be visible within a short notice.</li></ul>";
+    echo "<ul class=\"succes updated\"><li>". __("Your website was successfully added.")."</li><li>".__("Your website is awaiting approval, it will be visible within a short notice.")."</li></ul>";
 
 }
 ?>
 <table style="color: #333333;">
     <tr <?=html_entity_decode(@$gui["error"]["your_name"]); ?>>
-        <td class="column1">Your name*:</td>
+        <td class="column1"><?= __("Your name") ?>*:</td>
         <td class="column2"><input type="text" name="your_name" class="form_text" value="<?=@$gui["value"]["your_name"]; ?>" /></td>
-        <td>So we know who to contact</td>
+        <td><?= __("So we know who to contact") ?></td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["your_email"]); ?>>
-        <td class="column1">Your email*:</td>
+        <td class="column1"><?= __ ("Your email") ?>*:</td>
         <td class="column2"><input type="text" name="your_email" class="form_text" value="<?=@$gui["value"]["your_email"]; ?>" /></td>
-        <td>Existing email</td>
+        <td><?= __("Existing email") ?></td>
     </tr>
     <tr>
         <td><br /></td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["website_url"]); ?>>
-        <td class="column1">Website url*:</td>
+        <td class="column1"><?= __("Website url") ?>*:</td>
         <td class="column2"><input type="text" name="website_url" class="form_text" value="<?=@$gui["value"]["website_url"]; ?>" /></td>
-        <td>&lt;a href=&quot;<b>website url</b>&quot;&gt;&lt;/a&gt;</td>
+        <td>&lt;a href=&quot;<b><?= __("website url") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["website_title"]); ?>>
-        <td class="column1">Website title*:</td>
+        <td class="column1"><?= __("Website title") ?>*:</td>
         <td class="column2"><input type="text" name="website_title" class="form_text" value="<?=@$gui["value"]["website_title"]; ?>" /></td>
-        <td>&lt;a&gt;<b>website title</b>&lt;/a&gt;</td>
+        <td>&lt;a&gt;<b><?= __("website title") ?></b>&lt;/a&gt;</td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["website_description"]); ?>>
-        <td class="column1">Website description*:</td>
+        <td class="column1"><?= __("Website description") ?>*:</td>
         <td class="column2"><input type="text" name="website_description" class="form_text" value="<?=@$gui["value"]["website_description"]; ?>" /></td>
-        <td>&lt;a title=&quot;<b>website description</b>&quot;&gt;&lt;/a&gt;</td>
+        <td>&lt;a title=&quot;<b><?= __("website description") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
     <tr>
         <td><br /></td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["website_domain"]); ?>>
-        <td class="column1">Website domain*:</td>
+        <td class="column1"><?= __("Website domain") ?>*:</td>
         <td class="column2"><input type="text" name="website_domain" class="form_text" value="<?=@$gui["value"]["website_domain"]; ?>" /></td>
-        <td><b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) without http://www </td>
+        <td><b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) <?= __("without") ?> http://www </td>
     </tr>
     <tr <?=html_entity_decode(@$gui["error"]["website_reciprocal"]); ?>>
-        <td class="column1">Website reciprocal*:</td>
+        <td class="column1"><?= __("Website reciprocal") ?>*:</td>
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
-        <td>Where can we find our link back?</td>
+        <td><?= __("Where can we find our link back?") ?></td>
     </tr>
     <?php
         if(($gui["fight_spam"]) == "yes") {
             
     ?>
     <tr <?=html_entity_decode(@$gui["error"]["captcha"]); ?>>
-        <td class="column1">Anti-spam*:</td>
+        <td class="column1"><?= __("Anti-spam") ?>*:</td>
         <td class="column2" colspan="2">
         <?php
             echo recaptcha_get_html($gui["captcha_settings"]["recaptcha_public_key"]);
@@ -235,7 +235,7 @@ if(isset($gui["success"])) {
     ?>
     <tr>
         <td class="column1"></td>
-        <td class="column2"><input type="submit" name="add_linkpartner" value="Submit website" class="form_text" /></td>
+        <td class="column2"><input type="submit" name="add_linkpartner" value="<?= __("Submit website")?>" class="form_text" /></td>
         <td></td>
     </tr>
 </table>

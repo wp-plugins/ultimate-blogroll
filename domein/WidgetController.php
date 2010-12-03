@@ -119,7 +119,7 @@ class WidgetController extends UltimateBlogrollController {
             }
         }
         if(!empty($widget_settings["permalink"]))
-            $gui .= "<li><a href=\"".get_permalink($widget_settings["permalink"])."\">More</a></li>";
+            $gui .= "<li><a href=\"".get_permalink($widget_settings["permalink"])."\">".__("More")."</a></li>";
         $gui .= "</ul>";
         $gui .= $after_widget;
 
@@ -141,27 +141,27 @@ class WidgetController extends UltimateBlogrollController {
                 width: 220px;
             }
         </style>";
-        echo "<p><label>Widget title:</label><br />
+        echo "<p><label>".__("Widget title").":</label><br />
             <input type=\"text\" class=\"widget_text\" name=\"widget_title\" value=\"".@$widget_settings["widget_title"]."\" />
         </p>";
-        echo "<p><label>Limit of linkpartners:</label><br />
+        echo "<p><label>".__("Limit of linkpartners").":</label><br />
             <input type=\"text\" class=\"widget_text\" name=\"limit_linkpartners\" value=\"".@$widget_settings["limit_linkpartners"]."\" />
         </p>";
-        echo "<p><label>Order by:</label><br />
+        echo "<p><label>".__("Order by").":</label><br />
             <select class=\"widget_text\" name=\"order_by\">
-                <option ".((@$widget_settings["order_by"] == "id") ? "selected=\"yes\"" : "")." value=\"id\">ID</option>
-                <option ".((@$widget_settings["order_by"] == "name") ? "selected=\"yes\"" : "")." value=\"name\">Name</option>
-                <option ".((@$widget_settings["order_by"] == "inlinks") ? "selected=\"yes\"" : "")." value=\"inlinks\">Inlinks</option>
-                <option ".((@$widget_settings["order_by"] == "outlinks") ? "selected=\"yes\"" : "")." value=\"outlinks\">Outlinks</option>
+                <option ".((@$widget_settings["order_by"] == "id") ? "selected=\"yes\"" : "")." value=\"id\">".__("ID")."</option>
+                <option ".((@$widget_settings["order_by"] == "name") ? "selected=\"yes\"" : "")." value=\"name\">".__("Name")."</option>
+                <option ".((@$widget_settings["order_by"] == "inlinks") ? "selected=\"yes\"" : "")." value=\"inlinks\">".__("Inlinks")."</option>
+                <option ".((@$widget_settings["order_by"] == "outlinks") ? "selected=\"yes\"" : "")." value=\"outlinks\">".__("Outlinks")."</option>
             </select>
         </p>";
-        echo "<p><label>Ascending/Descending:</label><br />
+        echo "<p><label>".__("Ascending/Descending").":</label><br />
             <select class=\"widget_text\" name=\"ascending\">
-                <option ".((@$widget_settings["ascending"] == "asc") ? "selected=\"yes\"" : "")." value=\"asc\">Ascending</option>
-                <option ".((@$widget_settings["ascending"] == "desc") ? "selected=\"yes\"" : "")." value=\"desc\">Descending</option>
+                <option ".((@$widget_settings["ascending"] == "asc") ? "selected=\"yes\"" : "")." value=\"asc\">".__("Ascending")."</option>
+                <option ".((@$widget_settings["ascending"] == "desc") ? "selected=\"yes\"" : "")." value=\"desc\">".__("Descending")."</option>
             </select>
         </p>";
-        echo "<p><label>Link exchange page:</label><br />
+        echo "<p><label>".__("Link exchange page").":</label><br />
             <select class=\"widget_text\" name=\"permalink\">";
         $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
         if(!empty($pages))
@@ -233,12 +233,12 @@ jQuery(document).ready(function($) {
             
             //secure our output
             $gui = array_map ( array($this, 'map_entities'), $gui );
-            $gui["table_links_target"] = $this->GetTarget($general_settings["target"]);
-            $gui["url"] = get_bloginfo("wpurl");
+            $gui["table_links_target"]  = $this->GetTarget($general_settings["target"]);
+            $gui["url"]                 = get_bloginfo("wpurl");
             //var_dump($general_settings);
-            $gui["title"] = $general_settings["website_title"];
-            $gui["description"] = $general_settings["website_description"];
-            $gui["support"] = @$general_settings["support"];
+            $gui["title"]               = $general_settings["website_title"];
+            $gui["description"]         = $general_settings["website_description"];
+            $gui["support"]             = @$general_settings["support"];
 
             ob_start(); // begin collecting output
             require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/create_page.php");
