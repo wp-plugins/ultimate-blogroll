@@ -72,7 +72,7 @@ class LinkpartnerController extends UltimateBlogrollController {
         //if the search button was hit an alternative mapper and subtitle was called.
         if(!isset($_GET["search_button"])) {
             $gui["linkpartners"] = PersistentieMapper::Instance()->GetLinkpartners((isset($_GET["status"]) ? $_GET["status"] : ""));
-            $gui["title"] = __("Overview")." <a class=\"button add-new-h2\" href=\"admin.php?page=ultimate-blogroll-add-linkpartner\">".__("Add new")."</a>";
+            $gui["title"] = __("Overview", "ultimate-blogroll")." <a class=\"button add-new-h2\" href=\"admin.php?page=ultimate-blogroll-add-linkpartner\">".__("Add new", "ultimate-blogroll")."</a>";
 
             if(isset($_GET["bulk_action"])) {
                 if(!isset($_GET["linkpartner"]))
@@ -118,7 +118,7 @@ class LinkpartnerController extends UltimateBlogrollController {
         } else {
             //if the user hit the search the button we have a different query and a new subtitle was added
             $gui["linkpartners"] = PersistentieMapper::Instance()->SearchLinkpartners(@$_GET["s"]);
-            $gui["title"] = __("Overview")." <a class=\"button add-new-h2\" href=\"admin.php?page=ultimate-blogroll-add-linkpartner\">".__("Add new")."</a><span class=\"subtitle\">".__("Search results for")." “".htmlentities(@$_GET["s"])."”</span>";
+            $gui["title"] = __("Overview", "ultimate-blogroll")." <a class=\"button add-new-h2\" href=\"admin.php?page=ultimate-blogroll-add-linkpartner\">".__("Add new", "ultimate-blogroll")."</a><span class=\"subtitle\">".__("Search results for", "ultimate-blogroll")." “".htmlentities(@$_GET["s"])."”</span>";
         }
         $gui = array_map ( array($this, 'map_entities'), $gui );
         
@@ -150,7 +150,7 @@ class LinkpartnerController extends UltimateBlogrollController {
         global $gui;
         $this->PreparePage();
         $gui["edit"] = false;
-        $gui["title"] = __("Add linkpartner");
+        $gui["title"] = __("Add linkpartner", "ultimate-blogroll");
         $this->checkFormAddLinkpartner();
 
         $gui = array_map ( array($this, 'map_entities'), $gui );

@@ -22,31 +22,31 @@ require_once($path."gui/header.php");
 <form id="form_overview" method="GET" action="">
     <input type="hidden" name="page" value="<?= @$_GET["page"];?>" />
     <ul class="subsubsub">
-        <li><a <?=(((@$_GET["status"] == "all" && !isset($_GET["search_button"])) || (!isset($_GET["status"]) && !isset($_GET["search_button"]))) ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_all"]; ?>"><?= __("All") ?> <span class="count">(<?= $gui["status_count"]["total"]; ?>)</span></a> |</li>
-        <li><a <?=((@$_GET["status"] == "approved") ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_approved"]; ?>"><?= __("Approved") ?> <span class="count">(<?= $gui["status_count"]["approved"]; ?>)</span></a> |</li>
-        <li><a <?=((@$_GET["status"] == "unapproved") ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_unapproved"]; ?>"><?= __("Unapproved") ?> <span class="count">(<?= $gui["status_count"]["unapproved"];?>)</span></a></li>
+        <li><a <?=(((@$_GET["status"] == "all" && !isset($_GET["search_button"])) || (!isset($_GET["status"]) && !isset($_GET["search_button"]))) ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_all"]; ?>"><?= __("All", "ultimate-blogroll") ?> <span class="count">(<?= $gui["status_count"]["total"]; ?>)</span></a> |</li>
+        <li><a <?=((@$_GET["status"] == "approved") ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_approved"]; ?>"><?= __("Approved", "ultimate-blogroll") ?> <span class="count">(<?= $gui["status_count"]["approved"]; ?>)</span></a> |</li>
+        <li><a <?=((@$_GET["status"] == "unapproved") ? 'class="current"' : ""); ?> href="<?=$gui["status_count"]["link_unapproved"]; ?>"><?= __("Unapproved", "ultimate-blogroll") ?> <span class="count">(<?= $gui["status_count"]["unapproved"];?>)</span></a></li>
     </ul>
     <p class="search-box">
 	<label for="post-search-input" class="screen-reader-text">Search links:</label>
 	<input type="text" value="<?= htmlentities(@$_GET["s"]); ?>" name="s" id="post-search-input">
-	<input type="submit" class="button" value="<?= __("Search links") ?>" name="search_button">
+	<input type="submit" class="button" value="<?= __("Search links", "ultimate-blogroll") ?>" name="search_button">
     </p>
     <?php if(isset($_GET["search_button"]) && empty($gui["linkpartners"]))
     {
         echo '<div class="clear"></div>';
-        echo "<p>".__("No results found.")."</p>";
+        echo "<p>".__("No results found.", "ultimate-blogroll")."</p>";
     } else {
     ?>
     <div class="tablenav">
         <div class="alignleft">
             <select name="overview_actions">
-                <option value="-1" selected="selected"><?= __("Bulk actions") ?></option>
-                <option value="approve"><?= __("Approve") ?></option>
-                <option value="unapprove"><?= __("Unapprove") ?></option>
-                <option value="delete"><?= __("Delete") ?></option>
+                <option value="-1" selected="selected"><?= __("Bulk actions", "ultimate-blogroll") ?></option>
+                <option value="approve"><?= __("Approve", "ultimate-blogroll") ?></option>
+                <option value="unapprove"><?= __("Unapprove", "ultimate-blogroll") ?></option>
+                <option value="delete"><?= __("Delete", "ultimate-blogroll") ?></option>
             </select>
-            <input type="submit" class="button-secondary" name="bulk_action" value="<?= __("Apply") ?>">
-            <input type="submit" class="button-secondary" name="check_reciprocal_url" value="<?= __("Check Reciprocal URL")?>">
+            <input type="submit" class="button-secondary" name="bulk_action" value="<?= __("Apply", "ultimate-blogroll") ?>">
+            <input type="submit" class="button-secondary" name="check_reciprocal_url" value="<?= __("Check Reciprocal URL", "ultimate-blogroll")?>">
         </div><!-- /alignleft -->
 
         <div class="alignright">
@@ -59,26 +59,26 @@ require_once($path."gui/header.php");
         <thead>
             <tr>
                 <th style="" class="manage-column column-cb check-column" id="cb" scope="col"><input type="checkbox"></th>
-                <th style="" class="manage-column column-link-website" scope="col"><?= __("Website name") ?></th>
-                <th style="" class="manage-column column-link-date" scope="col"><?= __("URL") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Last 48h in") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Last 48h out") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Total in") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Total out") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Ratio") ?></th>
+                <th style="" class="manage-column column-link-website" scope="col"><?= __("Website name", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column column-link-date" scope="col"><?= __("URL", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Last 48h in", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Last 48h out", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Total in", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Total out", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Ratio", "ultimate-blogroll") ?></th>
                 <th style="width: 2%" class="manage-column" scope="col"></th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th style="" class="manage-column column-cb check-column" scope="col"><input type="checkbox"></th>
-                <th style="" class="manage-column column-link-website" scope="col"><?= __("Website name") ?></th>
-                <th style="" class="manage-column column-link-date" scope="col"><?= __("URL") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Last 48h in") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Last 48h out") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Total in") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Total out") ?></th>
-                <th style="" class="manage-column" scope="col"><?= __("Ratio") ?></th>
+                <th style="" class="manage-column column-link-website" scope="col"><?= __("Website name", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column column-link-date" scope="col"><?= __("URL", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Last 48h in", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Last 48h out", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Total in", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Total out", "ultimate-blogroll") ?></th>
+                <th style="" class="manage-column" scope="col"><?= __("Ratio", "ultimate-blogroll") ?></th>
                 <th style="width: 2%" class="manage-column" scope="col"></th>
             </tr>
         </tfoot>
@@ -92,18 +92,18 @@ require_once($path."gui/header.php");
                 </th>
                 <td class="post-title column-title">
                     <strong>
-                        <a title="<?= __("Edit") . " " . $linkpartner["website_name"]; ?>" href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" class=""><?= $linkpartner["website_name"]; ?></a>
+                        <a title="<?= __("Edit", "ultimate-blogroll") . " " . $linkpartner["website_name"]; ?>" href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" class=""><?= $linkpartner["website_name"]; ?></a>
                     </strong>
                     <div class="row-actions">
-                        <span class="edit"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" title="Edit this linkpartner"><?= __("Edit") ?></a> | </span>
+                        <span class="edit"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" title="Edit this linkpartner"><?= __("Edit", "ultimate-blogroll") ?></a> | </span>
                         <?php
                         if($linkpartner["website_status"] == "u") {
-                            echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Approve this linkpartner").'">'.__("Approve").'</a> | </span>';
+                            echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Approve this linkpartner", "ultimate-blogroll").'">'.__("Approve", "ultimate-blogroll").'</a> | </span>';
                         } else {
-                            echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "unapprove", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Unapprove this linkpartner").'">'.__("Unapprove").'</a> | </span>';
+                            echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "unapprove", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Unapprove this linkpartner", "ultimate-blogroll").'">'.__("Unapprove", "ultimate-blogroll").'</a> | </span>';
                         }
                         ?>
-                        <span class="delete"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])); ?>" onclick="if ( confirm('Je staat op het punt de link \'<?=$linkpartner["website_name"] ?>\' te verwijderen \n \'Annuleren\' om te stoppen, \'OK\' om te verwijderen.') ) { return true;}return false;" href="link.php?action=delete&amp;link_id=1&amp;_wpnonce=57e7e3410b" title="Delete this linkpartner"><?= __("Delete") ?></a></span>
+                        <span class="delete"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])); ?>" href="link.php?action=delete&amp;link_id=1&amp;_wpnonce=57e7e3410b" title="Delete this linkpartner"><?= __("Delete", "ultimate-blogroll") ?></a></span>
                         
                     </div>
                 </td>

@@ -119,7 +119,7 @@ class WidgetController extends UltimateBlogrollController {
             }
         }
         if(!empty($widget_settings["permalink"]))
-            $gui .= "<li><a href=\"".get_permalink($widget_settings["permalink"])."\">".__("More")."</a></li>";
+            $gui .= "<li><a href=\"".get_permalink($widget_settings["permalink"])."\">".__("More", "ultimate-blogroll")."</a></li>";
         $gui .= "</ul>";
         $gui .= $after_widget;
 
@@ -141,27 +141,27 @@ class WidgetController extends UltimateBlogrollController {
                 width: 220px;
             }
         </style>";
-        echo "<p><label>".__("Widget title").":</label><br />
+        echo "<p><label>".__("Widget title", "ultimate-blogroll").":</label><br />
             <input type=\"text\" class=\"widget_text\" name=\"widget_title\" value=\"".@$widget_settings["widget_title"]."\" />
         </p>";
-        echo "<p><label>".__("Limit of linkpartners").":</label><br />
+        echo "<p><label>".__("Limit of linkpartners", "ultimate-blogroll").":</label><br />
             <input type=\"text\" class=\"widget_text\" name=\"limit_linkpartners\" value=\"".@$widget_settings["limit_linkpartners"]."\" />
         </p>";
-        echo "<p><label>".__("Order by").":</label><br />
+        echo "<p><label>".__("Order by", "ultimate-blogroll").":</label><br />
             <select class=\"widget_text\" name=\"order_by\">
-                <option ".((@$widget_settings["order_by"] == "id") ? "selected=\"yes\"" : "")." value=\"id\">".__("ID")."</option>
-                <option ".((@$widget_settings["order_by"] == "name") ? "selected=\"yes\"" : "")." value=\"name\">".__("Name")."</option>
-                <option ".((@$widget_settings["order_by"] == "inlinks") ? "selected=\"yes\"" : "")." value=\"inlinks\">".__("Inlinks")."</option>
-                <option ".((@$widget_settings["order_by"] == "outlinks") ? "selected=\"yes\"" : "")." value=\"outlinks\">".__("Outlinks")."</option>
+                <option ".((@$widget_settings["order_by"] == "id") ? "selected=\"yes\"" : "")." value=\"id\">".__("ID", "ultimate-blogroll")."</option>
+                <option ".((@$widget_settings["order_by"] == "name") ? "selected=\"yes\"" : "")." value=\"name\">".__("Name", "ultimate-blogroll")."</option>
+                <option ".((@$widget_settings["order_by"] == "inlinks") ? "selected=\"yes\"" : "")." value=\"inlinks\">".__("Inlinks", "ultimate-blogroll")."</option>
+                <option ".((@$widget_settings["order_by"] == "outlinks") ? "selected=\"yes\"" : "")." value=\"outlinks\">".__("Outlinks", "ultimate-blogroll")."</option>
             </select>
         </p>";
-        echo "<p><label>".__("Ascending/Descending").":</label><br />
+        echo "<p><label>".__("Ascending/Descending", "ultimate-blogroll").":</label><br />
             <select class=\"widget_text\" name=\"ascending\">
-                <option ".((@$widget_settings["ascending"] == "asc") ? "selected=\"yes\"" : "")." value=\"asc\">".__("Ascending")."</option>
-                <option ".((@$widget_settings["ascending"] == "desc") ? "selected=\"yes\"" : "")." value=\"desc\">".__("Descending")."</option>
+                <option ".((@$widget_settings["ascending"] == "asc") ? "selected=\"yes\"" : "")." value=\"asc\">".__("Ascending", "ultimate-blogroll")."</option>
+                <option ".((@$widget_settings["ascending"] == "desc") ? "selected=\"yes\"" : "")." value=\"desc\">".__("Descending", "ultimate-blogroll")."</option>
             </select>
         </p>";
-        echo "<p><label>".__("Link exchange page").":</label><br />
+        echo "<p><label>".__("Link exchange page", "ultimate-blogroll").":</label><br />
             <select class=\"widget_text\" name=\"permalink\">";
         $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
         if(!empty($pages))
@@ -217,6 +217,7 @@ jQuery(document).ready(function($) {
             return $content;
         } else {
             global $gui;
+            $_POST = is_array($_POST) ? array_map('stripslashes_deep', $_POST) : stripslashes($_POST);
             $widget_settings = PersistentieMapper::Instance()->GetWidgetSettings();
             $general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
             $captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
