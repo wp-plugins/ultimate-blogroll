@@ -15,13 +15,13 @@ class LinkpartnerMapper {
     public function AddLinkpartner($data) {
         $table_name = $this->database->prefix . "ubsites";
         $result = array();
-        $result["website_owner_name"] = $data["your_name"];
-        $result["website_owner_email"] = $data["your_email"];
-        $result["website_name"] = $data["website_title"];
-        $result["website_description"] = $data["website_description"];
-        $result["website_domein"] = $data["website_domain"];
-        $result["website_url"] = $data["website_url"];
-        $result["website_backlink"] = $data["website_reciprocal"];
+        $result["website_owner_name"] = $data->name;
+        $result["website_owner_email"] = $data->email;
+        $result["website_name"] = $data->title;
+        $result["website_description"] = $data->description;
+        $result["website_domein"] = $data->domain;
+        $result["website_url"] = $data->url;
+        $result["website_backlink"] = $data->reciprocal;
         $result["website_last_update"] = time();
         $result["website_change_id"] = $this->makeRandom(50);
         $result["website_date_added"] = time();
