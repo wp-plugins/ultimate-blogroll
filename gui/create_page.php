@@ -1,5 +1,6 @@
 <?php
     require_once("recaptchalib.php");
+    require_once("functions.php");
     global $gui;
 ?>
 <style type="text/css">
@@ -10,7 +11,6 @@
         border-style: solid;
         border-width: 1px;
         border-color: #DFDFDF;
-        color: #333333;
     }
     .ub_table th {
         line-height: 1.3em;
@@ -72,6 +72,9 @@
     }
     .red {
         color: #ff0000;
+    }
+    #ub_code {
+        border: 1px solid #333333;
     }
 </style>
 <script type="text/javascript" >
@@ -144,8 +147,8 @@
 <h4><?= __("Step 1: First things first: Add our link to your website.", "ultimate-blogroll") ?></h4>
 <table width="100%">
     <tr>
-        <td class="column1"><?= __("Website url", "ultimate-blogroll") ?>:</td>
-        <td class="column2"><?= $gui["url"] ?></td>
+        <td style="width: 50%"><?= __("Website url", "ultimate-blogroll") ?>:</td>
+        <td><?= $gui["url"] ?></td>
     </tr>
     <tr>
         <td><?= __("Website title", "ultimate-blogroll") ?>:</td>
@@ -156,65 +159,64 @@
         <td><?= $gui["description"] ?></td>
     </tr>
 </table>
-<fieldset>
-    <legend>Code:</legend>
+<fieldset id="ub_code">
+    <legend >Code:</legend>
     &lt; a href="<?= $gui["url"] ?>" title="<?= $gui["description"] ?>" <?= $gui["table_links_target"]?>&gt;<?= $gui["title"] ?>&lt;/a&gt;
 </fieldset>
 <h4 style="margin-top: 20px;"><?= __("Step 2: Submit your linktrade", "ultimate-blogroll") ?></h4>
 <form method="POST" action="#wp-add-your-site">
 <?php
-if(isset($gui["error"]["msg"]["addlinkpartner"])) {
-    echo "<ul class=\"ub_error\">";
-    foreach($gui["error"]["msg"]["addlinkpartner"] as $error)
-    {
-        echo html_entity_decode($error);
-    }
+if(isset($gui["error"]["messages"])) {
+    echo "<ul class=\"error\">";
+    echo getErrorMessages();
     echo "</ul>";
 }
 if(isset($gui["success"])) {
-    //echo "<div>".$gui["success"]."</div>";
     echo "<ul class=\"succes updated\"><li>". __("Your website was successfully added.", "ultimate-blogroll")."</li><li>".__("Your website is awaiting approval, it will be visible within a short notice.", "ultimate-blogroll")."</li></ul>";
-
 }
 ?>
-<table style="color: #333333;">
-    <tr <?=html_entity_decode(@$gui["error"]["your_name"]); ?>>
+<table>
+    <tr <?=getErrorField("your_name"); ?>>
         <td class="column1"><?= __("Your name", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="your_name" class="form_text" value="<?=@$gui["value"]["your_name"]; ?>" /></td>
         <td><?= __("So we know who to contact", "ultimate-blogroll") ?></td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["your_email"]); ?>>
-        <td class="column1"><?= __ ("Your email") ?>*:</td>
+    <tr <?=getErrorField("your_email"); ?>>
+        <td class="column1"><?= __ ("Your email", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="your_email" class="form_text" value="<?=@$gui["value"]["your_email"]; ?>" /></td>
         <td><?= __("Existing email", "ultimate-blogroll") ?></td>
     </tr>
     <tr>
         <td><br /></td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["website_url"]); ?>>
+    <tr <?=getErrorField("website_url"); ?>>
         <td class="column1"><?= __("Website url", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_url" class="form_text" value="<?=@$gui["value"]["website_url"]; ?>" /></td>
         <td>&lt;a href=&quot;<b><?= __("website url", "ultimate-blogroll") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["website_title"]); ?>>
+    <tr <?=getErrorField("website_title"); ?>>
         <td class="column1"><?= __("Website title", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_title" class="form_text" value="<?=@$gui["value"]["website_title"]; ?>" /></td>
         <td>&lt;a&gt;<b><?= __("website title", "ultimate-blogroll") ?></b>&lt;/a&gt;</td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["website_description"]); ?>>
+    <tr <?=getErrorField("website_description"); ?>>
         <td class="column1"><?= __("Website description", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_description" class="form_text" value="<?=@$gui["value"]["website_description"]; ?>" /></td>
         <td>&lt;a title=&quot;<b><?= __("website description", "ultimate-blogroll") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
     <tr>
         <td><br /></td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["website_domain"]); ?>>
+    <tr <?=getErrorField("website_domain"); ?>>
         <td class="column1"><?= __("Website domain", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_domain" class="form_text" value="<?=@$gui["value"]["website_domain"]; ?>" /></td>
-        <td><b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) <?= __("without") ?> http://www </td>
+        <td><b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) <?= __("without", "ultimate-blogroll") ?> http://www </td>
     </tr>
-    <tr <?=html_entity_decode(@$gui["error"]["website_reciprocal"]); ?>>
+    <tr <?=getErrorField("website_reciprocal"); ?>>
         <td class="column1"><?= __("Website reciprocal", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
         <td><?= __("Where can we find our link back?", "ultimate-blogroll") ?></td>

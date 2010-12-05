@@ -6,6 +6,7 @@
  */
 global $gui, $path;
 require_once($path."gui/header.php");
+require_once($path."gui/functions.php");
 ?>
     <div class="postbox">                                  
         <div class="handlediv" title="Click to open/close">
@@ -14,12 +15,9 @@ require_once($path."gui/header.php");
         <h3 class="hndle"><span><?= (($gui["edit"] === true) ? __("Edit linkpartner", "ultimate-blogroll").": ".@$gui["value"]["website_title"]." (<a href=\"".@$gui["value"]["website_url"]."\" target=\"_blank\">".@$gui["value"]["website_url"]."</a>)" : __("Add linkpartner", "ultimate-blogroll")); ?></span></h3>
         <div class="inside" style="display: block;">
             <?php
-            if(isset($gui["error"]["msg"]["addlinkpartner"])) {
-                echo "<ul class=\"ub_error\">";
-                foreach($gui["error"]["msg"]["addlinkpartner"] as $error)
-                {
-                    echo html_entity_decode($error);
-                }
+            if(isset($gui["error"]["messages"]["addlinkpartner"])) {
+                echo "<ul class=\"error\">";
+                echo getErrorMessages($gui["error"]["messages"]["addlinkpartner"]);
                 echo "</ul>";
             }
             if(isset($gui["success"])) {
@@ -34,12 +32,12 @@ require_once($path."gui/header.php");
             ?>
             <form id="form1" method="POST" action="">
                 <table>
-                    <tr <?=@$gui["error"]["your_name"]; ?>>
+                    <tr <?=getErrorField("your_name"); ?>>
                         <td class="column1"><?= __("Website owner's name", "ultimate-blogroll"); ?>*:</td>
                         <td class="column2"><input type="text" name="your_name" class="form_text" value="<?=@$gui["value"]["your_name"]; ?>" /></td>
                         <td><?= __("Website owner's name, so we know who to contact", "ultimate-blogroll"); ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["your_email"]; ?>>
+                    <tr <?=getErrorField("your_email"); ?>>
                         <td class="column1"><?= __("Website owner's email", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="your_email" class="form_text" value="<?=@$gui["value"]["your_email"]; ?>" /></td>
                         <td><?= __("Website owner's email, so we know who to contact", "ultimate-blogroll") ?></td>
@@ -47,17 +45,17 @@ require_once($path."gui/header.php");
                     <tr>
                         <td><br /></td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_url"]; ?>>
+                    <tr <?=getErrorField("website_url"); ?>>
                         <td class="column1"><?= __("Website url", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="website_url" class="form_text" value="<?=@$gui["value"]["website_url"]; ?>" /></td>
                         <td><?=htmlentities('<a href="');?><b><?= __("website url", "ultimate-blogroll") ?></b><?=htmlentities('"></a>'); ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_title"]; ?>>
+                    <tr <?=getErrorField("website_title"); ?>>
                         <td class="column1"><?= __("Website title", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="website_title" class="form_text" value="<?=@$gui["value"]["website_title"]; ?>" /></td>
                         <td><?=htmlentities('<a>'); ?><b><?= __("website title", "ultimate-blogroll") ?></b><?=htmlentities('</a>'); ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_description"]; ?>>
+                    <tr <?=getErrorField("website_description"); ?>>
                         <td class="column1"><?= __("Website description", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="website_description" class="form_text" value="<?=@$gui["value"]["website_description"]; ?>" /></td>
                         <td><?=htmlentities('<a title="'); ?><b><?= __("website description", "ultimate-blogroll") ?></b><?=htmlentities('"></a>'); ?></td>
@@ -65,12 +63,12 @@ require_once($path."gui/header.php");
                     <tr>
                         <td><br /></td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_domain"]; ?>>
+                    <tr <?=getErrorField("website_domain"); ?>>
                         <td class="column1"><?= __("Website domain", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="website_domain" class="form_text" value="<?=@$gui["value"]["website_domain"]; ?>" /></td>
                         <td><?= __("Website domain", "ultimate-blogroll") ?>, <b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) <?= __("without", "ultimate-blogroll") ?> http://www </td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_reciprocal"]; ?>>
+                    <tr <?=getErrorField("website_reciprocal"); ?>>
                         <td class="column1"><?= __("Website reciprocal", "ultimate-blogroll") ?>:</td>
                         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
                         <td><?= __("Where can we find our link back? (Leave blank if not required)", "ultimate-blogroll") ?></td>

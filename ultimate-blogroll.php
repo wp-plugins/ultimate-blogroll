@@ -8,6 +8,10 @@ Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
 /*  Copyright 2010 Jens Gheerardyn  (email: jens@gheerardyn.be)
+**  Use of this application will be at your own risk.
+**  No guarantees or warranties are made directly or implied.
+**  The creators cannot and will not be liable or held accountable for damages,
+**  direct or consequential.
 **
 **  This program is free software; you can redistribute it and/or modify
 **  it under the terms of the GNU General Public License as published by
@@ -24,10 +28,13 @@ Author URI: http://www.gheerardyn.be
 **  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 //TODO: remove the error_reporting(E_ALL) error level;
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/config.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/UltimateBlogrollController.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/WidgetController.php");
+require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/GeneralSettingsDTO.php");
+require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/WidgetSettingsDTO.php");
+require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/RecaptchaSettingsDTO.php");
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 //save on load, this is the admin panel and doesn't need to be loaded outside the wp admin panel.

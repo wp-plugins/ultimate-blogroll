@@ -5,6 +5,7 @@
  * @author Jens
  */
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/UltimateBlogrollController.php");
+
 class SettingsController extends UltimateBlogrollController {
     //private $persisentie;
     protected $gui = array();
@@ -21,9 +22,165 @@ class SettingsController extends UltimateBlogrollController {
         $gui["blogname"]    = get_bloginfo('blogname');
         $gui["description"] = get_bloginfo('description');
         $gui["admin_email"] = get_bloginfo('admin_email');
-        $this->checkFormGeneralSettings();
-        $this->checkFormWidgetSettings();
-        $this->checkFormRecaptchaSettings();
+
+        $data1 = PersistentieMapper::Instance()->GetGeneralSettings();
+        if(is_array($data1)) {
+            $settings = new GeneralSettingsDTO(
+                @$data1["website_url"],
+                @$data1["website_title"],
+                @$data1["website_description"],
+                @$data1["blogroll_contact"],
+                @$data1["support"],
+                //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
+                @$data1["send_mail"],
+                @$data1["reciprocal_link"],
+                @$data1["fight_spam"],
+                @$data1["target"],
+                @$data1["nofollow"]
+            );
+            PersistentieMapper::Instance()->SaveGeneralSettings($settings);
+            unset($settings);
+        }
+        $data2 = PersistentieMapper::Instance()->GetWidgetSettings();
+        if(is_array($data2)) {
+            $settings = new WidgetSettingsDTO (
+                @$data2["widget_title"],
+                @$data2["limit_linkpartners"],
+                @$data2["order_by"],
+                @$data2["ascending"],
+                @$data2["permalink"]
+            );
+            PersistentieMapper::Instance()->SaveWidgetSettings($settings);
+            unset($settings);
+        }
+        $data3 = PersistentieMapper::Instance()->GetRecaptchaSettings();
+        if(is_array($data3)) {
+            $settings = new RecaptchaSettingsDTO(
+                @$data3["recaptcha_public_key"],
+                @$data3["recaptcha_private_key"]
+            );
+            PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
+            unset($settings);
+        }
+
+        if(isset($_POST["general_settings"])) {
+            $settings = new GeneralSettingsDTO(
+                @$_POST["website_url"],
+                @$_POST["website_title"],
+                @$_POST["website_description"],
+                @$_POST["blogroll_contact"],
+                @$_POST["support"],
+                @$_POST["send_mail"],
+                @$_POST["reciprocal_link"],
+                @$_POST["fight_spam"],
+                @$_POST["target"],
+                @$_POST["nofollow"]
+            );
+            $error = $this->checkFormGeneralSettings($settings);
+            if($error->ContainsErrors() === false) {
+                PersistentieMapper::Instance()->SaveGeneralSettings($settings);
+                $gui["succes"]["general"] = true;
+            }
+            $gui["value"]["website_url"]            = $settings->url;
+            $gui["value"]["website_title"]          = $settings->title;
+            $gui["value"]["website_description"]    = $settings->description;
+            $gui["value"]["blogroll_contact"]       = $settings->contact;
+            //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
+            $gui["value"]["send_mail"]              = $settings->send_mail;
+            $gui["value"]["reciprocal_link"]        = $settings->reciprocal;
+            $gui["value"]["fight_spam"]             = $settings->fight_spam;
+            $gui["value"]["target"]                 = $settings->target;
+            $gui["value"]["nofollow"]               = $settings->nofollow;
+            $gui["value"]["support"]                = $settings->support;
+
+            $gui["error"]["messages"]               = $error->GetErrorMessages();
+            $gui["error"]["fields"]                 = $error->GetErrorFields();
+            unset($error);
+            unset($settings);
+        } else {
+            $data = PersistentieMapper::Instance()->GetGeneralSettings();
+            $gui["value"]["website_url"]            = $data->url;
+            $gui["value"]["website_title"]          = $data->title;
+            $gui["value"]["website_description"]    = $data->description;
+            $gui["value"]["blogroll_contact"]       = $data->contact;
+            //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
+            $gui["value"]["send_mail"]              = $data->send_mail;
+            $gui["value"]["reciprocal_link"]        = $data->reciprocal;
+            $gui["value"]["fight_spam"]             = $data->fight_spam;
+            $gui["value"]["target"]                 = $data->target;
+            $gui["value"]["nofollow"]               = $data->nofollow;
+            $gui["value"]["support"]                = $data->support;
+        }
+        $valid_page_ids = array();
+        $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
+        $gui["html"]["permalink"] = $pages;
+        if(isset($_POST["widget_settings"])) {
+            foreach($pages as $page) {
+                $valid_page_ids[] = $page["id"];
+            }
+
+            $settings = new WidgetSettingsDTO(
+                @$_POST["widget_title"],
+                @$_POST["limit_linkpartners"],
+                @$_POST["order_by"],
+                @$_POST["ascending"],
+                @$_POST["permalink"]
+            );
+            $error = $this->checkFormWidgetSettings($settings, $valid_page_ids);
+            if($error->ContainsErrors() === false) {
+                PersistentieMapper::Instance()->SaveWidgetSettings($settings);
+                $gui["succes"]["widget"] = true;
+            }
+            $gui["value"]["widget_title"]       = $settings->title;
+            $gui["value"]["limit_linkpartners"] = $settings->limit;
+            $gui["value"]["order_by"]           = $settings->order_by;
+            $gui["value"]["ascending"]          = $settings->ascending;
+            $gui["value"]["permalink"]          = $settings->permalink;
+
+            $gui["error"]["messages"]           = $error->GetErrorMessages();
+            $gui["error"]["fields"]             = $error->GetErrorFields();
+            
+            unset($error);
+            unset($settings);
+        } else {
+            $data = PersistentieMapper::Instance()->GetWidgetSettings();
+
+            $gui["value"]["widget_title"]       = $data->title;
+            $gui["value"]["limit_linkpartners"] = $data->limit;
+            $gui["value"]["order_by"]           = $data->order_by;
+            $gui["value"]["ascending"]          = $data->ascending;
+            $gui["value"]["permalink"]          = $data->permalink;
+        }
+        if(isset($_POST["recaptcha_settings"])) {
+            $settings = new RecaptchaSettingsDTO(
+                @$_POST["recaptcha_public_key"],
+                @$_POST["recaptcha_private_key"]
+            );
+            $error = $this->checkFormRecaptchaSettings($settings);
+            if($error->ContainsErrors() === false) {
+                PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
+                $gui["succes"]["recaptcha"] = true;
+            }
+            $gui["value"]["recaptcha_public_key"]       = $settings->recaptcha_public_key;
+            $gui["value"]["recaptcha_private_key"]      = $settings->recaptcha_private_key;
+
+            $gui["error"]["messages"]           = $error->GetErrorMessages();
+            $gui["error"]["fields"]             = $error->GetErrorFields();
+
+            unset($error);
+            unset($settings);
+        } else {
+            $data = PersistentieMapper::Instance()->GetRecaptchaSettings();
+            $gui["value"]["recaptcha_public_key"]       = $data->recaptcha_public_key;
+            $gui["value"]["recaptcha_private_key"]      = $data->recaptcha_private_key;
+        }
+        $recaptcha = PersistentieMapper::Instance()->GetRecaptchaSettings();
+        if(!empty($recaptcha->recaptcha_public_key) && !empty($recaptcha->recaptcha_private_key)) {
+            $gui["html"]["recaptcha"] = true;
+        } else {
+            $gui["value"]["fight_spam"] = "no";
+        }
+        
 
         $gui = array_map ( array($this, 'map_entities'), $gui );
 
@@ -33,199 +190,86 @@ class SettingsController extends UltimateBlogrollController {
         echo $result;
     }
     
-    private function checkFormGeneralSettings() {
-        global $gui;
-        /*
-        if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
-            $gui["error"]["no_tag"] = true;
-        */
+    private function checkFormGeneralSettings($settings) {
+        $error = new ErrorDTO();
         
+        if(empty($settings->url)) {
+            $error->AddErrorField("website_url");
+            $error->AddErrorMessage(__("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        } elseif(filter_var($settings->url, FILTER_VALIDATE_URL) === FALSE) {
+            $error->AddErrorField("website_url");
+            $error->AddErrorMessage(__("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+        }
         
-        
-        if(isset($_POST["general_settings"])) {
-            //set the values
-            $gui["value"]["website_url"]            = $_POST["website_url"];
-            $gui["value"]["website_title"]          = $_POST["website_title"];
-            $gui["value"]["website_description"]    = $_POST["website_description"];
-            $gui["value"]["blogroll_contact"]       = $_POST["blogroll_contact"];
-            $gui["value"]["support"]                = $_POST["support"];
-            /*
-            //depricated since we use <select> instead of checkboxes
-            if(isset($_POST["blogroll_email_checkbox"]) && $_POST["blogroll_email_checkbox"] == "on")
-                $gui["value"]["blogroll_email_checkbox"] = "on";
-            else
-                $gui["value"]["blogroll_email_checkbox"] = "off";
-            */
-            
-            //We don't check these values, because in the gui we check for the literal values "yes" "no"
-            //If those were not found nothing happens so we don't really need anything fancy to catch these
-            //We strip xss and sql injections and save the values without any use, they will simply be ignored.
-            $gui["value"]["send_mail"]          = @$_POST["send_mail"];
-            $gui["value"]["reciprocal_link"]    = @$_POST["reciprocal_link"];
-            $gui["value"]["fight_spam"]         = @$_POST["fight_spam"]; //@ because if we have no recaptcha data available we disable this option until data received. If an input element is disabled it simply sends nothing.
-            $gui["value"]["target"]             = @$_POST["target"];
-            $gui["value"]["nofollow"]           = @$_POST["nofollow"];
+        if(empty($settings->title)) {
+            $error->AddErrorField("website_title");
+            $error->AddErrorMessage(__("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
 
-            if(empty($gui["value"]["website_url"])) {
-                $gui["error"]["website_url"]            = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            } elseif (filter_var($gui["value"]["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_url"]            = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll")."</li>";
-            }
-            if(empty($gui["value"]["website_title"])) {
-                $gui["error"]["website_title"]          = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-            if(empty($gui["value"]["website_description"])) {
-                $gui["error"]["website_description"]    = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-            if(empty($gui["value"]["blogroll_contact"])) {
-                $gui["error"]["blogroll_contact"]       = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Email address", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            } elseif(!is_email($gui["value"]["blogroll_contact"])) {
-                $gui["error"]["blogroll_contact"]       = "class=\"red\"";
-                $gui["error"]["msg"]["general"][]       = "<li>".__("Email address", "ultimate-blogroll")." ".__("is wrong", "ultimate-blogroll")."</li>";
-            }
-            
-            if(!isset($gui["error"]))
-            {
-                PersistentieMapper::Instance()->SaveGeneralSettings($gui["value"]);
-                $gui["succes"]["general"] = true;
-            }
-        } else {
-            $data = PersistentieMapper::Instance()->GetGeneralSettings();
-            $gui["value"]["website_url"]            = $data["website_url"];
-            $gui["value"]["website_title"]          = $data["website_title"];
-            $gui["value"]["website_description"]    = $data["website_description"];
-            $gui["value"]["blogroll_contact"]       = $data["blogroll_contact"];
-            //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
-            $gui["value"]["send_mail"]              = $data["send_mail"];
-            $gui["value"]["reciprocal_link"]        = $data["reciprocal_link"];
-            $gui["value"]["fight_spam"]             = $data["fight_spam"];
-            $gui["value"]["target"]                 = $data["target"];
-            $gui["value"]["nofollow"]               = $data["nofollow"];
-            $gui["value"]["support"]                = $data["support"];
-            /*
-            if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
-                $gui["error"]["no_tag"] = true;//if no page with a <--blogroll--> tag was found, then give an error.
-            */
+        if(empty($settings->description)) {
+            $error->AddErrorField("website_description");
+            $error->AddErrorMessage(__("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
         }
-        
-        
+
+        if(empty($settings->contact)) {
+            $error->AddErrorField("blogroll_contact");
+            $error->AddErrorMessage(__("Email address", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        } elseif(!is_email($settings->contact)) {
+            $error->AddErrorField("blogroll_contact");
+            $error->AddErrorMessage(__("Email address", "ultimate-blogroll")." ".__("is wrong", "ultimate-blogroll"));
+        }
+        return $error;
     }
     
-    private function checkFormWidgetSettings() {
-        global $gui;
-        $valid_page_ids = array();
-        $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
-        foreach($pages as $page) {
-            $valid_page_ids[] = $page["id"];
-        }
-        $gui["html"]["permalink"] = $pages;
+    private function checkFormWidgetSettings($settings, $valid_pages_ids) {
+        $error = new ErrorDTO();
         
-        if(isset($_POST["widget_settings"])) {
-            
-            $gui["value"]["widget_title"]       = @$_POST["widget_title"];
-            $gui["value"]["limit_linkpartners"] = @$_POST["limit_linkpartners"];
-            $gui["value"]["order_by"]           = @$_POST["order_by"];
-            $gui["value"]["ascending"]          = @$_POST["ascending"];
-            $gui["value"]["permalink"]          = @$_POST["permalink"];
-            
-            if(empty($gui["value"]["widget_title"])) {
-                $gui["error"]["widget_title"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>".__("Widget title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-            if(empty($gui["value"]["limit_linkpartners"])) {
-                $gui["error"]["limit_linkpartners"]     = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][]        = "<li>".__("Limit of linkpartners", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            } elseif(!is_numeric($gui["value"]["limit_linkpartners"])) {
-                $gui["error"]["limit_linkpartners"]     = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][]        = "<li>".__("Limit of linkpartners", "ultimate-blogroll")." ".__("is not a number", "ultimate-blogroll")."</li>";
-            } elseif($gui["value"]["limit_linkpartners"] < 0){
-                $gui["error"]["limit_linkpartners"]     = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][]        = "<li>".__("Limit of linkpartners", "ultimate-blogroll")." ".__("is negative", "ultimate-blogroll")."</li>";
-            }
-            if(!in_array($gui["value"]["order_by"], array("id", "name", "inlinks", "outlinks")))
-            {
-                $gui["error"]["order_by"]               = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][]        = "<li>".__("Order by", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll")."</li>";
-            }
-            if(!in_array($gui["value"]["ascending"], array("asc", "desc")))
-            {
-                $gui["error"]["ascending"]              = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][]        = "<li>".__("Ascending/Descending", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll")."</li>";
-            }
-            
-            if(!empty($valid_page_ids) && !in_array($gui["value"]["permalink"], $valid_page_ids))
-            {
-                $gui["error"]["permalink"] = "class=\"red\"";
-                $gui["error"]["msg"]["widget"][] = "<li>".__("Link exchange page", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll")."</li>";
-            }
-            
-            if(!isset($gui["error"]))
-            {
-                $data["widget_title"]       = $gui["value"]["widget_title"];
-                $data["limit_linkpartners"] = $gui["value"]["limit_linkpartners"];
-                $data["order_by"]           = $gui["value"]["order_by"];
-                $data["ascending"]          = $gui["value"]["ascending"];
-                $data["permalink"]          = $gui["value"]["permalink"];
-                PersistentieMapper::Instance()->SaveWidgetSettings($data);
-                $gui["succes"]["widget"] = true;
-            }
-        } else {
-            $data = PersistentieMapper::Instance()->GetWidgetSettings();
-            
-            $gui["value"]["widget_title"]       = $data["widget_title"];
-            $gui["value"]["limit_linkpartners"] = $data["limit_linkpartners"];
-            $gui["value"]["order_by"]           = $data["order_by"];
-            $gui["value"]["ascending"]          = $data["ascending"];
-            $gui["value"]["permalink"]          = $data["permalink"];
+        if(empty($settings->title)) {
+            $error->AddErrorField("widget_title");
+            $error->AddErrorMessage(__("Widget title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
         }
+        
+        if(empty($settings->limit)) {
+            $error->AddErrorField("limit_linkpartners");
+            $error->AddErrorMessage(__("Limit of linkpartners", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        } elseif (!is_numeric($settings->limit)) {
+            $error->AddErrorField("limit_linkpartners");
+            $error->AddErrorMessage(__("Limit of linkpartners", "ultimate-blogroll")." ".__("is not a number", "ultimate-blogroll"));
+        } elseif($settings->limit < 0){
+            $error->AddErrorField("limit_linkpartners");
+            $error->AddErrorMessage(__("Limit of linkpartners", "ultimate-blogroll")." ".__("is negative", "ultimate-blogroll"));
+        }
+            
+        if(!in_array($settings->order_by, array("id", "name", "inlinks", "outlinks"))) {
+            $error->AddErrorField("order_by");
+            $error->AddErrorMessage(__("Order by", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
+        }
+           
+        if(!in_array($settings->ascending, array("asc", "desc"))) {
+            $error->AddErrorField("ascending");
+            $error->AddErrorMessage(__("Ascending/Descending", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
+        }
+
+        if(!empty($valid_page_ids) && !in_array($settings->permalink, $valid_page_ids)) {
+            $error->AddErrorField("permalink");
+            $error->AddErrorMessage(__("Link exchange page", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
+        }
+        return $error;
     }
     
-    private function checkFormRecaptchaSettings() {
-        global $gui;
+    private function checkFormRecaptchaSettings($settings) {
+        $error = new ErrorDTO();
         
-        //don't put this anywhere else, 'cause otherwise you need a page refresh to enable the Fight spam <select> element again.
-        //check if the recaptcha data is available. If not: do not show Fight spam: Yes. Since it will be disabled and it will be confusing!
-        $recaptcha = PersistentieMapper::Instance()->GetRecaptchaSettings();
-        if(!empty($recaptcha["recaptcha_public_key"]) && !empty($recaptcha["recaptcha_private_key"])) {
-            $gui["html"]["recaptcha"] = true;
-        } else {
-            //set it here on no
-            $gui["value"]["fight_spam"] = "no";
+        if(empty($settings->recaptcha_public_key)) {
+            $error->AddErrorField("recaptcha_public_key");
+            $error->AddErrorMessage(__("Public key", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
         }
-        
-        if(isset($_POST["recaptcha_settings"])) {
-            $gui["value"]["recaptcha_public_key"]       = $_POST["recaptcha_public_key"];
-            $gui["value"]["recaptcha_private_key"]      = $_POST["recaptcha_private_key"];
-            
-            if(empty($gui["value"]["recaptcha_public_key"])) {
-                $gui["error"]["recaptcha_public_key"]   = "class=\"red\"";
-                $gui["error"]["msg"]["recaptcha"][]     = "<li>".__("Public key", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-            if(empty($gui["value"]["recaptcha_private_key"])) {
-                $gui["error"]["recaptcha_private_key"]  = "class=\"red\"";
-                $gui["error"]["msg"]["recaptcha"][]     = "<li>".__("Private key", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-            
-            if(!isset($gui["error"]))
-            {
-                $data = array();
-                $data["recaptcha_public_key"]           = attribute_escape($gui["value"]["recaptcha_public_key"]);
-                $data["recaptcha_private_key"]          = attribute_escape($gui["value"]["recaptcha_private_key"]);
-                PersistentieMapper::Instance()->SaveRecaptchaSettings($data);
-                $gui["succes"]["recaptcha"] = true;
-                //PersistentieMapper::Instance()->SaveWidgetSettings($gui["value"]);
-            }
-            
-        } else {
-            $data = PersistentieMapper::Instance()->GetRecaptchaSettings();
-            $gui["value"]["recaptcha_public_key"]       = $data["recaptcha_public_key"];
-            $gui["value"]["recaptcha_private_key"]      = $data["recaptcha_private_key"];
+
+        if(empty($settings->recaptcha_private_key)) {
+            $error->AddErrorField("recaptcha_private_key");
+            $error->AddErrorMessage(__("Private key", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
         }
+        return $error;        
     }
 }
 ?>

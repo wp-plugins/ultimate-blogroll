@@ -1,0 +1,480 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-02 23:28+0100\n"
+"PO-Revision-Date: 2010-12-02 23:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\ultimate-blogroll\\trunk\n"
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:93
+msgid "The following links are from yesterday and today.<br />You can add your website at the bottom of this page."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:96
+msgid "Website"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:97
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:64
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:77
+msgid "Last 48h in"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:98
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:65
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:78
+msgid "Last 48h out"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:99
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:66
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:79
+msgid "Total in"
+msgstr "Totaaaaaaaaaaaaaaaal in"
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:100
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:67
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:80
+msgid "Total out"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:101
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:68
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:81
+msgid "Ratio"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:143
+msgid "Add your site"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:144
+msgid "Step 1: First things first: Add our link to your website."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:147
+msgid "Website url:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:151
+msgid "Website title:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:155
+msgid "Website description:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:163
+msgid "Step 2: Submit your linktrade"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:176
+msgid "Your website was successfully added.</li><li>Your website is awaiting approval, it will be visible within a short notice."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:182
+msgid "Your name*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:184
+msgid "So we know who to contact"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:187
+msgid "Your email*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:189
+msgid "Existing email"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:195
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:51
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:36
+msgid "Website url*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:197
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:53
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:38
+msgid "website url"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:200
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:56
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:41
+msgid "Website title*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:202
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:58
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:43
+msgid "website title"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:205
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:61
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:46
+msgid "Website description*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:207
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:63
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:48
+msgid "website description"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:213
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:69
+msgid "Website domain*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:215
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:71
+msgid "without"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:218
+msgid "Website reciprocal*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:227
+msgid "Anti-spam*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/create_page.php:238
+msgid "Submit website"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/header.php:51
+msgid "I hope you enjoy my plugin. It took me a lot of hours to make. A lot of coffee and red bull was spilled during the creation of this plugin. If you like it, you could help me by giving me a fresh coup of coffee.<br /><br />Enjoy Ultimate Blogroll<br />Jens Gheerardyn"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/header.php:59
+msgid "I have an option build in where you can support me, by letting me add "
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/header.php:59
+msgid "into the overview page."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:14
+msgid "Edit linkpartner: "
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:14
+msgid "Add linkpartner"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:28
+msgid "Linkpartner was successfully updated."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:30
+msgid "Linkpartner was successfully added."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:38
+msgid "Website owner's name*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:40
+msgid "Website owner's name, so we know who to contact"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:43
+msgid "Website owner's email*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:45
+msgid "Website owner's email, so we know who to contact"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:71
+msgid "Website domain, <b>example.com</b>"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:74
+msgid "Website reciprocal:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:76
+msgid "Where can we find our link back? (Leave blank if not required)"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:80
+msgid "Update linkpartner"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:80
+msgid "Submit linkpartner"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:25
+msgid "All"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:26
+msgid "Approved"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:27
+msgid "Unapproved"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:32
+msgid "Search links"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:37
+msgid "No results found."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:43
+msgid "Bulk actions"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:44
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:101
+msgid "Approve"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:45
+msgid "Unapprove"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:46
+msgid "Delete"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:48
+msgid "Apply"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:49
+msgid "Check Reciprocal URL"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:62
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:75
+msgid "Website name"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:63
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:76
+msgid "URL"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:101
+msgid "Approve this linkpartner"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/linkpartner/overview.php:103
+msgid "Unapprove this linkpartner"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:15
+msgid "Click to open/close"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:18
+msgid "General settings"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:31
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:169
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:249
+msgid "Changes were successfully saved"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:38
+msgid "Your wordpress website url, just check if it is correct."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:43
+msgid "That's the part between the"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:48
+msgid "Add an extra description to your link."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:54
+msgid "Email address*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:56
+msgid "The address you wish to receive an anouncement if a new linktrade was made."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:59
+msgid "Send email:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:63
+msgid "Yes, mail me"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:64
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:89
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:115
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:125
+msgid "No"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:67
+msgid "I would like to receive an email everytime a new linktrade was made."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:75
+msgid "Reciprocal link:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:78
+msgid "Yes, required"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:82
+msgid "Do people who request a linktrade need to have a reciprocal link?"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:85
+msgid "Fight spam:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:88
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:114
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:124
+msgid "Yes"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:92
+msgid "First you need to configure <a href=\"#recaptcha\">Recaptcha</a> in order to function."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:100
+msgid "Target:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:108
+msgid "Select your target: _blank = new window; _top = current window; _none = same window;"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:111
+msgid "Nofollow:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:118
+msgid "Use nofollow if not on the homepage, so that links on the homepage weight more then other links. <a href=\"http://www.google.com/support/webmasters/bin/answer.py?answer=96569\" target=\"_blank\">It's SEO friendly.</a>"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:121
+msgid "Support developer:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:128
+msgid "Allows me to place a link in the overview table at a random position."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:132
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:224
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:266
+msgid "Update settings"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:144
+msgid "Widget settings"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:175
+msgid "Widget title*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:177
+msgid "The title of the widget as it will appear in the sidebar"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:180
+msgid "Limit of linkpartners*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:182
+msgid "How many linkpartners do you want to be visible in the widget?"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:185
+msgid "Order by:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:188
+msgid "ID"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:189
+msgid "Name"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:190
+msgid "Inlinks"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:191
+msgid "Outlinks"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:194
+msgid "Select on which criteria you want to order your linkpartners"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:197
+msgid "Ascending/Descending:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:200
+msgid "Ascending"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:201
+msgid "Descending"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:204
+msgid "Do you want the links to appear Ascending (1-2-3) or Descending (3-2-1)?"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:207
+msgid "Link exchange page:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:218
+msgid "Choose the page with the"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:218
+msgid "tag on."
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:237
+msgid "Recaptcha settings"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:255
+msgid "Public key*:"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:257
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:262
+msgid "The public key you received from <a href=\"https://www.google.com/recaptcha/admin/create\" target=\"_new\">Recaptcha</a>"
+msgstr ""
+
+#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:260
+msgid "Private key*:"
+msgstr ""
+

@@ -1,6 +1,7 @@
 <?php
 global $gui, $path;
 require_once($path."gui/header.php");
+require_once($path."gui/functions.php");
 ?>
 <script type='text/javascript'>
     jQuery(document).ready(function($) { 
@@ -20,11 +21,8 @@ require_once($path."gui/header.php");
             <form id="form1" method="POST" action="#general-settings">
                 <?php
                 if(isset($gui["error"]["msg"]["general"])) {
-                    echo "<ul class=\"ub_error\">";
-                    foreach($gui["error"]["msg"]["general"] as $error)
-                    {
-                        echo html_entity_decode($error);
-                    }
+                    echo "<ul class=\"error\">";
+                    echo getErrorMessages();
                     echo "</ul>";
                 }
                 if(isset($gui["succes"]["general"]) && $gui["succes"]["general"] == true) {
@@ -32,17 +30,17 @@ require_once($path."gui/header.php");
                 }
                 ?>
                 <table>
-                    <tr <?=@$gui["error"]["website_url"]; ?>>
+                    <tr <?=getErrorField("website_url"); ?>>
                         <td class="column1"><?= __("Website url", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><div style="float: left;"><input type="text" class="form_text" id="website_url" name="website_url" value="<?=@$gui["value"]["website_url"]; ?>" /></div><div style="float: left;" id="wp_website_url" class="reload"><img src="../wp-content/plugins/ultimate-blogroll/images/arrow_refresh.png" alt="reset" title="reset" /></div></td>
                         <td><?= __("Your wordpress website url, just check if it is correct.", "ultimate-blogroll") ?> <?=htmlentities('<a href="');?><b><?= __("website url", "ultimate-blogroll") ?></b><?=htmlentities('"></a>'); ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_title"]; ?>>
+                    <tr <?=getErrorField("website_title"); ?>>
                         <td class="column1"><?= __("Website title", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><div style="float: left;"><input type="text" class="form_text" id="website_title" name="website_title" value="<?=@$gui["value"]["website_title"]; ?>" /></div><div style="float: left;" id="wp_website_title" class="reload"><img src="../wp-content/plugins/ultimate-blogroll/images/arrow_refresh.png" alt="reset" title="reset" /></div></td>
                         <td><?= __("That's the part between the", "ultimate-blogroll") . htmlentities('<a>'); ?><b><?= __("website title", "ultimate-blogroll") ?></b><?=htmlentities('</a>'); ?> tags</td>
                     </tr>
-                    <tr <?=@$gui["error"]["website_description"]; ?>>
+                    <tr <?=getErrorField("website_description"); ?>>
                         <td class="column1"><?= __("Website description", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><div style="float: left;"><input type="text" class="form_text" id="website_description" name="website_description" value="<?=@$gui["value"]["website_description"]; ?>" /></div><div style="float: left;" class="reload" id="wp_website_description"><img src="../wp-content/plugins/ultimate-blogroll/images/arrow_refresh.png" alt="reset" title="reset" /></div></td>
                         <td><?= __("Add an extra description to your link.", "ultimate-blogroll") ?> <?=htmlentities('<a title="'); ?><b><?= __("website description", "ultimate-blogroll") ?></b><?=htmlentities('"></a>'); ?></td>
@@ -50,7 +48,7 @@ require_once($path."gui/header.php");
                     <tr>
                         <td><br /></td>
                     </tr>
-                    <tr <?=@$gui["error"]["blogroll_contact"]; ?>>
+                    <tr <?=getErrorField("blogroll_contact"); ?>>
                         <td class="column1"><?= __("Email address", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><div style="float: left;"><input type="text" class="form_text" id="blogroll_contact" name="blogroll_contact" value="<?=@$gui["value"]["blogroll_contact"]; ?>" /></div><div style="float: left;" id="wp_blogroll_contact" class="reload"><img src="../wp-content/plugins/ultimate-blogroll/images/arrow_refresh.png" alt="reset" title="reset" /></div></td>
                         <td><?= __("The address you wish to receive an anouncement if a new linktrade was made.", "ultimate-blogroll") ?></td>
@@ -75,7 +73,7 @@ require_once($path."gui/header.php");
                         <td class="column1"><?= __("Reciprocal link", "ultimate-blogroll") ?>:</td>
                         <td class="column2">
                             <select class="form_text" name="reciprocal_link" disabled="disabled">
-                                <option value="yes" selected="yes" <?php echo ((@$gui["value"]["reciprocal_link"] == "yes") ? "selected=\"yes\"" : ""); ?>><? __("Yes, required", "ultimate-blogroll") ?></option>
+                                <option value="yes" selected="yes" <?php echo ((@$gui["value"]["reciprocal_link"] == "yes") ? "selected=\"yes\"" : ""); ?>><?= __("Yes, required", "ultimate-blogroll") ?></option>
                                 <option value="no" <?php echo ((@$gui["value"]["reciprocal_link"] == "no") ? "selected=\"yes\"" : ""); ?>><?= __("No", "ultimate-blogroll") ?></option>
                             </select>
                         </td>
@@ -158,11 +156,8 @@ require_once($path."gui/header.php");
                 }
                 */
                 if(isset($gui["error"]["msg"]["widget"])) {
-                    echo "<ul class=\"ub_error\">";
-                    foreach($gui["error"]["msg"]["widget"] as $error)
-                    {
-                        echo html_entity_decode($error);
-                    }
+                    echo "<ul class=\"error\">";
+                    echo getErrorMessages();
                     echo "</ul>";
                 }
                 if(isset($gui["succes"]["widget"]) && $gui["succes"]["widget"] == true) {
@@ -171,29 +166,29 @@ require_once($path."gui/header.php");
             ?>
             <form id="form2" method="POST" action="#widget-settings">
                 <table>
-                    <tr <?=@$gui["error"]["widget_title"]; ?>>
+                    <tr <?=getErrorField("widget_title"); ?>>
                         <td class="column1"><?= __("Widget title", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="widget_title" class="form_text" value="<?=@$gui["value"]["widget_title"]; ?>" <?php if(@$gui["error"]["no_tag"] === true) echo "disabled"; ?> /></td>
                         <td><?= __("The title of the widget as it will appear in the sidebar", "ultimate-blogroll") ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["limit_linkpartners"]; ?>>
+                    <tr <?=getErrorField("limit_linkpartners"); ?>>
                         <td class="column1"><?= __("Limit of linkpartners", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" name="limit_linkpartners" class="form_text" value="<?=@$gui["value"]["limit_linkpartners"]; ?>" <?php if(@$gui["error"]["no_tag"] === true) echo "disabled"; ?> /></td>
                         <td><?= __("How many linkpartners do you want to be visible in the widget?", "ultimate-blogroll") ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["order_by"]; ?>>
+                    <tr <?=getErrorField("order_by"); ?>>
                         <td class="column1"><?= __("Order by", "ultimate-blogroll") ?>:</td>
                         <td class="column2">
                             <select class="form_text" name="order_by" <?php if(@$gui["error"]["no_tag"] === true) echo "disabled"; ?>>
                                 <option value="id" <?php echo ((@$gui["value"]["order_by"] == "id") ? "selected=\"yes\"" : ""); ?>><?= __("ID", "ultimate-blogroll") ?></option>
                                 <option value="name" <?php echo ((@$gui["value"]["order_by"] == "name") ? "selected=\"yes\"" : ""); ?>><?= __("Name", "ultimate-blogroll") ?></option>
-                                <option value="inlinks" <?php echo ((@$gui["value"]["order_by"] == "inlinks") ? "selected=\"yes\"" : ""); ?>><? __("Inlinks", "ultimate-blogroll") ?></option>
-                                <option value="outlinks" <?php echo ((@$gui["value"]["order_by"] == "outlinks") ? "selected=\"yes\"" : ""); ?>><? __("Outlinks", "ultimate-blogroll") ?></option>
+                                <option value="inlinks" <?php echo ((@$gui["value"]["order_by"] == "inlinks") ? "selected=\"yes\"" : ""); ?>><?= __("Inlinks", "ultimate-blogroll") ?></option>
+                                <option value="outlinks" <?php echo ((@$gui["value"]["order_by"] == "outlinks") ? "selected=\"yes\"" : ""); ?>><?= __("Outlinks", "ultimate-blogroll") ?></option>
                             </select>
                         </td>
                         <td><?= __("Select on which criteria you want to order your linkpartners", "ultimate-blogroll") ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["ascending"]; ?>>
+                    <tr <?=getErrorField("ascending"); ?>>
                         <td class="column1"><?= __("Ascending/Descending", "ultimate-blogroll") ?>:</td>
                         <td class="column2">
                             <select class="form_text" name="ascending" <?php if(@$gui["error"]["no_tag"] === true) echo "disabled"; ?> >
@@ -203,7 +198,7 @@ require_once($path."gui/header.php");
                         </td>
                         <td><?= __("Do you want the links to appear Ascending (1-2-3) or Descending (3-2-1)?", "ultimate-blogroll") ?></td>
                     </tr>
-                    <tr <?=@$gui["error"]["permalink"]; ?>>
+                    <tr <?=getErrorField("permalink"); ?>>
                         <td class="column1"><?= __("Link exchange page", "ultimate-blogroll") ?>:</td>
                         <td class="column2">
                             <select class="form_text" name="permalink" <?php if(@$gui["error"]["no_tag"] === true) echo "disabled"; ?> >
@@ -238,11 +233,8 @@ require_once($path."gui/header.php");
         <div class="inside" style="">
             <?php
             if(isset($gui["error"]["msg"]["recaptcha"])) {
-                echo "<ul class=\"ub_error\">";
-                foreach($gui["error"]["msg"]["recaptcha"] as $error)
-                {
-                    echo html_entity_decode($error);
-                }
+                echo "<ul class=\"error\">";
+                echo getErrorMessages();
                 echo "</ul>";
             }
             if(isset($gui["succes"]["recaptcha"]) && $gui["succes"]["recaptcha"] == true) {
@@ -251,12 +243,12 @@ require_once($path."gui/header.php");
             ?>
             <form id="form3" method="POST" action="#recaptcha">
                 <table>
-                    <tr <?=@$gui["error"]["recaptcha_public_key"]; ?>>
+                    <tr <?=getErrorField("recaptcha_public_key"); ?>>
                         <td class="column1"><?= __("Public key", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" class="form_text" id="recaptcha_public_key" name="recaptcha_public_key" value="<?=@$gui["value"]["recaptcha_public_key"]; ?>" /></td>
                         <td><?= __("The public key you received from", "ultimate-blogroll") ?> <a href="https://www.google.com/recaptcha/admin/create" target="_new">Recaptcha</a></td>
                     </tr>
-                    <tr <?=@$gui["error"]["recaptcha_private_key"]; ?>>
+                    <tr <?=getErrorField("recaptcha_private_key"); ?>>
                         <td class="column1"><?= __("Private key", "ultimate-blogroll") ?>*:</td>
                         <td class="column2"><input type="text" class="form_text" id="recaptcha_private_key" name="recaptcha_private_key" value="<?=@$gui["value"]["recaptcha_private_key"]; ?>" /></td>
                         <td><?= __("The private key you received from", "ultimate-blogroll")?> <a href="https://www.google.com/recaptcha/admin/create" target="_new">Recaptcha</a></td>

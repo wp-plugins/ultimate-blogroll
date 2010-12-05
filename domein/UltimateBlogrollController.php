@@ -5,6 +5,7 @@
  * @author Jens
  */
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/PersistentieMapper.php");
+require_once($path."persistentie/dto/ErrorDTO.php");
 class UltimateBlogrollController  {
     
     public function __construct() {
@@ -16,7 +17,6 @@ class UltimateBlogrollController  {
         global $gui;
         $gui["base_url"] = "http://".$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?";
         $gui["mail_url"] = "http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?";
-        //var_dump($gui["base_url"]);
     }
     
     protected function PreparePage() {
@@ -38,8 +38,8 @@ class UltimateBlogrollController  {
         
         $sub_page = add_submenu_page(
             "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
-            "Ultimate Blogroll Overview", //page title
-            "Manage linkpartners", //menu title
+            "Ultimate Blogroll ".__("Overview", "ultimate-blogroll"), //page title
+            __("Manage linkpartners", "ultimate-blogroll"), //menu title
             "manage_options", //user level, needed before it becomes visible
             "ultimate-blogroll-overview", //slug, in the url
             "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
@@ -47,8 +47,8 @@ class UltimateBlogrollController  {
         
         $sub_page = add_submenu_page(
             "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
-            "Add linkpartner", //page title
-            "Add linkpartner", //menu title
+            __("Add linkpartner", "ultimate-blogroll"), //page title
+            __("Add linkpartner", "ultimate-blogroll"), //menu title
             "manage_options", //user level, needed before it becomes visible
             "ultimate-blogroll-add-linkpartner", //slug, in the url
             "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
@@ -56,8 +56,8 @@ class UltimateBlogrollController  {
         
         $sub_page = add_submenu_page(
             "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
-            "Settings", //page title
-            "Settings", //menu title
+            __("Settings", "ultimate-blogroll"), //page title
+            __("Settings", "ultimate-blogroll"), //menu title
             "manage_options", //user level, needed before it becomes visible
             "ultimate-blogroll-settings", //slug, in the url
             "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
@@ -73,6 +73,14 @@ class UltimateBlogrollController  {
                 htmlentities("<!--ultimate-blogroll-->")
             );
             echo '</p></div>'. "\n";
+        } else {
+            $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
+            $data = PersistentieMapper::Instance()->GetWidgetSettings();
+            if(empty($data->permalink) || !isset($data->permalink))
+            {
+                $data->permalink = $pages[0]["id"];
+                update_option("ultimate_blogroll_widget_settings", $data);
+            }
         }
     }
     
@@ -148,7 +156,7 @@ class UltimateBlogrollController  {
         if($html === false)
             return false;
         $html = strtolower($html);
-        $website_url = strtolower($settings["website_url"]);
+        $website_url = strtolower($settings->url);
 
         $found = false;
         if (preg_match_all('/<a\s[^>]*href=([\"\']??)([^" >]*?)\\1([^>]*)>/siU', $html, $matches, PREG_SET_ORDER)) {
@@ -198,203 +206,130 @@ class UltimateBlogrollController  {
             }
         }
     }
-    protected function checkFormAddLinkpartner()
-    {
-        global $gui;
-        if(isset($_POST["add_linkpartner"])) {
-            $gui["value"]["your_name"]              = $_POST["your_name"];
-            $gui["value"]["your_email"]             = $_POST["your_email"];
-            $gui["value"]["website_url"]            = $_POST["website_url"];
-            $gui["value"]["website_title"]          = $_POST["website_title"];
-            $gui["value"]["website_description"]    = $_POST["website_description"];
-            $gui["value"]["website_domain"]         = $_POST["website_domain"];
-            $gui["value"]["website_reciprocal"]     = $_POST["website_reciprocal"];
+
+    
+    protected function checkFormAddLinkpartner($linkpartner, $public, $fight_spam, $private_spam_key, $edit = false)
+    {   
+        //tijdens het herschrijven van checkFormAddLinkpartner() dit aangetroffen: $gui["value"]["website_has_backlink"] = (int)$link_back;
+        //als het niet goed werkt, kijken om terug te implementeren
+        global $path;
+        $error = new ErrorDTO();
+
+        //check if a name was given.
+        if(empty($linkpartner->name)) {
+            $error->AddErrorField("your_name");
+            $error->AddErrorMessage(__("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
+        
+        if(empty($linkpartner->email)) {
+            $error->AddErrorField("your_email");
+            $error->AddErrorMessage(__("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        } elseif(filter_var($linkpartner->email, FILTER_VALIDATE_EMAIL) === FALSE) {
+            $error->AddErrorField("your_email");
+            $error->AddErrorMessage(__("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll"));
+        }
+        
+        if(empty($linkpartner->url)) {
+            $error->AddErrorField("website_url");
+            $error->AddErrorMessage(__("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        } elseif(filter_var($linkpartner->url, FILTER_VALIDATE_URL) === FALSE) {
+            $error->AddErrorField("website_url");
+            $error->AddErrorMessage(__("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+        }
             
+        if(empty($linkpartner->title)) {
+            $error->AddErrorField("website_title");
+            $error->AddErrorMessage(__("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
 
-            if(empty($gui["value"]["your_name"])) {
-                $gui["error"]["your_name"]                  = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
+        if(empty($linkpartner->description)) {
+            $error->AddErrorField("website_description");
+            $error->AddErrorMessage(__("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
 
-            if(empty($gui["value"]["your_email"])) {
-                $gui["error"]["your_email"]                 = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            } elseif (filter_var($gui["value"]["your_email"], FILTER_VALIDATE_EMAIL) === FALSE) {
-                $gui["error"]["your_email"]                 = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll")."</li>";
-            }
+        if(empty($linkpartner->domain)) {
+            $error->AddErrorField("website_domain");
+            $error->AddErrorMessage(__("Website domain", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
 
-            if(empty($gui["value"]["website_url"])) {
-                $gui["error"]["website_url"]                = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            } elseif (filter_var($gui["value"]["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_url"]                = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll")."</li>";
-            }
+        //if on public page then it is required
+        if(empty($linkpartner->reciprocal) && $public === true) {
+            $error->AddErrorField("website_reciprocal");
+            $error->AddErrorMessage(__("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+        }
 
-            if(empty($gui["value"]["website_title"])) {
-                $gui["error"]["website_title"]              = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
+        if(!empty($linkpartner->reciprocal) && filter_var($linkpartner->reciprocal, FILTER_VALIDATE_URL) === FALSE) {
+            $error->AddErrorField("website_reciprocal");
+            $error->AddErrorMessage(__("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+        }
+            
+        if($fight_spam == "yes") {
+            require_once($path."gui/recaptchalib.php");
+            $resp = recaptcha_check_answer ($private_spam_key, $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
+            if(!$resp->is_valid) {
+                $error->AddErrorField("captcha");
+                $error->AddErrorMessage(__("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
             }
+        }
+               
+        if(!$error->IsError("website_url") && !$error->IsError("website_reciprocal") && !empty($linkpartner->reciprocal)) {
+            if(parse_url($linkpartner->url, PHP_URL_HOST) != parse_url($linkpartner->reciprocal, PHP_URL_HOST)) {
+                $error->AddErrorField("website_url");
+                $error->AddErrorField("website_reciprocal");
+                $error->AddErrorMessage(__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
+            } elseif($this->checkreciprocalLink($linkpartner->reciprocal) !== true) {
+                $error->AddErrorField("website_reciprocal");
+                $error->AddErrorMessage(__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
+            }
+        }
 
-            if(empty($gui["value"]["website_description"])) {
-                $gui["error"]["website_description"]        = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
+        if(!empty($linkpartner->url) && !empty($linkpartner->domain)) {
+            if(strpos($linkpartner->url, $linkpartner->domain) === false) {
+                $error->AddErrorField("website_domain");
+                $error->AddErrorMessage(__("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
             }
+        }
 
-            if(empty($gui["value"]["website_domain"])) {
-                $gui["error"]["website_domain"]             = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website domain", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
+        if($edit === false) {
+            $links = PersistentieMapper::Instance()->GetLinkpartners();
+            foreach($links as $link) {
+                ////////////////////////////////////////
+                $db     = @$link["website_url"];
+                $form   = @$linkpartner->url;
 
-            if(empty($gui["value"]["website_reciprocal"]) && isset($gui["public_add"])) {
-                $gui["error"]["website_reciprocal"]         = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll")."</li>";
-            }
-
-            if (!empty($gui["value"]["website_reciprocal"]) && filter_var($gui["value"]["website_reciprocal"], FILTER_VALIDATE_URL) === FALSE) {
-                $gui["error"]["website_reciprocal"]         = "class=\"red\"";
-                $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll")."</li>";
-            }
-
-            if(isset($gui["fight_spam"]) && $gui["fight_spam"] == "yes")
-            {
-                global $path;
-                require_once($path."gui/recaptchalib.php");
-                $captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
-                $privatekey = $captcha_settings["recaptcha_private_key"];
-                $resp = recaptcha_check_answer ($privatekey,
-                                    $_SERVER["REMOTE_ADDR"],
-                                    @$_POST["recaptcha_challenge_field"],
-                                    @$_POST["recaptcha_response_field"]);
-                if(!$resp->is_valid) {
-                    $gui["error"]["captcha"] = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][] = "<li>".__("Captcha", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll")."</li>";
-                }
-            }
-
-            if(!isset($gui["error"]["website_url"]) && !isset($gui["error"]["website_reciprocal"]) && !empty($gui["value"]["website_reciprocal"])) {
-                if(parse_url($gui["value"]["website_url"], PHP_URL_HOST) != parse_url($gui["value"]["website_reciprocal"], PHP_URL_HOST)) {
-                    $gui["error"]["website_url"] = "class=\"red\"";
-                    $gui["error"]["website_reciprocal"]             = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][]        = "<li>".__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;.</li>";
-                } else {
-                    $link_back = $this->checkreciprocalLink($gui["value"]["website_reciprocal"]);
-                    if($link_back !== true)
-                    {
-                        $gui["error"]["website_reciprocal"]         = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll")."</li>";
-                    }
-                    $gui["value"]["website_has_backlink"] = (int)$link_back;
-                }
-            }
-            if(!empty($gui["value"]["website_url"]) && !empty($gui["value"]["website_domain"])) {
-                if(strpos($gui["value"]["website_url"], $gui["value"]["website_domain"]) === false) {
-                    $gui["error"]["website_domain"]                 = "class=\"red\"";
-                    $gui["error"]["msg"]["addlinkpartner"][]        = "<li>".__("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll").".</li>";
-                }
-            }
-            if($gui["edit"] === false) {
-                $links = PersistentieMapper::Instance()->GetLinkpartners();
-                foreach($links as $link)
-                {
-                    ///////////////////////////////////
-                    $db     = @$link["website_url"];
-                    $form   = @$gui["value"]["website_url"];
-
+                if(!empty($db) && !empty($form)) {
                     $db     = parse_url($db);
                     $form   = parse_url($form);
 
                     if(isset($db["host"]) && isset($form["host"]) && $db["host"] == $form["host"]) {
-                        $gui["error"]["website_url"]                = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website url", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll")."</li>";
-                    }
-                    ///////////////////////////////////
-                    $db = @$link["website_reciprocal"];
-                    $form = @$gui["value"]["website_backlink"];
-
-                    if(!empty($db) && !empty($form))
-                    {
-                        $db = parse_url($db);
-                        $form = parse_url($form);
-
-                        if(isset($db["host"]) && isset($form["host"]) && $db["host"] == $form["host"]) {
-                            $gui["error"]["website_backlink"]        = "class=\"red\"";
-                            $gui["error"]["msg"]["addlinkpartner"][] = "<li>".__("Website reciprocal", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll")."</li>";
-                        }
-                    }
-                    /////////////////////////////////////
-                    $db = $link["website_domein"];
-                    $form = $gui["value"]["website_domain"];
-
-                    if($db == $form) {
-                        $gui["error"]["website_domain"]             = "class=\"red\"";
-                        $gui["error"]["msg"]["addlinkpartner"][]    = "<li>".__("Website domain", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll")."</li>";
+                        $error->AddErrorField("website_url");
+                        $error->AddErrorMessage(__("Website url", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
                     }
                 }
-            }
+                ////////////////////////////////////////
+                $db     = @$link["website_reciprocal"];
+                $form   = @$linkpartner->reciprocal;
 
+                if(!empty($db) && !empty($form)) {
+                    $db     = parse_url($db);
+                    $form   = parse_url($form);
 
-            if(!isset($gui["error"]))
-            {
-                if($gui["edit"] === false) {
-                    //var_dump("mail");
-                    PersistentieMapper::Instance()->AddLinkpartner($gui["value"]);
-                    $gui["success"] = "OK";
-                    $headers  = 'MIME-Version: 1.0' . "\r\n";
-                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                    $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
-
-                    $subject = __("New link submitted at", "ultimate-blogroll").get_bloginfo('siteurl').''."\r\n";
-
-                    $message = __("Hi", "ultimate-blogroll").",<br /><br />".__("Somebody added a new link in", "ultimate-blogroll")." Wordpress Ultimate Blogroll<br />";
-                    $message .= "<table>";
-                    $message .= "<tr><td style=\"width: 250px;\">".__("Website owner's name", "ultimate-blogroll").":</td><td>".$gui["value"]["your_name"]."</td></tr>";
-                    $message .= "<tr><td>".__("Website owner's email", "ultimate-blogroll").":</td><td>".$gui["value"]["your_email"]."</td></tr>";
-                    $message .= "<tr><td><br /></td></tr>";
-                    $message .= "<tr><td>".__("Website url", "ultimate-blogroll").":</td><td>".$gui["value"]["website_url"]."</td></tr>";
-                    $message .= "<tr><td>".__("Website title", "ultimate-blogroll").":</td><td>".$gui["value"]["website_title"]."</td></tr>";
-                    $message .= "<tr><td>".__("Website description", "ultimate-blogroll").":</td><td>".$gui["value"]["website_description"]."</td></tr>";
-                    $message .= "<tr><td><br /></td></tr>";
-                    $message .= "<tr><td>".__("Website domain", "ultimate-blogroll").":</td><td>".$gui["value"]["website_domain"]."</td></tr>";
-                    $message .= "<tr><td>".__("Website reciprocal", "ultimate-blogroll").":</td><td>".$gui["value"]["website_reciprocal"]."</td></tr>";
-                    $id = PersistentieMapper::Instance()->GetLastAddedLinkpartner();
-                    $message .= "</table>".__("Do you want to", "ultimate-blogroll")." <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">".__("View details", "ultimate-blogroll")."</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">".__("Approve", "ultimate-blogroll")."</a> | <a href=\"".$gui["mail_url"].http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">".__("Delete", "ultimate-blogroll")."</a>";
-
-                    $data = PersistentieMapper::Instance()->GetGeneralSettings();
-                    $m = @mail($data["blogroll_contact"], $subject, $message, $headers);
-                    
-                    unset($gui["value"]);
-                } else {
-                    if(is_admin()) {
-                        $gui["value"]["website_id"] = $_GET["id"];
-                        $gui["success"] = "OK";
-                        PersistentieMapper::Instance()->EditLinkpartner($gui["value"]);
-                    } else {
-                        //TODO: updaten voor de linkpartner
+                    if(isset($db["host"]) && isset($form["host"]) && $db["host"] == $form["host"]) {
+                        $error->AddErrorField("website_backlink");
+                        $error->AddErrorMessage(__("Website reciprocal", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
                     }
                 }
+                ////////////////////////////////////////
+                $db     = @$link["website_domein"];
+                $form   = @$linkpartner->domain;
 
-            }
-        } elseif (isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])) {
-            if(is_admin()) {
-                $linkpartner = PersistentieMapper::Instance()->GetLinkpartnerByID($_GET["id"]);
-                if(!empty($linkpartner)) {
-                    $linkpartner = $linkpartner[0];
-
-                    $gui["value"]["your_name"]           = $linkpartner["website_owner_name"];
-                    $gui["value"]["your_email"]          = $linkpartner["website_owner_email"];
-                    $gui["value"]["website_url"]         = $linkpartner["website_url"];
-                    $gui["value"]["website_title"]       = $linkpartner["website_name"];
-                    $gui["value"]["website_description"] = $linkpartner["website_description"];
-                    $gui["value"]["website_domain"]      = $linkpartner["website_domein"];
-                    $gui["value"]["website_reciprocal"]  = $linkpartner["website_backlink"];
-                }
-            } else {
-                //TODO: wijzigen voor de linkpartner
-            }
-
-        }
-    }
-}
+                if($db == $form) {
+                    $error->AddErrorField("website_domain");
+                    $error->AddErrorMessage(__("Website domain", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
+                }//if
+            }//foreach
+        }//if
+        return $error;
+    }//function
+}//class
 ?>

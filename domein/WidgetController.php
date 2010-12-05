@@ -4,6 +4,8 @@
  *
  * @author Jens
  */
+require_once($path."domein/UltimateBlogrollController.php");
+require_once($path."persistentie/dto/LinkpartnerDTO.php");
 class WidgetController extends UltimateBlogrollController {
     public function __construct() {
         parent::__construct();
@@ -29,13 +31,13 @@ class WidgetController extends UltimateBlogrollController {
                                 PersistentieMapper::Instance()->Add48Linkin($link["website_id"]);
                                 break;
                                 return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+                            }//if
+                        }//foreach
+                    }//if
+                }//if
+            }//if
+        }//if
+    }//function
 
     private function GetOrder($order) {
         switch($order) {
@@ -172,8 +174,6 @@ class WidgetController extends UltimateBlogrollController {
             }
         }
         echo "</select></p>";
-        
-
         echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
     }
     
@@ -208,8 +208,8 @@ jQuery(document).ready(function($) {
     }
     
     public function widget_init() {
-        register_sidebar_widget('Ultimage Blogroll', array($this, 'UBWidget'));
-        register_widget_control('Ultimage Blogroll', array($this, 'UBWidget_control'));
+        register_sidebar_widget('Ultimate Blogroll', array($this, 'UBWidget'));
+        register_widget_control('Ultimate Blogroll', array($this, 'UBWidget_control'));
     }
 
     public function create_page($content='') {
@@ -221,24 +221,53 @@ jQuery(document).ready(function($) {
             $widget_settings = PersistentieMapper::Instance()->GetWidgetSettings();
             $general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
             $captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
-            //var_dump($general_settings);
 
             $gui["edit"] = false;
-            $gui["public_add"] = true;
             $gui["fight_spam"] = $general_settings["fight_spam"];
             $gui["captcha_settings"] = $captcha_settings;
 
-            $this->checkFormAddLinkpartner();
+            if(isset($_POST["add_linkpartner"])) {
+                $linkpartner = new LinkpartnerDTO(
+                        @$_POST["your_name"],
+                        @$_POST["your_email"],
+                        @$_POST["website_url"],
+                        @$_POST["website_title"],
+                        @$_POST["website_description"],
+                        @$_POST["website_domain"],
+                        @$_POST["website_reciprocal"]
+                );
+                $error = $this->checkFormAddLinkpartner($linkpartner, true, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], false);
+                if($error->ContainsErrors() === false){
+                    PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
+                    //TODO: verstuur mail
+                    $gui["success"] = true;
+                }
+                
+                //prepare for gui;
+                $gui["value"]["your_name"]           = $linkpartner->name;
+                $gui["value"]["your_email"]          = $linkpartner->email;
+                $gui["value"]["website_url"]         = $linkpartner->url;
+                $gui["value"]["website_title"]       = $linkpartner->title;
+                $gui["value"]["website_description"] = $linkpartner->description;
+                $gui["value"]["website_domain"]      = $linkpartner->domain;
+                $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+
+                $gui["error"]["messages"]           = $error->GetErrorMessages();
+                $gui["error"]["fields"]             = $error->GetErrorFields();
+                unset($error);
+                unset($linkpartner);
+            }
 
             $gui["table_links"] = PersistentieMapper::Instance()->GetLinkpartnersPage($this->GetOrder($widget_settings["ascending"]), $this->GetOrderBy($widget_settings["order_by"]));
             
             //secure our output
-            $gui = array_map ( array($this, 'map_entities'), $gui );
+            $gui["value"] = array_map ( array($this, 'map_entities'), $gui["value"] );
             $gui["table_links_target"]  = $this->GetTarget($general_settings["target"]);
+
             $gui["url"]                 = get_bloginfo("wpurl");
-            //var_dump($general_settings);
-            $gui["title"]               = $general_settings["website_title"];
-            $gui["description"]         = $general_settings["website_description"];
+            $gui["title"]               = @$general_settings["website_title"];
+            $gui["description"]         = @$general_settings["website_description"];
+
             $gui["support"]             = @$general_settings["support"];
 
             ob_start(); // begin collecting output

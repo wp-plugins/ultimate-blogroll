@@ -8,7 +8,7 @@
 .form_text {
     width: 250px;
 }
-.ultimate_blogroll_error {
+.ultimate_blogroll_info {
     -moz-border-radius:3px;
     -khtml-border-radius:3px;
     -webkit-border-radius:3px;
@@ -17,8 +17,8 @@
     border-width:1px;
     margin:5px 15px 2px;
     padding:0 0.6em;
-    background-color:#FFEBE8;
-    border-color:#CC0000;
+    background-color:#F5F5F5;
+    border-color:#E3E3E3;
     margin:5px 0 15px;
 }
 .red {
@@ -31,12 +31,15 @@ ul.error {
     padding-top: 6px;
     background-color: #ee5a5a;
     border: 1px solid #ff0000;
+    color: #333333 !important;
 }
 ul.succes {
     padding-top: 6px;
     background-color: #87ee5a;
     border: 1px solid #00ff00;
 }
+
+
 
 </style>
 <div class="wrap">
@@ -56,7 +59,7 @@ ul.succes {
 <img alt="" border="0" src="https://www.paypal.com/nl_NL/i/scr/pixel.gif" width="1" height="1">
 </form>
 </div>
-                    <div style="width: 49%; float: left; border-left: 1px solid #DFDFDF; padding-left: 10px;"><?= __("My name is", "ultimate-blogroll"). "Jens Gheerardyn". __("and I live in Belgium. Yep the country with the great beer and chocolate, but they are expensive. You could help me out with that if you like my plugin. <br /><br />You can contact me by", "ultimate-blogroll")?> <a target="_blank" href="mailto:wordpress@gheerardyn.be">mail</a>, <a href="http://www.twitter.com/jensgheerardyn">twitter</a>. <? __("I have an option build in where you can support me, by letting me add ", "ultimate-blogroll")?> <a href="http://www.cadeauwebwinkel.be" target="_blank">my link</a> <?= __("into the overview page.", "ultimate-blogroll") ?>
+                    <div style="width: 49%; float: left; border-left: 1px solid #DFDFDF; padding-left: 10px;"><?= __("My name is", "ultimate-blogroll"). " Jens Gheerardyn". __("and I live in Belgium. Yep the country with the great beer and chocolate, but they are expensive. You could help me out with that if you like my plugin. <br /><br />You can contact me by", "ultimate-blogroll")?> <a target="_blank" href="mailto:wordpress@gheerardyn.be">mail</a>, <a href="http://www.twitter.com/jensgheerardyn">twitter</a>. <? __("I have an option build in where you can support me, by letting me add ", "ultimate-blogroll")?> <a href="http://www.cadeauwebwinkel.be" target="_blank">my link</a> <?= __("into the overview page.", "ultimate-blogroll") ?>
 
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                         <input type="hidden" name="cmd" value="_s-xclick">

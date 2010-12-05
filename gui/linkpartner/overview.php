@@ -95,7 +95,7 @@ require_once($path."gui/header.php");
                         <a title="<?= __("Edit", "ultimate-blogroll") . " " . $linkpartner["website_name"]; ?>" href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" class=""><?= $linkpartner["website_name"]; ?></a>
                     </strong>
                     <div class="row-actions">
-                        <span class="edit"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" title="Edit this linkpartner"><?= __("Edit", "ultimate-blogroll") ?></a> | </span>
+                        <span class="edit"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "action" => "edit", "id" => $linkpartner["website_id"] )); ?>#edit" title="<?= __("Edit this linkpartner", "ultimate-blogroll")?>"><?= __("Edit", "ultimate-blogroll") ?></a> | </span>
                         <?php
                         if($linkpartner["website_status"] == "u") {
                             echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Approve this linkpartner", "ultimate-blogroll").'">'.__("Approve", "ultimate-blogroll").'</a> | </span>';
@@ -103,7 +103,7 @@ require_once($path."gui/header.php");
                             echo '<span><a href="'.$gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "unapprove", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])).'" title="'.__("Unapprove this linkpartner", "ultimate-blogroll").'">'.__("Unapprove", "ultimate-blogroll").'</a> | </span>';
                         }
                         ?>
-                        <span class="delete"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])); ?>" href="link.php?action=delete&amp;link_id=1&amp;_wpnonce=57e7e3410b" title="Delete this linkpartner"><?= __("Delete", "ultimate-blogroll") ?></a></span>
+                        <span class="delete"><a href="<?= $gui["base_url"].http_build_query(array("page" => @$_GET["page"], "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $linkpartner["website_id"])); ?>" href="link.php?action=delete&amp;link_id=1&amp;_wpnonce=57e7e3410b" title="<?= __("Delete this linkpartner", "ultimate-blogroll")?>"><?= __("Delete", "ultimate-blogroll") ?></a></span>
                         
                     </div>
                 </td>

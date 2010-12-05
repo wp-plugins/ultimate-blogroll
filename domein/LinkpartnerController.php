@@ -5,6 +5,7 @@
  * @author Jens
  */
 require_once($path."domein/UltimateBlogrollController.php");
+
 class LinkpartnerController extends UltimateBlogrollController {
     private $_type;
     public function __construct($type) {
@@ -49,10 +50,54 @@ class LinkpartnerController extends UltimateBlogrollController {
     private function wizard() {
         global $gui;
         $this->PreparePage();
-        $gui["title"] = "Wizard";
+        //$gui["title"] = "Wizard";
+        switch(@$_GET["step"])
+        {
+            case "step1":
+                $page = "page1";
+                break;
+            case "step2":
+                $page = "page2";
 
+                $widgets = get_option("sidebars_widgets");
+                $test = $widgets["wp_inactive_widgets"];
+                var_dump($test);
+                
+                $key_to_delete = array_search("ultimate-blogroll", $widgets["wp_inactive_widgets"]);
+                var_dump($key_to_delete);
+                unset($widget["wp_inactive_widgets"][$key_to_delete]);
+                //array_unshift($widgets["sidebar-1"], "ultimate-blogroll");
+                $widgets["sidebar-1"] = array();
+                update_option("sidebars_widgets", $widgets);
+                $widget_names = $widgets;
+
+                unset($widget_names["wp_inactive_widgets"]);
+                unset($widget_names["array_version"]);
+                foreach($widget_names as $key => $value) {
+                    echo $key."<br />";
+                }
+                //var_dump($widgets);
+                //$widgets = unserialize($widgets);
+
+                echo "<pre>";
+                var_dump($widgets);
+                echo "</pre>";
+
+                echo "<pre>";
+                var_dump($widget_names);
+                echo "</pre>";
+
+                break;
+            case "step3":
+                $page = "page3";
+                break;
+            default:
+                $page = "page1";
+                break;
+        }
+        var_dump($page);
         ob_start(); // begin collecting output
-        require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/linkpartner/wizard.php");
+        require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/wizard/".$page.".php");
         $result = ob_get_clean();
         echo $result;
     }
@@ -131,12 +176,30 @@ class LinkpartnerController extends UltimateBlogrollController {
     private function edit() {
         global $gui;
         //$gui = $this->gui;
-        $gui["edit"] = true;
-        $this->checkFormAddLinkpartner();
+        //$gui["edit"] = true;
+        $general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
+        $captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
+        if(isset($_POST["add_linkpartner"])) {
+            $linkpartner = new LinkpartnerDTO(
+                    @$_POST["your_name"],
+                    @$_POST["your_email"],
+                    @$_POST["website_url"],
+                    @$_POST["website_title"],
+                    @$_POST["website_description"],
+                    @$_POST["website_domain"],
+                    @$_POST["website_reciprocal"]
+            );
+            $error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
+            echo "<pre>";
+            var_dump($error);
+            echo "</pre>";
+        }
+
+        
         $this->overview();
         //everything went through the map_entities() in $this->overview(), otherwise it went through it twice
         //$gui = array_map ( array($this, 'map_entities'), $gui );
-        $gui["edit"] = (bool)$gui["edit"];
+        $gui["edit"] = true;
 
         ob_start(); // begin collecting output
         require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/linkpartner/add_linkpartner.php");
@@ -151,14 +214,68 @@ class LinkpartnerController extends UltimateBlogrollController {
         $this->PreparePage();
         $gui["edit"] = false;
         $gui["title"] = __("Add linkpartner", "ultimate-blogroll");
-        $this->checkFormAddLinkpartner();
+        //$general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
+        //$captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
+        if(isset($_POST["add_linkpartner"])) {
+            $linkpartner = new LinkpartnerDTO(
+                    @$_POST["your_name"],
+                    @$_POST["your_email"],
+                    @$_POST["website_url"],
+                    @$_POST["website_title"],
+                    @$_POST["website_description"],
+                    @$_POST["website_domain"],
+                    @$_POST["website_reciprocal"]
+            );
+            $error = $this->checkFormAddLinkpartner($linkpartner, true, false, false, false);
+            //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
+            if($error->ContainsErrors() === false){
+                PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
+                //TODO: verstuur mail
+                $gui["success"] = true;
+            }
+            $gui["value"]["your_name"]           = $linkpartner->name;
+            $gui["value"]["your_email"]          = $linkpartner->email;
+            $gui["value"]["website_url"]         = $linkpartner->url;
+            $gui["value"]["website_title"]       = $linkpartner->title;
+            $gui["value"]["website_description"] = $linkpartner->description;
+            $gui["value"]["website_domain"]      = $linkpartner->domain;
+            $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
 
-        $gui = array_map ( array($this, 'map_entities'), $gui );
+            $gui["error"]["messages"]["addlinkpartner"] = $error->GetErrorMessages();
+            $gui["error"]["fields"]             = $error->GetErrorFields();
+            unset($error);
+            unset($linkpartner);
+        } else {
+            $gui["value"] = array();
+        }
+        
+        //$this->checkFormAddLinkpartner();
+        $gui["value"] = array_map ( array($this, 'map_entities'), $gui["value"] );
 
         ob_start(); // begin collecting output
         require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/linkpartner/add_linkpartner.php");
         $result = ob_get_clean();
         echo $result;
+    }
+
+    private function SendAnouncementMail() {
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
+
+        $subject = __("New link submitted at", "ultimate-blogroll").get_bloginfo('siteurl').''."\r\n";
+
+        $message = __("Hi", "ultimate-blogroll").",<br /><br />".__("Somebody added a new link in", "ultimate-blogroll")." Wordpress Ultimate Blogroll<br />";
+        $message .= "<table>";
+        $message .= "<tr><td style=\"width: 250px;\">".__("Website owner's name", "ultimate-blogroll").":</td><td>".$gui["value"]["your_name"]."</td></tr>";
+        $message .= "<tr><td>".__("Website owner's email", "ultimate-blogroll").":</td><td>".$gui["value"]["your_email"]."</td></tr>";
+        $message .= "<tr><td><br /></td></tr>";
+        $message .= "<tr><td>".__("Website url", "ultimate-blogroll").":</td><td>".$gui["value"]["website_url"]."</td></tr>";
+        $message .= "<tr><td>".__("Website title", "ultimate-blogroll").":</td><td>".$gui["value"]["website_title"]."</td></tr>";
+        $message .= "<tr><td>".__("Website description", "ultimate-blogroll").":</td><td>".$gui["value"]["website_description"]."</td></tr>";
+        $message .= "<tr><td><br /></td></tr>";
+        $message .= "<tr><td>".__("Website domain", "ultimate-blogroll").":</td><td>".$gui["value"]["website_domain"]."</td></tr>";
+        $message .= "<tr><td>".__("Website reciprocal", "ultimate-blogroll").":</td><td>".$gui["value"]["website_reciprocal"]."</td></tr>";
     }
 }
 ?>
