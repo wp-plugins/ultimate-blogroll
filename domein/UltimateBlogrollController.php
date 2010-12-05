@@ -91,6 +91,8 @@ class UltimateBlogrollController  {
     }
     
     public function activate() {
+        //TODO: delete of comment mail
+        mail("wordpress@gheerardyn.be", "plugin activated", "test to see if the activation is triggered when we update our plugin.");
         wp_schedule_event(time(), 'hourly', 'ub_hourly_event');
         
         //default values for the general settings
