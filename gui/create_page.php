@@ -35,7 +35,7 @@
         font-weight: bold;
     }
     .wb-data {
-        width: 13%;
+        
     }
     .column1 {
         width: 25%;
@@ -161,14 +161,14 @@
 </table>
 <fieldset id="ub_code">
     <legend >Code:</legend>
-    &lt; a href="<?= $gui["url"] ?>" title="<?= $gui["description"] ?>" <?= $gui["table_links_target"]?>&gt;<?= $gui["title"] ?>&lt;/a&gt;
+    <div onclick="this.focus();">&lt; a href="<?= $gui["url"] ?>" title="<?= $gui["description"] ?>" <?= $gui["table_links_target"]?>&gt;<?= $gui["title"] ?>&lt;/a&gt;</div>
 </fieldset>
 <h4 style="margin-top: 20px;"><?= __("Step 2: Submit your linktrade", "ultimate-blogroll") ?></h4>
 <form method="POST" action="#wp-add-your-site">
 <?php
 if(isset($gui["error"]["messages"])) {
     echo "<ul class=\"error\">";
-    echo getErrorMessages();
+    echo getErrorMessages($gui["error"]["messages"]);
     echo "</ul>";
 }
 if(isset($gui["success"])) {

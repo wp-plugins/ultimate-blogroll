@@ -22,5 +22,9 @@ class LinkpartnerDTO {
         $this->domain       = $domain;
         $this->reciprocal   = $reciprocal;
     }
+
+    public function SetLinkBack($status) {
+        $this->has_backlink = $status;
+    }
 }
 ?>

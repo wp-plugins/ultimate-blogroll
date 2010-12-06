@@ -177,8 +177,8 @@ class LinkpartnerController extends UltimateBlogrollController {
         global $gui;
         //$gui = $this->gui;
         //$gui["edit"] = true;
-        $general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
-        $captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
+        //$general_settings = PersistentieMapper::Instance()->GetGeneralSettings();
+        //$captcha_settings = PersistentieMapper::Instance()->GetRecaptchaSettings();
         if(isset($_POST["add_linkpartner"])) {
             $linkpartner = new LinkpartnerDTO(
                     @$_POST["your_name"],
@@ -189,10 +189,36 @@ class LinkpartnerController extends UltimateBlogrollController {
                     @$_POST["website_domain"],
                     @$_POST["website_reciprocal"]
             );
-            $error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
-            echo "<pre>";
-            var_dump($error);
-            echo "</pre>";
+            
+            $gui["value"]["your_name"]           = $linkpartner->name;
+            $gui["value"]["your_email"]          = $linkpartner->email;
+            $gui["value"]["website_url"]         = $linkpartner->url;
+            $gui["value"]["website_title"]       = $linkpartner->title;
+            $gui["value"]["website_description"] = $linkpartner->description;
+            $gui["value"]["website_domain"]      = $linkpartner->domain;
+            $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+            
+            $error = $this->checkFormAddLinkpartner($linkpartner, false, false, false, true);
+            if($error->ContainsErrors() === false){
+                PersistentieMapper::Instance()->EditLinkpartner($linkpartner, @$_GET["id"]);
+                $gui["success"] = true;
+            }
+            
+        } elseif (isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])) {
+            if(is_admin()) {
+                $linkpartner = PersistentieMapper::Instance()->GetLinkpartnerByID($_GET["id"]);
+                if(!empty($linkpartner)) {
+                    $linkpartner = $linkpartner[0];
+
+                    $gui["value"]["your_name"]           = $linkpartner["website_owner_name"];
+                    $gui["value"]["your_email"]          = $linkpartner["website_owner_email"];
+                    $gui["value"]["website_url"]         = $linkpartner["website_url"];
+                    $gui["value"]["website_title"]       = $linkpartner["website_name"];
+                    $gui["value"]["website_description"] = $linkpartner["website_description"];
+                    $gui["value"]["website_domain"]      = $linkpartner["website_domein"];
+                    $gui["value"]["website_reciprocal"]  = $linkpartner["website_backlink"];
+                }
+            }
         }
 
         
@@ -226,13 +252,7 @@ class LinkpartnerController extends UltimateBlogrollController {
                     @$_POST["website_domain"],
                     @$_POST["website_reciprocal"]
             );
-            $error = $this->checkFormAddLinkpartner($linkpartner, true, false, false, false);
-            //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
-            if($error->ContainsErrors() === false){
-                PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
-                //TODO: verstuur mail
-                $gui["success"] = true;
-            }
+
             $gui["value"]["your_name"]           = $linkpartner->name;
             $gui["value"]["your_email"]          = $linkpartner->email;
             $gui["value"]["website_url"]         = $linkpartner->url;
@@ -240,6 +260,17 @@ class LinkpartnerController extends UltimateBlogrollController {
             $gui["value"]["website_description"] = $linkpartner->description;
             $gui["value"]["website_domain"]      = $linkpartner->domain;
             $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+
+            $error = $this->checkFormAddLinkpartner($linkpartner, true, false, false, false);
+            //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
+            if($error->ContainsErrors() === false){
+                PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
+                $data = PersistentieMapper::Instance()->GetGeneralSettings();
+                PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, $data->contact);
+                $gui["success"] = true;
+                $gui["value"] = array();
+            }
+            
 
             $gui["error"]["messages"]["addlinkpartner"] = $error->GetErrorMessages();
             $gui["error"]["fields"]             = $error->GetErrorFields();
@@ -258,24 +289,6 @@ class LinkpartnerController extends UltimateBlogrollController {
         echo $result;
     }
 
-    private function SendAnouncementMail() {
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
 
-        $subject = __("New link submitted at", "ultimate-blogroll").get_bloginfo('siteurl').''."\r\n";
-
-        $message = __("Hi", "ultimate-blogroll").",<br /><br />".__("Somebody added a new link in", "ultimate-blogroll")." Wordpress Ultimate Blogroll<br />";
-        $message .= "<table>";
-        $message .= "<tr><td style=\"width: 250px;\">".__("Website owner's name", "ultimate-blogroll").":</td><td>".$gui["value"]["your_name"]."</td></tr>";
-        $message .= "<tr><td>".__("Website owner's email", "ultimate-blogroll").":</td><td>".$gui["value"]["your_email"]."</td></tr>";
-        $message .= "<tr><td><br /></td></tr>";
-        $message .= "<tr><td>".__("Website url", "ultimate-blogroll").":</td><td>".$gui["value"]["website_url"]."</td></tr>";
-        $message .= "<tr><td>".__("Website title", "ultimate-blogroll").":</td><td>".$gui["value"]["website_title"]."</td></tr>";
-        $message .= "<tr><td>".__("Website description", "ultimate-blogroll").":</td><td>".$gui["value"]["website_description"]."</td></tr>";
-        $message .= "<tr><td><br /></td></tr>";
-        $message .= "<tr><td>".__("Website domain", "ultimate-blogroll").":</td><td>".$gui["value"]["website_domain"]."</td></tr>";
-        $message .= "<tr><td>".__("Website reciprocal", "ultimate-blogroll").":</td><td>".$gui["value"]["website_reciprocal"]."</td></tr>";
-    }
 }
 ?>

@@ -107,8 +107,8 @@ class PersistentieMapper {
         return $this->_linkpartnerMapper->GetLinkpartnerByID($id);
     }
 
-    public function EditLinkpartner($linkpartner) {
-        $this->_linkpartnerMapper->EditLinkpartner($linkpartner);
+    public function EditLinkpartner($linkpartner, $website_id) {
+        $this->_linkpartnerMapper->EditLinkpartner($linkpartner, $website_id);
     }
 
     public function GetLastAddedLinkpartner() {
@@ -185,6 +185,10 @@ class PersistentieMapper {
 
     public function GetLinkpartnersPage($order, $orderby) {
         return $this->_widgetMapper->GetLinkpartnersPage($order, $orderby);
+    }
+
+    public function SendAnouncementMail($linkpartner, $email) {
+        $this->_linkpartnerMapper->SendAnouncementMail($linkpartner, $email);
     }
 }
 ?>

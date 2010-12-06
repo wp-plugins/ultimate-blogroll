@@ -117,7 +117,7 @@ class WidgetController extends UltimateBlogrollController {
         if(!empty($linkpartners))
         {
             foreach($linkpartners as $linkpartner) {
-                $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget($general_settings["target"]).$this->GetFollow($general_settings["nofollow"]).">".$linkpartner["website_name"]."</a></li>";
+                $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget($general_settings->target).$this->GetFollow($general_settings->nofollow).">".$linkpartner["website_name"]."</a></li>";
             }
         }
         if(!empty($widget_settings->permalink))
@@ -236,14 +236,7 @@ jQuery(document).ready(function($) {
                         @$_POST["website_domain"],
                         @$_POST["website_reciprocal"]
                 );
-                $error = $this->checkFormAddLinkpartner($linkpartner, true, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], false);
-                if($error->ContainsErrors() === false){
-                    PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
-                    //TODO: verstuur mail
-                    $gui["success"] = true;
-                }
-                
-                //prepare for gui;
+
                 $gui["value"]["your_name"]           = $linkpartner->name;
                 $gui["value"]["your_email"]          = $linkpartner->email;
                 $gui["value"]["website_url"]         = $linkpartner->url;
@@ -252,6 +245,14 @@ jQuery(document).ready(function($) {
                 $gui["value"]["website_domain"]      = $linkpartner->domain;
                 $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
 
+                $error = $this->checkFormAddLinkpartner($linkpartner, true, $general_settings->fight_spam, $captcha_settings->recaptcha_private_key, false);
+                if($error->ContainsErrors() === false){
+                    PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
+                    PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, $general_settings->contact);
+                    $gui["success"] = true;
+                    $gui["value"] = array();
+                }
+                
                 $gui["error"]["messages"]           = $error->GetErrorMessages();
                 $gui["error"]["fields"]             = $error->GetErrorFields();
                 unset($error);

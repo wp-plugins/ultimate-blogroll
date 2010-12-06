@@ -25,7 +25,7 @@ class LinkpartnerMapper {
         $result["website_last_update"] = time();
         $result["website_change_id"] = $this->makeRandom(50);
         $result["website_date_added"] = time();
-        $result["website_has_backlink"] = @$data["website_has_backlink"];
+        $result["website_has_backlink"] = $data->has_backlink;
         $result["website_ip"] = $_SERVER['REMOTE_ADDR'];
 
         
@@ -106,19 +106,19 @@ class LinkpartnerMapper {
         return $this->database->get_results($sql, ARRAY_A);
     }
 
-    public function EditLinkpartner($linkpartner) {
+    public function EditLinkpartner($linkpartner, $website_id) {
         global $wpdb;
         $table_name = $this->database->prefix . "ubsites";
         $data = array(
-            "website_owner_name"    => $linkpartner["your_name"],
-            "website_owner_email"   => $linkpartner["your_email"],
-            "website_name"          => $linkpartner["website_title"],
-            "website_description"   => $linkpartner["website_description"],
-            "website_domein"        => $linkpartner["website_domain"],
-            "website_url"           => $linkpartner["website_url"],
-            "website_backlink"      => $linkpartner["website_reciprocal"]
+            "website_owner_name"    => $linkpartner->name,
+            "website_owner_email"   => $linkpartner->email,
+            "website_name"          => $linkpartner->title,
+            "website_description"   => $linkpartner->description,
+            "website_domein"        => $linkpartner->domain,
+            "website_url"           => $linkpartner->url,
+            "website_backlink"      => $linkpartner->reciprocal
         );
-        $wpdb->update( $table_name, $data, array("website_id" => $linkpartner["website_id"]) );
+        $wpdb->update( $table_name, $data, array("website_id" => $website_id) );
     }
 
     private function makeRandom($length)
@@ -140,6 +140,31 @@ class LinkpartnerMapper {
         $table_name = $this->database->prefix . "ubsites";
         $id = $wpdb->get_var("SELECT LAST_INSERT_ID()");
         return $id;
+    }
+
+    public function SendAnouncementMail($linkpartner, $email) {
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
+
+        $subject = __("New link submitted at", "ultimate-blogroll").get_bloginfo('siteurl').''."\r\n";
+
+        $message = __("Hi", "ultimate-blogroll").",<br /><br />".__("Somebody added a new link in", "ultimate-blogroll")." Wordpress Ultimate Blogroll<br />";
+        $message .= "<table>";
+        $message .= "<tr><td style=\"width: 250px;\">".__("Website owner's name", "ultimate-blogroll").":</td><td>".$linkpartner->name."</td></tr>";
+        $message .= "<tr><td>".__("Website owner's email", "ultimate-blogroll").":</td><td>".$linkpartner->email."</td></tr>";
+        $message .= "<tr><td><br /></td></tr>";
+        $message .= "<tr><td>".__("Website url", "ultimate-blogroll").":</td><td>".$linkpartner->url."</td></tr>";
+        $message .= "<tr><td>".__("Website title", "ultimate-blogroll").":</td><td>".$linkpartner->title."</td></tr>";
+        $message .= "<tr><td>".__("Website description", "ultimate-blogroll").":</td><td>".$linkpartner->description."</td></tr>";
+        $message .= "<tr><td><br /></td></tr>";
+        $message .= "<tr><td>".__("Website domain", "ultimate-blogroll").":</td><td>".$linkpartner->domain."</td></tr>";
+        $message .= "<tr><td>".__("Website reciprocal", "ultimate-blogroll").":</td><td>".$linkpartner->reciprocal."</td></tr>";
+        $id = PersistentieMapper::Instance()->GetLastAddedLinkpartner();
+        $message .= "</table>Do you want to <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?".http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">View details</a> | <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Approve</a> | <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Delete</a>";
+
+        //$data = PersistentieMapper::Instance()->GetGeneralSettings();
+        $m = @mail($email, $subject, $message, $headers);
     }
 }
 ?>

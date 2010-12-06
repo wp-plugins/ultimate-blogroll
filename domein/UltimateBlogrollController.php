@@ -277,9 +277,13 @@ class UltimateBlogrollController  {
                 $error->AddErrorField("website_url");
                 $error->AddErrorField("website_reciprocal");
                 $error->AddErrorMessage(__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
-            } elseif($this->checkreciprocalLink($linkpartner->reciprocal) !== true) {
-                $error->AddErrorField("website_reciprocal");
-                $error->AddErrorMessage(__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
+            } else {
+                $link_back = $this->checkreciprocalLink($linkpartner->reciprocal);
+                if($link_back !== true) {
+                    $error->AddErrorField("website_reciprocal");
+                    $error->AddErrorMessage(__("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
+                }
+                $linkpartner->SetLinkBack((int)$link_back);
             }
         }
 
