@@ -28,7 +28,7 @@ Author URI: http://www.gheerardyn.be
 **  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 //TODO: remove the error_reporting(E_ALL) error level;
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/config.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/UltimateBlogrollController.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/WidgetController.php");

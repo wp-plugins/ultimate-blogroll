@@ -103,7 +103,7 @@ require_once($path."gui/functions.php");
                                 <option value="_none" <?php echo ((@$gui["value"]["target"] == "_none") ? "selected=\"yes\"" : ""); ?> >_none</option>
                             </select>
                         </td>
-                        <td><? __("Select your target: _blank = new window; _top = current window; _none = same window;", "ultimate-blogroll") ?></td>
+                        <td><?= __("Select your target: _blank = new window; _top = current window; _none = same window;", "ultimate-blogroll") ?></td>
                     </tr>
                     <tr>
                         <td class="column1"><?= __("Nofollow", "ultimate-blogroll") ?>:</td>

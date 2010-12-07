@@ -10,6 +10,76 @@ class UltimateBlogrollController  {
     
     public function __construct() {
         $this->init();
+        $this->fix();
+    }
+
+    private function fix() {
+        $version = get_option("ub_data_version");
+        if($version === false || $version < 2) {
+            $widgets = get_option("sidebars_widgets");
+            $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
+            update_option("sidebars_widgets", $widgets);
+
+            $data1 = PersistentieMapper::Instance()->GetGeneralSettings();
+            if(is_array($data1)) {
+                $settings = new GeneralSettingsDTO(
+                    @$data1["website_url"],
+                    @$data1["website_title"],
+                    @$data1["website_description"],
+                    @$data1["blogroll_contact"],
+                    @$data1["support"],
+                    //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
+                    @$data1["send_mail"],
+                    @$data1["reciprocal_link"],
+                    @$data1["fight_spam"],
+                    @$data1["target"],
+                    @$data1["nofollow"]
+                );
+                PersistentieMapper::Instance()->SaveGeneralSettings($settings);
+                unset($settings);
+            }
+            $data2 = PersistentieMapper::Instance()->GetWidgetSettings();
+            if(is_array($data2)) {
+                $settings = new WidgetSettingsDTO (
+                    @$data2["widget_title"],
+                    @$data2["limit_linkpartners"],
+                    @$data2["order_by"],
+                    @$data2["ascending"],
+                    @$data2["permalink"]
+                );
+                PersistentieMapper::Instance()->SaveWidgetSettings($settings);
+                unset($settings);
+            }
+            $data3 = PersistentieMapper::Instance()->GetRecaptchaSettings();
+            if(is_array($data3)) {
+                $settings = new RecaptchaSettingsDTO(
+                    @$data3["recaptcha_public_key"],
+                    @$data3["recaptcha_private_key"]
+                );
+                PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
+                unset($settings);
+            }
+        }
+        if($version === false) {
+            add_option("ub_data_version", 2, "", "yes");
+        } else {
+            update_option("ub_data_version", 2);
+        }
+    }
+
+    private function FixTypoWidgets($array) {
+        if(is_array($array)) {
+            $result = array();
+            foreach($array as $key => $value) {
+                if($value == "ultimage-blogroll") {
+                    $result[$key] = "ultimate-blogroll";
+                } else {
+                    $result[$key] = $value;
+                }
+            }
+            return $result;
+        }
+        return $array;
     }
     
     public function init() {

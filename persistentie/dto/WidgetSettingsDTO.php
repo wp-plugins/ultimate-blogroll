@@ -20,5 +20,9 @@ class WidgetSettingsDTO {
         $this->ascending = $ascending;
         $this->permalink = $permalink;
     }
+
+    public function UpdatePermalink($permalink) {
+        $this->permalink = $permalink;
+    }
 }
 ?>

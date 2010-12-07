@@ -8,7 +8,7 @@ function getErrorField($field) {
     }
 }
 
-function getErrorMessages($messages) {
+function getErrorMessages($messages = null) {
     global $gui;
     if(empty($messages)) {
         $messages = $gui["error"]["messages"];

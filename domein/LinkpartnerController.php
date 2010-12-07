@@ -54,9 +54,10 @@ class LinkpartnerController extends UltimateBlogrollController {
         switch(@$_GET["step"])
         {
             case "step1":
-                $page = "page1";
+                $this->step1();
                 break;
             case "step2":
+                /*
                 $page = "page2";
 
                 $widgets = get_option("sidebars_widgets");
@@ -86,20 +87,151 @@ class LinkpartnerController extends UltimateBlogrollController {
                 echo "<pre>";
                 var_dump($widget_names);
                 echo "</pre>";
-
+                */
                 break;
             case "step3":
                 $page = "page3";
                 break;
             default:
-                $page = "page1";
+                $this->step1();
                 break;
         }
-        var_dump($page);
+        
         ob_start(); // begin collecting output
-        require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/wizard/".$page.".php");
+        require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/wizard/page1.php");
         $result = ob_get_clean();
         echo $result;
+    }
+
+    private function step1() {
+        global $gui;
+
+       
+
+        //get the sidebars
+        global $wp_registered_sidebars;
+        
+        $gui["number_of_sidebars"] = count($wp_registered_sidebars);
+        $sidebars_names = array();
+        if($gui["number_of_sidebars"] > 0) {
+            foreach($wp_registered_sidebars as $sidebars) {
+                $side["id"] = $sidebars["id"];
+                $side["name"] = $sidebars["name"];
+                $sidebars_names[] = $side;
+            }
+        }
+        $gui["widget_names"] = $sidebars_names;
+
+        $widget_settings = PersistentieMapper::Instance()->GetWidgetSettings();
+        
+        //post and gui values
+        if(isset($_POST["wizard"])) {
+            $gui["value"]["page_title"]     = @$_POST["page_title"];
+            $gui["value"]["sidebar"]        = @$_POST["sidebar"];
+            $gui["value"]["public_key"]     = @$_POST["public_key"];
+            $gui["value"]["private_key"]    = @$_POST["private_key"];
+
+            $error = new ErrorDTO();
+            if(empty($gui["value"]["page_title"])) {
+                $error->AddErrorField("page_title");
+                $error->AddErrorMessage(__("Page title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+            }
+            if(empty($gui["value"]["sidebar"])) {
+                $error->AddErrorField("sidebar");
+                $error->AddErrorMessage(__("Select sidebar", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+            }
+
+            $gui["error"]["messages"]           = $error->GetErrorMessages();
+            $gui["error"]["fields"]             = $error->GetErrorFields();
+
+            if($error->ContainsErrors() === false) {
+
+                //code from: http://wordpress.org/support/topic/how-do-i-create-a-new-page-with-the-plugin-im-building?replies=13
+                $the_page = get_page_by_title( $gui["value"]["page_title"] );
+                if ( ! $the_page ) {
+                    // Create post object
+                    $_p = array();
+                    $_p['post_title'] = $gui["value"]["page_title"];
+                    $_p['post_content'] = "<!--ultimate-blogroll-->";
+                    $_p['post_status'] = 'publish';
+                    $_p['post_type'] = 'page';
+                    $_p['comment_status'] = 'closed';
+                    $_p['ping_status'] = 'closed';
+                    $_p['post_category'] = array(1); // the default 'Uncategorised'
+                    // Insert the post into the database
+                    $the_page_id = wp_insert_post( $_p );
+                }
+                else {
+                    // the plugin may have been previously active and the page may just be trashed...
+                    $the_page_id = $the_page->ID;
+                    //make sure the page is not trashed...
+                    $the_page->post_status = 'publish';
+                    $the_page->comment_status = 'closed';
+                    $the_page->ping_status = 'closed';
+                    $the_page->post_content = "<!--ultimate-blogroll-->";
+                    $the_page_id = wp_update_post( $the_page );
+                }
+                $widget_settings->UpdatePermalink($the_page_id);
+                PersistentieMapper::Instance()->SaveWidgetSettings($widget_settings);
+
+                //delete Ultimate Blogroll because can only occur 1 time!
+                $widgets = get_option("sidebars_widgets");
+                $widgets = array_map(array($this, 'RemoveExistingWidget'), $widgets);
+                
+                array_unshift($widgets[$gui["value"]["sidebar"]], "ultimate-blogroll");
+                update_option("sidebars_widgets", $widgets);
+
+                $settings = new RecaptchaSettingsDTO(
+                    @$_POST["recaptcha_public_key"],
+                    @$_POST["recaptcha_private_key"]
+                );
+                PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
+                $gui["succes"]["general"] = true;
+            }
+            //TODO: input controleren
+        } else {
+            $gui["value"]["page_title"]     = get_the_title($widget_settings->permalink);
+            $sidebars_widgets = wp_get_sidebars_widgets();
+            if (empty($sidebars_widgets))
+                $sidebars_widgets = wp_get_widget_defaults();
+            $t = $this->FindWhichSidebar($sidebars_widgets);
+            //if the widget was not set on any sidebar, select the first one. If a sidebar was set
+            if($t === false && !empty($gui["widget_names"])) {
+                $t = $gui["widget_names"][0]["id"];
+            }
+            $gui["value"]["sidebar"]        = $t;
+            $data = PersistentieMapper::Instance()->GetRecaptchaSettings();
+            $gui["value"]["public_key"]     = $data->recaptcha_public_key;
+            $gui["value"]["private_key"]    = $data->recaptcha_private_key;
+        }
+    }
+
+    private function FindWhichSidebar($array) {
+        if(isset($array["wp_inactive_widgets"])) {
+            unset($array["wp_inactive_widgets"]);
+        }
+        foreach($array as $key => $value) {
+            foreach($value as $val) {
+                if($val == "ultimate-blogroll")
+                    return $key;
+            }
+        }
+        return false;
+    }
+
+    private function RemoveExistingWidget($array) {
+        if(is_array($array)) {
+            $result = array();
+            foreach($array as $key => $value) {
+                if($value == "ultimate-blogroll") {
+                    //$result[$key] = "ultimate-blogroll";
+                } else {
+                    $result[$key] = $value;
+                }
+            }
+            return $result;
+        }
+        return $array;
     }
     
     private function overview() {
