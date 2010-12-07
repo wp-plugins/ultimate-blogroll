@@ -138,11 +138,24 @@ class UltimateBlogrollController  {
         if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
         {
             echo '<div class="updated fade"><p>';
-            printf('<b><a href="%s">Ultimate Blogroll</a> '.__("Info", "ultimate-blogroll").':</b> '.__("The tag", "ultimate-blogroll").' <b>%s</b> '.__("has not been set on any", "ultimate-blogroll").' <a href="edit.php?post_type=page">'.__("page", "ultimate-blogroll").'</a>.',
+            printf('<b><a href="%s">Ultimate Blogroll</a> '.__("Info", "ultimate-blogroll").':</b> '.__("The tag", "ultimate-blogroll").' <b>%s</b> '.__("has not been set on any", "ultimate-blogroll").' <a href="edit.php?post_type=page">'.__("page", "ultimate-blogroll").'</a>. Use the <a href="%s">wizard</a> if you are unsure what this means.',
                 admin_url('admin.php?page=ultimate-blogroll-overview'),
-                htmlentities("<!--ultimate-blogroll-->")
+                htmlentities("<!--ultimate-blogroll-->"),
+                admin_url('admin.php?page=ultimate-blogroll-overview&action=wizard')
             );
             echo '</p></div>'. "\n";
+
+            if(PersistentieMapper::Instance()->CheckIfTablesExists() === false) {
+                echo '<div class="error fade"><p>';
+                echo "<b>Ultimate Blogroll:</b> ".__("Could not find the required MySQL tables", "ultimate-blogroll");
+                echo '</p></div>'. "\n";
+            }
+            
+            if($this->checkreciprocalLink(get_bloginfo("wpurl")) != true) {
+                echo '<div class="error fade"><p>';
+                echo "<b>Ultimate Blogroll:</b> ".__("Could not check for reciprocal website. Check if ports are open.", "ultimate-blogroll");
+                echo '</p></div>'. "\n";
+            }
         } else {
             $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
             $data = PersistentieMapper::Instance()->GetWidgetSettings();

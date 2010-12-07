@@ -12,7 +12,15 @@ class InstallMapper {
         global $wpdb;
         $this->database = $wpdb;
     }
-    
+
+    public function CheckIfTablesExists() {
+        global $wpdb;
+        if(!$wpdb->get_var("show tables like '".$wpdb->prefix."ubsites'")) {
+            return false;
+        }
+        return true;
+    }
+
     public function InstallDatabase()
     {
         global $wpdb;

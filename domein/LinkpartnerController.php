@@ -106,8 +106,6 @@ class LinkpartnerController extends UltimateBlogrollController {
     private function step1() {
         global $gui;
 
-       
-
         //get the sidebars
         global $wp_registered_sidebars;
         
@@ -174,10 +172,10 @@ class LinkpartnerController extends UltimateBlogrollController {
                 $widget_settings->UpdatePermalink($the_page_id);
                 PersistentieMapper::Instance()->SaveWidgetSettings($widget_settings);
 
-                //delete Ultimate Blogroll because can only occur 1 time!
+                //delete Ultimate Blogroll because it can only occur 1 time!
                 $widgets = get_option("sidebars_widgets");
                 $widgets = array_map(array($this, 'RemoveExistingWidget'), $widgets);
-                
+                //put it at the top
                 array_unshift($widgets[$gui["value"]["sidebar"]], "ultimate-blogroll");
                 update_option("sidebars_widgets", $widgets);
 
@@ -195,7 +193,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             if (empty($sidebars_widgets))
                 $sidebars_widgets = wp_get_widget_defaults();
             $t = $this->FindWhichSidebar($sidebars_widgets);
-            //if the widget was not set on any sidebar, select the first one. If a sidebar was set
+            //if the widget was not set on any sidebar, select the first one. Do this only if a sidebar was set
             if($t === false && !empty($gui["widget_names"])) {
                 $t = $gui["widget_names"][0]["id"];
             }
@@ -256,7 +254,6 @@ class LinkpartnerController extends UltimateBlogrollController {
                     return false;
                 foreach(@$_GET["linkpartner"] as $link)
                 {
-                    //var_dump($link);
                     switch(@$_GET["overview_actions"]) {
                         case "approve":
                             PersistentieMapper::Instance()->UpdateApproveStatus($link, "a");

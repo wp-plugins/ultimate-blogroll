@@ -27,6 +27,10 @@ class PersistentieMapper {
         $this->_linkpartnerMapper = new LinkpartnerMapper();
         $this->_widgetMapper = new WidgetMapper();
     }
+
+    public function CheckIfTablesExists() {
+        return $this->_installMapper->CheckIfTablesExists();
+    }
     
     public function InstallDatabase() {
         $this->_installMapper->InstallDatabase();
