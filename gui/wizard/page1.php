@@ -26,8 +26,8 @@ require_once($path."gui/functions.php");
         </table>
     </div>
     <div class="ultimate_blogroll_info">
-        <b>Step 2: <?= __("Set up the widget") ?></b><br />
-        <?= __("We detected that you had")." <b>".$gui["number_of_sidebars"]."</b> ".__("sidebars. Please choose in which one Ultimate Blogroll will appear. If you are not sure what this means, just let it on ").$gui["widget_names"][0]["name"].". ".__("You can always alter it in the widget section of the admin panel.", "ultimate-blogroll") ?><br /><br />
+        <b>Step 2: <?= __("Set up the widget", "ultimate-blogroll") ?></b><br />
+        <?= __("We detected that you had", "ultimate-blogroll")." <b>".$gui["number_of_sidebars"]."</b> ".__("sidebars. Please choose in which one Ultimate Blogroll will appear. If you are not sure what this means, just let it on ", "ultimate-blogroll")." ".$gui["widget_names"][0]["name"].". ".__("You can always alter it in the widget section of the admin panel.", "ultimate-blogroll") ?><br /><br />
         <table>
             <tr <?=getErrorField("sidebar"); ?>>
                 <td class="column1" style="vertical-align: top;"><?= __("Select sidebar", "ultimate-blogroll") ?>*:</td>
@@ -42,7 +42,7 @@ require_once($path."gui/functions.php");
         </table>
     </div>
     <div class="ultimate_blogroll_info">
-        <b>Step 3: Recaptcha</b> (<?= __("optional") ?><br />
+        <b>Step 3: Recaptcha</b> (<?= __("optional", "ultimate-blogroll") ?>)<br />
         <?= __("We use an external party for the <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). If you want to use the anti-spam (captcha) function, you need to register some keys at <a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a> after that you need to fill them in below here. <b>Warning</b> The anti-spam (recaptcha) is by default inactive, you need to activate it in the settings section.", "ultimate-blogroll") ?><br /><br />
         <table>
             <tr>
@@ -58,7 +58,7 @@ require_once($path."gui/functions.php");
     <div class="ultimate_blogroll_info">
         <table>
             <tr>
-                <td class="column1"><b>Submit</b></td>
+                <td class="column1"><b><?= __("Submit", "ultimate-blogroll") ?></b></td>
                 <td class="column2"><input type="submit" name="wizard" value="<?= __("Finish", "ultimate-blogroll") ?>" class="form_text" /></td>
             </tr>
         </table>

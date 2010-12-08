@@ -120,8 +120,10 @@ class WidgetController extends UltimateBlogrollController {
                 $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget($general_settings->target).$this->GetFollow($general_settings->nofollow).">".$linkpartner["website_name"]."</a></li>";
             }
         }
-        if(!empty($widget_settings->permalink))
+        if(!empty($widget_settings->permalink) && $widget_settings->permalink != "none")
+        {
             $gui .= "<li><a href=\"".get_permalink($widget_settings->permalink)."\">".__("More", "ultimate-blogroll")."</a></li>";
+        }
         $gui .= "</ul>";
         $gui .= $after_widget;
 
@@ -191,7 +193,7 @@ class WidgetController extends UltimateBlogrollController {
         wp_enqueue_script('jquery');
         $output = '<script type="text/javascript" >
 jQuery(document).ready(function($) {
-    $("#ultimage-blogroll ul li a").click(function () {
+    jQuery("#ultimate-blogroll ul li a").click(function () {
         var data = {
             action: "ub_ajax_action_callback",
             linkpartner: $(this).attr("href")

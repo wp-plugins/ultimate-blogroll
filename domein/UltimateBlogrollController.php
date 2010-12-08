@@ -15,7 +15,8 @@ class UltimateBlogrollController  {
 
     private function fix() {
         $version = get_option("ub_data_version");
-        if($version === false || $version < 2) {
+        $db_version = get_option("ultimate_blogroll_db_version");
+        if(($version === false || $version < 2) && $db_version !== false) {
             $widgets = get_option("sidebars_widgets");
             $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
             update_option("sidebars_widgets", $widgets);
@@ -59,11 +60,11 @@ class UltimateBlogrollController  {
                 PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
                 unset($settings);
             }
-        }
-        if($version === false) {
-            add_option("ub_data_version", 2, "", "yes");
-        } else {
-            update_option("ub_data_version", 2);
+            if($version === false) {
+                add_option("ub_data_version", 2, "", "yes");
+            } else {
+                update_option("ub_data_version", 2);
+            }
         }
     }
 
@@ -138,7 +139,7 @@ class UltimateBlogrollController  {
         if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
         {
             echo '<div class="updated fade"><p>';
-            printf('<b><a href="%s">Ultimate Blogroll</a> '.__("Info", "ultimate-blogroll").':</b> '.__("The tag", "ultimate-blogroll").' <b>%s</b> '.__("has not been set on any", "ultimate-blogroll").' <a href="edit.php?post_type=page">'.__("page", "ultimate-blogroll").'</a>. Use the <a href="%s">wizard</a> if you are unsure what this means.',
+            printf('<b><a href="%s">Ultimate Blogroll</a> '.__("Info", "ultimate-blogroll").':</b> '.__("The tag", "ultimate-blogroll").' <b>%s</b> '.__("has not been set on any", "ultimate-blogroll").' <a href="edit.php?post_type=page">'.__("page", "ultimate-blogroll").'</a>. '.__('Use the <a href="%s">wizard</a> if you are unsure what this means.', 'ultimate-blogroll').'',
                 admin_url('admin.php?page=ultimate-blogroll-overview'),
                 htmlentities("<!--ultimate-blogroll-->"),
                 admin_url('admin.php?page=ultimate-blogroll-overview&action=wizard')
@@ -150,7 +151,6 @@ class UltimateBlogrollController  {
                 echo "<b>Ultimate Blogroll:</b> ".__("Could not find the required MySQL tables", "ultimate-blogroll");
                 echo '</p></div>'. "\n";
             }
-            
             if($this->checkreciprocalLink(get_bloginfo("wpurl")) != true) {
                 echo '<div class="error fade"><p>';
                 echo "<b>Ultimate Blogroll:</b> ".__("Could not check for reciprocal website. Check if ports are open.", "ultimate-blogroll");

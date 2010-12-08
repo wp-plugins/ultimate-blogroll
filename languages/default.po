@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-07 20:30+0100\n"
-"PO-Revision-Date: 2010-12-07 20:31+0100\n"
+"POT-Creation-Date: 2010-12-07 20:42+0100\n"
+"PO-Revision-Date: 2010-12-07 21:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -196,6 +196,11 @@ msgstr "is niet gevonden op een"
 #: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
 msgid "page"
 msgstr "Pagina"
+
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#, php-format
+msgid "Use the <a href=\"%s\">wizard</a> if you are unsure what this means."
+msgstr "Gebruik de <a href=\"%s\">wizard</a> indien je niet zeker weet wat dit betekent."
 
 #: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:150
 msgid "Could not find the required MySQL tables"
@@ -695,7 +700,7 @@ msgstr "De privé sleutel die je ontvangen hebt van"
 
 #: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:15
 msgid "Plugin was successfully configured"
-msgstr "Linkpartner was succesvol ingesteld"
+msgstr "Plugin was succesvol ingesteld"
 
 #: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:19
 msgid "Create Page"
@@ -727,7 +732,11 @@ msgstr "optioneel"
 
 #: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:46
 msgid "We use an external party for the <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). If you want to use the anti-spam (captcha) function, you need to register some keys at <a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a> after that you need to fill them in below here. <b>Warning</b> The anti-spam (recaptcha) is by default inactive, you need to activate it in the settings section."
-msgstr "We gebruiken een externe partij voor de <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). Indien je gebruik wenst te maken van de anti-spam (captcha) functie, dan moet je sleutels registeren bij <a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a> nadien dien je deze hieronder in te voeren. <b>Warning</b>  De anti-spam (recaptcha) is standaard niet actief, je moet het nog activeren bij de instellingen van Ultimate Blogroll."
+msgstr "We gebruiken een externe partij voor de <a target=\"_new\" href=\"http://en.wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). Indien je gebruik wenst te maken van de anti-spam (captcha) functie, dan moet je sleutels registeren bij <a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a> nadien dien je deze hieronder in te voeren. <b>WAARSCHUWING</b> De anti-spam (recaptcha) is standaard niet actief, je moet deze nog activeren bij de instellingen van Ultimate Blogroll."
+
+#: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:61
+msgid "Submit"
+msgstr "Toevoegen"
 
 #: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:62
 msgid "Finish"

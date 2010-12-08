@@ -188,7 +188,9 @@ class LinkpartnerController extends UltimateBlogrollController {
             }
             //TODO: input controleren
         } else {
-            $gui["value"]["page_title"]     = get_the_title($widget_settings->permalink);
+            $t = get_the_title($widget_settings->permalink);
+            
+            $gui["value"]["page_title"]     = ((empty($t)) ? "Ultimate Blogroll" : "");
             $sidebars_widgets = wp_get_sidebars_widgets();
             if (empty($sidebars_widgets))
                 $sidebars_widgets = wp_get_widget_defaults();
@@ -390,7 +392,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             $gui["value"]["website_domain"]      = $linkpartner->domain;
             $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
 
-            $error = $this->checkFormAddLinkpartner($linkpartner, true, false, false, false);
+            $error = $this->checkFormAddLinkpartner($linkpartner, false, false, false, false);
             //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
             if($error->ContainsErrors() === false){
                 PersistentieMapper::Instance()->AddLinkpartner($linkpartner);

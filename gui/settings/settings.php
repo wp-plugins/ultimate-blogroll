@@ -210,7 +210,7 @@ require_once($path."gui/functions.php");
                                 ?>
                             </select>
                         </td>
-                        <td><?= __("Choose the page with the", "ultimate-blogroll") . " " . htmlentities('<!--ultimate-blogroll-->') ." ". __("tag on.", "ultimate-blogroll"); ?>"</td>
+                        <td><?= __("Choose the page with the", "ultimate-blogroll") . " " . htmlentities('<!--ultimate-blogroll-->') ." ". __("tag on.", "ultimate-blogroll"); ?></td>
                     </tr>
                     <tr>
                         <td class="column1"></td>
