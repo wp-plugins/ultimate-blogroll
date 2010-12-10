@@ -3,8 +3,8 @@ Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: links, manage, counter, admin
 Requires at least: 3.0.1
-Tested up to: 3.0.1
-Stable tag: 1.0
+Tested up to: 3.0.3
+Stable tag: 1.5
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
@@ -18,7 +18,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Easily approve or discard a new linktrade
     * Check for a reciprocal link
     * Prevent spam with Recaptcha
-    * …
+    * ...
 
 
 == Installation ==
@@ -26,7 +26,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
 
    1. Upload Ultimate-blogroll to the /wp-content/plugins/ directory
    2. Activate the plugin through the Plugins menu in WordPress
-   3. Create/edit a page and add the <!–ultimate-blogroll–> tag
+   3. Create/edit a page and add the <!–-ultimate-blogroll-–> tag
    4. Add the Ultimate Blogroll widget under the widget menu in WordPress
 
 
@@ -43,20 +43,15 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 4. The widget control, which you can also find on the settings page
 5. A pic how it might look in action, this is the widget where you will find your linktrades
 6. Here you find an overview with stats, this pages requires the <!--ultimate-blogroll--> to function. It is also on this page that visitors can add a their own link.
-7. This is the confirmation mail that you will receive everytime a trade was made
+7. This is the confirmation mail that you will receive everytime a linktrade was made
 
 == Changelog ==
 
+= 1.5 =
+* Multi-language
+* Added a wizard/installation process
+* fixed some minor bugs
+* changed internal structure
+
 = 1.0 =
 * First version build, I am currently awaiting feedback
-
-== Upgrade Notice ==
-
-
-
-== Arbitrary section ==
-
-
-
-== A brief Markdown Example ==
-
