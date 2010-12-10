@@ -180,9 +180,10 @@ class WidgetController extends UltimateBlogrollController {
     }
     
     public function ub_ajax_action_callback() {
-        global $wpdb;
         $linkpartner = @$_POST['linkpartner'];
+        //var_dump($linkpartner);
         $id = PersistentieMapper::Instance()->GetIDLinkpartnerFromUrl($linkpartner);
+        var_dump($id);
         PersistentieMapper::Instance()->AddTotalLinkout($id);
         PersistentieMapper::Instance()->Add48Linkout($id);
         die();
@@ -193,7 +194,7 @@ class WidgetController extends UltimateBlogrollController {
         wp_enqueue_script('jquery');
         $output = '<script type="text/javascript" >
 jQuery(document).ready(function($) {
-    jQuery("#ultimate-blogroll ul li a").click(function () {
+    jQuery("#ultimate-blogroll a").click(function () {
         var data = {
             action: "ub_ajax_action_callback",
             linkpartner: $(this).attr("href")
@@ -201,9 +202,7 @@ jQuery(document).ready(function($) {
         jQuery.post("'.get_bloginfo("wpurl").'/wp-admin/admin-ajax.php", data, function(response) {
             //alert("Got this from the server: " + response);
         });
-    });
-    
-    
+    }); 
 });
 </script>';
         echo $output;
@@ -266,7 +265,7 @@ jQuery(document).ready(function($) {
             $gui["table_links"] = PersistentieMapper::Instance()->GetLinkpartnersPage($this->GetOrder($widget_settings->ascending), $this->GetOrderBy($widget_settings->order_by));
             
             //secure our output
-            $gui["value"] = array_map ( array($this, 'map_entities'), $gui["value"] );
+            $gui = array_map ( array($this, 'map_entities'), $gui );
             $gui["table_links_target"]  = $this->GetTarget($general_settings->target);
 
             $gui["url"]                 = get_bloginfo("wpurl");

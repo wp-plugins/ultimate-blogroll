@@ -89,9 +89,6 @@ class LinkpartnerController extends UltimateBlogrollController {
                 echo "</pre>";
                 */
                 break;
-            case "step3":
-                $page = "page3";
-                break;
             default:
                 $this->step1();
                 break;
@@ -296,7 +293,10 @@ class LinkpartnerController extends UltimateBlogrollController {
             $gui["linkpartners"] = PersistentieMapper::Instance()->SearchLinkpartners(@$_GET["s"]);
             $gui["title"] = __("Overview", "ultimate-blogroll")." <a class=\"button add-new-h2\" href=\"admin.php?page=ultimate-blogroll-add-linkpartner\">".__("Add new", "ultimate-blogroll")."</a><span class=\"subtitle\">".__("Search results for", "ultimate-blogroll")." “".htmlentities(@$_GET["s"])."”</span>";
         }
-        $gui = array_map ( array($this, 'map_entities'), $gui );
+        if(empty($gui["value"]))
+            $gui["value"] = array();
+        $gui["value"]           = array_map ( array($this, 'map_entities'), $gui["value"] );
+        $gui["linkpartners"]    = array_map ( array($this, 'map_entities'), $gui["linkpartners"] );
         
         ob_start(); // begin collecting output
         require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/linkpartner/overview.php");
@@ -334,6 +334,9 @@ class LinkpartnerController extends UltimateBlogrollController {
                 PersistentieMapper::Instance()->EditLinkpartner($linkpartner, @$_GET["id"]);
                 $gui["success"] = true;
             }
+
+            $gui["error"]["messages"]["addlinkpartner"]     = $error->GetErrorMessages();
+            $gui["error"]["fields"]                         = $error->GetErrorFields();
             
         } elseif (isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])) {
             if(is_admin()) {
@@ -351,6 +354,8 @@ class LinkpartnerController extends UltimateBlogrollController {
                 }
             }
         }
+
+        
 
         
         $this->overview();
@@ -419,7 +424,5 @@ class LinkpartnerController extends UltimateBlogrollController {
         $result = ob_get_clean();
         echo $result;
     }
-
-
 }
 ?>

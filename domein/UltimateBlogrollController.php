@@ -174,6 +174,11 @@ class UltimateBlogrollController  {
         {
             return array_map ( array($this, 'map_entities'), $str );
         }
+        //objects were given to the $gui appearantly
+        //TODO: investigate! NEVER send objects to gui!
+        if(is_object($str)) {
+            return $str;
+        }
         return htmlentities( $str, ENT_QUOTES, 'UTF-8' );
     }
 
@@ -256,14 +261,16 @@ class UltimateBlogrollController  {
 
     public function ub_hourly_task() {
         //we run this every hour so we just want to add the results from now until 1 hour ago
-        $time   = time()-(60*60);
-        $tIn    = PersistentieMapper::Instance()->GetTemp48In($time);
-        $tOut   = PersistentieMapper::Instance()->GetTemp48Out($time);
+        //$time   = time()-(60*60);
+        $tIn    = PersistentieMapper::Instance()->GetTemp48In();
+        $tOut   = PersistentieMapper::Instance()->GetTemp48Out();
+        PersistentieMapper::Instance()->UpdateCountedLinks();
+        
         $time   = time()-(60*60*48);
         $oIn    = PersistentieMapper::Instance()->GetOld48In($time);
         $oOut   = PersistentieMapper::Instance()->GetOld48Out($time);
         PersistentieMapper::Instance()->DeleteOld48($time);
-        PersistentieMapper::Instance()->UpdateCountedLinks();
+        
 
         if(!empty($oIn)) {
             foreach($oIn as $link) {

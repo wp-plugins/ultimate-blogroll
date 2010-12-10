@@ -10,12 +10,12 @@ require_once($path."gui/functions.php");
 ?>
     <div class="postbox">                                  
         <div class="handlediv" title="Click to open/close">
-            <br>
+            <br />
         </div>
         <h3 class="hndle"><span><?= (($gui["edit"] === true) ? __("Edit linkpartner", "ultimate-blogroll").": ".@$gui["value"]["website_title"]." (<a href=\"".@$gui["value"]["website_url"]."\" target=\"_blank\">".@$gui["value"]["website_url"]."</a>)" : __("Add linkpartner", "ultimate-blogroll")); ?></span></h3>
         <div class="inside" style="display: block;">
             <?php
-            if(isset($gui["error"]["messages"]["addlinkpartner"])) {
+            if(isset($gui["error"]["messages"]["addlinkpartner"]) && !empty($gui["error"]["messages"]["addlinkpartner"])) {
                 echo "<ul class=\"error\">";
                 echo getErrorMessages($gui["error"]["messages"]["addlinkpartner"]);
                 echo "</ul>";

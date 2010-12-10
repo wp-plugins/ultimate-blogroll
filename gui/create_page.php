@@ -74,7 +74,7 @@
         color: #ff0000;
     }
     #ub_code {
-        border: 1px solid #333333;
+        border: 1px solid #DFDFDF;
     }
 </style>
 <script type="text/javascript" >
@@ -94,7 +94,7 @@
      };
 </script>
 <p><?= __("The following links are from yesterday and today.<br />You can add your website at the bottom of this page.", "ultimate-blogroll") ?></p>
-<table class="ub_table" cellspacing="1" id="ultimate-blogroll-table">
+<table class="ub_table ub_register_clicks" cellspacing="1" id="ultimate-blogroll-table">
     <tr class="first">
         <td class="first"><?= __("Website", "ultimate-blogroll") ?></td>
         <td class="wb-data"><?= __("Last 48h in", "ultimate-blogroll") ?></td>

@@ -95,28 +95,28 @@ class WidgetMapper {
     public function GetOld48In($time) {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date < %d and `links_type` = 'i' and links_counted = 0 group by `links_website_id`", array($time));
+        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date < %d and `links_type` = 'i' group by `links_website_id`", array($time));
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
     public function GetOld48Out($time) {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date < %d and `links_type` = 'o' and links_counted = 0 group by `links_website_id`", array($time));
+        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date < %d and `links_type` = 'o' group by `links_website_id`", array($time));
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
-    public function GetTemp48In($time) {
+    public function GetTemp48In() {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date > %d and `links_type` = 'i' and links_counted = 0 group by `links_website_id`", array($time));
+        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'i' and links_counted = 0 group by `links_website_id`", array($time));
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
-    public function GetTemp48Out($time) {
+    public function GetTemp48Out() {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where links_date > %d and `links_type` = 'o' and links_counted = 0 group by `links_website_id`", array($time));
+        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'o' and links_counted = 0 group by `links_website_id`", array($time));
         return $wpdb->get_results($sql, ARRAY_A);
     }
 

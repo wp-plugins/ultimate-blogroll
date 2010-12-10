@@ -159,12 +159,12 @@ class PersistentieMapper {
         return $this->_widgetMapper->GetOld48Out($time);
     }
 
-    public function GetTemp48In($time) {
-        return $this->_widgetMapper->GetTemp48In($time);
+    public function GetTemp48In() {
+        return $this->_widgetMapper->GetTemp48In();
     }
 
-    public function GetTemp48Out($time) {
-        return $this->_widgetMapper->GetTemp48Out($time);
+    public function GetTemp48Out() {
+        return $this->_widgetMapper->GetTemp48Out();
     }
 
     public function Min48In($id, $total) {
