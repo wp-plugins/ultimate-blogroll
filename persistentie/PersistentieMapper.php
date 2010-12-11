@@ -42,7 +42,11 @@ class PersistentieMapper {
     public function AddLinkpartner($data) {
         $this->_linkpartnerMapper->AddLinkpartner($data);
     }
-    
+
+    public function AddLinkpartnerFromWordpress($data) {
+        $this->_importExportMapper->AddLinkpartnerFromWordpress($data);
+    }
+
     public function CheckIfUltimateBlogrollTagWasSet() {
         $result = count($this->_installMapper->GetPagesWithUltimateBlogrollTag());
         if($result > 0)
@@ -200,6 +204,24 @@ class PersistentieMapper {
 
     public function GetBlogrollWordpress() {
         return $this->_importExportMapper->GetBlogrollWordpress();
+    }
+
+    public function AddLinkpartnerToWordpress($data) {
+        $this->_importExportMapper->AddLinkpartnerToWordpress($data);
+    }
+
+    public function makeRandom($length)
+    {
+        $availableChars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
+        $generatedID = null;
+        $lengthOfAvailableChars = count($availableChars) - 1;
+
+        for($i = 0; $i < $length; $i++)
+        {
+            $randomChar = mt_rand(0, $lengthOfAvailableChars);
+            $generatedID .= $availableChars[$randomChar];
+        }
+        return $generatedID;
     }
 }
 ?>

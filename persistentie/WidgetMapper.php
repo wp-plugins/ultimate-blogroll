@@ -109,15 +109,13 @@ class WidgetMapper {
     public function GetTemp48In() {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'i' and links_counted = 0 group by `links_website_id`", array($time));
-        return $wpdb->get_results($sql, ARRAY_A);
+        return $wpdb->get_results("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'i' and links_counted = 0 group by `links_website_id`", ARRAY_A);
     }
 
     public function GetTemp48Out() {
         global $wpdb;
         $table_name = $this->database->prefix . "ublinks";
-        $sql = $wpdb->prepare("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'o' and links_counted = 0 group by `links_website_id`", array($time));
-        return $wpdb->get_results($sql, ARRAY_A);
+        return $wpdb->get_results("select links_website_id, count(links_id) as count from ".$table_name." where `links_type` = 'o' and links_counted = 0 group by `links_website_id`", ARRAY_A);
     }
 
     public function Min48In($id, $total) {
