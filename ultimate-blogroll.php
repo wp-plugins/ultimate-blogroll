@@ -53,6 +53,10 @@ if (is_admin()) {
             require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/SettingsController.php");
             $controller = new SettingsController();
             break;
+        case "ultimate-blogroll-import-export":
+            require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/ImportExportController.php");
+            $controller = new ImportExportController();
+            break;
         default:
             require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/LinkpartnerController.php");
             $controller = new LinkpartnerController("overview");

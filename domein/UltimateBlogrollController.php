@@ -124,6 +124,15 @@ class UltimateBlogrollController  {
             "ultimate-blogroll-add-linkpartner", //slug, in the url
             "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
         );
+
+        $sub_page = add_submenu_page(
+            "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
+            __("Import/Export", "ultimate-blogroll"), //page title
+            __("Import/Export", "ultimate-blogroll"), //menu title
+            "manage_options", //user level, needed before it becomes visible
+            "ultimate-blogroll-import-export", //slug, in the url
+            "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
+        );
         
         $sub_page = add_submenu_page(
             "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug

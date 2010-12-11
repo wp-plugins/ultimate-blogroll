@@ -8,6 +8,7 @@ require_once("InstallMapper.php");
 require_once("SettingMapper.php");
 require_once("LinkpartnerMapper.php");
 require_once("WidgetMapper.php");
+require_once("ImportExportMapper.php");
 class PersistentieMapper {
     private static $_instance = null;
     
@@ -15,6 +16,7 @@ class PersistentieMapper {
     private $_settingMapper;
     private $_linkpartnerMapper;
     private $_widgetMapper;
+    private $_importExportMapper;
     
     public static function Instance(){
         if (self::$_instance == null) self::$_instance = new PersistentieMapper();
@@ -22,10 +24,11 @@ class PersistentieMapper {
     }
     
     public function __construct() {
-        $this->_installMapper = new InstallMapper();
-        $this->_settingMapper = new SettingMapper();
-        $this->_linkpartnerMapper = new LinkpartnerMapper();
-        $this->_widgetMapper = new WidgetMapper();
+        $this->_installMapper       = new InstallMapper();
+        $this->_settingMapper       = new SettingMapper();
+        $this->_linkpartnerMapper   = new LinkpartnerMapper();
+        $this->_widgetMapper        = new WidgetMapper();
+        $this->_importExportMapper  = new ImportExportMapper();
     }
 
     public function CheckIfTablesExists() {
@@ -193,6 +196,10 @@ class PersistentieMapper {
 
     public function SendAnouncementMail($linkpartner, $email) {
         $this->_linkpartnerMapper->SendAnouncementMail($linkpartner, $email);
+    }
+
+    public function GetBlogrollWordpress() {
+        return $this->_importExportMapper->GetBlogrollWordpress();
     }
 }
 ?>
