@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-07 20:42+0100\n"
-"PO-Revision-Date: 2010-12-07 21:36+0100\n"
+"POT-Creation-Date: 2010-12-12 02:32+0100\n"
+"PO-Revision-Date: 2010-12-12 02:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,13 +13,19 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\ultimate-blogroll\\trunk\n"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:135
-#: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:23
+#: C:\ultimate-blogroll\trunk/domein/ImportExportController.php:16
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:130
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:131
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:10
+msgid "Import/Export"
+msgstr "Importeer/Exporteer"
+
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:132
 msgid "Page title"
 msgstr "Pagina titel"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:135
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:139
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:132
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:136
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:160
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:168
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:173
@@ -28,90 +34,85 @@ msgstr "Pagina titel"
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:196
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:227
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:232
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:304
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:309
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:317
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:320
 #: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:325
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:330
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:335
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:333
 #: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:341
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:346
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:351
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:357
 msgid "is empty"
 msgstr "is leeg"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:139
-#: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:33
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:136
 msgid "Select sidebar"
 msgstr "Kies Sidebar"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:250
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:295
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:111
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:249
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:294
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:112
 msgid "Overview"
 msgstr "Overzicht"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:250
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:295
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:249
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:294
 msgid "Add new"
 msgstr "Voeg nieuwe toe"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:295
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:294
 msgid "Search results for"
 msgstr "Zoekresultaten voor"
 
-#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:371
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:120
+#: C:\ultimate-blogroll\trunk/domein/LinkpartnerController.php:378
 #: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:121
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:122
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:15
 msgid "Add linkpartner"
 msgstr "Voeg linkpartner toe"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:20
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:129
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:130
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:139
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:140
 msgid "Settings"
 msgstr "Instellingen"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:160
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:163
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:317
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:320
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:376
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:393
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:333
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:336
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:378
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:392
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:409
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:150
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:195
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:49
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:34
 msgid "Website url"
 msgstr "Website url"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:163
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:320
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:346
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:336
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
 msgid "is not a valid url"
 msgstr "is geen juiste url"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:168
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:325
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:341
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:154
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:200
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:54
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:39
 msgid "Website title"
 msgstr "Website titel"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:173
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:330
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:346
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:158
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:205
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:59
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:44
 msgid "Website description"
 msgstr "Website omschrijving"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:178
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:181
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:52
 msgid "Email address"
 msgstr "E-mailadres"
 
@@ -120,16 +121,14 @@ msgid "is wrong"
 msgstr "is fout"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:191
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:146
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:170
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:148
 msgid "Widget title"
 msgstr "Widget titel"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:196
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:199
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:202
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:149
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:175
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:151
 msgid "Limit of linkpartners"
 msgstr "Aantal zichtbare linkpartners"
 
@@ -142,8 +141,7 @@ msgid "is negative"
 msgstr "is negatief"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:207
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:152
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:180
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:154
 msgid "Order by"
 msgstr "Sorteer volgens"
 
@@ -154,162 +152,150 @@ msgid "contains an unexpected value"
 msgstr "bevat een overwachtte waarde"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:212
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:160
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:192
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:162
 msgid "Ascending/Descending"
 msgstr "Oplopend/aflopend"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:217
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:166
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:202
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:168
 msgid "Link exchange page"
 msgstr "Linkuitwisseling pagina"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:227
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:247
-#: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:49
 msgid "Public key"
 msgstr "Publieke sleutel"
 
 #: C:\ultimate-blogroll\trunk/domein/SettingsController.php:232
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:252
-#: C:\ultimate-blogroll\trunk/gui/wizard/page1.php:53
 msgid "Private key"
 msgstr "Privé sleutel"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:112
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:113
 msgid "Manage linkpartners"
 msgstr "Linkpartners beheren"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:151
 msgid "Info"
 msgstr "Info"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:151
 msgid "The tag"
 msgstr "De tag"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:151
 msgid "has not been set on any"
 msgstr "is niet gevonden op een"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:151
 msgid "page"
 msgstr "Pagina"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:141
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:151
 #, php-format
 msgid "Use the <a href=\"%s\">wizard</a> if you are unsure what this means."
 msgstr "Gebruik de <a href=\"%s\">wizard</a> indien je niet zeker weet wat dit betekent."
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:150
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:160
 msgid "Could not find the required MySQL tables"
 msgstr "Kon de benodigde MySQL tabellen niet vinden"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:156
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:165
 msgid "Could not check for reciprocal website. Check if ports are open."
 msgstr "Kon socket niet openen, kon niet controleren op websites die teruglinken. Controleer of de poorten open zijn."
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:304
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:320
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:36
 msgid "Website owner's name"
 msgstr "Naam van de eigenaar"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:309
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:312
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:325
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:328
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:41
 msgid "Website owner's email"
 msgstr "E-mailadres eigenaar"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:312
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:328
 msgid "is not a valid email address"
 msgstr "is geen geldig e-mailadres"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:335
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:376
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:415
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:351
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:392
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:431
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:215
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:67
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:69
 msgid "Website domain"
 msgstr "Website domein"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:341
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:346
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:406
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:357
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:422
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:220
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:72
 msgid "Website reciprocal"
 msgstr "Website link terug"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:354
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:370
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:229
 msgid "Anti-spam"
 msgstr "Anti-spam"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:354
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:370
 msgid "was wrong"
 msgstr "is fout"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:367
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:378
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:383
 msgid "The"
 msgstr "De tag"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:367
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:378
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:383
 msgid "website reciprocal"
 msgstr "Website link terug"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:362
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:378
 msgid "must be under the same (sub)domain as the"
 msgstr "moet onder hetzelfde (sub)domein zijn als"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:367
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:383
 msgid "does not have a link back."
 msgstr "Heeft geen link terug."
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:376
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:392
 msgid "does not fetch with"
 msgstr "komt niet overeen met"
 
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:393
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:406
-#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:415
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:409
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:422
+#: C:\ultimate-blogroll\trunk/domein/UltimateBlogrollController.php:431
 msgid "is already in our system."
 msgstr "zit al in ons systeem."
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:124
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:125
 msgid "More"
 msgstr "Meer"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:154
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:183
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:156
 msgid "ID"
 msgstr "ID"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:155
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:184
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:157
 msgid "Name"
 msgstr "Naam"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:156
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:185
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:158
 msgid "Inlinks"
 msgstr "Inlinks"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:157
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:186
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:159
 msgid "Outlinks"
 msgstr "Uitlinkt"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:162
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:195
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:164
 msgid "Ascending"
 msgstr "Oplopend"
 
-#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:163
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:196
+#: C:\ultimate-blogroll\trunk/domein/WidgetController.php:165
 msgid "Descending"
 msgstr "Aflopend"
 
@@ -389,19 +375,16 @@ msgstr "Bestaand e-mailadres"
 
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:197
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:51
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:36
 msgid "website url"
 msgstr "website url"
 
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:202
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:56
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:41
 msgid "website title"
 msgstr "website titel"
 
 #: C:\ultimate-blogroll\trunk/gui/create_page.php:207
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:61
-#: C:\ultimate-blogroll\trunk/gui/settings/settings.php:46
 msgid "website description"
 msgstr "Website omschrijving"
 
@@ -441,6 +424,38 @@ msgstr "Ik heb een optie ingebouwd waarmee je mij kunt steunen, door mij een lin
 #: C:\ultimate-blogroll\trunk/gui/header.php:62
 msgid "into the overview page."
 msgstr "in de overzichtspagina."
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:14
+msgid "The links were successfully imported into Ultimate Blogroll"
+msgstr "De links werden succesvol geïmporteerd in Ultimate Blogroll"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:17
+msgid "The links were successfully exported into Wordpress"
+msgstr "De links werden succesvol geëxporteerd naar Wordpress"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:22
+msgid "Import"
+msgstr "Importeer"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:23
+msgid "We are going to import all the links from Wordpress."
+msgstr "We gaan de links van Wordpress importeren in Ultimate Blogroll"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:25
+msgid "Import links from Wordpress"
+msgstr "Importeer links van Wordpress"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:30
+msgid "Export"
+msgstr "Exporteer"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:31
+msgid "Add the links from Ultimate Blogroll to Wordpress links."
+msgstr "Voeg de links van Wordpress toe aan Ultimate Blogroll"
+
+#: C:\ultimate-blogroll\trunk/gui/ImportExport.php:33
+msgid "Export links to Wordpress"
+msgstr "Exporteer links naar Wordpress"
 
 #: C:\ultimate-blogroll\trunk/gui/linkpartner/add_linkpartner.php:15
 msgid "Edit linkpartner"
@@ -742,18 +757,6 @@ msgstr "Toevoegen"
 msgid "Finish"
 msgstr "Voltooien"
 
-#: C:\ultimate-blogroll\trunk/gui/wizard/page2.php:8
-msgid "Now we will set up the widget, you will need to choose a sidebar where you want the widget to be placed in."
-msgstr "We gaan de widget instellen, kies nu de zijbalk waarin je de widget wil laten verschijnen."
-
-#: C:\ultimate-blogroll\trunk/gui/wizard/page2.php:11
-msgid "Sidebar"
-msgstr "Sidebar"
-
-#: C:\ultimate-blogroll\trunk/gui/wizard/page2.php:22
-msgid "Add page"
-msgstr "Pagina toevoegen"
-
 #: C:\ultimate-blogroll\trunk/persistentie/LinkpartnerMapper.php:150
 msgid "New link submitted at"
 msgstr "Nieuwe link toegevoegd in"
@@ -761,6 +764,19 @@ msgstr "Nieuwe link toegevoegd in"
 #: C:\ultimate-blogroll\trunk/persistentie/LinkpartnerMapper.php:152
 msgid "Somebody added a new link in"
 msgstr "Iemand heeft een nieuwe link toegevoegd in"
+
+#~ msgid ""
+#~ "Now we will set up the widget, you will need to choose a sidebar where "
+#~ "you want the widget to be placed in."
+#~ msgstr ""
+#~ "We gaan de widget instellen, kies nu de zijbalk waarin je de widget wil "
+#~ "laten verschijnen."
+
+#~ msgid "Sidebar"
+#~ msgstr "Sidebar"
+
+#~ msgid "Add page"
+#~ msgstr "Pagina toevoegen"
 
 #~ msgid "Captcha"
 #~ msgstr "Captcha"

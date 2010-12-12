@@ -4,7 +4,7 @@ Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: links, manage, counter, admin
 Requires at least: 3.0.1
 Tested up to: 3.0.3
-Stable tag: 1.5
+Stable tag: 1.6
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
@@ -46,6 +46,9 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 7. This is the confirmation mail that you will receive everytime a linktrade was made
 
 == Changelog ==
+
+= 1.6 =
+* Import/export linktrades from/into Wordpress
 
 = 1.5 =
 * Multi-language
