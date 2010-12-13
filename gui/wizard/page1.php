@@ -6,7 +6,7 @@ require_once($path."gui/functions.php");
 ?>
 <form method="POST" action="">
     <?php
-    if(isset($gui["error"]["messages"])) {
+    if(isset($gui["error"]["messages"]) and !empty($gui["error"]["messages"])) {
         echo "<ul class=\"error\">";
         echo getErrorMessages();
         echo "</ul>";

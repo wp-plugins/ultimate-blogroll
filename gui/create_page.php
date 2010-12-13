@@ -166,7 +166,7 @@
 <h4 style="margin-top: 20px;"><?= __("Step 2: Submit your linktrade", "ultimate-blogroll") ?></h4>
 <form method="POST" action="#wp-add-your-site">
 <?php
-if(isset($gui["error"]["messages"])) {
+if(isset($gui["error"]["messages"]) && !empty($gui["error"]["messages"])) {
     echo "<ul class=\"error\">";
     echo getErrorMessages($gui["error"]["messages"]);
     echo "</ul>";

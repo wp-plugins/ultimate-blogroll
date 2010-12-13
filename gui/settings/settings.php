@@ -20,7 +20,7 @@ require_once($path."gui/functions.php");
         <div class="inside" style="display: block;">
             <form id="form1" method="POST" action="#general-settings">
                 <?php
-                if(isset($gui["error"]["msg"]["general"])) {
+                if(isset($gui["error"]["msg"]["general"]) && !empty($gui["error"]["msg"]["general"])) {
                     echo "<ul class=\"error\">";
                     echo getErrorMessages();
                     echo "</ul>";
@@ -155,7 +155,7 @@ require_once($path."gui/functions.php");
                     echo $page_error;
                 }
                 */
-                if(isset($gui["error"]["msg"]["widget"])) {
+                if(isset($gui["error"]["msg"]["widget"]) && !empty($gui["error"]["msg"]["widget"])) {
                     echo "<ul class=\"error\">";
                     echo getErrorMessages();
                     echo "</ul>";
@@ -232,7 +232,7 @@ require_once($path."gui/functions.php");
         <h3 class="hndle"><span><?= __("Recaptcha settings", "ultimate-blogroll") ?></span></h3>
         <div class="inside" style="">
             <?php
-            if(isset($gui["error"]["msg"]["recaptcha"])) {
+            if(isset($gui["error"]["msg"]["recaptcha"]) && !empty($gui["error"]["msg"]["recaptcha"])) {
                 echo "<ul class=\"error\">";
                 echo getErrorMessages();
                 echo "</ul>";

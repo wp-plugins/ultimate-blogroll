@@ -13,7 +13,20 @@ class UltimateBlogrollController  {
         $this->fix();
     }
 
+    public function admin_head() {
+        wp_enqueue_script('jquery');
+        $output = '<script type="text/javascript" >
+jQuery(document).ready(function($) {
+    //jQuery("#menu-links").remove();
+    jQuery("#menu-links").replaceWith(jQuery("#toplevel_page_ultimate-blogroll-overview"));
+    jQuery("#toplevel_page_ultimate-blogroll-overview").removeClass("menu-top-first menu-top-last").addClass("menu-icon-links");
+});
+</script>';
+        echo $output;
+    }
+
     private function fix() {
+        //var_dump("fix");
         $version = get_option("ub_data_version");
         $db_version = get_option("ultimate_blogroll_db_version");
         if(($version === false || $version < 2) && $db_version !== false) {
@@ -22,6 +35,7 @@ class UltimateBlogrollController  {
             update_option("sidebars_widgets", $widgets);
 
             $data1 = PersistentieMapper::Instance()->GetGeneralSettings();
+            //var_dump($data1);
             if(is_array($data1)) {
                 $settings = new GeneralSettingsDTO(
                     @$data1["website_url"],
@@ -40,6 +54,7 @@ class UltimateBlogrollController  {
                 unset($settings);
             }
             $data2 = PersistentieMapper::Instance()->GetWidgetSettings();
+            //var_dump($data2);
             if(is_array($data2)) {
                 $settings = new WidgetSettingsDTO (
                     @$data2["widget_title"],
@@ -52,6 +67,7 @@ class UltimateBlogrollController  {
                 unset($settings);
             }
             $data3 = PersistentieMapper::Instance()->GetRecaptchaSettings();
+            //var_dump($data3);
             if(is_array($data3)) {
                 $settings = new RecaptchaSettingsDTO(
                     @$data3["recaptcha_public_key"],
@@ -104,7 +120,7 @@ class UltimateBlogrollController  {
             "manage_options", //user level, needed before it becomes visible
             "ultimate-blogroll-overview", //slug, in the url
             "ultimate_blogroll", //the function linked to the slug, without this function your slug is useless
-            "" //the favicon for the menu
+            " " //the favicon for the menu
         );
         
         $sub_page = add_submenu_page(
@@ -145,6 +161,7 @@ class UltimateBlogrollController  {
     }
     
     public function admin_notices() {
+        //var_dump("admin_notices");
         if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
         {
             echo '<div class="updated fade"><p>';
@@ -168,9 +185,11 @@ class UltimateBlogrollController  {
         } else {
             $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
             $data = PersistentieMapper::Instance()->GetWidgetSettings();
-            if(empty($data->permalink) || !isset($data->permalink))
+            //var_dump($data);
+            if((empty($data->permalink) || !isset($data->permalink) || $data->permalink == "none") && $data !== false)
             {
-                $data->permalink = $pages[0]["id"];
+                $data->UpdatePermalink($pages[0]["id"]);
+                //TODO: fix
                 update_option("ultimate_blogroll_widget_settings", $data);
             }
         }

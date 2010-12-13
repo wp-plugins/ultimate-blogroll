@@ -177,9 +177,10 @@ class LinkpartnerController extends UltimateBlogrollController {
                 update_option("sidebars_widgets", $widgets);
 
                 $settings = new RecaptchaSettingsDTO(
-                    @$_POST["recaptcha_public_key"],
-                    @$_POST["recaptcha_private_key"]
+                    @$_POST["public_key"],
+                    @$_POST["private_key"]
                 );
+
                 PersistentieMapper::Instance()->SaveRecaptchaSettings($settings);
                 $gui["succes"]["general"] = true;
             }
@@ -187,7 +188,7 @@ class LinkpartnerController extends UltimateBlogrollController {
         } else {
             $t = get_the_title($widget_settings->permalink);
             
-            $gui["value"]["page_title"]     = ((empty($t)) ? "Ultimate Blogroll" : "");
+            $gui["value"]["page_title"]     = ((empty($t)) ? "Ultimate Blogroll" : $t);
             $sidebars_widgets = wp_get_sidebars_widgets();
             if (empty($sidebars_widgets))
                 $sidebars_widgets = wp_get_widget_defaults();

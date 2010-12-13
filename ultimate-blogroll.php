@@ -72,6 +72,8 @@ if (is_admin()) {
     register_deactivation_hook(__FILE__, array($controller, "deactivate"));
     add_action("admin_menu", array($controller, "menu"));
     add_action("admin_notices", array($controller, "admin_notices"));
+    //TODO: new feature. It's finished but needs a setting option before releasing
+    //add_action("admin_head", array($controller, "admin_head"));
 }
 $widget_controller = new WidgetController();
 add_action("plugins_loaded", array($widget_controller, "widget_init"));
