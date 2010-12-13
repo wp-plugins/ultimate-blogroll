@@ -22,13 +22,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
 
 
 == Installation ==
-
-
-   1. Upload Ultimate-blogroll to the /wp-content/plugins/ directory
-   2. Activate the plugin through the Plugins menu in WordPress
-   3. Create/edit a page and add the <!–-ultimate-blogroll-–> tag
-   4. Add the Ultimate Blogroll widget under the widget menu in WordPress
-
+You can find the how to install at: http://www.gheerardyn.be/wordpress/ultimate-blogroll#installation
 
 == Frequently Asked Questions ==
 
