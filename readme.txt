@@ -47,6 +47,9 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 
 == Changelog ==
 
+= 1.6.2 =
+* Fixed some annoying minor bugs
+
 = 1.6.1 =
 * Minor bugfix in url (email)
 
@@ -56,8 +59,8 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 = 1.5 =
 * Multi-language
 * Added a wizard/installation process
-* fixed some minor bugs
-* changed internal structure
+* Fixed some minor bugs
+* Changed internal structure
 
 = 1.0 =
 * First version build, I am currently awaiting feedback
