@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
-Tags: links, manage, counter, admin
+Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
 Tested up to: 3.0.3
 Stable tag: 1.6.2
@@ -18,17 +18,15 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Easily approve or discard a new linktrade
     * Check for a reciprocal link
     * Prevent spam with Recaptcha
+    * Import/export links into/from Wordpress
+    * Handy Wizard/Installation process to get you started
     * ...
 
 
 == Installation ==
-
-
-   1. Upload Ultimate-blogroll to the /wp-content/plugins/ directory
-   2. Activate the plugin through the Plugins menu in WordPress
-   3. Create/edit a page and add the <!–-ultimate-blogroll-–> tag
-   4. Add the Ultimate Blogroll widget under the widget menu in WordPress
-
+The first time you run the plugin it will ask for some user interaction and you can choose to use a wizard/installation process
+OR
+You can find the how to install at: http://www.gheerardyn.be/wordpress/ultimate-blogroll#installation
 
 == Frequently Asked Questions ==
 
