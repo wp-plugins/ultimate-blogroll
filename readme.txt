@@ -18,10 +18,14 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Easily approve or discard a new linktrade
     * Check for a reciprocal link
     * Prevent spam with Recaptcha
+    * Import/export links into/from Wordpress
+    * Handy Wizard/Installation process to get you started
     * ...
 
 
 == Installation ==
+The first time you run the plugin it will ask for some user interaction and you can choose to use a wizard/installation process
+OR
 You can find the how to install at: http://www.gheerardyn.be/wordpress/ultimate-blogroll#installation
 
 == Frequently Asked Questions ==
