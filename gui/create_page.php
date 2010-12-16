@@ -128,7 +128,11 @@
                 $ratio = 0;
             }
             echo "<tr>";
-                echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$gui["table_links_target"].">".$links["website_name"]."</a></td>";
+                if(!empty($links["website_image"])) {
+                    echo "<td class=\"first\"><img src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /><a href=\"".$links["website_url"]."\" ".$gui["table_links_target"].">".$links["website_name"]."</a></td>";
+                } else {
+                    echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$gui["table_links_target"].">".$links["website_name"]."</a></td>";
+                }
                 echo "<td>".$links["website_last2days_inlink"]."</td>";
                 echo "<td>".$links["website_last2days_outlink"]."</td>";
                 echo "<td>".$links["website_total_inlink"]."</td>";
@@ -220,6 +224,12 @@ if(isset($gui["success"])) {
         <td class="column1"><?= __("Website reciprocal", "ultimate-blogroll") ?>*:</td>
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
         <td><?= __("Where can we find our link back?", "ultimate-blogroll") ?></td>
+    </tr>
+
+    <tr <?=getErrorField("website_image"); ?>>
+        <td class="column1"><?= __("Website image", "ultimate-blogroll") ?>:</td>
+        <td class="column2"><input type="text" name="website_image" class="form_text" value="<?=@$gui["value"]["website_image"]; ?>" /></td>
+        <td><?= __("Add a image/logo", "ultimate-blogroll") ?></td>
     </tr>
     <?php
         if(($gui["fight_spam"]) == "yes") {

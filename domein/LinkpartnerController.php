@@ -319,7 +319,8 @@ class LinkpartnerController extends UltimateBlogrollController {
                     @$_POST["website_title"],
                     @$_POST["website_description"],
                     @$_POST["website_domain"],
-                    @$_POST["website_reciprocal"]
+                    @$_POST["website_reciprocal"],
+                    @$_POST["website_image"]
             );
             
             $gui["value"]["your_name"]           = $linkpartner->name;
@@ -329,6 +330,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             $gui["value"]["website_description"] = $linkpartner->description;
             $gui["value"]["website_domain"]      = $linkpartner->domain;
             $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+            $gui["value"]["website_image"]       = $linkpartner->image_url;
             
             $error = $this->checkFormAddLinkpartner($linkpartner, false, false, false, true);
             if($error->ContainsErrors() === false){
@@ -352,6 +354,7 @@ class LinkpartnerController extends UltimateBlogrollController {
                     $gui["value"]["website_description"] = $linkpartner["website_description"];
                     $gui["value"]["website_domain"]      = $linkpartner["website_domein"];
                     $gui["value"]["website_reciprocal"]  = $linkpartner["website_backlink"];
+                    $gui["value"]["website_image"]       = $linkpartner["website_image"];
                 }
             }
         }
@@ -387,7 +390,8 @@ class LinkpartnerController extends UltimateBlogrollController {
                     @$_POST["website_title"],
                     @$_POST["website_description"],
                     @$_POST["website_domain"],
-                    @$_POST["website_reciprocal"]
+                    @$_POST["website_reciprocal"],
+                    @$_POST["website_image"]
             );
 
             $gui["value"]["your_name"]           = $linkpartner->name;
@@ -397,6 +401,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             $gui["value"]["website_description"] = $linkpartner->description;
             $gui["value"]["website_domain"]      = $linkpartner->domain;
             $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+            $gui["value"]["website_image"]       = $linkpartner->image_url;
 
             $error = $this->checkFormAddLinkpartner($linkpartner, false, false, false, false);
             //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);

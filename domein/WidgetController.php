@@ -117,7 +117,12 @@ class WidgetController extends UltimateBlogrollController {
         if(!empty($linkpartners))
         {
             foreach($linkpartners as $linkpartner) {
-                $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget($general_settings->target).$this->GetFollow($general_settings->nofollow).">".$linkpartner["website_name"]."</a></li>";
+                if(!empty($linkpartner["website_image"])) {
+                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget($general_settings->target).$this->GetFollow($general_settings->nofollow)."><img src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" />".$linkpartner["website_name"]."</a></li>";
+                } else {
+                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget($general_settings->target).$this->GetFollow($general_settings->nofollow).">".$linkpartner["website_name"]."</a></li>";
+                }
+                
             }
         }
         if(!empty($widget_settings->permalink) && $widget_settings->permalink != "none")
@@ -235,7 +240,8 @@ jQuery(document).ready(function($) {
                         @$_POST["website_title"],
                         @$_POST["website_description"],
                         @$_POST["website_domain"],
-                        @$_POST["website_reciprocal"]
+                        @$_POST["website_reciprocal"],
+                        @$_POST["website_image"]
                 );
 
                 $gui["value"]["your_name"]           = $linkpartner->name;
@@ -245,6 +251,7 @@ jQuery(document).ready(function($) {
                 $gui["value"]["website_description"] = $linkpartner->description;
                 $gui["value"]["website_domain"]      = $linkpartner->domain;
                 $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
+                $gui["value"]["website_image"]       = $linkpartner->image_url;
 
                 $error = $this->checkFormAddLinkpartner($linkpartner, true, $general_settings->fight_spam, $captcha_settings->recaptcha_private_key, false);
                 if($error->ContainsErrors() === false){

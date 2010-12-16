@@ -23,7 +23,7 @@ class WidgetMapper {
         } else {
             $q = "";
         }
-        $sql = $this->database->prepare("SELECT website_name, website_description, website_url from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order.$q, array($amount));
+        $sql = $this->database->prepare("SELECT website_name, website_description, website_url, website_image from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order.$q, array($amount));
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
@@ -149,7 +149,7 @@ class WidgetMapper {
     public function GetLinkpartnersPage($order, $orderby) {
         global $wpdb;
         $table_name = $this->database->prefix . "ubsites";
-        $sql = "SELECT website_name, website_description, website_url, website_total_inlink, website_total_outlink, website_last2days_inlink, website_last2days_outlink from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order."";
+        $sql = "SELECT website_name, website_description, website_url, website_total_inlink, website_total_outlink, website_last2days_inlink, website_last2days_outlink, website_image from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order."";
         return $wpdb->get_results($sql, ARRAY_A);
     }
 }

@@ -27,12 +27,13 @@ class LinkpartnerMapper {
         $result["website_date_added"] = time();
         $result["website_has_backlink"] = $data->has_backlink;
         $result["website_ip"] = $_SERVER['REMOTE_ADDR'];
+        $result["website_image"] = $data->image_url;
 
         
         $sql = $this->database->prepare("INSERT INTO ".$table_name."
-            (website_owner_name, website_owner_email, website_name, website_description, website_domein, website_url, website_backlink, website_last_update, website_change_id, website_date_added, website_has_backlink, website_ip)
+            (website_owner_name, website_owner_email, website_name, website_description, website_domein, website_url, website_backlink, website_last_update, website_change_id, website_date_added, website_has_backlink, website_ip, website_image)
         VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %d, %s, %d, %d, %s)", $result
+            (%s, %s, %s, %s, %s, %s, %s, %d, %s, %d, %d, %s, %s)", $result
         );
         $this->database->query($sql);
     }
@@ -116,7 +117,8 @@ class LinkpartnerMapper {
             "website_description"   => $linkpartner->description,
             "website_domein"        => $linkpartner->domain,
             "website_url"           => $linkpartner->url,
-            "website_backlink"      => $linkpartner->reciprocal
+            "website_backlink"      => $linkpartner->reciprocal,
+            "website_image"         => $linkpartner->image_url
         );
         $wpdb->update( $table_name, $data, array("website_id" => $website_id) );
     }
@@ -137,7 +139,7 @@ class LinkpartnerMapper {
 
     public function GetLastAddedLinkpartner() {
         global $wpdb;
-        $table_name = $this->database->prefix . "ubsites";
+        //$table_name = $this->database->prefix . "ubsites";
         $id = $wpdb->get_var("SELECT LAST_INSERT_ID()");
         return $id;
     }

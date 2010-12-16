@@ -38,8 +38,14 @@ class ImportExportMapper {
     }
 
     public function AddLinkpartnerToWordpress($data) {
-        global $wpdb;
+        //global $wpdb;
 
+        if($data["link_visible"] == "a")
+            $data["link_visible"]     = "Y";
+        else
+            $data["link_visible"]     = "N";
+        $link_id = wp_insert_link( $data );
+        /*
         $table_name = $wpdb->prefix . "links";
         if($data["link_visible"] == "a")
             $data["link_visible"]     = "Y";
@@ -51,6 +57,10 @@ class ImportExportMapper {
             (%s, %s, 0, %s, %s, %d, 0, %s)", $data
         );
         $wpdb->query($sql);
+
+        $id = PersistentieMapper::Instance()->GetLastAddedLinkpartner();
+        var_dump($id);
+        */
     }
 }
 ?>

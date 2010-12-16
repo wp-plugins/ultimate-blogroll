@@ -73,6 +73,11 @@ require_once($path."gui/functions.php");
                         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
                         <td><?= __("Where can we find our link back? (Leave blank if not required)", "ultimate-blogroll") ?></td>
                     </tr>
+                    <tr <?=getErrorField("website_image"); ?>>
+                        <td class="column1"><?= __("Website image", "ultimate-blogroll") ?>:</td>
+                        <td class="column2"><input type="text" name="website_image" class="form_text" value="<?=@$gui["value"]["website_image"]; ?>" /></td>
+                        <td><?= __("Add a image/logo", "ultimate-blogroll") ?></td>
+                    </tr>
                     <tr>
                         <td class="column1"></td>
                         <td class="column2"><input type="submit" name="add_linkpartner" value="<?= (($gui["edit"] === true) ? __("Update linkpartner", "ultimate-blogroll") : __("Submit linkpartner", "ultimate-blogroll")) ?>" /></td>

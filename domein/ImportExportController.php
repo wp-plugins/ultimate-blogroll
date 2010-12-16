@@ -53,8 +53,8 @@ class ImportExportController extends UltimateBlogrollController {
     }
 
     private function GetUltimateBlogrollLinks() {
-        global $current_user; get_currentuserinfo();
-        $user_id = $current_user->ID;
+        //global $current_user; get_currentuserinfo();
+        //$user_id = $current_user->ID;
 
         $links      = PersistentieMapper::Instance()->GetBlogrollWordpress();
         $ultimate   = PersistentieMapper::Instance()->GetLinkpartners();
@@ -66,7 +66,7 @@ class ImportExportController extends UltimateBlogrollController {
                 $result["link_name"]        = $u["website_name"];
                 $result["link_description"] = $u["website_description"];
                 $result["link_visible"]     = $u["website_status"];
-                $result["link_owner"]       = $user_id;
+                //$result["link_owner"]       = $user_id;
                 $result["link_image"]       = $u["website_image"];
                 $result                     = array_map ( array($this, 'map_entities'), $result );
                 PersistentieMapper::Instance()->AddLinkpartnerToWordpress($result);
