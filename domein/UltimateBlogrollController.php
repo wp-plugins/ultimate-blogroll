@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
         //var_dump("fix");
         $version = get_option("ub_data_version");
         $db_version = get_option("ultimate_blogroll_db_version");
+        
         if(($version === false || $version < 2) && $db_version !== false) {
             $widgets = get_option("sidebars_widgets");
             $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
@@ -81,6 +82,10 @@ jQuery(document).ready(function($) {
             } else {
                 update_option("ub_data_version", 2);
             }
+        }
+        if($db_version < 2) {
+            PersistentieMapper::Instance()->AlterTableUbSites();
+            update_option("ultimate_blogroll_db_version", 2);
         }
     }
 

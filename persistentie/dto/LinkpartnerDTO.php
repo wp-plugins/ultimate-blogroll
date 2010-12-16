@@ -13,7 +13,7 @@ class LinkpartnerDTO {
         $this->vars[$key] = $value;
     }
     
-    public function __construct($name, $email, $url, $title, $description, $domain, $reciprocal) {
+    public function __construct($name, $email, $url, $title, $description, $domain, $reciprocal, $image_url) {
         $this->name         = $name;
         $this->email        = $email;
         $this->url          = $url;
@@ -21,6 +21,7 @@ class LinkpartnerDTO {
         $this->description  = $description;
         $this->domain       = $domain;
         $this->reciprocal   = $reciprocal;
+        $this->image_url    = $image_url;
     }
 
     public function SetLinkBack($status) {

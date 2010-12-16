@@ -75,5 +75,11 @@ class InstallMapper {
         $result = $wpdb->get_results("select id, post_title from ".$table_name." where `post_type` = 'page' and `post_status` = 'publish' and `post_content` like '%<!--ultimate-blogroll-->%'", ARRAY_A);
         return $result;
     }
+
+    public function AlterTableUbSites() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "ubsites";
+        $wpdb->query("ALTER TABLE ".$table_name." ADD website_image VARCHAR(100);");
+    }
 }
 ?>

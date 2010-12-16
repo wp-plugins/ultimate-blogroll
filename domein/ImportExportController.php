@@ -67,6 +67,7 @@ class ImportExportController extends UltimateBlogrollController {
                 $result["link_description"] = $u["website_description"];
                 $result["link_visible"]     = $u["website_status"];
                 $result["link_owner"]       = $user_id;
+                $result["link_image"]       = $u["website_image"];
                 $result                     = array_map ( array($this, 'map_entities'), $result );
                 PersistentieMapper::Instance()->AddLinkpartnerToWordpress($result);
             }

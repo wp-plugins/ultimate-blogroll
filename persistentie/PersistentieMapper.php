@@ -47,6 +47,10 @@ class PersistentieMapper {
         $this->_importExportMapper->AddLinkpartnerFromWordpress($data);
     }
 
+    public function AlterTableUbSites() {
+        $this->_installMapper->AlterTableUbSites();
+    }
+
     public function CheckIfUltimateBlogrollTagWasSet() {
         $result = count($this->_installMapper->GetPagesWithUltimateBlogrollTag());
         if($result > 0)
