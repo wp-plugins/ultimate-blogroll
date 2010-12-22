@@ -1,5 +1,4 @@
 <?php
-    require_once("recaptchalib.php");
     require_once("functions.php");
     global $gui;
 ?>
@@ -239,6 +238,9 @@ if(isset($gui["success"])) {
         <td class="column1"><?= __("Anti-spam", "ultimate-blogroll") ?>*:</td>
         <td class="column2" colspan="2">
         <?php
+            if(!function_exists("recaptcha_get_html")) {
+                require_once("recaptchalib.php");
+            }
             echo recaptcha_get_html($gui["captcha_settings"]->recaptcha_public_key);
         ?></td>
     </tr>
