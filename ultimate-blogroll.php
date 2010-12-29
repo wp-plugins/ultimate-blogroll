@@ -83,7 +83,7 @@ add_action('wp_ajax_ub_ajax_action_callback', array($widget_controller, 'ub_ajax
 add_action('wp_head', array($widget_controller, 'ub_javascript_init'));
 add_action('ub_hourly_event', array($widget_controller, 'ub_hourly_task'));
 add_filter('the_content', array($widget_controller, 'create_page'));
-wp_enqueue_script('jquery');      ke 
+wp_enqueue_script('jquery');
 
 /* INJECT WIDGET AT TOP
     $widgets = get_option("sidebars_widgets");
