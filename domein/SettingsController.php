@@ -55,7 +55,6 @@ class SettingsController extends UltimateBlogrollController {
             $gui["value"]["website_title"]          = $settings->title;
             $gui["value"]["website_description"]    = $settings->description;
             $gui["value"]["blogroll_contact"]       = $settings->contact;
-            //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
             $gui["value"]["send_mail"]              = $settings->send_mail;
             $gui["value"]["reciprocal_link"]        = $settings->reciprocal;
             $gui["value"]["fight_spam"]             = $settings->fight_spam;

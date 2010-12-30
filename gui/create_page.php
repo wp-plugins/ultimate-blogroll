@@ -220,7 +220,7 @@ if(isset($gui["success"])) {
         <td><b>example.com</b> (<a href="http://en.wikipedia.org/wiki/Second-level_domain" target="_new">sld</a>.<a href="http://en.wikipedia.org/wiki/Top-level_domain" target="_new">tld</a>) <?= __("without", "ultimate-blogroll") ?> http://www </td>
     </tr>
     <tr <?=getErrorField("website_reciprocal"); ?>>
-        <td class="column1"><?= __("Website reciprocal", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?= __("Website reciprocal", "ultimate-blogroll") ?><?php if($gui["reciprocal_link"] == "yes") echo "*"; ?>:</td>
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?=@$gui["value"]["website_reciprocal"]; ?>" /></td>
         <td><?= __("Where can we find our link back?", "ultimate-blogroll") ?></td>
     </tr>

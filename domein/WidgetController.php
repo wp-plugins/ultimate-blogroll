@@ -114,7 +114,7 @@ class WidgetController extends UltimateBlogrollController {
         extract($args);
         $gui = "";
         $gui .= $before_widget;
-        $gui .= $before_title . htmlentities(PersistentieMapper::Instance()->GetConfig("website_title"), ENT_QUOTES) . $after_title;
+        $gui .= $before_title . htmlentities(PersistentieMapper::Instance()->GetConfig("widget_title"), ENT_QUOTES) . $after_title;
         $gui .= "<ul>";
         if(!empty($linkpartners))
         {
@@ -156,7 +156,7 @@ class WidgetController extends UltimateBlogrollController {
             }
         </style>";
         echo "<p><label>".__("Widget title", "ultimate-blogroll").":</label><br />
-            <input type=\"text\" class=\"widget_text\" name=\"widget_title\" value=\"".@PersistentieMapper::Instance()->GetConfig("website_title")."\" />
+            <input type=\"text\" class=\"widget_text\" name=\"widget_title\" value=\"".@PersistentieMapper::Instance()->GetConfig("widget_title")."\" />
         </p>";
         echo "<p><label>".__("Limit of linkpartners", "ultimate-blogroll").":</label><br />
             <input type=\"text\" class=\"widget_text\" name=\"limit_linkpartners\" value=\"".@PersistentieMapper::Instance()->GetConfig("limit_linkpartners")."\" />
@@ -237,6 +237,7 @@ jQuery(document).ready(function($) {
             $gui["edit"] = false;
             $gui["fight_spam"]          = PersistentieMapper::Instance()->GetConfig("fight_spam");
             $gui["captcha_settings"]    = PersistentieMapper::Instance()->GetConfig("recaptcha_public_key");
+            $gui["reciprocal_link"]     = PersistentieMapper::Instance()->GetConfig("reciprocal_link");
 
             if(isset($_POST["add_linkpartner"])) {
                 $linkpartner = new LinkpartnerDTO(
@@ -259,7 +260,7 @@ jQuery(document).ready(function($) {
                 $gui["value"]["website_reciprocal"]  = $linkpartner->reciprocal;
                 $gui["value"]["website_image"]       = $linkpartner->image_url;
 
-                $error = $this->checkFormAddLinkpartner($linkpartner, true, PersistentieMapper::Instance()->GetConfig("fight_spam"), PersistentieMapper::Instance()->GetConfig("recaptcha_private_key"), false);
+                $error = $this->checkFormAddLinkpartner($linkpartner, (($gui["reciprocal_link"] == "yes") ? true : false), PersistentieMapper::Instance()->GetConfig("fight_spam"), PersistentieMapper::Instance()->GetConfig("recaptcha_private_key"), false);
                 if($error->ContainsErrors() === false){
                     PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
                     PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, PersistentieMapper::Instance()->GetConfig(";blogroll_contact"));
@@ -278,7 +279,7 @@ jQuery(document).ready(function($) {
             $gui["table_links"] = PersistentieMapper::Instance()->GetLinkpartnersPage($this->GetOrder(PersistentieMapper::Instance()->GetConfig("ascending")), $this->GetOrderBy(PersistentieMapper::Instance()->GetConfig("order_by")));
             
             //secure our output
-            $gui = array_map ( array($this, 'map_entities'), $gui );
+            $gui["value"] = array_map ( array($this, 'map_entities'), $gui["value"] );
             $gui["table_links_target"]  = $this->GetTarget(PersistentieMapper::Instance()->GetConfig("target"));
             $gui["url"]                 = get_bloginfo("wpurl");
             $gui["title"]               = PersistentieMapper::Instance()->GetConfig("website_title");

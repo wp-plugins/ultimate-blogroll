@@ -72,8 +72,8 @@ require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/functions.php");
                     <tr>
                         <td class="column1"><?= __("Reciprocal link", "ultimate-blogroll") ?>:</td>
                         <td class="column2">
-                            <select class="form_text" name="reciprocal_link" disabled="disabled">
-                                <option value="yes" selected="yes" <?php echo ((@$gui["value"]["reciprocal_link"] == "yes") ? "selected=\"yes\"" : ""); ?>><?= __("Yes, required", "ultimate-blogroll") ?></option>
+                            <select class="form_text" name="reciprocal_link">
+                                <option value="yes" <?php echo ((@$gui["value"]["reciprocal_link"] == "yes") ? "selected=\"yes\"" : ""); ?>><?= __("Yes, required", "ultimate-blogroll") ?></option>
                                 <option value="no" <?php echo ((@$gui["value"]["reciprocal_link"] == "no") ? "selected=\"yes\"" : ""); ?>><?= __("No", "ultimate-blogroll") ?></option>
                             </select>
                         </td>
