@@ -3,8 +3,8 @@ Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
-Tested up to: 3.0.3
-Stable tag: 1.7
+Tested up to: 3.0.4
+Stable tag: 1.7.1
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
@@ -44,6 +44,10 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 7. This is the confirmation mail that you will receive everytime a linktrade was made
 
 == Changelog ==
+
+= 1.7.1 =
+* fixed widget title
+* enabled choise to require reciprocal link 
 
 = 1.7 =
 * Fixed some conflicts with other plugins
