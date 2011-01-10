@@ -387,7 +387,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             if($error->ContainsErrors() === false){
                 PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
                 //$data = PersistentieMapper::Instance()->GetGeneralSettings();
-                var_dump(PersistentieMapper::Instance()->GetConfig("reciprocal_link"));
+                //var_dump(PersistentieMapper::Instance()->GetConfig("reciprocal_link"));
                 if(PersistentieMapper::Instance()->GetConfig("reciprocal_link")) {
                     PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, PersistentieMapper::Instance()->GetConfig("blogroll_contact"));
                 }

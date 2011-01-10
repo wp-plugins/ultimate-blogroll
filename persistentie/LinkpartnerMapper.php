@@ -149,7 +149,7 @@ class LinkpartnerMapper {
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
 
-        $subject = __("New link submitted at", "ultimate-blogroll").get_bloginfo('siteurl').''."\r\n";
+        $subject = __("New link submitted at", "ultimate-blogroll")." ".get_bloginfo('siteurl').''."\r\n";
 
         $message = __("Hi", "ultimate-blogroll").",<br /><br />".__("Somebody added a new link in", "ultimate-blogroll")." Wordpress Ultimate Blogroll<br />";
         $message .= "<table>";
