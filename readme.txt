@@ -4,7 +4,7 @@ Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
 Tested up to: 3.0.4
-Stable tag: 1.7.2
+Stable tag: 1.7.5
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
