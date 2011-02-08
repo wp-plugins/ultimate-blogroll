@@ -47,6 +47,7 @@ class InstallMapper {
               `website_change_id` varchar(50) NOT NULL,
               `website_has_backlink` smallint(1) NOT NULL default '0',
               `website_ip` varchar(50) NOT NULL,
+              `website_image` VARCHAR(100) NOT NULL,
               PRIMARY KEY  (`website_id`)
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
             ";
@@ -79,7 +80,11 @@ class InstallMapper {
     public function AlterTableUbSites() {
         global $wpdb;
         $table_name = $wpdb->prefix . "ubsites";
-        $wpdb->query("ALTER TABLE ".$table_name." ADD website_image VARCHAR(100);");
+
+        $t = $wpdb->get_results("SHOW columns FROM ".$table_name." FROM krimagen_thierry WHERE Field = 'website_image'");
+        if(empty($t)){
+            $wpdb->query("ALTER TABLE ".$table_name." ADD website_image VARCHAR(100) NOT NULL");
+        }
     }
 }
 ?>

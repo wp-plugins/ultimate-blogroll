@@ -35,7 +35,7 @@ class LinkpartnerMapper {
         VALUES
             (%s, %s, %s, %s, %s, %s, %s, %d, %s, %d, %d, %s, %s)", $result
         );
-        $this->database->query($sql);
+        return $this->database->query($sql);
     }
 
     public function GetLinkpartners($where = null) {

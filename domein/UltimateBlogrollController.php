@@ -26,14 +26,20 @@ jQuery(document).ready(function($) {
     }
 
     private function fix() {
+        //fix typo
+        $widgets = get_option("sidebars_widgets");
+        $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
+        update_option("sidebars_widgets", $widgets);
+
+        //AlterTableUbSites
+        $t = PersistentieMapper::Instance()->AlterTableUbSites();
+        
         $data = get_option("ultimate_blogroll_settings");
-        //var_dump($data);
-        //if($data === false) {
-        if($data) {
+        if(!$data) {
             $general    = get_option("ultimate_blogroll_general_settings");
             $widget     = get_option("ultimate_blogroll_widget_settings");
             $recaptcha  = get_option("ultimate_blogroll_recaptcha_settings");
-
+            
             if(is_object($general)) {
                 $data["website_url"] =            $general->url;
                 $data["website_title"] =          $general->title;
@@ -59,7 +65,6 @@ jQuery(document).ready(function($) {
                 $data["nofollow"] =               $general["nofollow"];
             }
 
-            
             if(is_object($widget)) {
                 $data["widget_title"] =           $widget->title;
                 $data["limit_linkpartners"] =     $widget->limit;
