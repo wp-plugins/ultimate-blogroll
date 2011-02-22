@@ -44,7 +44,7 @@ ul.succes {
 </style>
 <div class="wrap">
     <div class="icon32" id="icon-themes"></div>
-    <h2><?php echo html_entity_decode($gui["title"]); ?></h2>
+    <h2><?php echo html_entity_decode($gui["title"], ENT_QUOTES, "UTF-8"); ?></h2>
     <div class="metabox-holder" id="poststuff">
 
         <div class="postbox">

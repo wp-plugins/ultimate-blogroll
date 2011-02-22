@@ -3,11 +3,11 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. 
-Version: 1.7.5
+Version: 1.7.6
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
-/*  Copyright 2010 Jens Gheerardyn  (email: wordpress@gheerardyn.be)
+/*  Copyright 2010 - 2011 Jens Gheerardyn  (email: wordpress@gheerardyn.be)
 **  Use of this application will be at your own risk.
 **  No guarantees or warranties are made directly or implied.
 **  The creators cannot and will not be liable or held accountable for damages,
@@ -36,6 +36,14 @@ require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/Gene
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/WidgetSettingsDTO.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/RecaptchaSettingsDTO.php");
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+/*
+if (function_exists('load_plugin_textdomain')) {
+      load_plugin_textdomain('ultimate-blogroll', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)).'/languages', dirname(plugin_basename(__FILE__)).'/languages' );
+}
+ * 
+ */
+
+
 
 //save on load, this is the admin panel and doesn't need to be loaded outside the wp admin panel.
 if (is_admin()) {

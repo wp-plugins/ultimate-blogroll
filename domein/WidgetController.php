@@ -263,7 +263,9 @@ jQuery(document).ready(function($) {
                 $error = $this->checkFormAddLinkpartner($linkpartner, (($gui["reciprocal_link"] == "yes") ? true : false), PersistentieMapper::Instance()->GetConfig("fight_spam"), PersistentieMapper::Instance()->GetConfig("recaptcha_private_key"), false);
                 if($error->ContainsErrors() === false){
                     PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
-                    PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, PersistentieMapper::Instance()->GetConfig(";blogroll_contact"));
+                    if(PersistentieMapper::Instance()->GetConfig("send_mail")) {
+                        PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, PersistentieMapper::Instance()->GetConfig("blogroll_contact"));
+                    }
                     $gui["success"] = true;
                     $gui["value"] = array();
                 }

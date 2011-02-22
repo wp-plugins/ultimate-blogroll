@@ -385,15 +385,18 @@ class LinkpartnerController extends UltimateBlogrollController {
             $error = $this->checkFormAddLinkpartner($linkpartner, false, false, false, false);
             //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
             if($error->ContainsErrors() === false){
-                if(PersistentieMapper::Instance()->AddLinkpartner($linkpartner)){
+                $add_status = PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
+                var_dump($add_status);
+                if($add_status){
                     //$data = PersistentieMapper::Instance()->GetGeneralSettings();
                     //var_dump(PersistentieMapper::Instance()->GetConfig("reciprocal_link"));
-                    if(PersistentieMapper::Instance()->GetConfig("reciprocal_link")) {
+                    if(PersistentieMapper::Instance()->GetConfig("send_mail")) {
                         PersistentieMapper::Instance()->SendAnouncementMail($linkpartner, PersistentieMapper::Instance()->GetConfig("blogroll_contact"));
                     }
                     $gui["success"] = true;
                     $gui["value"] = array();
                 } else {
+                    //var_dump(mysql_error());
                     $error->AddErrorMessage("Unexpected error occured");
                 }
             }

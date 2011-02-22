@@ -40,7 +40,7 @@ class PersistentieMapper {
     }
 
     public function AddLinkpartner($data) {
-        $this->_linkpartnerMapper->AddLinkpartner($data);
+        return $this->_linkpartnerMapper->AddLinkpartner($data);
     }
 
     public function AddLinkpartnerFromWordpress($data) {

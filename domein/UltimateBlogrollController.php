@@ -376,7 +376,9 @@ jQuery(document).ready(function($) {
         }
             
         if($fight_spam == "yes") {
-            require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/recaptchalib.php");
+            if(!function_exists("recaptcha_get_html")) {
+                require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/recaptchalib.php");
+            }
             $resp = recaptcha_check_answer ($private_spam_key, $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
             if(!$resp->is_valid) {
                 $error->AddErrorField("captcha");

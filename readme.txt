@@ -3,8 +3,8 @@ Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
-Tested up to: 3.0.4
-Stable tag: 1.7.5
+Tested up to: 3.0.5
+Stable tag: 1.7.6
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
@@ -22,8 +22,11 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Handy Wizard/Installation process to get you started
     * ...
 
+Now available in: English, Dutch, Spanish, Hungarian
+
 Credits:
 Spanish translation: Dennis Vera (http://tuguiaweb.net)
+Hungarian translation: Nora Erdelyi (http://locoling-club.com)
 
 == Installation ==
 The first time you run the plugin it will ask for some user interaction and you can choose to use a wizard/installation process
@@ -46,6 +49,12 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 7. This is the confirmation mail that you will receive everytime a linktrade was made
 
 == Changelog ==
+
+= 1.7.6 =
+* added the hungarian language
+* fixed recaptcha bug
+* fixed error in admin panel, when you add a linkpartner manually
+* fixed some minor bugs
 
 = 1.7.5 =
 * fixed some display issues (<?= <?php echo)
