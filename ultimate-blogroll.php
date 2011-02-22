@@ -35,7 +35,7 @@ require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/domein/WidgetControll
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/GeneralSettingsDTO.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/WidgetSettingsDTO.php");
 require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/persistentie/dto/RecaptchaSettingsDTO.php");
-load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+load_plugin_textdomain( 'ultimate-blogroll', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 //save on load, this is the admin panel and doesn't need to be loaded outside the wp admin panel.
 if (is_admin()) {
