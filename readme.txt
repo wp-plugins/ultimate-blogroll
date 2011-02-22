@@ -24,8 +24,8 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
 
 Now available in: English, Dutch, Spanish, Hungarian
 
-Credits:\n\n\n\n
-Spanish translation: Dennis Vera (http://tuguiaweb.net)<br><br><br>
+<b>Credits:</b><br />
+Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
 Hungarian translation: Nora Erdelyi (http://locoling-club.com)
 
 == Installation ==
@@ -51,23 +51,23 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 == Changelog ==
 
 = 1.7.6 =
-* added the hungarian language
-* fixed recaptcha bug
-* fixed error in admin panel, when you add a linkpartner manually
-* fixed some minor bugs
+* Added the hungarian language
+* Fixed recaptcha bug
+* Fixed error in admin panel, when you add a linkpartner manually
+* Fixed some minor bugs
 
 = 1.7.5 =
-* fixed some display issues (<?= <?php echo)
-* added the Spanish language
-* fixed linktrades did not save although succesfull message was showen
-* fixed some minor bugs
+* Fixed some display issues (<?= <?php echo)
+* Added the Spanish language
+* Fixed linktrades did not save although succesfull message was showen
+* Fixed some minor bugs
 
 = 1.7.2 =
-* fixed No such file gui/recaptchalib.php
+* Fixed No such file gui/recaptchalib.php
 
 = 1.7.1 =
-* fixed widget title
-* enabled choise to require reciprocal link 
+* Fixed widget title
+* Enabled choise to require reciprocal link 
 
 = 1.7 =
 * Fixed some conflicts with other plugins
