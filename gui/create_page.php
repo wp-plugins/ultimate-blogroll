@@ -87,6 +87,28 @@
                 //alert("Got this from the server: " + response);
             });
         });
+        $("ub_code").click(function() {
+            alert('selected');
+            SelectText("ub_code");
+        });
+        function SelectText(element) {
+            switchEditors.go('content', 'html');
+            var text = document.getElementById(element);
+            if ($.browser.msie) {
+                var range = document.body.createTextRange();
+                range.moveToElementText(text);
+                range.select();
+            } else if ($.browser.mozilla || $.browser.opera) {
+                var selection = window.getSelection();
+                var range = document.createRange();
+                range.selectNodeContents(text);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            } else if ($.browser.safari) {
+                var selection = window.getSelection();
+                selection.setBaseAndExtent(text, 0, text, 1);
+            }
+        }
     });
      var RecaptchaOptions = {
         theme : 'white'
@@ -127,11 +149,29 @@
                 $ratio = 0;
             }
             echo "<tr>";
+
+                if(!empty($links["website_image"]) && PersistentieMapper::Instance()->GetConfig("logo") == "yes") {
+                    $logo_usage = PersistentieMapper::Instance()->GetConfig("logo_usage");
+                    if($logo_usage == "text") {
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$links["website_name"]."</a></td>";
+                    }
+                    elseif($logo_usage == "image") {
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow"))."><img style=\"width: ".PersistentieMapper::Instance()->GetConfig("logo_width")."px; max-height: ".PersistentieMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                    }
+                    else {
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$links["website_name"]."<img style=\"width: ".PersistentieMapper::Instance()->GetConfig("logo_width")."px; max-height: ".PersistentieMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                    }
+                } else {
+                    echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$links["website_name"]."</a></td>";
+                }
+/*
                 if(!empty($links["website_image"])) {
                     echo "<td class=\"first\"><img src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /><a href=\"".$links["website_url"]."\" ".$gui["table_links_target"].">".$links["website_name"]."</a></td>";
                 } else {
                     echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$gui["table_links_target"].">".$links["website_name"]."</a></td>";
                 }
+ * 
+ */
                 echo "<td>".$links["website_last2days_inlink"]."</td>";
                 echo "<td>".$links["website_last2days_outlink"]."</td>";
                 echo "<td>".$links["website_total_inlink"]."</td>";
@@ -164,7 +204,7 @@
 </table>
 <fieldset id="ub_code">
     <legend >Code:</legend>
-    <div onclick="this.focus();">&lt; a href="<?php echo $gui["url"] ?>" title="<?php echo $gui["description"] ?>" <?php echo $gui["table_links_target"]?>&gt;<?php echo $gui["title"] ?>&lt;/a&gt;</div>
+    <div>&lt;a href="<?php echo $gui["url"] ?>" title="<?php echo $gui["description"] ?>" <?php echo $gui["table_links_target"]?>&gt;<?php echo $gui["title"] ?>&lt;/a&gt;</div>
 </fieldset>
 <h4 style="margin-top: 20px;"><?php echo __("Step 2: Submit your linktrade", "ultimate-blogroll") ?></h4>
 <form method="POST" action="#wp-add-your-site">
@@ -224,13 +264,16 @@ if(isset($gui["success"])) {
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?php echo @$gui["value"]["website_reciprocal"]; ?>" /></td>
         <td><?php echo __("Where can we find our link back?", "ultimate-blogroll") ?></td>
     </tr>
-
+    <?php
+    if(PersistentieMapper::Instance()->GetConfig("logo") == "yes"){
+    ?>
     <tr <?php echo getErrorField("website_image"); ?>>
         <td class="column1"><?php echo __("Website image", "ultimate-blogroll") ?>:</td>
         <td class="column2"><input type="text" name="website_image" class="form_text" value="<?php echo @$gui["value"]["website_image"]; ?>" /></td>
-        <td><?php echo __("Add a image/logo", "ultimate-blogroll") ?></td>
+        <td><?php echo __("Add an image/logo (.png | transparent)", "ultimate-blogroll") ?></td>
     </tr>
     <?php
+    }
         if(($gui["fight_spam"]) == "yes") {
             
     ?>

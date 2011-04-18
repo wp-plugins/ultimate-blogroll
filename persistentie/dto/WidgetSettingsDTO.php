@@ -13,12 +13,16 @@ class WidgetSettingsDTO {
         $this->vars[$key] = $value;
     }
 
-    public function __construct($title, $limit, $order_by, $ascending, $permalink) {
+    public function __construct($title, $limit, $order_by, $ascending, $permalink, $logo, $logo_width, $logo_height, $logo_usage) {
         $this->title = $title;
         $this->limit = $limit;
         $this->order_by = $order_by;
         $this->ascending = $ascending;
         $this->permalink = $permalink;
+        $this->logo = $logo;
+        $this->logo_width = $logo_width;
+        $this->logo_height = $logo_height;
+        $this->logo_usage = $logo_usage;
     }
 
     public function UpdatePermalink($permalink) {

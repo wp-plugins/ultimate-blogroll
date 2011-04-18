@@ -93,7 +93,11 @@ class SettingsController extends UltimateBlogrollController {
                 @$_POST["limit_linkpartners"],
                 @$_POST["order_by"],
                 @$_POST["ascending"],
-                @$_POST["permalink"]
+                @$_POST["permalink"],
+                @$_POST["logo"],
+                @$_POST["logo_width"],
+                @$_POST["logo_height"],
+                @$_POST["logo_usage"]
             );
             $error = $this->checkFormWidgetSettings($settings, $valid_page_ids);
             if($error->ContainsErrors() === false) {
@@ -102,7 +106,14 @@ class SettingsController extends UltimateBlogrollController {
                 PersistentieMapper::Instance()->SetConfig("order_by",           $settings->order_by);
                 PersistentieMapper::Instance()->SetConfig("ascending",          $settings->ascending);
                 PersistentieMapper::Instance()->SetConfig("permalink",          $settings->permalink);
-                //PersistentieMapper::Instance()->SaveWidgetSettings($settings);
+                PersistentieMapper::Instance()->SetConfig("logo",               $settings->logo);
+                //if settings is set to no, the fields disapear and no value would be set.
+
+                if($settings->logo == "yes") {
+                    PersistentieMapper::Instance()->SetConfig("logo_width",         $settings->logo_width);
+                    PersistentieMapper::Instance()->SetConfig("logo_height",        $settings->logo_height);
+                    PersistentieMapper::Instance()->SetConfig("logo_usage",        $settings->logo_usage);
+                }
                 $gui["succes"]["widget"] = true;
             }
             $gui["value"]["widget_title"]       = $settings->title;
@@ -110,7 +121,16 @@ class SettingsController extends UltimateBlogrollController {
             $gui["value"]["order_by"]           = $settings->order_by;
             $gui["value"]["ascending"]          = $settings->ascending;
             $gui["value"]["permalink"]          = $settings->permalink;
-
+            $gui["value"]["logo"]               = $settings->logo;
+            if($settings->logo == "yes") {
+                $gui["value"]["logo_width"]     = $settings->logo_width;
+                $gui["value"]["logo_height"]    = $settings->logo_height;
+                $gui["value"]["logo_usage"]     = $settings->logo_usage;
+            } else {
+                $gui["value"]["logo_width"]     = PersistentieMapper::Instance()->GetConfig("logo_width");
+                $gui["value"]["logo_height"]    = PersistentieMapper::Instance()->GetConfig("logo_height");
+                $gui["value"]["logo_usage"]     = PersistentieMapper::Instance()->GetConfig("logo_usage");
+            }
             $gui["error"]["messages"]           = $error->GetErrorMessages();
             $gui["error"]["fields"]             = $error->GetErrorFields();
             
@@ -124,6 +144,10 @@ class SettingsController extends UltimateBlogrollController {
             $gui["value"]["order_by"]           = PersistentieMapper::Instance()->GetConfig("order_by");
             $gui["value"]["ascending"]          = PersistentieMapper::Instance()->GetConfig("ascending");
             $gui["value"]["permalink"]          = PersistentieMapper::Instance()->GetConfig("permalink");
+            $gui["value"]["logo"]               = PersistentieMapper::Instance()->GetConfig("logo");
+            $gui["value"]["logo_width"]         = PersistentieMapper::Instance()->GetConfig("logo_width");
+            $gui["value"]["logo_height"]        = PersistentieMapper::Instance()->GetConfig("logo_height");
+            $gui["value"]["logo_usage"]        = PersistentieMapper::Instance()->GetConfig("logo_usage");
         }
         if(isset($_POST["recaptcha_settings"])) {
             $settings = new RecaptchaSettingsDTO(
@@ -232,6 +256,41 @@ class SettingsController extends UltimateBlogrollController {
             $error->AddErrorField("permalink");
             $error->AddErrorMessage(__("Link exchange page", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
         }
+
+        if(!in_array($settings->logo, array("yes", "no"))) {
+            $error->AddErrorField("logo");
+            $error->AddErrorMessage(__("Logo", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
+        }
+
+        if($settings->logo == "yes"){
+            if(empty($settings->logo_width)) {
+                $error->AddErrorField("logo_width");
+                $error->AddErrorMessage(__("Width of logo", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+            } elseif (!is_numeric($settings->logo_width)) {
+                $error->AddErrorField("logo_width");
+                $error->AddErrorMessage(__("Width of logo", "ultimate-blogroll")." ".__("is not a number", "ultimate-blogroll"));
+            } elseif($settings->logo_width < 0){
+                $error->AddErrorField("logo_width");
+                $error->AddErrorMessage(__("Width of logo", "ultimate-blogroll")." ".__("is negative", "ultimate-blogroll"));
+            }
+
+            if(empty($settings->logo_height)) {
+                $error->AddErrorField("logo_height");
+                $error->AddErrorMessage(__("Height of logo", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+            } elseif (!is_numeric($settings->logo_height)) {
+                $error->AddErrorField("logo_height");
+                $error->AddErrorMessage(__("Height of logo", "ultimate-blogroll")." ".__("is not a number", "ultimate-blogroll"));
+            } elseif($settings->logo_height < 0){
+                $error->AddErrorField("logo_height");
+                $error->AddErrorMessage(__("Height of logo", "ultimate-blogroll")." ".__("is negative", "ultimate-blogroll"));
+            }
+
+            if(!in_array($settings->logo_usage, array("both", "image", "text"))) {
+                $error->AddErrorField("logo_usage");
+                $error->AddErrorMessage(__("Logo usage", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
+            }
+        }
+
         return $error;
     }
     

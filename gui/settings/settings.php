@@ -9,6 +9,32 @@ require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/functions.php");
         $('#wp_website_title').click(function(){ $('#website_title').val('<?php echo $gui["blogname"]; ?>') })
         $('#wp_website_description').click(function(){ $('#website_description').val('<?php echo $gui["description"]; ?>') })
         $('#wp_blogroll_contact').click(function(){ $('#blogroll_contact').val('<?php echo $gui["admin_email"]; ?>') })
+        $('#wp_blogroll_logo').change(function () {
+            if($(this).val() == "no") {
+                
+                $("#wp_blogroll_logo_width").attr("disabled", "disabled");
+                $("#wp_blogroll_logo_height").attr("disabled", "disabled");
+                $("#wp_blogroll_logo_usage").attr("disabled", "disabled");
+                $('#wp_blogroll_logo_width_tr').fadeOut('slow');
+                $('#wp_blogroll_logo_height_tr').fadeOut('slow');
+                $('#wp_blogroll_logo_usage_tr').fadeOut('slow');
+            } else {
+                $("#wp_blogroll_logo_width").attr("disabled", "");
+                $("#wp_blogroll_logo_height").attr("disabled", "");
+                $("#wp_blogroll_logo_usage").attr("disabled", "");
+                $('#wp_blogroll_logo_width_tr').fadeIn('slow');
+                $('#wp_blogroll_logo_height_tr').fadeIn('slow');
+                $('#wp_blogroll_logo_usage_tr').fadeIn('slow');
+            }
+        })
+        if($('#wp_blogroll_logo').val() == "no") {
+            $("#wp_blogroll_logo_width").attr("disabled", "disabled");
+            $("#wp_blogroll_logo_height").attr("disabled", "disabled");
+            $("#wp_blogroll_logo_usage").attr("disabled", "disabled");
+            $('#wp_blogroll_logo_width_tr').fadeOut('fast');
+            $('#wp_blogroll_logo_height_tr').fadeOut('fast');
+            $('#wp_blogroll_logo_usage_tr').fadeOut('fast');
+        }
     });
 </script>
 
@@ -211,6 +237,37 @@ require_once(ABSPATH."wp-content/plugins/ultimate-blogroll/gui/functions.php");
                             </select>
                         </td>
                         <td><?php echo __("Choose the page with the", "ultimate-blogroll") . " " . htmlentities('<!--ultimate-blogroll-->') ." ". __("tag on.", "ultimate-blogroll"); ?></td>
+                    </tr>
+                    <tr <?php echo getErrorField("logo"); ?>>
+                        <td class="column1"><?php echo __("Website logo", "ultimate-blogroll") ?>:</td>
+                        <td class="column2">
+                            <select id="wp_blogroll_logo" class="form_text" name="logo" >
+                                <option value="yes" <?php echo ((@$gui["value"]["logo"] == "yes") ? "selected=\"yes\"" : ""); ?>><?php echo __("Yes", "ultimate-blogroll") ?></option>
+                                <option value="no" <?php echo ((@$gui["value"]["logo"] == "no") ? "selected=\"yes\"" : ""); ?>><?php echo __("No", "ultimate-blogroll") ?></option>
+                            </select>
+                        </td>
+                        <td><?php echo __("Allow linkpartners to place a logo", "ultimate-blogroll") ?></td>
+                    </tr>
+                    <tr <?php echo getErrorField("logo_width"); ?> id="wp_blogroll_logo_width_tr">
+                        <td class="column1"><?php echo __("Logo width", "ultimate-blogroll") ?>*:</td>
+                        <td class="column2"><input id="wp_blogroll_logo_width" type="text" name="logo_width" class="form_text" value="<?php echo @$gui["value"]["logo_width"]; ?>" /></td>
+                        <td><?php echo __("Width (pixels) of the logo", "ultimate-blogroll") ?></td>
+                    </tr>
+                    <tr <?php echo getErrorField("logo_height"); ?> id="wp_blogroll_logo_height_tr">
+                        <td class="column1"><?php echo __("Logo height", "ultimate-blogroll") ?>*:</td>
+                        <td class="column2"><input id="wp_blogroll_logo_height" type="text" name="logo_height" class="form_text" value="<?php echo @$gui["value"]["logo_height"]; ?>" /></td>
+                        <td><?php echo __("Height (pixels) of the logo", "ultimate-blogroll") ?></td>
+                    </tr>
+                    <tr <?php echo getErrorField("logo_usage"); ?> id="wp_blogroll_logo_usage_tr">
+                        <td class="column1"><?php echo __("Logo usage", "ultimate-blogroll") ?>:</td>
+                        <td class="column2">
+                            <select id="wp_blogroll_logo_usage" class="form_text" name="logo_usage" >
+                                <option value="both" <?php echo ((@$gui["value"]["logo_usage"] == "both") ? "selected=\"yes\"" : ""); ?>><?php echo __("Text and image", "ultimate-blogroll") ?></option>
+                                <option value="text" <?php echo ((@$gui["value"]["logo_usage"] == "text") ? "selected=\"yes\"" : ""); ?>><?php echo __("Text", "ultimate-blogroll") ?></option>
+                                <option value="image" <?php echo ((@$gui["value"]["logo_usage"] == "image") ? "selected=\"yes\"" : ""); ?>><?php echo __("Image", "ultimate-blogroll") ?></option>
+                            </select>
+                        </td>
+                        <td><?php echo __("How do you want to use the logo?", "ultimate-blogroll") ?></td>
                     </tr>
                     <tr>
                         <td class="column1"></td>

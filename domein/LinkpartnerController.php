@@ -386,7 +386,7 @@ class LinkpartnerController extends UltimateBlogrollController {
             //$error = $this->checkFormAddLinkpartner($linkpartner, false, $general_settings["fight_spam"], $captcha_settings["recaptcha_private_key"], true);
             if($error->ContainsErrors() === false){
                 $add_status = PersistentieMapper::Instance()->AddLinkpartner($linkpartner);
-                var_dump($add_status);
+                //var_dump($add_status);
                 if($add_status){
                     //$data = PersistentieMapper::Instance()->GetGeneralSettings();
                     //var_dump(PersistentieMapper::Instance()->GetConfig("reciprocal_link"));

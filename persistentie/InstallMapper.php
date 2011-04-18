@@ -81,7 +81,7 @@ class InstallMapper {
         global $wpdb;
         $table_name = $wpdb->prefix . "ubsites";
 
-        $t = $wpdb->get_results("SHOW columns FROM ".$table_name." FROM krimagen_thierry WHERE Field = 'website_image'");
+        $t = $wpdb->get_results("SHOW columns FROM ".$table_name." WHERE Field = 'website_image'");
         if(empty($t)){
             $wpdb->query("ALTER TABLE ".$table_name." ADD website_image VARCHAR(100) NOT NULL");
         }

@@ -119,8 +119,17 @@ class WidgetController extends UltimateBlogrollController {
         if(!empty($linkpartners))
         {
             foreach($linkpartners as $linkpartner) {
-                if(!empty($linkpartner["website_image"])) {
-                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow"))."><img src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" />".$linkpartner["website_name"]."</a></li>";
+                if(!empty($linkpartner["website_image"]) && PersistentieMapper::Instance()->GetConfig("logo") == "yes") {
+                    $logo_usage = PersistentieMapper::Instance()->GetConfig("logo_usage");
+                    if($logo_usage == "text") {
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
+                    }
+                    elseif($logo_usage == "image") {
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow"))."><img style=\"width: ".PersistentieMapper::Instance()->GetConfig("logo_width")."px; max-height: ".PersistentieMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
+                    }
+                    else {
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$linkpartner["website_name"]."<img style=\"width: ".PersistentieMapper::Instance()->GetConfig("logo_width")."px; max-height: ".PersistentieMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
+                    }
                 } else {
                     $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget(PersistentieMapper::Instance()->GetConfig("target")).$this->GetFollow(PersistentieMapper::Instance()->GetConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
                 }
@@ -131,6 +140,7 @@ class WidgetController extends UltimateBlogrollController {
         if(!empty($permalink) && $permalink != "none")
         {
             $gui .= "<li><a href=\"".get_permalink(PersistentieMapper::Instance()->GetConfig("permalink"))."\">".__("More", "ultimate-blogroll")."</a></li>";
+            $gui .= "<li><a href=\"".get_permalink(PersistentieMapper::Instance()->GetConfig("permalink"))."#wp-add-your-site\">".__("Add link", "ultimate-blogroll")."</a></li>";
         }
         $gui .= "</ul>";
         $gui .= $after_widget;

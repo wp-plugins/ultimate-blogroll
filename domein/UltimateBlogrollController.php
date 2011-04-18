@@ -10,7 +10,9 @@ class UltimateBlogrollController  {
     
     public function __construct() {
         $this->init();
-        $this->fix();
+        if(is_admin()) {
+            $this->fix();
+        }
     }
 
     public function admin_head() {
@@ -26,70 +28,81 @@ jQuery(document).ready(function($) {
     }
 
     private function fix() {
-        //fix typo
-        $widgets = get_option("sidebars_widgets");
-        $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
-        update_option("sidebars_widgets", $widgets);
+        $ub_settings = get_option("ultimate_blogroll_settings");
+        if($ub_settings["data_version"] < 4)
+        {
+            //fix typo
+            $widgets = get_option("sidebars_widgets");
+            $widgets = array_map ( array($this, 'FixTypoWidgets'), $widgets );
+            update_option("sidebars_widgets", $widgets);
 
-        //AlterTableUbSites
-        $t = PersistentieMapper::Instance()->AlterTableUbSites();
-        
-        $data = get_option("ultimate_blogroll_settings");
-        if(!$data) {
-            $general    = get_option("ultimate_blogroll_general_settings");
-            $widget     = get_option("ultimate_blogroll_widget_settings");
-            $recaptcha  = get_option("ultimate_blogroll_recaptcha_settings");
-            
-            if(is_object($general)) {
-                $data["website_url"] =            $general->url;
-                $data["website_title"] =          $general->title;
-                $data["website_description"] =    $general->description;
-                $data["blogroll_contact"] =       $general->contact;
-                $data["support"] =                $general->support;
-                $data["send_mail"] =              $general->send_mail;
-                $data["reciprocal_link"] =        $general->reciprocal;
-                $data["fight_spam"] =             $general->fight_spam;
-                $data["target"] =                 $general->target;
-                $data["nofollow"] =               $general->nofollow;
-            } else {
-                $data["website_url"] =            $general["website_url"];
-                $data["website_title"] =          $general["website_title"];
-                $data["website_description"] =    $general["website_description"];
-                $data["blogroll_contact"] =       $general["blogroll_contact"];
-                $data["support"] =                $general["support"];
-                    //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
-                $data["send_mail"] =              $general["send_mail"];
-                $data["reciprocal_link"] =        $general["reciprocal_link"];
-                $data["fight_spam"] =             $general["fight_spam"];
-                $data["target"] =                 $general["target"];
-                $data["nofollow"] =               $general["nofollow"];
+            $data = get_option("ultimate_blogroll_settings");
+            if(!$data)
+            {
+                $general    = get_option("ultimate_blogroll_general_settings");
+                $widget     = get_option("ultimate_blogroll_widget_settings");
+                $recaptcha  = get_option("ultimate_blogroll_recaptcha_settings");
+
+                if(is_object($general))
+                {
+                    $data["website_url"] =            $general->url;
+                    $data["website_title"] =          $general->title;
+                    $data["website_description"] =    $general->description;
+                    $data["blogroll_contact"] =       $general->contact;
+                    $data["support"] =                $general->support;
+                    $data["send_mail"] =              $general->send_mail;
+                    $data["reciprocal_link"] =        $general->reciprocal;
+                    $data["fight_spam"] =             $general->fight_spam;
+                    $data["target"] =                 $general->target;
+                    $data["nofollow"] =               $general->nofollow;
+                } else {
+                    $data["website_url"] =            $general["website_url"];
+                    $data["website_title"] =          $general["website_title"];
+                    $data["website_description"] =    $general["website_description"];
+                    $data["blogroll_contact"] =       $general["blogroll_contact"];
+                    $data["support"] =                $general["support"];
+                        //$gui["value"]["blogroll_email_checkbox"] = $data["blogroll_email_checkbox"];//depricated since we don't use checkboxes anymore, we now use <select>
+                    $data["send_mail"] =              $general["send_mail"];
+                    $data["reciprocal_link"] =        $general["reciprocal_link"];
+                    $data["fight_spam"] =             $general["fight_spam"];
+                    $data["target"] =                 $general["target"];
+                    $data["nofollow"] =               $general["nofollow"];
+                }
+                
+                if(is_object($widget)) {
+                    $data["widget_title"] =           $widget->title;
+                    $data["limit_linkpartners"] =     $widget->limit;
+                    $data["order_by"] =               $widget->order_by;
+                    $data["ascending"] =              $widget->ascending;
+                    $data["permalink"] =              $widget->permalink;
+                } else {
+                    $data["widget_title"] =           $widget["widget_title"];
+                    $data["limit_linkpartners"] =     $widget["limit_linkpartners"];
+                    $data["order_by"] =               $widget["order_by"];
+                    $data["ascending"] =              $widget["ascending"];
+                    $data["permalink"] =              $widget["permalink"];
+                }
+
+                if(is_object($recaptcha)) {
+                    $data["recaptcha_public_key"]  =  $recaptcha->recaptcha_public_key;
+                    $data["recaptcha_private_key"] =  $recaptcha->recaptcha_private_key;
+                } else {
+                    $data["recaptcha_public_key"]  =  $recaptcha["recaptcha_public_key"];
+                    $data["recaptcha_private_key"] =  $recaptcha["recaptcha_private_key"];
+                }
             }
-
-            if(is_object($widget)) {
-                $data["widget_title"] =           $widget->title;
-                $data["limit_linkpartners"] =     $widget->limit;
-                $data["order_by"] =               $widget->order_by;
-                $data["ascending"] =              $widget->ascending;
-                $data["permalink"] =              $widget->permalink;
-            } else {
-                $data["widget_title"] =           $widget["widget_title"];
-                $data["limit_linkpartners"] =     $widget["limit_linkpartners"];
-                $data["order_by"] =               $widget["order_by"];
-                $data["ascending"] =              $widget["ascending"];
-                $data["permalink"] =              $widget["permalink"];
-            }
-
-            if(is_object($recaptcha)) {
-                $data["recaptcha_public_key"]  =  $recaptcha->recaptcha_public_key;
-                $data["recaptcha_private_key"] =  $recaptcha->recaptcha_private_key;
-            } else {
-                $data["recaptcha_public_key"]  =  $recaptcha["recaptcha_public_key"];
-                $data["recaptcha_private_key"] =  $recaptcha["recaptcha_private_key"];
-            }
-
-            $data["db_version"] =             2;
-            $data["data_version"] =           3;
-
+            $data['logo']                    = "yes";
+            $data['logo_width']              = "125";
+            $data['logo_height']             = "125";
+            $data['logo_usage']              = "image";
+            $data["data_version"]            = 4;
+            add_option("ultimate_blogroll_settings", $data, "", "yes");
+        }
+         //AlterTableUbSites
+        if($ub_settings["db_version"] < 2) {
+            $t = PersistentieMapper::Instance()->AlterTableUbSites();
+            $data = get_option("ultimate_blogroll_settings");
+            $data["db_version"] = 2;
             add_option("ultimate_blogroll_settings", $data, "", "yes");
         }
     }
@@ -130,7 +143,7 @@ jQuery(document).ready(function($) {
             "manage_options", //user level, needed before it becomes visible
             "ultimate-blogroll-overview", //slug, in the url
             "ultimate_blogroll", //the function linked to the slug, without this function your slug is useless
-            " " //the favicon for the menu
+            "../wp-content/plugins/ultimate-blogroll/images/icon.png" //the favicon for the menu
         );
         
         $sub_page = add_submenu_page(
@@ -245,13 +258,17 @@ jQuery(document).ready(function($) {
         $default["order_by"]                = "inlinks";
         $default["ascending"]               = "desc";
         $default['permalink']               = "none";
+        $default['logo']                    = "yes";
+        $default['logo_width']              = "125";
+        $default['logo_height']             = "125";
+        $default['logo_usage']              = "image";
 
         $recaptcha = @get_option("recaptcha");
         $default["recaptcha_public_key"]    = @$recaptcha["pubkey"];
         $default["recaptcha_private_key"]   = @$recaptcha["privkey"];
 
         $default["db_version"]              = 2;
-        $default["data_version"]            = 3;
+        $default["data_version"]            = 4;
 
         add_option("ultimate_blogroll_settings", $default, "", "yes");
         
