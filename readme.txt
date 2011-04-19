@@ -22,7 +22,7 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Handy Wizard/Installation process to get you started
     * ...
 
-Now available in: English, Dutch, Spanish, Hungarian
+Now available in: English, Dutch, Spanish, Hungarian, Russian
 
 Credits:<br />
 Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
