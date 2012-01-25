@@ -66,7 +66,6 @@ class InstallMapper {
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;";
             dbDelta($sql);
         }
-        update_option("ultimate_blogroll_db_version", "1.0");
     }
     
     public function GetPagesWithUltimateBlogrollTag()

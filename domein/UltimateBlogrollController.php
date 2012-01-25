@@ -15,6 +15,10 @@ class UltimateBlogrollController  {
         }
     }
 
+    /**
+    * admin head, replaces links in the wordpress admin panel
+    * currently not active, probably never will
+    */
     public function admin_head() {
         wp_enqueue_script('jquery');
         $output = '<script type="text/javascript" >
@@ -27,6 +31,9 @@ jQuery(document).ready(function($) {
         echo $output;
     }
 
+    /**
+    * Fix problems
+    */
     private function fix() {
         $ub_settings = get_option("ultimate_blogroll_settings");
         if($ub_settings["data_version"] < 4)
@@ -194,30 +201,17 @@ jQuery(document).ready(function($) {
                 admin_url('admin.php?page=ultimate-blogroll-overview&action=wizard')
             );
             echo '</p></div>'. "\n";
-
-            if(PersistentieMapper::Instance()->CheckIfTablesExists() === false) {
-                echo '<div class="error fade"><p>';
-                echo "<b>Ultimate Blogroll:</b> ".__("Could not find the required MySQL tables", "ultimate-blogroll");
-                echo '</p></div>'. "\n";
-            }
-            if($this->checkreciprocalLink(get_bloginfo("wpurl")) != true) {
-                echo '<div class="error fade"><p>';
-                echo "<b>Ultimate Blogroll:</b> ".__("Could not check for reciprocal website. Check if ports are open.", "ultimate-blogroll");
-                echo '</p></div>'. "\n";
-            }
-        } else {
-            $pages = PersistentieMapper::Instance()->GetPagesWithUltimateBlogrollTag();
-            //new exception("todo");
-            $permalink = PersistentieMapper::Instance()->GetConfig("permalink");
-            
-            //var_dump($data);
-            if(empty($permalink) || !isset($permalink) || $permalink == "none")
-            {
-                PersistentieMapper::Instance()->SetConfig("permalink", $pages[0]["id"]);
-                //$data->UpdatePermalink($pages[0]["id"]);
-                //update_option("ultimate_blogroll_widget_settings", $data);
-            }
         }
+        if(PersistentieMapper::Instance()->CheckIfTablesExists() === false) {
+            echo '<div class="error fade"><p>';
+            echo "<b>Ultimate Blogroll:</b> ".__("Could not find the required MySQL tables", "ultimate-blogroll");
+            echo '</p></div>'. "\n";
+        }
+        if($this->checkreciprocalLink(get_bloginfo("wpurl")) != true) {
+            echo '<div class="error fade"><p>';
+            echo "<b>Ultimate Blogroll:</b> ".__("Could not check for reciprocal website. Check if ports are open.", "ultimate-blogroll");
+            echo '</p></div>'. "\n";
+        } 
     }
     
     
@@ -280,10 +274,12 @@ jQuery(document).ready(function($) {
         //new exception("todo");
         //$settings = PersistentieMapper::Instance()->GetGeneralSettings();
         $html = @file_get_contents($url);
+        //var_dump($html);
         if($html === false)
             return false;
         $html = strtolower($html);
         $website_url = strtolower(PersistentieMapper::Instance()->GetConfig("website_url"));
+        var_dump($website_url);
 
         $found = false;
         if (preg_match_all('/<a\s[^>]*href=([\"\']??)([^" >]*?)\\1([^>]*)>/siU', $html, $matches, PREG_SET_ORDER)) {
@@ -295,6 +291,7 @@ jQuery(document).ready(function($) {
                 }
             }
         }
+        var_dump($found);
         return $found;
     }
 

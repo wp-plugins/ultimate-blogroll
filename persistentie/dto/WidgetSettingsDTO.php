@@ -9,7 +9,7 @@ class WidgetSettingsDTO {
         return $this->vars[$name];
     }
 
-    private function __set($key, $value) {
+    public function __set($key, $value) {
         $this->vars[$key] = $value;
     }
 

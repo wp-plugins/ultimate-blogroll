@@ -293,7 +293,7 @@ jQuery(document).ready(function($) {
             //secure our output
             $gui["value"] = array_map ( array($this, 'map_entities'), $gui["value"] );
             $gui["table_links_target"]  = $this->GetTarget(PersistentieMapper::Instance()->GetConfig("target"));
-            $gui["url"]                 = get_bloginfo("wpurl");
+            $gui["url"]                 = PersistentieMapper::Instance()->GetConfig("website_url");//get_bloginfo("wpurl");
             $gui["title"]               = PersistentieMapper::Instance()->GetConfig("website_title");
             $gui["description"]         = PersistentieMapper::Instance()->GetConfig("website_description");
             $gui["support"]             = PersistentieMapper::Instance()->GetConfig("support");

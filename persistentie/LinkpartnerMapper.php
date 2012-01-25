@@ -163,8 +163,8 @@ class LinkpartnerMapper {
         $message .= "<tr><td>".__("Website domain", "ultimate-blogroll").":</td><td>".$linkpartner->domain."</td></tr>";
         $message .= "<tr><td>".__("Website reciprocal", "ultimate-blogroll").":</td><td>".$linkpartner->reciprocal."</td></tr>";
         $id = PersistentieMapper::Instance()->GetLastAddedLinkpartner();
-        $message .= "</table>Do you want to <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin/admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">View details</a> | <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin/admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Approve</a> | <a href=\""."http://".$_SERVER["SERVER_NAME"]."/wp-admin/admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Delete</a>";
-
+        $message .= "</table>Do you want to <a href=\"".get_admin_url()."admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "action" => "edit", "id" => $id ))."#edit\">View details</a> | <a href=\"".get_admin_url()."admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "approve", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Approve</a> | <a href=\"".get_admin_url()."admin.php?".http_build_query(array("page" => "ultimate-blogroll-overview", "overview_actions" => "delete", "bulk_action" => "Apply", "linkpartner[]" => $id))."\">Delete</a>";
+        //$message .= get_admin_url();
         //$data = PersistentieMapper::Instance()->GetGeneralSettings();
         $m = @mail($email, $subject, $message, $headers);
     }
