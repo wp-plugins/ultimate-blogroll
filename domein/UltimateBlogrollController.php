@@ -279,7 +279,7 @@ jQuery(document).ready(function($) {
             return false;
         $html = strtolower($html);
         $website_url = strtolower(PersistentieMapper::Instance()->GetConfig("website_url"));
-        var_dump($website_url);
+        //var_dump($website_url);
 
         $found = false;
         if (preg_match_all('/<a\s[^>]*href=([\"\']??)([^" >]*?)\\1([^>]*)>/siU', $html, $matches, PREG_SET_ORDER)) {
@@ -291,7 +291,7 @@ jQuery(document).ready(function($) {
                 }
             }
         }
-        var_dump($found);
+        //var_dump($found);
         return $found;
     }
 
