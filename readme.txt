@@ -3,8 +3,8 @@ Contributors: jensg
 Donate link: http://www.gheerardyn.be/wordpress/ultimate-blogroll
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
-Tested up to: 3.1.1
-Stable tag: 1.8
+Tested up to: 3.3.1
+Stable tag: 1.8.1
 
 Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
 
@@ -50,6 +50,10 @@ Just leave a comment at http://www.gheerardyn.be/wordpress/ultimate-blogroll
 7. This is the confirmation mail that you will receive everytime a linktrade was made
 
 == Changelog ==
+
+= 1.8.1 =
+* updated magic methods to be compatible with php 5.3
+* fixed some minor bugs
 
 = 1.8 =
 * added russia
