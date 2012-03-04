@@ -191,7 +191,6 @@ jQuery(document).ready(function($) {
     }
     
     public function admin_notices() {
-        //var_dump("admin_notices");
         if(PersistentieMapper::Instance()->CheckIfUltimateBlogrollTagWasSet() === false)
         {
             echo '<div class="updated fade"><p>';
@@ -207,7 +206,7 @@ jQuery(document).ready(function($) {
             echo "<b>Ultimate Blogroll:</b> ".__("Could not find the required MySQL tables", "ultimate-blogroll");
             echo '</p></div>'. "\n";
         }
-        if($this->checkreciprocalLink(get_bloginfo("wpurl")) != true) {
+        if($this->checkIfExternalLinkWorks(get_bloginfo("wpurl")) != true && PersistentieMapper::Instance()->GetConfig("reciprocal_link") == "yes") {
             echo '<div class="error fade"><p>';
             echo "<b>Ultimate Blogroll:</b> ".__("Could not check for reciprocal website. Check if ports are open.", "ultimate-blogroll");
             echo '</p></div>'. "\n";
@@ -270,11 +269,41 @@ jQuery(document).ready(function($) {
         PersistentieMapper::Instance()->InstallDatabase();
     }
     
-    protected function checkreciprocalLink($url) {
-        //new exception("todo");
-        //$settings = PersistentieMapper::Instance()->GetGeneralSettings();
+    private function isCurlInstalled() {
+	if  (in_array  ('curl', get_loaded_extensions())) {
+            return true;
+	}
+        return false;
+    }
+    
+    private function isFileGetContentsInstalled($url) {
         $html = @file_get_contents($url);
-        //var_dump($html);
+        if($html === false)
+            return false;
+        return true;
+    }
+    
+    private function checkIfExternalLinkWorks($url) {
+        if($this->isCurlInstalled())
+            return true;
+        if($this->isFileGetContentsInstalled($url))
+            return true;
+        return false;
+    }
+    
+    protected function checkreciprocalLink($url) {
+        $html = false;
+        if($this->isCurlInstalled()) {
+            $crl = curl_init();
+            $timeout = 5;
+            curl_setopt ($crl, CURLOPT_URL,$url);
+            curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
+            $html = curl_exec($crl);
+            curl_close($crl);
+        } else {
+            $html = @file_get_contents($url);
+        }
         if($html === false)
             return false;
         $html = strtolower($html);
@@ -287,12 +316,14 @@ jQuery(document).ready(function($) {
             {
                 if ($match[2] == $website_url || $match[2] == $website_url.'/')
                 {
-                    $found = true;
+                    //$found = true;
+                    return true;
                 }
             }
         }
         //var_dump($found);
-        return $found;
+        //return $found;
+        return false;
     }
 
     public function ub_hourly_task() {
