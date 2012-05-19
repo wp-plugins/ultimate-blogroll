@@ -1,0 +1,1078 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-13 12:39+0100\n"
+"PO-Revision-Date: 2012-05-13 12:39+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
+"X-Poedit-Basepath: C:\\xampp\\htdocs\\wordpress\\wp-content\\plugins\\ultimate-blogroll\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wordpress\\wp-content\\plugins\\ultimate-blogroll\n"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:117
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:10
+msgid "Overview"
+msgstr "Overzicht"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:118
+msgid "Manage linkpartners"
+msgstr "Linkpartners beheren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:126
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:127
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:12
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:31
+msgid "Add linkpartner"
+msgstr "Voeg linkpartner toe"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:135
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:136
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:4
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:18
+msgid "Import/Export"
+msgstr "Importeer/Exporteer"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:144
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/ultimate-blogroll.php:145
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Install.php:33
+msgid "Settings"
+msgstr "Instellingen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Install.php:31
+msgid "Wizard"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:39
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:224
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:74
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:35
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:4
+msgid "Website owner's name"
+msgstr "Naam van de eigenaar"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:39
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:43
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:49
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:55
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:59
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:63
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:224
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:228
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:234
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:240
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:244
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:248
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:74
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:78
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:84
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:90
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:94
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:98
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:109
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:115
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:119
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:123
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:132
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:138
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:172
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:180
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:197
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:200
+msgid "is empty"
+msgstr "is leeg"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:43
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:45
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:228
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:230
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:78
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:80
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:40
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:5
+msgid "Website owner's email"
+msgstr "E-mailadres eigenaar"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:45
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:230
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:80
+msgid "is not a valid email address"
+msgstr "is geen geldig e-mailadres"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:49
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:51
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:72
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:73
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:83
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:269
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:270
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:282
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:107
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:108
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:118
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:109
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:111
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:48
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:7
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:109
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:152
+msgid "Website url"
+msgstr "Website url"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:51
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:65
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:236
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:250
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:86
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:100
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:111
+msgid "is not a valid url"
+msgstr "is geen juiste url"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:55
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:240
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:90
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:115
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:53
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:8
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:113
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:157
+msgid "Website title"
+msgstr "Website titel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:59
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:244
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:94
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:119
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:58
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:9
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:117
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:162
+msgid "Website description"
+msgstr "Website omschrijving"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:63
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:65
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:248
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:250
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:98
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:100
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:66
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:11
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:172
+msgid "Website reciprocal"
+msgstr "Website link terug"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:72
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:73
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:77
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:269
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:270
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:274
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:107
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:108
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:112
+msgid "The"
+msgstr "De tag"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:72
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:73
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:77
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:269
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:270
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:274
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:107
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:108
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:112
+msgid "website reciprocal"
+msgstr "Website link terug"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:72
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:73
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:269
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:270
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:107
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:108
+msgid "must be under the same (sub)domain as the"
+msgstr "moet onder hetzelfde (sub)domein zijn als"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:77
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:274
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:112
+msgid "does not have a link back."
+msgstr "Heeft geen link terug."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:83
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:282
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:118
+msgid "Website domain"
+msgstr "Website domein"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:83
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:282
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:118
+msgid "does not fetch with"
+msgstr "komt niet overeen met"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:120
+msgid "linkpartner does not exist."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:178
+msgid "New link submitted at"
+msgstr "Nieuwe link toegevoegd in"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:234
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:236
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:84
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:86
+#, fuzzy
+msgid "website_url"
+msgstr "website url"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:319
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:164
+#, fuzzy
+msgid "Linkpartner"
+msgstr "Voeg linkpartner toe"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Linkpartner.php:319
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:164
+msgid "is already in our system."
+msgstr "zit al in ons systeem."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:128
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:191
+msgid "Anti-spam"
+msgstr "Anti-spam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Page.php:128
+msgid "was wrong"
+msgstr "is fout"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:123
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:125
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:125
+msgid "is wrong"
+msgstr "is fout"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:132
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:82
+msgid "Widget title"
+msgstr "Widget titel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:138
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:140
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:142
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:85
+msgid "Limit of linkpartners"
+msgstr "Aantal zichtbare linkpartners"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:140
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:174
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:182
+msgid "is not a number"
+msgstr "is geen nummer"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:142
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:176
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:184
+msgid "is negative"
+msgstr "is negatief"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:148
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:88
+msgid "Order by"
+msgstr "Sorteer volgens"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:148
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:152
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:161
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:167
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:188
+msgid "contains an unexpected value"
+msgstr "bevat een overwachtte waarde"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:152
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:96
+msgid "Ascending/Descending"
+msgstr "Oplopend/aflopend"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:161
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:103
+msgid "Link exchange page"
+msgstr "Linkuitwisseling pagina"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:167
+msgid "Logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:172
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:174
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:176
+msgid "Width of logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:180
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:182
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:184
+msgid "Height of logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:188
+msgid "Logo usage"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:197
+msgid "Public key"
+msgstr "Publieke sleutel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Settings.php:200
+msgid "Private key"
+msgstr "Privé sleutel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:57
+msgid "More"
+msgstr "Meer"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:58
+#, fuzzy
+msgid "Add link"
+msgstr "Voeg linkpartner toe"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:90
+msgid "ID"
+msgstr "ID"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:91
+msgid "Name"
+msgstr "Naam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:92
+msgid "Inlinks"
+msgstr "Inlinks"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:93
+msgid "Outlinks"
+msgstr "Uitlinkt"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:98
+msgid "Ascending"
+msgstr "Oplopend"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Widget.php:99
+msgid "Descending"
+msgstr "Aflopend"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/Wizard.php:24
+msgid "This is now an ultimate blogroll page, check out the page \"Ultimate blogroll\" details at your right if you want to change this"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/AdminPageWidget.php:8
+msgid "Set this option to <b>ON</b> if you want this to become the Ultimate Blogroll page."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/AdminPageWidget.php:10
+msgid "Warning"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/AdminPageWidget.php:10
+msgid "only one page can be the Ultimate Blogroll page at the same time."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:7
+msgid "The links were successfully imported into Ultimate Blogroll"
+msgstr "De links werden succesvol geïmporteerd in Ultimate Blogroll"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:10
+msgid "The links were successfully exported into Wordpress"
+msgstr "De links werden succesvol geëxporteerd naar Wordpress"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:22
+msgid "Import"
+msgstr "Importeer"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:23
+msgid "We are going to import all the links from Wordpress."
+msgstr "We gaan de links van Wordpress importeren in Ultimate Blogroll"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:25
+msgid "Import links from Wordpress"
+msgstr "Importeer links van Wordpress"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:30
+msgid "Export"
+msgstr "Exporteer"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:31
+#, fuzzy
+msgid "Export all the links from Ultimate Blogroll to Wordpress links."
+msgstr "Voeg de links van Wordpress toe aan Ultimate Blogroll"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/ImportExport.php:33
+msgid "Export links to Wordpress"
+msgstr "Exporteer links naar Wordpress"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:12
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:31
+msgid "Edit linkpartner"
+msgstr "Linkpartner bijwerken"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:16
+msgid "Linkpartner was successfully added."
+msgstr "Linkpartner was succesvol toegevoegd."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:21
+#, fuzzy
+msgid "Linkpartner was successfully updated"
+msgstr "Linkpartner was succesvol bijgewerkt"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:28
+msgid "Click to open/close"
+msgstr "Klik om te openen/sluiten"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:37
+msgid "Website owner's name, so we know who to contact"
+msgstr "Naam van de eigenaar, zodat we weten wie te contacteren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:42
+msgid "Website owner's email, so we know who to contact"
+msgstr "E-mailadres van de eigenaar, zodat we weten wie te contacteren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:49
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:153
+msgid "http://example.com"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:50
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:154
+msgid "website url"
+msgstr "website url"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:54
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:158
+msgid "Put your title here"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:55
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:159
+msgid "website title"
+msgstr "website titel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:59
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:163
+msgid "Put your description here"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:60
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:164
+msgid "website description"
+msgstr "Website omschrijving"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:68
+msgid "Where can we find our link back? (Leave blank if not required)"
+msgstr "Waar vinden we een link terug? (Leeg laten indien niet van toepassing)"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:71
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:12
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:181
+#, fuzzy
+msgid "Website image"
+msgstr "Website naam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:73
+msgid "Add an image/logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:83
+msgid "Update linkpartner"
+msgstr "Linkpartner bijwerken"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Linkpartner.php:83
+msgid "Submit linkpartner"
+msgstr "Linkpartner toevoegen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:2
+msgid "Hi"
+msgstr "Hi"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Mail.php:2
+msgid "Somebody added a new link in"
+msgstr "Iemand heeft een nieuwe link toegevoegd in"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:14
+msgid "Reciprocal link was successfully planned.<br />Due to the possible length of the task we planned it to be executed in the background."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:19
+msgid "You came here by mail, please confirm your actions on the linkpartners as we highlighted them for you in blue."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:24
+msgid "Successfully executed the action."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:31
+msgid "All"
+msgstr "Alles"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:32
+msgid "Approved"
+msgstr "Goedgekeurd"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:33
+msgid "Unapproved"
+msgstr "Afgekeurd"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:38
+msgid "Search links"
+msgstr "Zoeken"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:43
+msgid "No results found."
+msgstr "Geen resultaten gevonden."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:48
+msgid "Bulk actions"
+msgstr "Acties"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:49
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:105
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:50
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:107
+msgid "Unapprove"
+msgstr "Afkeuren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:51
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:110
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:53
+msgid "Apply"
+msgstr "Toepassen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:54
+msgid "Check Reciprocal URL"
+msgstr "Controleer link terug"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:64
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:78
+msgid "Website name"
+msgstr "Website naam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:65
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:79
+msgid "URL"
+msgstr "URL"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:66
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:80
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:40
+msgid "Last 48h in"
+msgstr "Laatste 48u in"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:67
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:81
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:41
+msgid "Last 48h out"
+msgstr "Laatste 48u uit"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:68
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:82
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:42
+msgid "Total in"
+msgstr "Totaal in"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:69
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:83
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:43
+msgid "Total out"
+msgstr "Totaal uit"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:70
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:84
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:44
+msgid "Ratio"
+msgstr "Verhouding"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:71
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:85
+msgid "Link back"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:99
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:102
+msgid "Edit"
+msgstr "Bewerken"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:102
+msgid "Edit this linkpartner"
+msgstr "Linkpartner bijwerken"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:105
+msgid "Approve this linkpartner"
+msgstr "Deze linkpartner goedkeuren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:107
+msgid "Unapprove this linkpartner"
+msgstr "Deze linkpartner afkeuren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:110
+msgid "Delete this linkpartner"
+msgstr "Deze linkpartner verwijderen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:129
+msgid "No"
+msgstr "Nee"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Overview.php:129
+msgid "Yes"
+msgstr "Ja"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:36
+msgid "The following links are from yesterday and today.<br />You can add your website at the bottom of this page."
+msgstr "De volgende links zijn van gisteren en vandaag.<br />Je kan je eigen website onderaan deze pagina toevoegen."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:39
+msgid "Website"
+msgstr "Website"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:105
+msgid "Add your site"
+msgstr "Voeg je website toe"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:106
+msgid "Step 1: First things first: Add our link to your website."
+msgstr "Stap 1: Voeg eerst onze link toe aan je website."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:125
+msgid "Step 2: Submit your linktrade"
+msgstr "Stap 2: Voeg je website toe"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:131
+msgid "Your website was successfully added."
+msgstr "Linkpartner was succesvol toegevoegd."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:131
+msgid "Your website is awaiting approval, it will be visible within a short notice."
+msgstr "Je website wacht op goedkeuring, hij zal binnenkort zichtbaar worden."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:137
+msgid "Your name"
+msgstr "Je naam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:139
+msgid "So we know who to contact"
+msgstr "Zodat we weten wie te contacteren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:142
+msgid "Your email"
+msgstr "Je e-mailadres"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:144
+msgid "Existing email"
+msgstr "Bestaand e-mailadres"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:174
+msgid "Where can we find our link back?"
+msgstr "Waar vinden we een link terug?"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:183
+msgid "Add an image/logo (.png | transparent)"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Page.php:205
+msgid "Submit website"
+msgstr "Website toevoegen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:73
+#, fuzzy
+msgid "Settings were successfully updated."
+msgstr "De wijzingen werden succesvol opgeslagen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:84
+msgid "General settings"
+msgstr "Algemene instellingen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:97
+msgid "Your wordpress website url, just check if it is correct."
+msgstr "Je wordpress link, controleer of die juist is."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:109
+msgid "That's the part between the"
+msgstr "Dat is het deel tussen de"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:121
+msgid "Add an extra description to your link."
+msgstr "Voeg een omschrijving toe aan je link."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:136
+msgid "The address you wish to receive an anouncement if a new linktrade was made."
+msgstr "Het e-mailadres waar je een melding wenst te ontvangen als een nieuwe linkruil werd toegevoegd."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:139
+msgid "Send email"
+msgstr "Stuur e-mail"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:147
+msgid "I would like to receive an email everytime a new linktrade was made."
+msgstr "Ik wil een e-mail ontvangen telkens een nieuwe linkruil werd toegevoegd."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:155
+msgid "Reciprocal link"
+msgstr "Link terug"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:163
+msgid "Do people who request a linktrade need to have a reciprocal link?"
+msgstr "Moeten mensen die een linkruil aanvragen een link terug plaatsen?"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:172
+msgid "Target"
+msgstr "Target"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:180
+msgid "Select your target: _blank = new window; _top = current window; _none = same window;"
+msgstr "Selecteer je doel (target): _blank = nieuw venster; _top = huidig venster; _none = zelfde venster;"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:183
+msgid "Nofollow"
+msgstr "Nofollow"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:191
+msgid "Use nofollow if not on the homepage, so that links on the homepage weight more then other links. <a href=\"http://www.google.com/support/webmasters/bin/answer.py?answer=96569\" target=\"_blank\">It's SEO friendly.</a>"
+msgstr "Gebruik nofollow indien de bezoeker niet op de homepage zit. Op die manier wegen links van de homepage meer, dit is beter voor <a href=\"http://www.google.com/support/webmasters/bin/answer.py?answer=96569\" target=\"_blank\">SEO</a>"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:194
+msgid "Support developer"
+msgstr "Steun de ontwikkelaar"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:202
+msgid "Allows me to place a link in the overview table at a random position."
+msgstr "Sta mij (ontwikkelaar) toe om een link te plaatsen in het overzicht op een willekeurige positie"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:212
+msgid "Select Ultimate blogroll page"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:222
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:79
+#, fuzzy
+msgid "(no title)"
+msgstr "Pagina titel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:222
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:79
+#, fuzzy
+msgid "view page"
+msgstr "Pagina"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:233
+msgid "Widget settings"
+msgstr "Widget instellingen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:239
+msgid "The title of the widget as it will appear in the sidebar"
+msgstr "Titel van de widget (zichtbaar in de sidebar)"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:244
+msgid "How many linkpartners do you want to be visible in the widget?"
+msgstr "Hoeveel linkpartners zijn er zichtbaar in de widget (sidebar)?"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:256
+msgid "Select on which criteria you want to order your linkpartners"
+msgstr "Selecteer op welke parameter je de linkpartners wenst te selecteren"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:266
+msgid "Do you want the links to appear Ascending (1-2-3) or Descending (3-2-1)?"
+msgstr "Hoe wil je dat de links verschijnen? Oplopend (1-2-3) of aflopend (3-2-1)?"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:290
+#, fuzzy
+msgid "Website logo"
+msgstr "Website url"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:294
+msgid "Allow linkpartners to place a logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:297
+msgid "Logo width"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:299
+msgid "Width (pixels) of the logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:302
+msgid "Logo height"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:304
+msgid "Height (pixels) of the logo"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:310
+msgid "Text and image"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:311
+#, fuzzy
+msgid "Text"
+msgstr "Target"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:312
+#, fuzzy
+msgid "Image"
+msgstr "Pagina"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:315
+msgid "How do you want to use the logo?"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:324
+msgid "Recaptcha settings"
+msgstr "Recaptcha instellingen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:328
+msgid "Fight spam"
+msgstr "Vecht tegen spam"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:336
+msgid "First you need to configure <a href=\"#recaptcha\">Recaptcha</a> in order to function."
+msgstr "Je moet eerst <a href=\"#recaptcha\">Recaptcha</a> instellen voor dat dit kan werken."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:341
+msgid "The public key you received from"
+msgstr "De publieke sleutel die je ontvangen hebt van"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Settings.php:346
+msgid "The private key you received from"
+msgstr "De privé sleutel die je ontvangen hebt van"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:44
+msgid "Success"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:44
+#, fuzzy
+msgid "was successfully installed."
+msgstr "De wijzingen werden succesvol opgeslagen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:53
+#, fuzzy
+msgid "a page"
+msgstr "Pagina"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:56
+msgid "Create a new page which will be your public Ultimate Blogroll page where visitors can register their links."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:60
+msgid "Page title"
+msgstr "Pagina titel"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:70
+msgid "Select the page you want to appear as the Ultimate Blogroll page (you can only choose one)"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:92
+#, fuzzy
+msgid "Step 2: Set up the widget"
+msgstr "Widget instellen"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:94
+msgid "Select the widgetbar(s) you want Ultimate Blogroll to appear in (you can select multiple)"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:114
+#, fuzzy
+msgid "Step 3: Import links from Wordpress"
+msgstr "Importeer links van Wordpress"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:116
+msgid "Do you want to import your links from Wordpress? Ultimate Blogroll handles everything related to links, get started by importing all your links."
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/Wizard.php:120
+msgid "Let's go"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/notices/noPageWasSet.php:3
+msgid "No Ultimate Blogroll page was set, use the <a href=\""
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/notices/SocketError.php:3
+msgid "Could not check for reciprocal website. Check if ports are open."
+msgstr "Kon socket niet openen, kon niet controleren op websites die teruglinken. Controleer of de poorten open zijn."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/gui/notices/TablesDoNotExist.php:3
+msgid "Could not find the required MySQL tables"
+msgstr "Kon de benodigde MySQL tabellen niet vinden"
+
+#~ msgid "Select sidebar"
+#~ msgstr "Kies Sidebar"
+
+#~ msgid "Add new"
+#~ msgstr "Voeg nieuwe toe"
+
+#~ msgid "Search results for"
+#~ msgstr "Zoekresultaten voor"
+
+#~ msgid "Info"
+#~ msgstr "Info"
+
+#~ msgid "The tag"
+#~ msgstr "De tag"
+
+#~ msgid "has not been set on any"
+#~ msgstr "is niet gevonden op een"
+
+#~ msgid "Use the <a href=\"%s\">wizard</a> if you are unsure what this means."
+#~ msgstr ""
+#~ "Gebruik de <a href=\"%s\">wizard</a> indien je niet zeker weet wat dit "
+#~ "betekent."
+
+#~ msgid "without"
+#~ msgstr "zonder"
+
+#~ msgid ""
+#~ "I hope you enjoy my plugin. It took me a lot of hours to make. A lot of "
+#~ "coffee and red bull was spilled during the creation of this plugin. If "
+#~ "you like it, you could help me by giving me a fresh coup of coffee.<br /"
+#~ "><br />Enjoy"
+#~ msgstr ""
+#~ "Ik hoop dat je mijn plugin goed vindt. Het heeft mij een hoop uren gekost "
+#~ "om te maken. Een heleboel koffie en red bull ging verloren in het maken "
+#~ "van deze plugin. Als je hem goed vindt, kan je me helpen door me verse "
+#~ "kop koffie te geven. <br /><br /> Veel plezier met"
+
+#~ msgid "My name is"
+#~ msgstr "Mijn naam is"
+
+#~ msgid ""
+#~ "and I live in Belgium. Yep the country with the great beer and chocolate, "
+#~ "but they are expensive. You could help me out with that if you like my "
+#~ "plugin. <br /><br />You can contact me by"
+#~ msgstr ""
+#~ "en ik leef in België. Ja het land met het beste bier en chocolade, maar "
+#~ "ze zijn duur. Je zou me kunnen helpen als je deze plugin goed vindt. <br /"
+#~ "><br />Je kunt contact met mij opnemen via"
+
+#~ msgid ""
+#~ "I have an option build in where you can support me, by letting me add "
+#~ msgstr ""
+#~ "Ik heb een optie ingebouwd waarmee je mij kunt steunen, door mij een link "
+#~ "te laten toevoegen"
+
+#~ msgid "into the overview page."
+#~ msgstr "in de overzichtspagina."
+
+#~ msgid "Yes, mail me"
+#~ msgstr "Ja, mail mij"
+
+#~ msgid "Yes, required"
+#~ msgstr "Ja, verplicht"
+
+#~ msgid "Update settings"
+#~ msgstr "Update instellingen"
+
+#~ msgid "Choose the page with the"
+#~ msgstr "Selecteer de pagina met de"
+
+#~ msgid "tag on."
+#~ msgstr "tag op."
+
+#~ msgid "Plugin was successfully configured"
+#~ msgstr "Plugin was succesvol ingesteld"
+
+#~ msgid "Create Page"
+#~ msgstr "Maak pagina"
+
+#~ msgid ""
+#~ "In order to function and for your linkpartners to add their website, we "
+#~ "need to set-up a public page. Please give this page a name.<br /"
+#~ "><b>WARNING:</b> If you give in a page who actually exists it will be "
+#~ "replaced by the Ultimate Blogroll page, but you can recall it with the "
+#~ "build-in revision function in wordpress."
+#~ msgstr ""
+#~ "Maak een pagina zodat linkpartners hun website kunnen toevoegen. Geef een "
+#~ "deze pagina een naam. <br /><b>WAARSCHUWING</b> Als je een pagina op "
+#~ "geeft die bestaat dan wordt deze overschreven door de Ultimate Blogroll "
+#~ "pagina, maar je kunt de voorgaande pagina terughalen door gebruik te "
+#~ "maken van de ingebouwde revisie functie in Wordpress."
+
+#~ msgid "We detected that you had"
+#~ msgstr "We detecteerde dat je"
+
+#~ msgid ""
+#~ "sidebars. Please choose in which one Ultimate Blogroll will appear. If "
+#~ "you are not sure what this means, just let it on "
+#~ msgstr ""
+#~ "zijbalken. Kies in welke zijbalk je de widget wil laten verschijnen. "
+#~ "Indien je niet zeker weet wat dit betekent, laat het dan op"
+
+#~ msgid "You can always alter it in the widget section of the admin panel."
+#~ msgstr ""
+#~ "Je kan het later nog altijd wijzigen in het admin paneel onder de sectie "
+#~ "widgets."
+
+#~ msgid "optional"
+#~ msgstr "optioneel"
+
+#~ msgid ""
+#~ "We use an external party for the <a target=\"_new\" href=\"http://en."
+#~ "wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href="
+#~ "\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). If you "
+#~ "want to use the anti-spam (captcha) function, you need to register some "
+#~ "keys at <a target=\"_new\" href=\"https://www.google.com/recaptcha/admin/"
+#~ "create\">Recaptcha</a> after that you need to fill them in below here. "
+#~ "<b>Warning</b> The anti-spam (recaptcha) is by default inactive, you need "
+#~ "to activate it in the settings section."
+#~ msgstr ""
+#~ "We gebruiken een externe partij voor de <a target=\"_new\" href=\"http://"
+#~ "en.wikipedia.org/wiki/CAPTCHA\">captcha</a> (<a target=\"_new\" href="
+#~ "\"https://www.google.com/recaptcha/admin/create\">Recaptcha</a>). Indien "
+#~ "je gebruik wenst te maken van de anti-spam (captcha) functie, dan moet je "
+#~ "sleutels registeren bij <a target=\"_new\" href=\"https://www.google.com/"
+#~ "recaptcha/admin/create\">Recaptcha</a> nadien dien je deze hieronder in "
+#~ "te voeren. <b>WAARSCHUWING</b> De anti-spam (recaptcha) is standaard niet "
+#~ "actief, je moet deze nog activeren bij de instellingen van Ultimate "
+#~ "Blogroll."
+
+#~ msgid "Submit"
+#~ msgstr "Toevoegen"
+
+#~ msgid "Finish"
+#~ msgstr "Voltooien"
+
+#~ msgid ""
+#~ "Now we will set up the widget, you will need to choose a sidebar where "
+#~ "you want the widget to be placed in."
+#~ msgstr ""
+#~ "We gaan de widget instellen, kies nu de zijbalk waarin je de widget wil "
+#~ "laten verschijnen."
+
+#~ msgid "Sidebar"
+#~ msgstr "Sidebar"
+
+#~ msgid "Add page"
+#~ msgstr "Pagina toevoegen"
+
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+
+#~ msgid "Do you want to"
+#~ msgstr "Wilt u"
+
+#~ msgid "View details"
+#~ msgstr "Bekijk details"
