@@ -1,4 +1,5 @@
 <?php
+/*
 http://www.zdnet.be/news/140006/israel-flame-malware-komt-niet-van-ons//*
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
