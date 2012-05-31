@@ -31,7 +31,7 @@ Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
 Hungarian translation: Nora Erdelyi (http://locoling-club.com)<br />
 Russian translation: Nickolay Avdeev
 Bahasa Indonesia: Erwin Saputra (http://wpmusi.tk)
-Italian: Marco (www.aggiungimi.it)
+Italian: Marco (http://www.aggiungimi.it)
 
 == Installation ==
 Ultimate Blogroll has a wizard which will guide you through the installation process.
