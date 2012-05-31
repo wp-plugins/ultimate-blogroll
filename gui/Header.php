@@ -1,4 +1,3 @@
-<?php if(is_admin()) { ?><link rel="stylesheet" href="<?php echo UB_ASSETS_URL; ?>style.css" type="text/css"><?php } ?>
 <?php
 function getErrorField($field) {
     //var_dump("getErrorField");

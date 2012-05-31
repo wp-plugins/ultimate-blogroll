@@ -1,9 +1,9 @@
 <?php require_once("Header.php"); ?>
-<link rel="stylesheet" href="../wp-content/plugins/ultimate-blogroll/assets/apprise.min.css" type="text/css" media="screen" />
-<script src="../wp-content/plugins/ultimate-blogroll/assets/tablesorter.js" type="text/javascript"></script>
-<script src="../wp-content/plugins/ultimate-blogroll/assets/tablesorter_filter.js" type="text/javascript"></script>
-<script src="../wp-content/plugins/ultimate-blogroll/assets/apprise-1.5.full.js" type="text/javascript"></script>
-<script src="../wp-content/plugins/ultimate-blogroll/assets/linkpartner.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo UB_ASSETS_URL; ?>apprise.min.css" type="text/css" media="screen" />
+<script src="<?php echo UB_ASSETS_URL; ?>/tablesorter.js" type="text/javascript"></script>
+<script src="<?php echo UB_ASSETS_URL; ?>tablesorter_filter.js" type="text/javascript"></script>
+<script src="<?php echo UB_ASSETS_URL; ?>apprise-1.5.full.js" type="text/javascript"></script>
+<script src="<?php echo UB_ASSETS_URL; ?>linkpartner.js" type="text/javascript"></script>
 
 <div class="wrap">
     <div class="icon32" id="icon-themes"></div>

@@ -55,7 +55,7 @@
             if(@$gui["support"] == "yes" && ++$tel == $rand) {
 
                 echo "<tr>";
-                echo "<td><a href=\"http://www.cadeauwebwinkel.be\" title=\"Cadeau (kado) of origineel geschenk voor verjaardag, Valentijn en Moederdag\" ".$gui["table_links_target"].">Cadeauwebwinkel.be</a></td>";
+                echo "<td><a href=\"http://www.cadeauwebwinkel.be\" title=\"Cadeau (kado) of origineel geschenk voor verjaardag, Valentijn en Moederdag\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">Cadeauwebwinkel.be</a></td>";
                 echo "<td>n/a</td>";
                 echo "<td>n/a</td>";
                 echo "<td>n/a</td>";
@@ -177,8 +177,7 @@ if(isset($gui["success"])) {
         <td><?php echo __("Where can we find our link back?", "ultimate-blogroll") ?></td>
     </tr>
     <?php
-    //if(PersistentieMapper::Instance()->GetConfig("logo") == "yes"){
-    if(1 == 1) {
+    if($gui["logo"] == "yes") {
     ?>
     <tr <?php echo getErrorField("website_image"); ?>>
         <td class="column1"><?php echo __("Website image", "ultimate-blogroll") ?>:</td>
