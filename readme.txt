@@ -32,7 +32,7 @@ Hungarian translation: Nora Erdelyi (http://locoling-club.com)<br />
 Russian translation: Nickolay Avdeev
 
 == Installation ==
-There is a wizard available which will guide you thought the installation process.
+Ultimate Blogroll has a wizard which will guide you through the installation process.
 
 == Frequently Asked Questions ==
 
