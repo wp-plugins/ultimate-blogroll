@@ -82,6 +82,10 @@ if (is_admin()) {
         }
     }
 }
+
+function ub_admin_style_load() {
+	
+}
 //here we initiate the Ultimate Blogroll page. This is the page where users can register their website
 add_filter('the_content', array(Controller::getInstance(Controller::Page), 'createPage'));
 //initiate the widgets
