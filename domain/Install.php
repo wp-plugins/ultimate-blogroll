@@ -6,7 +6,7 @@
 * Time: 15:16
 * To change this template use File | Settings | File Templates.
 */
-class Install{
+class Install {
     /**
      * This is related to the admin_notices in the ultimate-blogroll.php file.
      * It checks if everything is ok and otherwise informs the blog owner

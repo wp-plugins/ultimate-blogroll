@@ -112,63 +112,12 @@ class Widget {
         echo "</select></p>";
         echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
     }
-
-    /**
-     * @param $limit
-     * @return int
-     */
-    private function GetLimit($limit) {
-        return (int)$limit;
-    }
-
-    /**
-     * @param $order
-     * @return string
-     */
-    private function GetOrder($order) {
-        switch($order) {
-            case "asc":
-                $result = "asc";
-                break;
-            case "desc":
-                $result = "desc";
-                break;
-            default:
-                $result = "asc";
-                break;
-        }
-        return $result;
-    }
-
-    /**
-     * @param $orderby
-     * @return string
-     */
-    private function GetOrderBy($orderby) {
-        switch($orderby) {
-            case "id":
-                $result = "website_id";
-                break;
-            case "name":
-                $result = "website_name";
-                break;
-            case "inlinks":
-                $result = "website_total_inlink";
-                break;
-            case "outlinks":
-                $result = "website_total_outlink";
-                break;
-            default:
-                $result = "website_name";
-                break;
-        }
-        return $result;
-    }
-
+    
     /**
      * @param $target
      * @return string
      */
+    /*
     private function GetTarget($target) {
         switch($target) {
             case "_blank":
@@ -185,15 +134,17 @@ class Widget {
                 break;
         }
         return " target=\"".$result."\"";
-    }
+    }*/
 
     /**
      * @param $follow
      * @return string
      */
+    /*
     private function GetFollow($follow){
         if(!is_home() && $follow == "yes") {
             return " rel=\"nofollow\"";
         }
     }
+    */
 }

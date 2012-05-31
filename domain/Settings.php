@@ -26,17 +26,7 @@ class Settings {
         }*/
     }
 
-    /**
-     * Show a widget when creating/editing a page
-     */
-    public function pagesWidget() {
-        if(isset($_GET["post"]) and $_GET["post"] == Mapper::getInstance(Mapper::Settings)->getConfig("pages")) {
-            $ub_page = "checked";
-        } else {
-            $ub_page = "";
-        }
-        require_once(UB_PLUGIN_DIR."gui/AdminPageWidget.php");
-    }
+
 
     /**
      * Process the settings

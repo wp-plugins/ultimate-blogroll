@@ -17,12 +17,13 @@ class Controller {
 
     const Linkpartner   = "Linkpartner";
     const Settings      = "Settings";
-    //const Overview      = "Overview";
+    const AdminPageWidget = "AdminPageWidget";
     const Install       = "Install";
     const ImportExport  = "ImportExport";
     const Page          = "Page";
     const Widget        = "Widget";
     const Wizard        = "Wizard";
+    const Main          = "Main";
 
     /**
      * Singleton Factory
@@ -32,6 +33,10 @@ class Controller {
     public static function getInstance($class) {
         if(!isset(Controller::$instance[$class])) {
             switch($class) {
+                case Controller::Main:
+                    require_once(UB_PLUGIN_DIR."domain/Main.php");
+                    Controller::$instance[$class] = new Main();
+                    break;
                 case Controller::Linkpartner:
                     require_once(UB_PLUGIN_DIR."domain/Linkpartner.php");
                     Controller::$instance[$class] = new Linkpartner();
@@ -40,10 +45,10 @@ class Controller {
                     require_once(UB_PLUGIN_DIR."domain/Settings.php");
                     Controller::$instance[$class] = new Settings();
                     break;
-                /*case Controller::Overview:
-                    require_once(UB_PLUGIN_DIR."domain/Overview.php");
-                    Controller::$instance[$class] = new Overview();
-                    break;*/
+                case Controller::AdminPageWidget:
+                    require_once(UB_PLUGIN_DIR."domain/AdminPageWidget.php");
+                    Controller::$instance[$class] = new AdminPageWidget();
+                    break;
                 case Controller::Install:
                     require_once(UB_PLUGIN_DIR."domain/Install.php");
                     Controller::$instance[$class] = new Install();
