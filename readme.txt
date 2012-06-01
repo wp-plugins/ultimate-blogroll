@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
 Tested up to: 3.3.2
-Stable tag: 2.1.3
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
