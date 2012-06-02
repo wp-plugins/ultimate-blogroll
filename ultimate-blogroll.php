@@ -160,5 +160,4 @@ function admin_menu(){
     add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
     add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(Controller::getInstance(Controller::Settings), "pagesWidget"), "page", "side", "high");
 }
-
 ?>
