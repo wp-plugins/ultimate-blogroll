@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. 
-Version: 2.2.3
+Version: 2.2.4
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
@@ -97,6 +97,13 @@ add_action('wp_ajax_ub_ajax_action_callback', array(Controller::getInstance(Cont
 Controller::getInstance(Controller::Linkpartner)->checkInlinks();
 add_action('ub_hourly_event', array(Controller::getInstance(Controller::Linkpartner), 'ub_hourly_task'));
 add_action('wp_head', array(Controller::getInstance(Controller::Page), 'ub_javascript_init'));
+add_action( 'admin_init', 'ub_admin_init' );
+function ub_admin_init() {
+   wp_register_style( 'ub_admin_style',  UB_ASSETS_URL."style.css");
+}
+function ub_admin_style_load() {
+    wp_enqueue_style( 'ub_admin_style' );
+}
 /**
  * Admin_menu to create a wordpress admin menu
  * for more information see: http://codex.wordpress.org/Administration_Menus
@@ -112,7 +119,7 @@ function admin_menu(){
         "../wp-content/plugins/ultimate-blogroll/assets/icon.png" //the favicon for the menu
     );
 
-    add_submenu_page(
+    $page = add_submenu_page(
         "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
         "Ultimate Blogroll ".__("Overview", "ultimate-blogroll"), //page title
         __("Manage linkpartners", "ultimate-blogroll"), //menu title
@@ -120,8 +127,9 @@ function admin_menu(){
         "ultimate-blogroll-overview", //slug, in the url
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
+    add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
 
-    add_submenu_page(
+    $page = add_submenu_page(
         "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
         __("Add linkpartner", "ultimate-blogroll"), //page title
         __("Add linkpartner", "ultimate-blogroll"), //menu title
@@ -129,8 +137,9 @@ function admin_menu(){
         "ultimate-blogroll-add-linkpartner", //slug, in the url
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
+    add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
 
-    add_submenu_page(
+    $page = add_submenu_page(
         "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
         __("Import/Export", "ultimate-blogroll"), //page title
         __("Import/Export", "ultimate-blogroll"), //menu title
@@ -138,8 +147,9 @@ function admin_menu(){
         "ultimate-blogroll-import-export", //slug, in the url
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
+    add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
 
-    add_submenu_page(
+    $page = add_submenu_page(
         "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
         __("Settings", "ultimate-blogroll"), //page title
         __("Settings", "ultimate-blogroll"), //menu title
@@ -147,6 +157,8 @@ function admin_menu(){
         "ultimate-blogroll-settings", //slug, in the url
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
+    add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
     add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(Controller::getInstance(Controller::Settings), "pagesWidget"), "page", "side", "high");
 }
+
 ?>
