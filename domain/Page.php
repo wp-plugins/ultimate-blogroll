@@ -7,6 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 class Page extends Main{
+    public function __construct() {
+        parent::__construct();
+    }
     /**
      * initiate javascript loading
      */
@@ -140,7 +143,6 @@ class Page extends Main{
             $gui["logo"]                = Mapper::getInstance(Mapper::Settings)->getConfig("logo");
             $gui["logo_usage"]          = Mapper::getInstance(Mapper::Settings)->getConfig("logo_usage");
             $gui["table_links"]         = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartnersPage(
-                                            $this->GetLimit(Mapper::getInstance(Mapper::Settings)->getConfig("limit_linkpartners")),
                                             $this->GetOrder(Mapper::getInstance(Mapper::Settings)->getConfig("ascending")),
                                             $this->GetOrderBy(Mapper::getInstance(Mapper::Settings)->getConfig("order_by"))
                                           );
