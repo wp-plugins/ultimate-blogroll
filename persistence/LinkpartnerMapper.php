@@ -51,6 +51,21 @@ class LinkpartnerMapper {
         }
         return $wpdb->get_results($query, ARRAY_A);
     }
+    
+    /**
+     * Get the linkpartners for the page
+     * @param $amount, how many linkpartners do you want
+     * @param $order, asc or desc
+     * @param $orderby, order by a column
+     * @return array with the requested linkpartners
+     */
+    public function getLinkpartnersPage($order, $orderby) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "ubsites";
+        $sql = $wpdb->prepare("SELECT * from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order);
+        $result = $wpdb->get_results($sql, ARRAY_A);
+        return $result;
+    }
 
     /**
      * Get the linkpartners for the widget

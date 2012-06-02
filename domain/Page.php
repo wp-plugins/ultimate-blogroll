@@ -6,40 +6,7 @@
  * Time: 22:22
  * To change this template use File | Settings | File Templates.
  */
-class Page {
-    /**
-     * @param $target
-     * @return string
-     */
-    private function GetTarget($target) {
-        switch($target) {
-            case "_blank":
-                $result = "_blank";
-                break;
-            case "_top":
-                $result = "_top";
-                break;
-            case "_none":
-                $result = "_none";
-                break;
-            default:
-                $result = "_blank";
-                break;
-        }
-
-        return " target=\"".$result."\"";
-    }
-
-    /**
-     * @param $follow
-     * @return string
-     */
-    private function GetFollow($follow){
-        if(!is_home() && $follow == "yes") {
-            return " rel=\"nofollow\"";
-        }
-    }
-
+class Page extends Main {
     /**
      * initiate javascript loading
      */
@@ -48,14 +15,12 @@ class Page {
         $output = '<script type="text/javascript" >
         jQuery(document).ready(function($) {
             jQuery(".Widget_widgetCreator a").click(function () {
-                event.preventDefault();
                 var data = {
                     action: "ub_ajax_action_callback",
                     linkpartner: $(this).attr("href")
                 };
                 var link = $(this).attr("href");
                 jQuery.post("'.get_bloginfo("wpurl").'/wp-admin/admin-ajax.php", data, function(response) {
-                    window.location = link;
                 });
             });
         });
@@ -175,7 +140,10 @@ class Page {
             $gui["nofollow"]            = Mapper::getInstance(Mapper::Settings)->getConfig("nofollow");
             $gui["logo"]                = Mapper::getInstance(Mapper::Settings)->getConfig("logo");
             $gui["logo_usage"]          = Mapper::getInstance(Mapper::Settings)->getConfig("logo_usage");
-            $gui["table_links"]         = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartners("approved");
+            $gui["table_links"]         = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartnersPage(
+                                            $this->GetOrder(Mapper::getInstance(Mapper::Settings)->getConfig("ascending")),
+                                            $this->GetOrderBy(Mapper::getInstance(Mapper::Settings)->getConfig("order_by"))
+                                            );
             $gui["url"]                 = Mapper::getInstance(Mapper::Settings)->getConfig("website_url");
             $gui["title"]               = Mapper::getInstance(Mapper::Settings)->getConfig("website_title");
             $gui["description"]         = Mapper::getInstance(Mapper::Settings)->getConfig("website_description");

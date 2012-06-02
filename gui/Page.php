@@ -178,7 +178,7 @@ if(isset($gui["success"])) {
     </tr>
     <?php
     //if(PersistentieMapper::Instance()->GetConfig("logo") == "yes"){
-    if(1 == 1) {
+    if(@$gui["logo"] == "yes") {
     ?>
     <tr <?php echo getErrorField("website_image"); ?>>
         <td class="column1"><?php echo __("Website image", "ultimate-blogroll") ?>:</td>
