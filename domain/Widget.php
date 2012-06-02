@@ -7,7 +7,11 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class Widget {
+class Widget extends Main {
+    public function __construct() {
+        parent::__construct();
+    }
+    
     /**
      * Initiate and register the widgets
      */
@@ -112,39 +116,4 @@ class Widget {
         echo "</select></p>";
         echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
     }
-    
-    /**
-     * @param $target
-     * @return string
-     */
-    /*
-    private function GetTarget($target) {
-        switch($target) {
-            case "_blank":
-                $result = "_blank";
-                break;
-            case "_top":
-                $result = "_top";
-                break;
-            case "_none":
-                $result = "_none";
-                break;
-            default:
-                $result = "_blank";
-                break;
-        }
-        return " target=\"".$result."\"";
-    }*/
-
-    /**
-     * @param $follow
-     * @return string
-     */
-    /*
-    private function GetFollow($follow){
-        if(!is_home() && $follow == "yes") {
-            return " rel=\"nofollow\"";
-        }
-    }
-    */
 }

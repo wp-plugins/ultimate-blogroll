@@ -6,24 +6,28 @@
  * Time: 22:22
  * To change this template use File | Settings | File Templates.
  */
-class Page extends Main{
+class Page extends Main {
+    public function __construct() {
+        parent::__construct();
+    }
     /**
      * initiate javascript loading
      */
     public function ub_javascript_init() {
         wp_enqueue_script('jquery');
         $output = '<script type="text/javascript" >
-    jQuery(document).ready(function($) {
-        jQuery(".Widget_widgetCreator a").click(function () {
-            var data = {
-                action: "ub_ajax_action_callback",
-                linkpartner: $(this).attr("href")
-            };
-            jQuery.post("'.get_bloginfo("wpurl").'/wp-admin/admin-ajax.php", data, function(response) {
+        jQuery(document).ready(function($) {
+            jQuery(".Widget_widgetCreator a").click(function () {
+                var data = {
+                    action: "ub_ajax_action_callback",
+                    linkpartner: $(this).attr("href")
+                };
+                var link = $(this).attr("href");
+                jQuery.post("'.get_bloginfo("wpurl").'/wp-admin/admin-ajax.php", data, function(response) {
+                });
             });
         });
-    });
-</script>';
+        </script>';
         echo $output;
     }
 
@@ -140,10 +144,9 @@ class Page extends Main{
             $gui["logo"]                = Mapper::getInstance(Mapper::Settings)->getConfig("logo");
             $gui["logo_usage"]          = Mapper::getInstance(Mapper::Settings)->getConfig("logo_usage");
             $gui["table_links"]         = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartnersPage(
-                                            $this->GetLimit(Mapper::getInstance(Mapper::Settings)->getConfig("limit_linkpartners")),
                                             $this->GetOrder(Mapper::getInstance(Mapper::Settings)->getConfig("ascending")),
                                             $this->GetOrderBy(Mapper::getInstance(Mapper::Settings)->getConfig("order_by"))
-                                          );
+                                            );
             $gui["url"]                 = Mapper::getInstance(Mapper::Settings)->getConfig("website_url");
             $gui["title"]               = Mapper::getInstance(Mapper::Settings)->getConfig("website_title");
             $gui["description"]         = Mapper::getInstance(Mapper::Settings)->getConfig("website_description");
