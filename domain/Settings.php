@@ -9,6 +9,18 @@
  
 class Settings {
     /**
+     * Show a widget when creating/editing a page
+     */
+    public function pagesWidget() {
+        if(isset($_GET["post"]) and $_GET["post"] == Mapper::getInstance(Mapper::Settings)->getConfig("pages")) {
+            $ub_page = "checked";
+        } else {
+            $ub_page = "";
+        }
+        require_once(UB_PLUGIN_DIR."gui/AdminPageWidget.php");
+    }
+    
+    /**
      * @param $post_id, when you save/edit a page this function is called
      * We save every page that has the Ultimate Blogroll checkbox enabled
      */
