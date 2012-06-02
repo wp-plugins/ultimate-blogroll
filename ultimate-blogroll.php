@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. 
-Version: 2.1.3
+Version: 2.2
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
@@ -30,13 +30,12 @@ Author URI: http://www.gheerardyn.be
 //error_reporting(-1);
 define("UB_PLUGIN_DIR", ABSPATH."wp-content".DIRECTORY_SEPARATOR."plugins".DIRECTORY_SEPARATOR."ultimate-blogroll".DIRECTORY_SEPARATOR);
 define("UB_PUBLIC_URL", "http://".$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?");
-define("UB_ASSETS_URL", plugins_url('gui/assets/', __FILE__));
+define("UB_ASSETS_URL", plugins_url('assets/', __FILE__));
 define("UB_ADMIN_URL", "http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?");
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/gui/languages/' );
 require_once("domain/Controller.php");
 require_once("persistence/Mapper.php");
 require_once("domain/Main.php");
-
 /**
  * Checks if we are in the admin panel
  */
@@ -48,8 +47,7 @@ if (is_admin()) {
     //check if the plugin is working properly, if not what user interaction is required to solve the issue?
     add_action("admin_notices", array(Controller::getInstance(Controller::Install), "admin_notices"));
     //show Ultimate Blogroll in the admin menu (wordpress admin)
-    add_action("admin_menu", array(Controller::getInstance(Controller::Main), 'adminMenu'));
-
+    add_action("admin_menu", "admin_menu");
     //check if a page is an Ultimate Blogroll page
     add_action("publish_page", array(Controller::getInstance(Controller::Settings), "pages"));
     add_action("edit_post", array(Controller::getInstance(Controller::Settings), "pages"));
@@ -83,13 +81,10 @@ if (is_admin()) {
     }
 }
 
-function ub_admin_style_load() {
-	
-}
 //here we initiate the Ultimate Blogroll page. This is the page where users can register their website
 add_filter('the_content', array(Controller::getInstance(Controller::Page), 'createPage'));
 //initiate the widgets
-add_action('plugins_loaded', array(Controller::getInstance(Controller::Widget), "widgetInit"));
+add_action("plugins_loaded", array(Controller::getInstance(Controller::Widget), "widgetInit"));
 //register the wordpress cronjob callback function to check backlinks of the linkpartners
 add_action('check_linkpartners', array(Controller::getInstance(Controller::Linkpartner), "checkLinkpartners"));
 //make sure jquery is loaded, in some rare cases and basic blogs jquery is not automatically loaded
@@ -102,4 +97,56 @@ add_action('wp_ajax_ub_ajax_action_callback', array(Controller::getInstance(Cont
 Controller::getInstance(Controller::Linkpartner)->checkInlinks();
 add_action('ub_hourly_event', array(Controller::getInstance(Controller::Linkpartner), 'ub_hourly_task'));
 add_action('wp_head', array(Controller::getInstance(Controller::Page), 'ub_javascript_init'));
+/**
+ * Admin_menu to create a wordpress admin menu
+ * for more information see: http://codex.wordpress.org/Administration_Menus
+ * @return void
+ */
+function admin_menu(){
+    add_menu_page(
+        "Ultimate Blogroll", //page title
+        "Ultim. Blogroll", //menu title, apearance in the menu
+        "manage_options", //user level, needed before it becomes visible
+        "ultimate-blogroll-overview", //slug, in the url
+        "ultimate_blogroll", //the function linked to the slug, without this function your slug is useless
+        "../wp-content/plugins/ultimate-blogroll/assets/icon.png" //the favicon for the menu
+    );
+
+    add_submenu_page(
+        "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
+        "Ultimate Blogroll ".__("Overview", "ultimate-blogroll"), //page title
+        __("Manage linkpartners", "ultimate-blogroll"), //menu title
+        "manage_options", //user level, needed before it becomes visible
+        "ultimate-blogroll-overview", //slug, in the url
+        "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
+    );
+
+    add_submenu_page(
+        "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
+        __("Add linkpartner", "ultimate-blogroll"), //page title
+        __("Add linkpartner", "ultimate-blogroll"), //menu title
+        "manage_options", //user level, needed before it becomes visible
+        "ultimate-blogroll-add-linkpartner", //slug, in the url
+        "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
+    );
+
+    add_submenu_page(
+        "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
+        __("Import/Export", "ultimate-blogroll"), //page title
+        __("Import/Export", "ultimate-blogroll"), //menu title
+        "manage_options", //user level, needed before it becomes visible
+        "ultimate-blogroll-import-export", //slug, in the url
+        "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
+    );
+
+    add_submenu_page(
+        "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
+        __("Settings", "ultimate-blogroll"), //page title
+        __("Settings", "ultimate-blogroll"), //menu title
+        "manage_options", //user level, needed before it becomes visible
+        "ultimate-blogroll-settings", //slug, in the url
+        "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
+    );
+    add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(Controller::getInstance(Controller::Settings), "pagesWidget"), "page", "side", "high");
+}
 ?>

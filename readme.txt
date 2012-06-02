@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
 Tested up to: 3.3.2
-Stable tag: 2.0
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,11 +30,9 @@ Credits:<br />
 Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
 Hungarian translation: Nora Erdelyi (http://locoling-club.com)<br />
 Russian translation: Nickolay Avdeev
-Bahasa Indonesia: Erwin Saputra (http://wpmusi.tk)
-Italian: Marco (http://www.aggiungimi.it)
 
 == Installation ==
-Ultimate Blogroll has a wizard which will guide you through the installation process.
+There is a wizard available which will guide you thought the installation process.
 
 == Frequently Asked Questions ==
 
@@ -55,6 +53,10 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+
+= 2.2 =
+* Fixed problems since 2.1 caused due to SVN not playing nice with GIT
+
 = 2.1 =
 * Added Italian and Bahasa Indonesia
 * Fixed The function "Target: _blank" does not open a new window.
