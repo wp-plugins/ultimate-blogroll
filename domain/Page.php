@@ -7,6 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 class Page extends Main {
+    public function __construct() {
+        parent::__construct();
+    }
     /**
      * initiate javascript loading
      */

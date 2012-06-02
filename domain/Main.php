@@ -8,6 +8,7 @@
  */
  
 class Main {
+    public function __construct() {}
     /**
      * @param $limit
      * @return int
