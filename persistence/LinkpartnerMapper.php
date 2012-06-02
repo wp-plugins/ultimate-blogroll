@@ -54,7 +54,6 @@ class LinkpartnerMapper {
     
     /**
      * Get the linkpartners for the page
-     * @param $amount, how many linkpartners do you want
      * @param $order, asc or desc
      * @param $orderby, order by a column
      * @return array with the requested linkpartners
