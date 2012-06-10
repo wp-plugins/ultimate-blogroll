@@ -30,7 +30,7 @@ Credits:<br />
 Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
 Hungarian translation: Nora Erdelyi (http://locoling-club.com)<br />
 Russian translation: Nickolay Avdeev<br />
-Norwegian translation: Rune Kristoffersen
+Norwegian translation: Rune Kristoffersen (http://www.sportsmarkedet.com )
 
 == Installation ==
 There is a wizard available which will guide you thought the installation process.
