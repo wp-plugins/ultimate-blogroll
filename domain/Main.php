@@ -9,6 +9,22 @@
 class Main
 {
     public function __construct() {}
+    
+    /**
+     * Send a notification mail that a new linkpartner has been added
+     * @param $linkpartner
+     * @param $id
+     */
+    public function sendMail($linkpartner, $id) {
+        ob_start();
+        require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Mail.php");
+        $body = ob_get_clean();
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
+        $subject = __("New link submitted at", "ultimate-blogroll")." ".get_bloginfo('siteurl').''."\r\n";
+        @mail(Mapper::getInstance(Mapper::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
+    }
     /**
     * @param $order
     * @return string

@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. 
-Version: 2.2.5
+Version: 2.3
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
@@ -33,9 +33,9 @@ define("UB_PUBLIC_URL", "http://".$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"
 define("UB_ASSETS_URL", plugins_url('assets/', __FILE__));
 define("UB_ADMIN_URL", "http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?");
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/gui/languages/' );
-require_once("domain/Controller.php");
-require_once("persistence/Mapper.php");
-require_once("domain/Main.php");
+require_once("domain".DIRECTORY_SEPARATOR."Controller.php");
+require_once("persistence".DIRECTORY_SEPARATOR."Mapper.php");
+require_once("domain".DIRECTORY_SEPARATOR."Main.php");
 /**
  * Checks if we are in the admin panel
  */

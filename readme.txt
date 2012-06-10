@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
 Requires at least: 3.0.1
 Tested up to: 3.3.2
-Stable tag: 2.2.5
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,12 +24,13 @@ Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade.
     * Handy Wizard/Installation process to get you started
     * ...
 
-Now available in: English, Dutch, Spanish, Hungarian, Russian
+Now available in: English, Dutch, Spanish, Hungarian, Russian, Norwegian
 
 Credits:<br />
 Spanish translation: Dennis Vera (http://tuguiaweb.net)<br />
 Hungarian translation: Nora Erdelyi (http://locoling-club.com)<br />
-Russian translation: Nickolay Avdeev
+Russian translation: Nickolay Avdeev<br />
+Norwegian translation: Rune Kristoffersen
 
 == Installation ==
 There is a wizard available which will guide you thought the installation process.
@@ -53,6 +54,10 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+
+=2.3=
+* Fixed "Fatal error: Call to undefined method Page::sendMail()" problem
+* Added the Norwegian language
 
 =2.2.4=
 * Fixed stylesheet problem
@@ -141,5 +146,5 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.0 =
-Ultimate Blogroll has been renewed and restyled.
+= 2.3 =
+Fixed Fatal error: Call to undefined method Page::sendMail() problem and added Norwegian language

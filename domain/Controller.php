@@ -34,39 +34,39 @@ class Controller {
         if(!isset(Controller::$instance[$class])) {
             switch($class) {
                 case Controller::Main:
-                    require_once(UB_PLUGIN_DIR."domain/Main.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Main.php");
                     Controller::$instance[$class] = new Main();
                     break;
                 case Controller::Linkpartner:
-                    require_once(UB_PLUGIN_DIR."domain/Linkpartner.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Linkpartner.php");
                     Controller::$instance[$class] = new Linkpartner();
                     break;
                 case Controller::Settings:
-                    require_once(UB_PLUGIN_DIR."domain/Settings.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Settings.php");
                     Controller::$instance[$class] = new Settings();
                     break;
                 case Controller::AdminPageWidget:
-                    require_once(UB_PLUGIN_DIR."domain/AdminPageWidget.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."AdminPageWidget.php");
                     Controller::$instance[$class] = new AdminPageWidget();
                     break;
                 case Controller::Install:
-                    require_once(UB_PLUGIN_DIR."domain/Install.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Install.php");
                     Controller::$instance[$class] = new Install();
                     break;
                 case Controller::ImportExport:
-                    require_once(UB_PLUGIN_DIR."domain/ImportExport.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."ImportExport.php");
                     Controller::$instance[$class] = new ImportExport();
                     break;
                 case Controller::Page:
-                    require_once(UB_PLUGIN_DIR."domain/Page.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Page.php");
                     Controller::$instance[$class] = new Page();
                     break;
                 case Controller::Widget:
-                    require_once(UB_PLUGIN_DIR."domain/Widget.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Widget.php");
                     Controller::$instance[$class] = new Widget();
                     break;
                 case Controller::Wizard:
-                    require_once(UB_PLUGIN_DIR."domain/Wizard.php");
+                    require_once(UB_PLUGIN_DIR."domain".DIRECTORY_SEPARATOR."Wizard.php");
                     Controller::$instance[$class] = new Wizard();
                     break;
                 default:
