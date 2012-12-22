@@ -36,6 +36,7 @@ load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __F
 require_once("domain".DIRECTORY_SEPARATOR."Controller.php");
 require_once("persistence".DIRECTORY_SEPARATOR."Mapper.php");
 require_once("domain".DIRECTORY_SEPARATOR."Main.php");
+
 /**
  * Checks if we are in the admin panel
  */
