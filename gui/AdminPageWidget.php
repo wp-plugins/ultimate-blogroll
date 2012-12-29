@@ -1,5 +1,3 @@
-<script src="<?php echo UB_ASSETS_URL; ?>checkbox.js" type="text/javascript"></script>
-<link rel="stylesheet" href="<?php echo UB_ASSETS_URL; ?>checkbox.css" type="text/css" media="screen" />
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
     $(':checkbox').iphoneStyle();

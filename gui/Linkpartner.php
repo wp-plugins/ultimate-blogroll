@@ -1,7 +1,5 @@
-<?php
-require_once("Header.php");
-?>
-<script src="<?php echo UB_ASSETS_URL; ?>jquery.placeholder.min.js" type="text/javascript"></script>
+<?php require_once("Header.php"); ?>
+<script src="<?php echo UB_ASSETS_URL; ?>js/jquery.placeholder.min.js" type="text/javascript"></script>
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
     $('input').placeholder();
@@ -80,7 +78,9 @@ jQuery(document).ready(function($) {
                     </table>
                 </div><!-- .inside -->
             </div><!-- .postbox -->
-            <input type="submit" class="button-primary form_button" name="add_linkpartner" value="<?php echo (($gui["edit"] === true) ? __("Update linkpartner", "ultimate-blogroll") : __("Submit linkpartner", "ultimate-blogroll")) ?>" />
+            <p class="submit">
+                <input type="submit" class="button button-primary button-large" name="add_linkpartner" value="<?php echo (($gui["edit"] === true) ? __("Update linkpartner", "ultimate-blogroll") : __("Submit linkpartner", "ultimate-blogroll")) ?>" />
+            </p>
         </form>
     </div><!-- #poststuff -->
 </div><!-- .wrap -->

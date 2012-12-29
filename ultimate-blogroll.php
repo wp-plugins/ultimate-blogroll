@@ -2,8 +2,8 @@
 /*
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
-Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. 
-Version: 2.3
+Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. It is the ultimate tool to manage your links.
+Version: 2.4
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
@@ -28,15 +28,14 @@ Author URI: http://www.gheerardyn.be
 **  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 //error_reporting(-1);
+$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 define("UB_PLUGIN_DIR", ABSPATH."wp-content".DIRECTORY_SEPARATOR."plugins".DIRECTORY_SEPARATOR."ultimate-blogroll".DIRECTORY_SEPARATOR);
-define("UB_PUBLIC_URL", "http://".$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?");
+define("UB_PUBLIC_URL", $protocol.$_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["SCRIPT_NAME"]."?");
 define("UB_ASSETS_URL", plugins_url('assets/', __FILE__));
-define("UB_ADMIN_URL", "http://".$_SERVER["SERVER_NAME"]."/wp-admin".$_SERVER["SCRIPT_NAME"]."?");
-load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/gui/languages/' );
+load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/assets/languages/' );
 require_once("domain".DIRECTORY_SEPARATOR."Controller.php");
 require_once("persistence".DIRECTORY_SEPARATOR."Mapper.php");
 require_once("domain".DIRECTORY_SEPARATOR."Main.php");
-
 /**
  * Checks if we are in the admin panel
  */
@@ -100,10 +99,28 @@ add_action('ub_hourly_event', array(Controller::getInstance(Controller::Linkpart
 add_action('wp_head', array(Controller::getInstance(Controller::Page), 'ub_javascript_init'));
 add_action( 'admin_init', 'ub_admin_init' );
 function ub_admin_init() {
-   wp_register_style( 'ub_admin_style',  UB_ASSETS_URL."style.css");
+    global $pagenow;
+    wp_register_style( 'ub_admin_style',  UB_ASSETS_URL."css/admin.css");
+    wp_register_style( 'ub_admin_checkbox',  UB_ASSETS_URL."css/checkbox.css");
+    wp_register_style( 'ub_admin_apprise',  UB_ASSETS_URL."css/apprise.min.css");
+    if($pagenow == "post.php")
+    {
+        wp_enqueue_script( 'ub_checkbox' , UB_ASSETS_URL."js/checkbox.js");
+        wp_enqueue_style( 'ub_admin_checkbox' );
+    }
 }
 function ub_admin_style_load() {
     wp_enqueue_style( 'ub_admin_style' );
+    wp_enqueue_style( 'ub_admin_checkbox' );
+    wp_enqueue_style( 'ub_admin_apprise' );
+    wp_enqueue_script( 'ub_checkbox' , UB_ASSETS_URL."js/checkbox.js");
+}
+function ub_admin_overview() {
+    ub_admin_style_load();
+    wp_enqueue_script( 'ub_linkpartner' , UB_ASSETS_URL."js/linkpartner.js");
+    wp_enqueue_script( 'ub_apprise' , UB_ASSETS_URL."js/apprise-1.5.full.js");
+    wp_enqueue_script( 'ub_tablesorter' , UB_ASSETS_URL."js/tablesorter.js");
+    wp_enqueue_script( 'ub_tablesorter_filter' , UB_ASSETS_URL."js/tablesorter_filter.js");
 }
 /**
  * Admin_menu to create a wordpress admin menu
@@ -117,7 +134,7 @@ function admin_menu(){
         "manage_options", //user level, needed before it becomes visible
         "ultimate-blogroll-overview", //slug, in the url
         "ultimate_blogroll", //the function linked to the slug, without this function your slug is useless
-        "../wp-content/plugins/ultimate-blogroll/assets/icon.png" //the favicon for the menu
+        "../wp-content/plugins/ultimate-blogroll/assets/images/icon.png" //the favicon for the menu
     );
 
     $page = add_submenu_page(
@@ -128,7 +145,7 @@ function admin_menu(){
         "ultimate-blogroll-overview", //slug, in the url
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
-    add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
+    add_action('admin_print_styles-'.$page, 'ub_admin_overview');
 
     $page = add_submenu_page(
         "ultimate-blogroll-overview", //parent slug, because the slug will be the same unlike the menu text, we are not sure of, we link the submenu to the parent slug
@@ -161,4 +178,3 @@ function admin_menu(){
     add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
     add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(Controller::getInstance(Controller::Settings), "pagesWidget"), "page", "side", "high");
 }
-?>

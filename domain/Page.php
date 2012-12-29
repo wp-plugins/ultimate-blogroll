@@ -15,18 +15,11 @@ class Page extends Main{
      */
     public function ub_javascript_init() {
         wp_enqueue_script('jquery');
+        wp_enqueue_script( 'ub_placeholder' , UB_ASSETS_URL."js/jquery.placeholder.min.js");
+        wp_enqueue_script( 'ub_page' , UB_ASSETS_URL."js/page.js");
         $output = '<script type="text/javascript" >
-    jQuery(document).ready(function($) {
-        jQuery(".Widget_widgetCreator a").click(function () {
-            var data = {
-                action: "ub_ajax_action_callback",
-                linkpartner: $(this).attr("href")
-            };
-            jQuery.post("'.get_bloginfo("wpurl").'/wp-admin/admin-ajax.php", data, function(response) {
-            });
-        });
-    });
-</script>';
+        var wpurl = "'.get_bloginfo("wpurl").'";
+        </script>';
         echo $output;
     }
 
@@ -40,6 +33,7 @@ class Page extends Main{
         add_action( 'wp_enqueue_scripts', 'prefix_add_my_stylesheet' );
         if($pages !== false and $post->ID == $pages) {
             if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["add_linkpartner"])) {
+                //check if the name is filled in
                 if(empty($_POST["your_name"])) {
                     Mapper::getInstance(Mapper::Error)->addError("your_name", __("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                 }
@@ -64,7 +58,7 @@ class Page extends Main{
                     Mapper::getInstance(Mapper::Error)->addError("website_description", __("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                 }
 
-                if(empty($_POST["website_reciprocal"])) {
+                if(empty($_POST["website_reciprocal"]) && Mapper::getInstance(Mapper::Settings)->getConfig("reciprocal_link") == "yes") {
                     Mapper::getInstance(Mapper::Error)->addError("", __("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                 } elseif(filter_var($_POST["website_reciprocal"], FILTER_VALIDATE_URL) === FALSE && !empty($_POST["website_reciprocal"])) {
                     Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
@@ -93,7 +87,7 @@ class Page extends Main{
                     if(!function_exists("recaptcha_get_html")) {
                         require_once(UB_PLUGIN_DIR."tools".DIRECTORY_SEPARATOR."recaptchalib.php");
                     }
-                    $resp = recaptcha_check_answer (Mapper::getInstance(Mapper::Settings)->getConfig("recaptcha_public_key"), $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
+                    $resp = recaptcha_check_answer (Mapper::getInstance(Mapper::Settings)->getConfig("recaptcha_private_key"), $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
                     if(!$resp->is_valid) {
                         Mapper::getInstance(Mapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
                     }
@@ -130,6 +124,13 @@ class Page extends Main{
                             $this->sendMail($gui["value"], $id);
                         }
                         $gui["success"] = true;
+                        $gui["value"]["your_name"]           = "";
+                        $gui["value"]["your_email"]          = "";
+                        $gui["value"]["website_url"]         = "";
+                        $gui["value"]["website_title"]       = "";
+                        $gui["value"]["website_description"] = "";
+                        $gui["value"]["website_reciprocal"]  = "";
+                        $gui["value"]["website_image"]       = "";
                     } else {
                         Mapper::getInstance(Mapper::Error)->addError("exists", __("Linkpartner", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
                     }

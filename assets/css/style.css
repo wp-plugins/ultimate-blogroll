@@ -1,0 +1,26 @@
+.red {color: #ff0000;}
+div.error {
+    padding-top: 6px;
+    background-color: #ee5a5a;
+    border: 1px solid #ff0000;
+    color: #333333 !important;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #FFEBE8;
+    border-color: #C00;
+}
+div.error.fade p {
+    margin: 0 0 0 10px;
+}
+div.success {
+    padding-top: 6px;
+    background-color: #87ee5a;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #00ff00;
+}
+.ub_table {
+    width: 100%;
+}

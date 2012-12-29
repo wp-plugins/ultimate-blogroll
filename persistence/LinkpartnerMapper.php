@@ -61,7 +61,7 @@ class LinkpartnerMapper {
         public function getLinkpartnersPage($order, $orderby) {
             global $wpdb;
             $table_name = $wpdb->prefix . "ubsites";
-            $sql = $wpdb->prepare("SELECT * from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order);
+            $sql = "SELECT * from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order;
             return $wpdb->get_results($sql, ARRAY_A);
         }
 
@@ -81,7 +81,7 @@ class LinkpartnerMapper {
         } else {
             $q = "";
         }
-        $sql = $wpdb->prepare("SELECT website_name, website_description, website_url, website_image from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order.$q, array($amount));
+        $sql = "SELECT website_name, website_description, website_url, website_image from ".$table_name." where website_status = 'a' order by ".$orderby." ".$order.$q;
         return $wpdb->get_results($sql, ARRAY_A);
     }
 

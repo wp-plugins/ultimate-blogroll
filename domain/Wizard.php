@@ -86,4 +86,3 @@ class Wizard {
         require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Wizard.php");
     }
 }
-?>

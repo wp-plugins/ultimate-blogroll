@@ -124,26 +124,26 @@ ul.succes {
 .reciprocal_error {
     width: 22px;
     height: 22px;
-    background-image: url("exclamation.png");
+    background-image: url("../images/exclamation.png");
 }
-th.header {
-    background-image: url("bg.gif")!important;
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-th.headerSortUp {
-    background-image: url("asc.gif")!important;
-    #background-repeat: no-repeat;
-    #background-position: center right;
-    #cursor: pointer;
-}
-th.headerSortDown {
-	background-image: url("desc.gif")!important;
-    #background-repeat: no-repeat;
-    #background-position: center right;
-    #cursor: pointer;
-}
+/*th.header {*/
+    /*background-image: url("../images/bg.gif")!important;*/
+	/*background-repeat: no-repeat;*/
+	/*background-position: center right;*/
+	/*cursor: pointer;*/
+/*}*/
+/*th.headerSortUp {*/
+    /*background-image: url("../images/asc.gif")!important;*/
+    /*#background-repeat: no-repeat;*/
+    /*#background-position: center right;*/
+    /*#cursor: pointer;*/
+/*}*/
+/*th.headerSortDown {*/
+	/*background-image: url("../images/desc.gif")!important;*/
+    /*#background-repeat: no-repeat;*/
+    /*#background-position: center right;*/
+    /*#cursor: pointer;*/
+/*}*/
 .placeholder {
     color: #aaa;
 }

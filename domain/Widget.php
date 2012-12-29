@@ -57,12 +57,21 @@ class Widget extends Main {
         $permalink = Mapper::getInstance(Mapper::Settings)->getConfig("pages");
         if(!empty($permalink) && $permalink != "")
         {
-            $gui .= "<li><a href=\"".get_permalink(Mapper::getInstance(Mapper::Settings)->getConfig("permalink"))."\">".__("More", "ultimate-blogroll")."</a></li>";
-            $gui .= "<li><a href=\"".get_permalink(Mapper::getInstance(Mapper::Settings)->getConfig("permalink"))."#wp-add-your-site\">".__("Add link", "ultimate-blogroll")."</a></li>";
+            //$gui .= "<li><a href=\"".get_permalink(Mapper::getInstance(Mapper::Settings)->getConfig("permalink"))."\">".__("More", "ultimate-blogroll")."</a></li>";
+            $gui .= "<li><a href=\"".$this->AddWebsiteURL(get_permalink(Mapper::getInstance(Mapper::Settings)->getConfig("permalink")))."#wp-add-your-site\">".__("Add link", "ultimate-blogroll")."</a></li>";
         }
         $gui .= "</ul>";
         $gui .= $after_widget;
         echo $gui;
+    }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    private function AddWebsiteURL($url)
+    {
+        return rtrim($url, '/');
     }
 
     /**

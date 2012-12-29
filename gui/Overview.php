@@ -1,10 +1,4 @@
 <?php require_once("Header.php"); ?>
-<link rel="stylesheet" href="<?php echo UB_ASSETS_URL; ?>apprise.min.css" type="text/css" media="screen" />
-<script src="<?php echo UB_ASSETS_URL; ?>/tablesorter.js" type="text/javascript"></script>
-<script src="<?php echo UB_ASSETS_URL; ?>tablesorter_filter.js" type="text/javascript"></script>
-<script src="<?php echo UB_ASSETS_URL; ?>apprise-1.5.full.js" type="text/javascript"></script>
-<script src="<?php echo UB_ASSETS_URL; ?>linkpartner.js" type="text/javascript"></script>
-
 <div class="wrap">
     <div class="icon32" id="icon-themes"></div>
     <h2><?php echo __("Overview", "ultimate-blogroll"); ?></h2>
@@ -128,6 +122,7 @@
                             <td>
                                 <?php if($linkpartner["website_has_backlink"] == false) echo __("No", "ultimate-blogroll"); else echo __("Yes", "ultimate-blogroll") ?>
                             </td>
+                            <td></td>
                         </tr>
                         <?php
                     }
