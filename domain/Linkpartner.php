@@ -303,6 +303,13 @@ class Linkpartner extends Main {
                         $linkback
                     );
                     $gui["success"]["insert"] = true;
+                    $gui["value"]["your_name"]           = "";
+                    $gui["value"]["your_email"]          = "";
+                    $gui["value"]["website_url"]         = "";
+                    $gui["value"]["website_title"]       = "";
+                    $gui["value"]["website_description"] = "";
+                    $gui["value"]["website_reciprocal"]  = "";
+                    $gui["value"]["website_image"]       = "";
                     if(Mapper::getInstance(Mapper::Settings)->getConfig("send_mail") == "yes") {
                         $this->sendMail($gui["value"], $id);
                     }

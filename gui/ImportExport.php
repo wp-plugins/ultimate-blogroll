@@ -22,7 +22,9 @@
                         <h4 style="margin-top: 0px;"><?php echo __("Import", "ultimate-blogroll") ?>:</h4>
                         <?php echo __("We are going to import all the links from Wordpress.", "ultimate-blogroll") ?>
                         <input type="hidden" name="ub_type" value="import" />
-                        <br /><br /><input type="submit" class="button-primary form_button" value="<?php echo __("Import links from Wordpress", "ultimate-blogroll") ?>" name="ub_submit">
+                        <p class="submit">
+                            <input type="submit" class="button-primary button button-large" value="<?php echo __("Import links from Wordpress", "ultimate-blogroll") ?>" name="ub_submit">
+                        </p>
                     </form>
                 </div>
                 <div style="float: left; padding-left: 10px;">
@@ -30,7 +32,9 @@
                         <h4 style="margin-top: 0px;"><?php echo __("Export", "ultimate-blogroll") ?>:</h4>
                         <?php echo __("Export all the links from Ultimate Blogroll to Wordpress links.", "ultimate-blogroll") ?>
                         <input type="hidden" name="ub_type" value="export" />
-                        <br /><br /><input type="submit" class="button-primary form_button" value="<?php echo __("Export links to Wordpress", "ultimate-blogroll") ?>" name="ub_submit">
+                        <p class="submit">
+                            <input type="submit" class="button button-primary button-large" value="<?php echo __("Export links to Wordpress", "ultimate-blogroll") ?>" name="ub_submit">
+                        </p>
                     </form>
                 </div>
                 <div style="clear: both"></div>

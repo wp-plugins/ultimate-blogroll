@@ -1,14 +1,14 @@
 === Plugin Name ===
 Contributors: jensg
 Donate link: http://ultimateblogroll.gheerardyn.be
-Tags: blogroll, links, link, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, google, widget, plugin, sidebar, receive Links, exchange links
-Requires at least: 3.0.1
-Tested up to: 3.3.2
-Stable tag: 2.3
+Tags: blogroll, links, link, link manager, manager, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, receive Links, exchange links
+Requires at least: 3.5
+Tested up to: 3.5
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enable your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks.
+Enable your visitors to submit a linktrade and keep track of the in and outlinks. It is the ultimate link manager available.
 
 == Description ==
 
@@ -55,11 +55,15 @@ No, they are calculated once every hour. This plugin is designed for large sites
 
 == Changelog ==
 
-=2.3=
+= 2.4 =
+* Fixed Bugs: addlink, reCAPTCHA, Missing argument 2 for wpdb::prepare()
+* Fixed styling issues: buttons look fine in the new Wordpress style
+
+= 2.3 =
 * Fixed "Fatal error: Call to undefined method Page::sendMail()" problem
 * Added the Norwegian language
 
-=2.2.4=
+= 2.2.4 =
 * Fixed stylesheet problem
 
 = 2.2 =
@@ -146,5 +150,6 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.3 =
-Fixed Fatal error: Call to undefined method Page::sendMail() problem and added Norwegian language
+= 2.4 =
+* Fixed Bugs: addlink, reCAPTCHA, Missing argument 2 for wpdb::prepare()
+* Fixed styling issues: buttons look fine in the new Wordpress style

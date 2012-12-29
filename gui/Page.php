@@ -1,41 +1,4 @@
 <?php require_once("Header.php"); ?>
-<script src="<?php echo UB_ASSETS_URL; ?>jquery.placeholder.min.js" type="text/javascript"></script>
-<style type="text/css">
-    .red {color: #ff0000;}
-    div.error {
-        padding-top: 6px;
-        background-color: #ee5a5a;
-        border: 1px solid #ff0000;
-        color: #333333 !important;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        border-width: 1px;
-        border-style: solid;
-        background-color: #FFEBE8;
-        border-color: #C00;
-    }
-    div.error.fade p {
-        margin: 0 0 0 10px;
-    }
-    div.success {
-        padding-top: 6px;
-        background-color: #87ee5a;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #00ff00;
-    }
-    .ub_table {
-        width: 100%;
-    }
-</style>
-<script type="text/javascript" >
-    jQuery(document).ready(function($) {
-        $('input').placeholder();
-    });
-     var RecaptchaOptions = {
-        theme : 'white'
-     };
-</script>
 <p><?php echo __("The following links are from yesterday and today.<br />You can add your website at the bottom of this page.", "ultimate-blogroll") ?></p>
 <table class="ub_table Widget_widgetCreator" cellspacing="1" id="ultimate-blogroll-table">
     <tr class="first">
@@ -123,7 +86,7 @@
 </table>
 <fieldset id="ub_code">
     <legend >Code:</legend>
-    <div>&lt;a href="<?php echo $gui["url"] ?>" title="<?php echo $gui["description"] ?>" <?php echo $gui["table_links_target"]?>&gt;<?php echo $gui["title"] ?>&lt;/a&gt;</div>
+    <div>&lt;a href="<?php echo $gui["url"] ?>" title="<?php echo $gui["description"] ?>" target="<?php echo $gui["table_links_target"]?>"&gt;<?php echo $gui["title"] ?>&lt;/a&gt;</div>
 </fieldset>
 <h4 style="margin-top: 20px;"><?php echo __("Step 2: Submit your linktrade", "ultimate-blogroll") ?></h4>
 <form method="POST" action="#wp-add-your-site">

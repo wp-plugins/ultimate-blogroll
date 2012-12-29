@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
     $(".delete").click(function(event) {
         var link = $(this).find("a").attr("href");
         event.preventDefault();
-        $.apprise('Are you sure you want to <b><u>delete</u></b> this entry?', {'verify':true, 'textYes':'Yes already!', 'textNo':'No, not yet'}, function(r) {
+        $.apprise('Are you sure you want to <b style="text-decoration: underline;">delete</b> this entry?', {'verify':true, 'textYes':'Yes already!', 'textNo':'No, not yet'}, function(r) {
             if(r) {
                 window.location = link;
             }

@@ -1,6 +1,4 @@
 <?php require_once("Header.php"); ?>
-<link rel="stylesheet" href="<?php echo UB_ASSETS_URL; ?>checkbox.css" type="text/css" media="screen" />
-<script src="<?php echo UB_ASSETS_URL; ?>checkbox.js" type="text/javascript"></script>
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
     $('.fight_spam :checkbox').iphoneStyle({
@@ -91,7 +89,7 @@ jQuery(document).ready(function($) {
                                     <input type="text" class="form_text" id="website_url" name="website_url" value="<?php echo @$gui["value"]["website_url"]; ?>" />
                                 </div>
                                 <div style="float: left;" id="wp_website_url" class="reload">
-                                    <img src="<?php echo UB_ASSETS_URL; ?>arrow_refresh.png" alt="reset" title="reset" />
+                                    <img src="<?php echo UB_ASSETS_URL; ?>images/arrow_refresh.png" alt="reset" title="reset" />
                                 </div>
                             </td>
                             <td><?php echo __("Your wordpress website url, just check if it is correct.", "ultimate-blogroll") ?> <?php echo htmlentities('<a href="');?><b><?php echo __("website url", "ultimate-blogroll") ?></b><?php echo htmlentities('"></a>'); ?></td>
@@ -103,7 +101,7 @@ jQuery(document).ready(function($) {
                                     <input type="text" class="form_text" id="website_title" name="website_title" value="<?php echo @$gui["value"]["website_title"]; ?>" />
                                 </div>
                                 <div style="float: left;" id="wp_website_title" class="reload">
-                                    <img src="<?php echo UB_ASSETS_URL; ?>arrow_refresh.png" alt="reset" title="reset" />
+                                    <img src="<?php echo UB_ASSETS_URL; ?>images/arrow_refresh.png" alt="reset" title="reset" />
                                 </div>
                             </td>
                             <td><?php echo __("That's the part between the", "ultimate-blogroll") . htmlentities('<a>'); ?><b><?php echo __("website title", "ultimate-blogroll") ?></b><?php echo htmlentities('</a>'); ?> tags</td>
@@ -115,7 +113,7 @@ jQuery(document).ready(function($) {
                                     <input type="text" class="form_text" id="website_description" name="website_description" value="<?php echo @$gui["value"]["website_description"]; ?>" />
                                 </div>
                                 <div style="float: left;" class="reload" id="wp_website_description">
-                                    <img src="<?php echo UB_ASSETS_URL; ?>arrow_refresh.png" alt="reset" title="reset" />
+                                    <img src="<?php echo UB_ASSETS_URL; ?>images/arrow_refresh.png" alt="reset" title="reset" />
                                 </div>
                             </td>
                             <td><?php echo __("Add an extra description to your link.", "ultimate-blogroll") ?> <?php echo htmlentities('<a title="'); ?><b><?php echo __("website description", "ultimate-blogroll") ?></b><?php echo htmlentities('"></a>'); ?></td>
@@ -130,7 +128,7 @@ jQuery(document).ready(function($) {
                                     <input type="text" class="form_text" id="blogroll_contact" name="blogroll_contact" value="<?php echo @$gui["value"]["blogroll_contact"]; ?>" />
                                 </div>
                                 <div style="float: left;" id="wp_blogroll_contact" class="reload">
-                                    <img src="<?php echo UB_ASSETS_URL; ?>arrow_refresh.png" alt="reset" title="reset" />
+                                    <img src="<?php echo UB_ASSETS_URL; ?>images/arrow_refresh.png" alt="reset" title="reset" />
                                 </div>
                             </td>
                             <td><?php echo __("The address you wish to receive an anouncement if a new linktrade was made.", "ultimate-blogroll") ?></td>
@@ -348,7 +346,9 @@ jQuery(document).ready(function($) {
                     </table>
                 </div><!-- .inside -->
             </div><!-- .postbox #recaptcha -->
-            <input name="save" type="submit" class="button-primary form_button" id="publish" tabindex="4" accesskey="p" value="Update settings">
+            <p class="submit">
+                <input type="submit" class="button button-primary button-large" name="save" value="Update settings" />
+            </p>
         </div><!--.metabox-holder #poststuff-->
     </form>
 </div><!--.wrap-->
