@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
                     <input type="checkbox" name="frmImport" value="true" <?php echo $frmImport; ?> />
                 </div><!--.inside-->
             </div><!--.postbox #general-settings-->
-            <input name="save" type="submit" class="button-primary form_button" id="submit" value="<?php echo __("Let's go", "ultimate-blogroll"); ?>">
+            <input name="save" type="submit" class="button button-primary button-large" id="submit" value="<?php echo __("Let's go", "ultimate-blogroll"); ?>">
         </div>
     </form>
 </div>
