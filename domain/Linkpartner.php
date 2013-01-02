@@ -1,4 +1,5 @@
 <?php
+namespace UltimateBlogroll;
 /**
  * Created by JetBrains PhpStorm.
  * User: Jens
