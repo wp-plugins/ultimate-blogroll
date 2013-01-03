@@ -41,7 +41,7 @@
                         echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"])."><img style=\"width: ".$gui["logo_width"]."px; max-height: ".$gui["logo_height"]."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                     else {
-                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".PersistentieMapper::Instance()->GetConfig("logo_width")."px; max-height: ".PersistentieMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".UbMapper::Instance()->GetConfig("logo_width")."px; max-height: ".UbMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                 } else {
                     echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";
@@ -100,12 +100,12 @@ if(isset($gui["success"])) {
 ?>
 <table class="ub_table">
     <tr <?php echo getErrorField("your_name"); ?>>
-        <td class="column1"><?php echo __("Your name", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __("Your name", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2"><input type="text" name="your_name" class="form_text" value="<?php echo @$gui["value"]["your_name"]; ?>" /></td>
         <td><?php echo __("So we know who to contact", "ultimate-blogroll") ?></td>
     </tr>
     <tr <?php echo getErrorField("your_email"); ?>>
-        <td class="column1"><?php echo __ ("Your email", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __ ("Your email", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2"><input type="text" name="your_email" class="form_text" value="<?php echo @$gui["value"]["your_email"]; ?>" /></td>
         <td><?php echo __("Existing email", "ultimate-blogroll") ?></td>
     </tr>
@@ -115,17 +115,17 @@ if(isset($gui["success"])) {
         <td></td>
     </tr>
     <tr <?php echo getErrorField("website_url"); ?>>
-        <td class="column1"><?php echo __("Website url", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __("Website url", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2"><input type="text" name="website_url" class="form_text" value="<?php echo @$gui["value"]["website_url"]; ?>" placeholder="<?php echo __("http://example.com", "ultimate-blogroll") ?>" /></td>
         <td>&lt;a href=&quot;<b><?php echo __("website url", "ultimate-blogroll") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
     <tr <?php echo getErrorField("website_title"); ?>>
-        <td class="column1"><?php echo __("Website title", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __("Website title", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2"><input type="text" name="website_title" class="form_text" value="<?php echo @$gui["value"]["website_title"]; ?>" placeholder="<?php echo __("Put your title here", "ultimate-blogroll");?>" /></td>
         <td>&lt;a&gt;<b><?php echo __("website title", "ultimate-blogroll") ?></b>&lt;/a&gt;</td>
     </tr>
     <tr <?php echo getErrorField("website_description"); ?>>
-        <td class="column1"><?php echo __("Website description", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __("Website description", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2"><input type="text" name="website_description" class="form_text" value="<?php echo @$gui["value"]["website_description"]; ?>" placeholder="<?php echo __("Put your description here", "ultimate-blogroll");?>" /></td>
         <td>&lt;a title=&quot;<b><?php echo __("website description", "ultimate-blogroll") ?></b>&quot;&gt;&lt;/a&gt;</td>
     </tr>
@@ -135,7 +135,7 @@ if(isset($gui["success"])) {
         <td></td>
     </tr>
     <tr <?php echo getErrorField("website_reciprocal"); ?>>
-        <td class="column1"><?php echo __("Website reciprocal", "ultimate-blogroll") ?><?php if($gui["reciprocal_link"] == "yes") echo "*"; ?>:</td>
+        <td class="column1"><?php echo __("Website reciprocal", "ultimate-blogroll") ?><?php if($gui["reciprocal_link"] == "yes") echo "<span class=\"required\">*</span>"; ?>:</td>
         <td class="column2"><input type="text" name="website_reciprocal" class="form_text" value="<?php echo @$gui["value"]["website_reciprocal"]; ?>" /></td>
         <td><?php echo __("Where can we find our link back?", "ultimate-blogroll") ?></td>
     </tr>
@@ -153,7 +153,7 @@ if(isset($gui["success"])) {
 
     ?>
     <tr <?php echo html_entity_decode(@$gui["error"]["captcha"]); ?>>
-        <td class="column1"><?php echo __("Anti-spam", "ultimate-blogroll") ?>*:</td>
+        <td class="column1"><?php echo __("Anti-spam", "ultimate-blogroll") ?><span class="required">*</span>:</td>
         <td class="column2" colspan="2">
         <?php
             if(!function_exists("recaptcha_get_html")) {

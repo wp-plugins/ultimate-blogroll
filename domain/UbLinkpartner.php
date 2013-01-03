@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class Linkpartner extends Main {
+class UbLinkpartner extends UbMain {
     public function __construct() {
         parent::__construct();
     }
@@ -22,10 +22,10 @@ class Linkpartner extends Main {
 
         switch($_GET["action"]) {
             case "edit":
-                $this->edit();
+                $this->edit(is_admin() ? true : false);
                 break;
             case "wizard":
-                Controller::getInstance(Controller::Wizard)->show();
+                UbController::getInstance(UbController::Wizard)->show();
                 break;
             default:
                 $this->overview();
@@ -41,51 +41,51 @@ class Linkpartner extends Main {
         $gui = array();
         if(isset($_POST["add_linkpartner"])) {
             if(empty($_POST["your_name"])) {
-                Mapper::getInstance(Mapper::Error)->addError("your_name", __("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_name", __("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["your_email"])) {
-                Mapper::getInstance(Mapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["your_email"], FILTER_VALIDATE_EMAIL) === FALSE) {
-                Mapper::getInstance(Mapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_url"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_url", __("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("Website url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                Mapper::getInstance(Mapper::Error)->addError("website_url", __("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("Website url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_title"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_title", __("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_title", __("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_description"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_description", __("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_description", __("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_reciprocal"]) && $admin === false) {
-                Mapper::getInstance(Mapper::Error)->addError("", __("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("", __("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["website_reciprocal"], FILTER_VALIDATE_URL) === FALSE && !empty($_POST["website_reciprocal"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
             }
 
             $linkback = 0;
             if(!empty($_POST["website_url"]) && !empty($_POST["website_domain"])) {
-                if(!Mapper::getInstance(Mapper::Error)->isWrong("website_url") && !Mapper::getInstance(Mapper::Error)->isWrong("website_reciprocal")) {
+                if(!UbMapper::getInstance(UbMapper::Error)->isWrong("website_url") && !UbMapper::getInstance(UbMapper::Error)->isWrong("website_reciprocal")) {
                     if(parse_url($_POST["website_url"], PHP_URL_HOST) != parse_url($_POST["website_reciprocal"], PHP_URL_HOST)) {
-                        Mapper::getInstance(Mapper::Error)->addError("website_url", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
-                        Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
+                        UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
+                        UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
                     } else {
-                        $link_back = Mapper::getInstance(Mapper::Linkpartner)->checkReciprocalLink($_POST["website_reciprocal"], Mapper::getInstance(Mapper::Settings)->getConfig("website_url"));
+                        $link_back = UbMapper::getInstance(UbMapper::Linkpartner)->checkReciprocalLink($_POST["website_reciprocal"], UbMapper::getInstance(UbMapper::Settings)->getConfig("website_url"));
                         if($link_back !== true) {
-                            Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
+                            UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
                         }
                         $linkback = (int)$link_back;
                     }
                 }
                 if(strpos($_POST["website_url"], $_POST["website_domain"]) === false) {
-                    Mapper::getInstance(Mapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
+                    UbMapper::getInstance(UbMapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
                 }
             }
             $gui["value"]["your_name"]           = @$_POST["your_name"];
@@ -95,10 +95,10 @@ class Linkpartner extends Main {
             $gui["value"]["website_description"] = @$_POST["website_description"];
             $gui["value"]["website_reciprocal"]  = @$_POST["website_reciprocal"];
             $gui["value"]["website_image"]       = @$_POST["website_image"];
-            if( count(Mapper::getInstance(Mapper::Error)->getError()) == 0 ) {
+            if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
                 $gui["success"]["update"] = true;
                 $domain = parse_url($_POST["website_url"]);
-                Mapper::getInstance(Mapper::Linkpartner)->editLinkpartner(
+                UbMapper::getInstance(UbMapper::Linkpartner)->editLinkpartner(
                     $_POST["your_name"],
                     $_POST["your_email"],
                     $_POST["website_url"],
@@ -112,7 +112,7 @@ class Linkpartner extends Main {
                 );
             }
         } else {
-            $linkpartner = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartnerByID($_GET["id"]);
+            $linkpartner = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartnerByID($_GET["id"]);
             if($linkpartner !== false) {
                 $gui["value"]["your_name"]           = $linkpartner["website_owner_name"];
                 $gui["value"]["your_email"]          = $linkpartner["website_owner_email"];
@@ -122,11 +122,11 @@ class Linkpartner extends Main {
                 $gui["value"]["website_reciprocal"]  = $linkpartner["website_backlink"];
                 $gui["value"]["website_image"]       = $linkpartner["website_image"];
             } else {
-                Mapper::getInstance(Mapper::Error)->addError("", __("linkpartner does not exist.", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("", __("linkpartner does not exist.", "ultimate-blogroll"));
             }
         }
         $gui["edit"] = true;
-        require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Linkpartner.php");
+        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "Linkpartner.php");
     }
 
     /**
@@ -134,7 +134,7 @@ class Linkpartner extends Main {
      */
     private function approve() {
         foreach(@$_GET["linkpartner"] as $link) {
-            Mapper::getInstance(Mapper::Linkpartner)->updateApproveStatus($link, "a");
+            UbMapper::getInstance(UbMapper::Linkpartner)->updateApproveStatus($link, "a");
         }
     }
 
@@ -143,7 +143,7 @@ class Linkpartner extends Main {
      */
     private function unapprove() {
         foreach(@$_GET["linkpartner"] as $link) {
-            Mapper::getInstance(Mapper::Linkpartner)->updateApproveStatus($link, "u");
+            UbMapper::getInstance(UbMapper::Linkpartner)->updateApproveStatus($link, "u");
         }
     }
 
@@ -152,7 +152,7 @@ class Linkpartner extends Main {
      */
     private function delete() {
         foreach(@$_GET["linkpartner"] as $link) {
-            Mapper::getInstance(Mapper::Linkpartner)->DeleteLinkpartner($link);
+            UbMapper::getInstance(UbMapper::Linkpartner)->DeleteLinkpartner($link);
         }
     }
 
@@ -161,10 +161,10 @@ class Linkpartner extends Main {
      * Here we loop over all the links within Ultimate Blogroll and check if they have proper backlinks
      */
     public function checkLinkpartners() {
-        $linkpartners = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartners();
+        $linkpartners = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners();
         foreach($linkpartners as $linkpartner) {
-            $r = Mapper::getInstance(Mapper::Linkpartner)->checkreciprocalLink($linkpartner["website_backlink"]);
-            Mapper::getInstance(Mapper::Linkpartner)->updateBacklinkStatus($linkpartner["website_id"], (int)$r);
+            $r = UbMapper::getInstance(UbMapper::Linkpartner)->checkreciprocalLink($linkpartner["website_backlink"]);
+            UbMapper::getInstance(UbMapper::Linkpartner)->updateBacklinkStatus($linkpartner["website_id"], (int)$r);
         }
     }
 
@@ -195,12 +195,12 @@ class Linkpartner extends Main {
             $gui["success"]["check"] = true;
             wp_schedule_single_event(time(), 'check_linkpartners');
         }
-        $gui["status_count"] = Mapper::getInstance(Mapper::Linkpartner)->getNumberOfStatus();
+        $gui["status_count"] = UbMapper::getInstance(UbMapper::Linkpartner)->getNumberOfStatus();
         $gui["status_count"]["link_all"]        = UB_PUBLIC_URL.http_build_query( array("page" => @$_GET["page"], "status" => "all") );
         $gui["status_count"]["link_approved"]   = UB_PUBLIC_URL.http_build_query( array("page" => @$_GET["page"], "status" => "approved") );
         $gui["status_count"]["link_unapproved"] = UB_PUBLIC_URL.http_build_query( array("page" => @$_GET["page"], "status" => "unapproved") );
 
-        $gui["linkpartners"] = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartners((isset($_GET["status"]) ? $_GET["status"] : ""), (isset($_GET["s"]) ? $_GET["s"] : "") );
+        $gui["linkpartners"] = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners((isset($_GET["status"]) ? $_GET["status"] : ""), (isset($_GET["s"]) ? $_GET["s"] : "") );
         require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Overview.php");
     }
 
@@ -212,57 +212,57 @@ class Linkpartner extends Main {
         $gui = array();
         if(isset($_POST["add_linkpartner"])) {
             if(empty($_POST["your_name"])) {
-                Mapper::getInstance(Mapper::Error)->addError("your_name", __("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_name", __("Website owner's name", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["your_email"])) {
-                Mapper::getInstance(Mapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["your_email"], FILTER_VALIDATE_EMAIL) === FALSE) {
-                Mapper::getInstance(Mapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("your_email", __("Website owner's email", "ultimate-blogroll")." ".__("is not a valid email address", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_url"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_url", __("website_url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("website_url", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["website_url"], FILTER_VALIDATE_URL) === FALSE) {
-                Mapper::getInstance(Mapper::Error)->addError("website_url", __("website_url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("website_url", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_title"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_title", __("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_title", __("Website title", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_description"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_description", __("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_description", __("Website description", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             }
 
             if(empty($_POST["website_reciprocal"]) && $admin === false) {
-                Mapper::getInstance(Mapper::Error)->addError("", __("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("", __("Website reciprocal", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
             } elseif(filter_var($_POST["website_reciprocal"], FILTER_VALIDATE_URL) === FALSE && !empty($_POST["website_reciprocal"])) {
-                Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
+                UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("Website reciprocal", "ultimate-blogroll")." ".__("is not a valid url", "ultimate-blogroll"));
             }
 
             /**
              * Er staat geen recaptcha in admin panel, dus dit is niet zichtbaar
              */
-//            if(Mapper::getInstance(Mapper::Settings)->getConfig("fight_spam") == "yes") {
+//            if(UbMapper::getInstance(UbMapper::Settings)->getConfig("fight_spam") == "yes") {
 //                if(!function_exists("recaptcha_get_html")) {
 //                    require_once(UB_PLUGIN_DIR."tools".DIRECTORY_SEPARATOR."recaptchalib.php");
 //                }
-//                $resp = recaptcha_check_answer (Mapper::getInstance(Mapper::Settings)->getConfig("recaptcha_public_key"), $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
+//                $resp = recaptcha_check_answer (UbMapper::getInstance(UbMapper::Settings)->getConfig("recaptcha_public_key"), $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
 //                if(!$resp->is_valid) {
-//                    Mapper::getInstance(Mapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
+//                    UbMapper::getInstance(UbMapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
 //                }
 //            }
             $linkback = 0;
             if(!empty($_POST["website_url"]) && !empty($_POST["website_domain"])) {
-                if(!Mapper::getInstance(Mapper::Error)->isWrong("website_url") && !Mapper::getInstance(Mapper::Error)->isWrong("website_reciprocal")) {
+                if(!UbMapper::getInstance(UbMapper::Error)->isWrong("website_url") && !UbMapper::getInstance(UbMapper::Error)->isWrong("website_reciprocal")) {
                     if(parse_url($_POST["website_url"], PHP_URL_HOST) != parse_url($_POST["website_reciprocal"], PHP_URL_HOST)) {
-                        Mapper::getInstance(Mapper::Error)->addError("website_url", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
-                        Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
+                        UbMapper::getInstance(UbMapper::Error)->addError("website_url", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
+                        UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("must be under the same (sub)domain as the", "ultimate-blogroll")." &quot;".__("Website url", "ultimate-blogroll")."&quot;");
                     } else {
-                        $link_back = Mapper::getInstance(Mapper::Linkpartner)->checkReciprocalLink($_POST["website_reciprocal"], Mapper::getInstance(Mapper::Settings)->getConfig("website_url"));
+                        $link_back = UbMapper::getInstance(UbMapper::Linkpartner)->checkReciprocalLink($_POST["website_reciprocal"], UbMapper::getInstance(UbMapper::Settings)->getConfig("website_url"));
                         if($link_back !== true) {
-                            Mapper::getInstance(Mapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
+                            UbMapper::getInstance(UbMapper::Error)->addError("website_reciprocal", __("The", "ultimate-blogroll")." &quot;".__("website reciprocal", "ultimate-blogroll")."&quot; ".__("does not have a link back.", "ultimate-blogroll"));
                         }
                         $linkback = (int)$link_back;
                     }
@@ -270,7 +270,7 @@ class Linkpartner extends Main {
             
 
                 if(strpos($_POST["website_url"], $_POST["website_domain"]) === false) {
-                    Mapper::getInstance(Mapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
+                    UbMapper::getInstance(UbMapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
                 }
             }
             $gui["value"]["your_name"]           = @$_POST["your_name"];
@@ -281,9 +281,9 @@ class Linkpartner extends Main {
             $gui["value"]["website_reciprocal"]  = @$_POST["website_reciprocal"];
             $gui["value"]["website_image"]       = @$_POST["website_image"];
 
-            if( count(Mapper::getInstance(Mapper::Error)->getError()) == 0 ) {
+            if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
                 $domain = parse_url($_POST["website_url"]);
-                $alreadyInDB = Mapper::getInstance(Mapper::Linkpartner)->doWeAlreadyHaveThisSubmission(
+                $alreadyInDB = UbMapper::getInstance(UbMapper::Linkpartner)->doWeAlreadyHaveThisSubmission(
                     $_POST["website_url"],
                     $_POST["website_reciprocal"],
                     $domain["host"],
@@ -291,7 +291,7 @@ class Linkpartner extends Main {
                 );
                 if($alreadyInDB === false)
                 {
-                    $id = Mapper::getInstance(Mapper::Linkpartner)->addLinkpartner(
+                    $id = UbMapper::getInstance(UbMapper::Linkpartner)->addLinkpartner(
                         $_POST["your_name"],
                         $_POST["your_email"],
                         $_POST["website_url"],
@@ -310,15 +310,15 @@ class Linkpartner extends Main {
                     $gui["value"]["website_description"] = "";
                     $gui["value"]["website_reciprocal"]  = "";
                     $gui["value"]["website_image"]       = "";
-                    if(Mapper::getInstance(Mapper::Settings)->getConfig("send_mail") == "yes") {
+                    if(UbMapper::getInstance(UbMapper::Settings)->getConfig("send_mail") == "yes") {
                         $this->sendMail($gui["value"], $id);
                     }
                 } else {
-                    Mapper::getInstance(Mapper::Error)->addError("exists", __("Linkpartner", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
+                    UbMapper::getInstance(UbMapper::Error)->addError("exists", __("Linkpartner", "ultimate-blogroll")." ".__("is already in our system.", "ultimate-blogroll"));
                 }
             }
         }
-        require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Linkpartner.php");
+        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "Linkpartner.php");
     }
 
     /**
@@ -327,19 +327,19 @@ class Linkpartner extends Main {
      */
     public function ub_ajax_action_callback() {
         $linkpartner = parse_url(@$_POST['linkpartner']);
-        $id = Mapper::getInstance(Mapper::Linkpartner)->getIdByHost($linkpartner["host"]);
+        $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost($linkpartner["host"]);
         if(is_null($id)) {
-            $id = Mapper::getInstance(Mapper::Linkpartner)->getIdByHost(str_replace('www.', '', $linkpartner["host"]));
+            $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost(str_replace('www.', '', $linkpartner["host"]));
         }
         echo $id;
-        if($id > 0 and Mapper::getInstance(Mapper::Linkpartner)->checkLink($id, "o") == 0) {
+        if($id > 0 and UbMapper::getInstance(UbMapper::Linkpartner)->checkLink($id, "o") == 0) {
             $this->processHits($id, "o");
         }
     }
 
     public function processHits($id, $io) {
-        Mapper::getInstance(Mapper::Linkpartner)->addTotalLink($id, $io);
-        Mapper::getInstance(Mapper::Linkpartner)->addLink($id, $io);
+        UbMapper::getInstance(UbMapper::Linkpartner)->addTotalLink($id, $io);
+        UbMapper::getInstance(UbMapper::Linkpartner)->addLink($id, $io);
     }
 
     /**
@@ -350,14 +350,14 @@ class Linkpartner extends Main {
             if(isset($_SERVER["HTTP_REFERER"])) {
                 $referer = parse_url($_SERVER["HTTP_REFERER"]);
                 $url = parse_url(get_bloginfo("wpurl"));
-                $id = Mapper::getInstance(Mapper::Linkpartner)->getIdByHost($referer["host"]);
+                $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost($referer["host"]);
                 if(is_null($id)) {
-                    $id = Mapper::getInstance(Mapper::Linkpartner)->getIdByHost(str_replace('www.', '', $referer["host"]));
+                    $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost(str_replace('www.', '', $referer["host"]));
                 }
                 if($referer["host"] != $url["host"] or true) {
-                    if(Mapper::getInstance(Mapper::Linkpartner)->checkLink($id, "i") == 0) {
+                    if(UbMapper::getInstance(UbMapper::Linkpartner)->checkLink($id, "i") == 0) {
                         $this->processHits($id, "i");
-                        //Mapper::getInstance(Mapper::Linkpartner)->addLink($id, "i");
+                        //UbMapper::getInstance(UbMapper::Linkpartner)->addLink($id, "i");
                     }
                 }
             }
@@ -369,10 +369,10 @@ class Linkpartner extends Main {
      */
     public function ub_hourly_task() {
         //delete all the old hits, 60*60*48 = 172800
-        Mapper::getInstance(Mapper::Linkpartner)->removeOldLinks(172800);
-        $hits = Mapper::getInstance(Mapper::Linkpartner)->coundHits();
+        UbMapper::getInstance(UbMapper::Linkpartner)->removeOldLinks(172800);
+        $hits = UbMapper::getInstance(UbMapper::Linkpartner)->coundHits();
         foreach($hits as $hit) {
-            Mapper::getInstance(Mapper::Linkpartner)->addTotaltoSites($hit["id"], $hit["inlink"], $hit["outlink"]);
+            UbMapper::getInstance(UbMapper::Linkpartner)->addTotaltoSites($hit["id"], $hit["inlink"], $hit["outlink"]);
         }
     }
 }
