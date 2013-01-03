@@ -1,5 +1,4 @@
 <?php
-namespace UltimateBlogroll;
 /**
  * Created by JetBrains PhpStorm.
  * User: Jens
@@ -8,7 +7,7 @@ namespace UltimateBlogroll;
  * To change this template use File | Settings | File Templates.
  */
  
-class SettingsMapper {
+class UbSettingsMapper {
     /**
      * Checks if the ultimate blogroll settings are already stored
      * @return bool

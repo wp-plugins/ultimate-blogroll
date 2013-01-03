@@ -1,5 +1,4 @@
 <?php
-namespace UltimateBlogroll;
 /**
  * Created by JetBrains PhpStorm.
  * User: Jens
@@ -7,7 +6,7 @@ namespace UltimateBlogroll;
  * Time: 20:15
  */
  
-class InstallMapper {
+class UbInstallMapper {
     /**
      * We added some tables automatically, but maybe the wordpress database credentials were not authorized to do so
      * Check if the tables exist as we expect them to be.

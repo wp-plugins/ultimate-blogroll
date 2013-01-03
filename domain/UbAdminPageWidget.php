@@ -1,5 +1,4 @@
 <?php
-namespace UltimateBlogroll;
 /**
  * Created by JetBrains PhpStorm.
  * User: Jens
@@ -7,13 +6,13 @@ namespace UltimateBlogroll;
  * Time: 12:49
  * To change this template use File | Settings | File Templates.
  */
-class AdminPageWidget
+class UbAdminPageWidget
 {
     /**
      * Show a widget when creating/editing a page
      */
     public function index() {
-        if(isset($_GET["post"]) and $_GET["post"] == Mapper::getInstance(Mapper::Settings)->getConfig("pages")) {
+        if(isset($_GET["post"]) and $_GET["post"] == UbMapper::getInstance(UbMapper::Settings)->getConfig("pages")) {
             $ub_page = "checked";
         } else {
             $ub_page = "";

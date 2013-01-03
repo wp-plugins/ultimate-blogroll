@@ -1,5 +1,4 @@
 <?php
-namespace UltimateBlogroll;
 /**
  * Created by JetBrains PhpStorm.
  * User: Jens
@@ -7,7 +6,7 @@ namespace UltimateBlogroll;
  * Time: 11:47
  * To change this template use File | Settings | File Templates.
  */
-class Main
+class UbMain
 {
     public function __construct() {}
     
@@ -24,7 +23,7 @@ class Main
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
         $subject = __("New link submitted at", "ultimate-blogroll")." ".get_bloginfo('siteurl').''."\r\n";
-        @mail(Mapper::getInstance(Mapper::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
+        @mail(UbMapper::getInstance(UbMapper::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
     }
     /**
     * @param $order
@@ -165,7 +164,7 @@ class Main
             "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
         );
         add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
-        add_meta_box("ultimate-blogroll", "Ultimate Blogroll", array(Controller::getInstance(Controller::AdminPageWidget), "index"), "page", "side", "high");
+        add_meta_box("ultimate-blogroll", "Ultimate Blogroll", array(UbController::getInstance(UbController::AdminPageWidget), "index"), "page", "side", "high");
         //Admin widget
 
     }
