@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. It is the ultimate tool to manage your links.
-Version: 2.4.3
+Version: 2.4.2
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
