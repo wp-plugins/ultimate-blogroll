@@ -130,7 +130,7 @@ class UbInstallMapper {
     {
         global $wpdb;
         $table_name = $wpdb->prefix . "posts";
-        $result = $wpdb->get_results("select id, post_title from ".$table_name." where `post_type` = 'page' and `post_status` = 'publish' and `post_content` like '%<!--ultimate-blogroll-->%'", ARRAY_A);
+        $result = $wpdb->get_results("select id, post_title from ".$table_name." where `post_type` = 'page' and `post_status` = 'publish' and `post_content` like '%<!--ultimate-blogroll-->%' or `post_content` like '%&lt;!--ultimate-blogroll--&gt;%'", ARRAY_A);
         return $result;
     }
 

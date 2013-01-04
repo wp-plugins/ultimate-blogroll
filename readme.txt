@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, link manager, manager, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, receive Links, exchange links
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 2.4.3
+Stable tag: 2.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,9 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+
+= 2.4.4 =
+* Improved importing old settings to determine which page is the Ultimate Blogroll page
 
 = 2.4.3 =
 * Removed namespaces, since this is php 5.3 and apparantly a lot of people don't update their php and are using an unsecure server
@@ -161,6 +164,5 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.4.3 =
-* Removed namespaces, since this is php 5.3 and apparantly a lot of people don't update their php and are using an unsecure server
-* Fixed a bug for editing linkpartners inside admin panel
+= 2.4.4 =
+* Improved importing old settings to determine which page is the Ultimate Blogroll page
