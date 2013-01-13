@@ -69,32 +69,32 @@ class UbSettings {
               $_POST["fight_spam"] = "no";
 
             /* start general settings */
-            $gui["value"]["website_url"]            = @$_POST["website_url"];
-            $gui["value"]["website_title"]          = @$_POST["website_title"];
-            $gui["value"]["website_description"]    = @$_POST["website_description"];
+            $gui["value"]["website_url"]            = $_POST["website_url"];
+            $gui["value"]["website_title"]          = $_POST["website_title"];
+            $gui["value"]["website_description"]    = $_POST["website_description"];
 
-            $gui["value"]["blogroll_contact"]       = @$_POST["blogroll_contact"];
-            $gui["value"]["send_mail"]              = @$_POST["send_mail"];
+            $gui["value"]["blogroll_contact"]       = $_POST["blogroll_contact"];
+            $gui["value"]["send_mail"]              = $_POST["send_mail"];
 
-            $gui["value"]["reciprocal_link"]        = @$_POST["reciprocal_link"];
+            $gui["value"]["reciprocal_link"]        = $_POST["reciprocal_link"];
 
-            $gui["value"]["target"]                 = @$_POST["target"];
-            $gui["value"]["nofollow"]               = @$_POST["nofollow"];
-            $gui["value"]["support"]                = @$_POST["support"];
+            $gui["value"]["target"]                 = $_POST["target"];
+            $gui["value"]["nofollow"]               = $_POST["nofollow"];
+            $gui["value"]["support"]                = $_POST["support"];
             /* end general settings */
 
             /* start widget settings */
-            $gui["value"]["widget_title"]           = @$_POST["widget_title"];
-            $gui["value"]["limit_linkpartners"]     = @$_POST["limit_linkpartners"];
-            $gui["value"]["order_by"]               = @$_POST["order_by"];
-            $gui["value"]["ascending"]              = @$_POST["ascending"];
+            $gui["value"]["widget_title"]           = $_POST["widget_title"];
+            $gui["value"]["limit_linkpartners"]     = $_POST["limit_linkpartners"];
+            $gui["value"]["order_by"]               = $_POST["order_by"];
+            $gui["value"]["ascending"]              = $_POST["ascending"];
             //$gui["value"]["permalink"]              = @$_POST["permalink"];
-            $gui["value"]["logo"]                   = @$_POST["logo"];
-            $gui["value"]["selected_page"]          = @$_POST["pages"];
-            if(@$_POST["logo"] == "yes") {
-                $gui["value"]["logo_width"]             = @$_POST["logo_width"];
-                $gui["value"]["logo_height"]            = @$_POST["logo_height"];
-                $gui["value"]["logo_usage"]             = @$_POST["logo_usage"];
+            $gui["value"]["logo"]                   = $_POST["logo"];
+            $gui["value"]["selected_page"]          = $_POST["pages"];
+            if($_POST["logo"] == "yes") {
+                $gui["value"]["logo_width"]             = $_POST["logo_width"];
+                $gui["value"]["logo_height"]            = $_POST["logo_height"];
+                $gui["value"]["logo_usage"]             = $_POST["logo_usage"];
             } else {
                 $gui["value"]["logo_width"]             = UbMapper::getInstance(UbMapper::Settings)->getConfig("logo_width");
                 $gui["value"]["logo_height"]            = UbMapper::getInstance(UbMapper::Settings)->getConfig("logo_height");
@@ -103,10 +103,10 @@ class UbSettings {
             /* end widget settings */
 
             /* start recaptcha settings */
-            $gui["value"]["fight_spam"]             = @$_POST["fight_spam"];
-            if(@$_POST["fight_spam"] == "yes") {
-                $gui["value"]["recaptcha_public_key"]   = @$_POST["recaptcha_public_key"];
-                $gui["value"]["recaptcha_private_key"]  = @$_POST["recaptcha_private_key"];
+            $gui["value"]["fight_spam"]             = $_POST["fight_spam"];
+            if($_POST["fight_spam"] == "yes") {
+                $gui["value"]["recaptcha_public_key"]   = $_POST["recaptcha_public_key"];
+                $gui["value"]["recaptcha_private_key"]  = $_POST["recaptcha_private_key"];
             } else {
                 $gui["value"]["recaptcha_public_key"]   = UbMapper::getInstance(UbMapper::Settings)->getConfig("recaptcha_public_key");
                 $gui["value"]["recaptcha_private_key"]  = UbMapper::getInstance(UbMapper::Settings)->getConfig("recaptcha_private_key");
@@ -153,7 +153,7 @@ class UbSettings {
             /**
              * Check if Order by is still a predefined value
              */
-            if(!in_array(@$_POST["order_by"], array("id", "name", "inlinks", "outlinks"))) {
+            if(!in_array($_POST["order_by"], array("id", "name", "inlinks", "outlinks"))) {
                 UbMapper::getInstance(UbMapper::Error)->addError("order_by", __("Order by", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
             }
 
@@ -176,7 +176,7 @@ class UbSettings {
                 UbMapper::getInstance(UbMapper::Error)->addError("logo", __("Logo", "ultimate-blogroll")." ".__("contains an unexpected value", "ultimate-blogroll"));
             }
 
-            if(@$_POST["logo"] == "yes"){
+            if($_POST["logo"] == "yes"){
                 if(empty( $_POST["logo_width"] )) {
                     UbMapper::getInstance(UbMapper::Error)->addError("logo_width", __("Width of logo", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                 } elseif (!is_numeric( $_POST["logo_width"] )) {
@@ -201,7 +201,7 @@ class UbSettings {
             /**
              * Only validate and save the data if recaptcha is enabled, otherwise: ignore
              */
-            if(@$_POST["fight_spam"] == "yes") {
+            if($_POST["fight_spam"] == "yes") {
                 if(empty($_POST["recaptcha_public_key"])) {
                     UbMapper::getInstance(UbMapper::Error)->addError("recaptcha_public_key", __("Public key", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                 }
@@ -214,31 +214,31 @@ class UbSettings {
              * Save the submitted form if there are no errors!
              */
             if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_url", @$_POST["website_url"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_title", @$_POST["website_title"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_description", @$_POST["website_description"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("blogroll_contact", @$_POST["blogroll_contact"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("send_mail", @$_POST["send_mail"] );
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("reciprocal_link", @$_POST["reciprocal_link"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("target", @$_POST["target"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("nofollow", @$_POST["nofollow"] );
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("support", @$_POST["support"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_url", $_POST["website_url"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_title", $_POST["website_title"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("website_description", $_POST["website_description"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("blogroll_contact", $_POST["blogroll_contact"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("send_mail", $_POST["send_mail"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("reciprocal_link", $_POST["reciprocal_link"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("target", $_POST["target"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("nofollow", $_POST["nofollow"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("support", $_POST["support"] );
 
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("widget_title", @$_POST["widget_title"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("limit_linkpartners", @$_POST["limit_linkpartners"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("order_by", @$_POST["order_by"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("ascending", @$_POST["ascending"]);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", @$_POST["pages"] );
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("logo", @$_POST["logo"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("widget_title", $_POST["widget_title"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("limit_linkpartners", $_POST["limit_linkpartners"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("order_by", $_POST["order_by"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("ascending", $_POST["ascending"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $_POST["pages"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("logo", $_POST["logo"] );
                 //if(@$_POST["logo"] == "yes") {
-                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_width", @$_POST["logo_width"]);
-                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_height", @$_POST["logo_height"]);
-                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_usage", @$_POST["logo_usage"]);
+                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_width", $_POST["logo_width"]);
+                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_height", $_POST["logo_height"]);
+                    UbMapper::getInstance(UbMapper::Settings)->setConfig("logo_usage", $_POST["logo_usage"]);
                 //}
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("fight_spam", @$_POST["fight_spam"] );
-                if(@$_POST["fight_spam"] == "yes") {
-                    UbMapper::getInstance(UbMapper::Settings)->setConfig("recaptcha_public_key", @$_POST["recaptcha_public_key"]);
-                    UbMapper::getInstance(UbMapper::Settings)->setConfig("recaptcha_private_key", @$_POST["recaptcha_private_key"]);
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("fight_spam", $_POST["fight_spam"] );
+                if($_POST["fight_spam"] == "yes") {
+                    UbMapper::getInstance(UbMapper::Settings)->setConfig("recaptcha_public_key", $_POST["recaptcha_public_key"]);
+                    UbMapper::getInstance(UbMapper::Settings)->setConfig("recaptcha_private_key", $_POST["recaptcha_private_key"]);
                 }
                 $gui["success"]["save"] = true;
             }

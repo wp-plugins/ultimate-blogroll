@@ -87,18 +87,23 @@ class UbPage extends UbMain{
                     if(!function_exists("recaptcha_get_html")) {
                         require_once(UB_PLUGIN_DIR."tools".DIRECTORY_SEPARATOR."recaptchalib.php");
                     }
-                    $resp = recaptcha_check_answer (UbMapper::getInstance(UbMapper::Settings)->getConfig("recaptcha_private_key"), $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
-                    if(!$resp->is_valid) {
-                        UbMapper::getInstance(UbMapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
+                    if(!empty($_POST["recaptcha_challenge_field"]) and !empty($_POST["recaptcha_response_field"]))
+                    {
+                        $resp = recaptcha_check_answer (UbMapper::getInstance(UbMapper::Settings)->getConfig("recaptcha_private_key"), $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+                        if(!$resp->is_valid) {
+                            UbMapper::getInstance(UbMapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("was wrong", "ultimate-blogroll"));
+                        }
+                    } else {
+                        UbMapper::getInstance(UbMapper::Error)->addError("captcha", __("Anti-spam", "ultimate-blogroll")." ".__("is empty", "ultimate-blogroll"));
                     }
                 }
-                $gui["value"]["your_name"]           = @$_POST["your_name"];
-                $gui["value"]["your_email"]          = @$_POST["your_email"];
-                $gui["value"]["website_url"]         = @$_POST["website_url"];
-                $gui["value"]["website_title"]       = @$_POST["website_title"];
-                $gui["value"]["website_description"] = @$_POST["website_description"];
-                $gui["value"]["website_reciprocal"]  = @$_POST["website_reciprocal"];
-                $gui["value"]["website_image"]       = @$_POST["website_image"];
+                $gui["value"]["your_name"]           = $_POST["your_name"];
+                $gui["value"]["your_email"]          = $_POST["your_email"];
+                $gui["value"]["website_url"]         = $_POST["website_url"];
+                $gui["value"]["website_title"]       = $_POST["website_title"];
+                $gui["value"]["website_description"] = $_POST["website_description"];
+                $gui["value"]["website_reciprocal"]  = empty($_POST["website_reciprocal"]) ? "" : $_POST["website_reciprocal"];
+                $gui["value"]["website_image"]       = empty($_POST["website_image"]) ? "" : $_POST["website_image"];
 
                 if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
                     $domain = parse_url($_POST["website_url"]);
@@ -116,8 +121,8 @@ class UbPage extends UbMain{
                             $_POST["website_title"],
                             $_POST["website_description"],
                             $domain["host"],
-                            $_POST["website_reciprocal"],
-                            $_POST["website_image"],
+                            empty($_POST["website_reciprocal"]) ? "" : $_POST["website_reciprocal"],
+                            empty($_POST["website_image"]) ? "" : $_POST["website_image"],
                             $linkback
                         );
                         if(UbMapper::getInstance(UbMapper::Settings)->getConfig("send_mail") == "yes") {

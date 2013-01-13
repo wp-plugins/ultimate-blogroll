@@ -138,7 +138,7 @@ class UbLinkpartnerMapper {
         else
             $sql = $wpdb->prepare("select website_id from ".$table_name." where website_url = %s or website_backlink = %s or website_domein = %s or website_name = %s", array($url, $reciprocal, $domain, $website_name));
         $wpdb->get_results($sql);
-        if($wpdb->num_rows > 0)
+        if(count($wpdb->last_result))
             return true;
         return false;
     }
@@ -160,19 +160,19 @@ class UbLinkpartnerMapper {
         global $wpdb;
         $table_name = $wpdb->prefix . "ubsites";
         $data = array(
-            website_owner_name => $your_name,
-            website_owner_email => $your_email,
-            website_name => $website_title,
-            website_description => $website_description,
-            website_domein => str_replace('www.', '', $domain),
-            website_url => $website_url,
-            website_backlink => $reciprocal,
-            website_last_update => time(),
-            website_change_id => UbMapper::getInstance(UbMapper::Install)->makeRandom(50),
-            website_date_added => time(),
-            website_has_backlink => $has_link_back,
-            website_ip => $_SERVER['REMOTE_ADDR'],
-            website_image => $image
+            'website_owner_name' => $your_name,
+            'website_owner_email' => $your_email,
+            'website_name' => $website_title,
+            'website_description' => $website_description,
+            'website_domein' => str_replace('www.', '', $domain),
+            'website_url' => $website_url,
+            'website_backlink' => $reciprocal,
+            'website_last_update' => time(),
+            'website_change_id' => UbMapper::getInstance(UbMapper::Install)->makeRandom(50),
+            'website_date_added' => time(),
+            'website_has_backlink' => $has_link_back,
+            'website_ip' => $_SERVER['REMOTE_ADDR'],
+            'website_image' => $image
         );
         $format = array(
             "%s",//website_owner_name

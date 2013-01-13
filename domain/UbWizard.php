@@ -26,7 +26,7 @@ class UbWizard {
                 $post_id = wp_insert_post($post);
                 UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $post_id );
             } else {//save the selected pages
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", @$_POST["pages"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $_POST["pages"] );
             }
             if(empty($_POST["sides"])) {
                 $frmSelectedWidgetBars = array();
@@ -34,8 +34,8 @@ class UbWizard {
                 $frmSelectedWidgetBars = $_POST["sides"];
             }
             $frmCreate = "";//checkbox, select a page or create a page
-            $frmPageName = @$_POST["frmPageName"];
-            $frmSelectedPage = @$_POST["pages"];
+            $frmPageName = $_POST["frmPageName"];
+            $frmSelectedPage = $_POST["pages"];
             if(isset($_POST["frmCreate"])) {
                 $frmCreate = "checked";
             }

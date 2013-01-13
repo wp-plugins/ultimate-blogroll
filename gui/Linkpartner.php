@@ -79,7 +79,7 @@ jQuery(document).ready(function($) {
                 </div><!-- .inside -->
             </div><!-- .postbox -->
             <p class="submit">
-                <input type="submit" class="button button-primary button-large" name="add_linkpartner" value="<?php echo (($gui["edit"] === true) ? __("Update linkpartner", "ultimate-blogroll") : __("Submit linkpartner", "ultimate-blogroll")) ?>" />
+                <input type="submit" class="button button-primary button-large" name="add_linkpartner" value="<?php echo ((@$gui["edit"] === true) ? __("Update linkpartner", "ultimate-blogroll") : __("Submit linkpartner", "ultimate-blogroll")) ?>" />
             </p>
         </form>
     </div><!-- #poststuff -->

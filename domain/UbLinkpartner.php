@@ -88,13 +88,13 @@ class UbLinkpartner extends UbMain {
                     UbMapper::getInstance(UbMapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
                 }
             }
-            $gui["value"]["your_name"]           = @$_POST["your_name"];
-            $gui["value"]["your_email"]          = @$_POST["your_email"];
-            $gui["value"]["website_url"]         = @$_POST["website_url"];
-            $gui["value"]["website_title"]       = @$_POST["website_title"];
-            $gui["value"]["website_description"] = @$_POST["website_description"];
-            $gui["value"]["website_reciprocal"]  = @$_POST["website_reciprocal"];
-            $gui["value"]["website_image"]       = @$_POST["website_image"];
+            $gui["value"]["your_name"]           = $_POST["your_name"];
+            $gui["value"]["your_email"]          = $_POST["your_email"];
+            $gui["value"]["website_url"]         = $_POST["website_url"];
+            $gui["value"]["website_title"]       = $_POST["website_title"];
+            $gui["value"]["website_description"] = $_POST["website_description"];
+            $gui["value"]["website_reciprocal"]  = $_POST["website_reciprocal"];
+            $gui["value"]["website_image"]       = $_POST["website_image"];
             if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
                 $gui["success"]["update"] = true;
                 $domain = parse_url($_POST["website_url"]);
@@ -273,13 +273,13 @@ class UbLinkpartner extends UbMain {
                     UbMapper::getInstance(UbMapper::Error)->addError("website_domain", __("Website domain", "ultimate-blogroll")." ".__("does not fetch with", "ultimate-blogroll")." ".__("Website url", "ultimate-blogroll"));
                 }
             }
-            $gui["value"]["your_name"]           = @$_POST["your_name"];
-            $gui["value"]["your_email"]          = @$_POST["your_email"];
-            $gui["value"]["website_url"]         = @$_POST["website_url"];
-            $gui["value"]["website_title"]       = @$_POST["website_title"];
-            $gui["value"]["website_description"] = @$_POST["website_description"];
-            $gui["value"]["website_reciprocal"]  = @$_POST["website_reciprocal"];
-            $gui["value"]["website_image"]       = @$_POST["website_image"];
+            $gui["value"]["your_name"]           = $_POST["your_name"];
+            $gui["value"]["your_email"]          = $_POST["your_email"];
+            $gui["value"]["website_url"]         = $_POST["website_url"];
+            $gui["value"]["website_title"]       = $_POST["website_title"];
+            $gui["value"]["website_description"] = $_POST["website_description"];
+            $gui["value"]["website_reciprocal"]  = $_POST["website_reciprocal"];
+            $gui["value"]["website_image"]       = $_POST["website_image"];
 
             if( count(UbMapper::getInstance(UbMapper::Error)->getError()) == 0 ) {
                 $domain = parse_url($_POST["website_url"]);
@@ -326,7 +326,7 @@ class UbLinkpartner extends UbMain {
      * If a user clicks on a link (within the ultimate-blogroll page or widget) it is processed here
      */
     public function ub_ajax_action_callback() {
-        $linkpartner = parse_url(@$_POST['linkpartner']);
+        $linkpartner = parse_url($_POST['linkpartner']);
         $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost($linkpartner["host"]);
         if(is_null($id)) {
             $id = UbMapper::getInstance(UbMapper::Linkpartner)->getIdByHost(str_replace('www.', '', $linkpartner["host"]));
