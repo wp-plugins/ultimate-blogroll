@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, link manager, manager, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, receive Links, exchange links
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 2.4
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,28 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+= 2.5.1 =
+* Turned off error reporting
+
+= 2.5 =
+* Fixed bugs, credits to: syndrael for reporting
+
+= 2.4.5 =
+* Fixed blank page
+
+= 2.4.4 =
+* Improved importing old settings to determine which page is the Ultimate Blogroll page
+
+= 2.4.3 =
+* Removed namespaces, since this is php 5.3 and apparantly a lot of people don't update their php and are using an unsecure server
+* Fixed a bug for editing linkpartners inside admin panel
+
+= 2.4.2 =
+* Fixed addlink in widget
+* Added namespaces to prevent name conflicts
+
+= 2.4.1.1 =
+* Restyled button in wizard
 
 = 2.4 =
 * Fixed Bugs: addlink, reCAPTCHA, Missing argument 2 for wpdb::prepare()
@@ -83,38 +105,38 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * bugs fixed
 
 = 1.8.2 =
-* added curl support, thanks to Rob of abcblogcast
-* fixed bug checking for external links, there is no need in receiving a warning (ports not open) if you don't need the feature
-* curl support should fix the "Could not check for reciprocal website. Check if ports are open." warning
+* Added curl support, thanks to Rob of abcblogcast
+* Fixed bug checking for external links, there is no need in receiving a warning (ports not open) if you don't need the feature
+* Curl support should fix the "Could not check for reciprocal website. Check if ports are open." warning
 
 = 1.8.1 =
-* updated magic methods to be compatible with php 5.3
-* fixed some minor bugs
+* Updated magic methods to be compatible with php 5.3
+* Fixed some minor bugs
 
 = 1.8 =
-* added russia
-* performance boost
-* added options for website image(logo)
-* fixed some minor bugs
+* Added russia
+* Performance boost
+* Added options for website image(logo)
+* Fixed some minor bugs
 
 = 1.7.6 =
-* added the hungarian language
-* fixed recaptcha bug
-* fixed error in admin panel, when you add a linkpartner manually
-* fixed some minor bugs
+* Added the hungarian language
+* Fixed recaptcha bug
+* Fixed error in admin panel, when you add a linkpartner manually
+* Fixed some minor bugs
 
 = 1.7.5 =
-* fixed some display issues (<?= <?php echo)
-* added the Spanish language
-* fixed linktrades did not save although succesfull message was showen
-* fixed some minor bugs
+* Fixed some display issues (<?= <?php echo)
+* Added the Spanish language
+* Fixed linktrades did not save although succesfull message was showen
+* Fixed some minor bugs
 
 = 1.7.2 =
-* fixed No such file gui/recaptchalib.php
+* Fixed No such file gui/recaptchalib.php
 
 = 1.7.1 =
-* fixed widget title
-* enabled choise to require reciprocal link 
+* Fixed widget title
+* Enabled choise to require reciprocal link
 
 = 1.7 =
 * Fixed some conflicts with other plugins
@@ -150,6 +172,5 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.4 =
-* Fixed Bugs: addlink, reCAPTCHA, Missing argument 2 for wpdb::prepare()
-* Fixed styling issues: buttons look fine in the new Wordpress style
+= 2.5.1 =
+* Turned off error reporting

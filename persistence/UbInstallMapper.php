@@ -6,7 +6,7 @@
  * Time: 20:15
  */
  
-class InstallMapper {
+class UbInstallMapper {
     /**
      * We added some tables automatically, but maybe the wordpress database credentials were not authorized to do so
      * Check if the tables exist as we expect them to be.
@@ -130,7 +130,7 @@ class InstallMapper {
     {
         global $wpdb;
         $table_name = $wpdb->prefix . "posts";
-        $result = $wpdb->get_results("select id, post_title from ".$table_name." where `post_type` = 'page' and `post_status` = 'publish' and `post_content` like '%<!--ultimate-blogroll-->%'", ARRAY_A);
+        $result = $wpdb->get_results("select id, post_title from ".$table_name." where `post_type` = 'page' and `post_status` = 'publish' and `post_content` like '%<!--ultimate-blogroll-->%' or `post_content` like '%&lt;!--ultimate-blogroll--&gt;%'", ARRAY_A);
         return $result;
     }
 
