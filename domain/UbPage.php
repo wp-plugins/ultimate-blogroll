@@ -156,7 +156,7 @@ class UbPage extends UbMain{
             $gui["reciprocal_link"]     = UbMapper::getInstance(UbMapper::Settings)->getConfig("reciprocal_link");
             $gui["table_links_target"]  = UbMapper::getInstance(UbMapper::Settings)->getConfig("target");
             ob_start();
-            require_once(UB_PLUGIN_DIR."gui/Page.php");
+            require (UB_PLUGIN_DIR."gui/Page.php");
             $result = ob_get_clean();
             return "<p>".$result."</p>";
         } else {
