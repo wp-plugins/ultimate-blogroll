@@ -5,7 +5,7 @@
  * Date: 9/11/11
  * Time: 21:49
  */
-class ImportExport {
+class UbImportExport {
     /**
      * Show the possibilities to the user, let him choose between importing or exporting the links
      */
@@ -20,7 +20,7 @@ class ImportExport {
             }
         }
 
-        require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."ImportExport.php");
+        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "ImportExport.php");
     }
 
     /**
@@ -28,8 +28,8 @@ class ImportExport {
      * If the user is not satisfied, he needs to get out nicely
      */
     public function exportToWordpress() {
-        $linksFromWordpress         = Mapper::getInstance(Mapper::ImportExport)->GetBlogrollWordpress();
-        $linksFromUltimateBlogroll  = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartners();
+        $linksFromWordpress         = UbMapper::getInstance(UbMapper::ImportExport)->GetBlogrollWordpress();
+        $linksFromUltimateBlogroll  = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners();
         foreach($linksFromUltimateBlogroll as $u) {
             if($this->CheckIfExists($u["website_url"], $linksFromWordpress, "link_url") === false) {
                 $result = array();
@@ -40,7 +40,7 @@ class ImportExport {
                 //$result["link_owner"]       = $user_id;
                 $result["link_image"]       = $u["website_image"];
                 //$result                     = array_map ( array($this, 'map_entities'), $result );
-                Mapper::getInstance(Mapper::ImportExport)->addLinkpartnerToWordpress($result);
+                UbMapper::getInstance(UbMapper::ImportExport)->addLinkpartnerToWordpress($result);
             }
         }
     }
@@ -48,13 +48,13 @@ class ImportExport {
      * Import the links from Wordpress into Ultimate Blogroll
      */
     public function importToUltimateBlogroll() {
-        $linksFromWordpress         = Mapper::getInstance(Mapper::ImportExport)->GetBlogrollWordpress();
-        $linksFromUltimateBlogroll  = Mapper::getInstance(Mapper::Linkpartner)->getLinkpartners();
+        $linksFromWordpress         = UbMapper::getInstance(UbMapper::ImportExport)->GetBlogrollWordpress();
+        $linksFromUltimateBlogroll  = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners();
         foreach($linksFromWordpress as $link) {
             if($this->CheckIfExists($link["link_url"], $linksFromUltimateBlogroll, "website_url") === false) {
                 $url = parse_url($link["link_url"]);
                 $link["domain"] = $url["host"];
-                Mapper::getInstance(Mapper::ImportExport)->AddLinkpartnerFromWordpress($link);
+                UbMapper::getInstance(UbMapper::ImportExport)->AddLinkpartnerFromWordpress($link);
             }
         }
     }

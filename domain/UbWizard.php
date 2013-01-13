@@ -6,14 +6,14 @@
  * Time: 22:02
  * To change this template use File | Settings | File Templates.
  */
-class Wizard {
+class UbWizard {
     /**
      * Show the Wizard
      */
     public function show() {
         global $wp_registered_sidebars;
         //All the pages published for step 1
-        $allPages = Mapper::getInstance(Mapper::Install)->getPublishedPages();
+        $allPages = UbMapper::getInstance(UbMapper::Install)->getPublishedPages();
         if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["save"])) {
             if(isset($_POST["frmCreate"])) {//create a new page
                 $post = array(
@@ -24,9 +24,9 @@ class Wizard {
                     'post_content' => __('This is now an ultimate blogroll page, check out the page "Ultimate blogroll" details at your right if you want to change this', "ultimate-blogroll"),
                 );
                 $post_id = wp_insert_post($post);
-                Mapper::getInstance(Mapper::Settings)->setConfig("pages", $post_id );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $post_id );
             } else {//save the selected pages
-                Mapper::getInstance(Mapper::Settings)->setConfig("pages", @$_POST["pages"] );
+                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $_POST["pages"] );
             }
             if(empty($_POST["sides"])) {
                 $frmSelectedWidgetBars = array();
@@ -34,20 +34,20 @@ class Wizard {
                 $frmSelectedWidgetBars = $_POST["sides"];
             }
             $frmCreate = "";//checkbox, select a page or create a page
-            $frmPageName = @$_POST["frmPageName"];
-            $frmSelectedPage = @$_POST["pages"];
+            $frmPageName = $_POST["frmPageName"];
+            $frmSelectedPage = $_POST["pages"];
             if(isset($_POST["frmCreate"])) {
                 $frmCreate = "checked";
             }
             $frmImport = "";
             if(isset($_POST["frmImport"])) {
-                Controller::getInstance(Controller::ImportExport)->importToUltimateBlogroll();
+                UbController::getInstance(UbController::ImportExport)->importToUltimateBlogroll();
                 $frmImport = "checked";
             }
             //get all the sidebars
             $widgets = get_option("sidebars_widgets");
             //delete all the ultimate-blogroll references
-            $widgets = array_map(array(Mapper::getInstance(Mapper::Settings), 'RemoveExistingWidget'), $widgets);
+            $widgets = array_map(array(UbMapper::getInstance(UbMapper::Settings), 'RemoveExistingWidget'), $widgets);
             foreach($frmSelectedWidgetBars as $bars) {
                 array_unshift($widgets[$bars], "ultimate-blogroll");
             }
@@ -57,7 +57,7 @@ class Wizard {
             $frmSides = array();
             $frmCreate = "";
             $frmPageName = "Ultimate Blogroll";
-            $frmSelectedPage = Mapper::getInstance(Mapper::Settings)->getConfig("pages");
+            $frmSelectedPage = UbMapper::getInstance(UbMapper::Settings)->getConfig("pages");
             $frmImport = "checked";
 
             //get all the sidebars with the ultimate-blogroll plugin in.
@@ -83,6 +83,6 @@ class Wizard {
                 $sidebars_names[] = $side;
             }
         }
-        require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Wizard.php");
+        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "Wizard.php");
     }
 }
