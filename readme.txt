@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, link manager, manager, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, receive Links, exchange links
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 2.5
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,9 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+= 2.5.1 =
+* Turned off error reporting
+
 = 2.5 =
 * Fixed bugs, credits to: syndrael for reporting
 
@@ -169,5 +172,5 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.5 =
-* Fixed bugs, credits to: syndrael for reporting
+= 2.5.1 =
+* Turned off error reporting
