@@ -6,22 +6,22 @@
 * Time: 15:16
 * To change this template use File | Settings | File Templates.
 */
-class Install {
+class UbInstall {
     /**
      * This is related to the admin_notices in the ultimate-blogroll.php file.
      * It checks if everything is ok and otherwise informs the blog owner
      *
-     * add_action("admin_notices", array(Controller::getInstance("Install"), "admin_notices"));
+     * add_action("admin_notices", array(UbController::getInstance("Install"), "admin_notices"));
      * @return void
      */
     public function admin_notices() {
-        if(Mapper::getInstance("Install")->isGetExternalSiteWorking() !== true && Mapper::getInstance(Mapper::Settings)->getConfig("reciprocal_link") == "yes") {
+        if(UbMapper::getInstance("Install")->isGetExternalSiteWorking() !== true && UbMapper::getInstance(UbMapper::Settings)->getConfig("reciprocal_link") == "yes") {
             require_once(UB_PLUGIN_DIR."gui/notices/SocketError.php");
         }
-        if(Mapper::getInstance("Install")->doRequiredTablesExist() !== true) {
+        if(UbMapper::getInstance("Install")->doRequiredTablesExist() !== true) {
             require_once(UB_PLUGIN_DIR."gui/notices/TablesDoNotExist.php");
         }
-        $pages = Mapper::getInstance(Mapper::Settings)->getConfig("pages");
+        $pages = UbMapper::getInstance(UbMapper::Settings)->getConfig("pages");
         if( empty( $pages ) ) {
             require_once(UB_PLUGIN_DIR."gui/notices/noPageWasSet.php");
         }
@@ -41,7 +41,7 @@ class Install {
      */
     function ubActivate() {
         wp_schedule_event(time(), 'hourly', 'ub_hourly_event');
-        if(Mapper::getInstance("Settings")->doesConfigExist() !== true){
+        if(UbMapper::getInstance("Settings")->doesConfigExist() !== true){
             $default = array();
             $default["website_url"]             = get_bloginfo('siteurl');
             $default["website_title"]           = get_bloginfo('blogname');
@@ -81,13 +81,13 @@ class Install {
             $default["data_version"]            = 4;
             add_option("ultimate_blogroll_settings", $default, "", "yes");
         }
-        if(Mapper::getInstance("Install")->doRequiredTablesExist() !== true) {
-            Mapper::getInstance("Install")->installDatabase();
+        if(UbMapper::getInstance("Install")->doRequiredTablesExist() !== true) {
+            UbMapper::getInstance("Install")->installDatabase();
         }
         //import all the pages with the <!--ultimate-blogroll--> tag
-        $pages = Mapper::getInstance(Mapper::Install)->getPagesWithUltimateBlogrollTag();
+        $pages = UbMapper::getInstance(UbMapper::Install)->getPagesWithUltimateBlogrollTag();
         foreach($pages as $page) {
-            Mapper::getInstance(Mapper::Settings)->setConfig("pages", $page["id"]);
+            UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $page["id"]);
         }
     }
 
