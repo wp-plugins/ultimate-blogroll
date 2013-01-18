@@ -11,7 +11,7 @@ function errors() {
     if( count(UbMapper::getInstance(UbMapper::Error)->getError()) != 0 ) {
         return '<div class="error fade">
             <p>
-                <b>Errors:</b>
+                <b>'.__('Errors').':</b>
                 <ul>'.UbMapper::getInstance(UbMapper::Error)->getErrorAsString().'</ul>
             </p>
         </div>';

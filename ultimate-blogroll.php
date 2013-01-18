@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
 Description: Ultimate Blogroll is a plugin which enables your visitors to submit a linktrade. Your visitors can add their own website and you can keep track of the in- and outlinks. It is the ultimate tool to manage your links.
-Version: 2.5.1
+Version: 2.5.2
 Author: Jens Gheerardyn
 Author URI: http://www.gheerardyn.be
 */
@@ -47,7 +47,7 @@ if (is_admin()) {
     //check if the plugin is working properly, if not what user interaction is required to solve the issue?
     add_action("admin_notices", array(UbController::getInstance(UbController::Install), "admin_notices"));
     //show Ultimate Blogroll in the admin menu (wordpress admin)
-    add_action("admin_menu", "admin_menu");
+    add_action("admin_menu", "ub_admin_menu");
     //check if a page is an Ultimate Blogroll page
     add_action("publish_page", array(UbController::getInstance(UbController::Settings), "pages"));
     add_action("edit_post", array(UbController::getInstance(UbController::Settings), "pages"));
@@ -127,7 +127,7 @@ function ub_admin_overview() {
  * for more information see: http://codex.wordpress.org/Administration_Menus
  * @return void
  */
-function admin_menu(){
+function ub_admin_menu(){
     add_menu_page(
         "Ultimate Blogroll", //page title
         "Ultim. Blogroll", //menu title, apearance in the menu

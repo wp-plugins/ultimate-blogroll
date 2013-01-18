@@ -4,7 +4,7 @@ Donate link: http://ultimateblogroll.gheerardyn.be
 Tags: blogroll, links, link, link manager, manager, linkpartner, exchange, repricoral, backlink, partner, manage, counter, admin, seo, receive Links, exchange links
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,10 @@ No, they are calculated once every hour. This plugin is designed for large sites
 6. Widget controller
 
 == Changelog ==
+= 2.5.2 =
+* Fixed a name collision (admin_menu)
+* Added 'Errors:' to the po localization file
+
 = 2.5.1 =
 * Turned off error reporting
 
@@ -67,7 +71,7 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * Improved importing old settings to determine which page is the Ultimate Blogroll page
 
 = 2.4.3 =
-* Removed namespaces, since this is php 5.3 and apparantly a lot of people don't update their php and are using an unsecure server
+* Removed namespaces, since this is php 5.3 and apparently a lot of people don't update their php and are using an unsecured server
 * Fixed a bug for editing linkpartners inside admin panel
 
 = 2.4.2 =
@@ -128,7 +132,7 @@ No, they are calculated once every hour. This plugin is designed for large sites
 = 1.7.5 =
 * Fixed some display issues (<?= <?php echo)
 * Added the Spanish language
-* Fixed linktrades did not save although succesfull message was showen
+* Fixed linktrades did not save although successful message was shown
 * Fixed some minor bugs
 
 = 1.7.2 =
@@ -136,7 +140,7 @@ No, they are calculated once every hour. This plugin is designed for large sites
 
 = 1.7.1 =
 * Fixed widget title
-* Enabled choise to require reciprocal link
+* Enabled choice to require reciprocal link
 
 = 1.7 =
 * Fixed some conflicts with other plugins
@@ -172,5 +176,6 @@ No, they are calculated once every hour. This plugin is designed for large sites
 * First version build, I am currently awaiting feedback
 
 == Upgrade Notice ==
-= 2.5.1 =
-* Turned off error reporting
+= 2.5.2 =
+* Fixed a name collision (admin_menu)
+* Added 'Errors:' to the po localization file
