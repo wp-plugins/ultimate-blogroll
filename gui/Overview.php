@@ -55,8 +55,8 @@
                 <thead>
                     <tr>
                         <th style="" class="manage-column column-cb check-column" id="cb" scope="col"><input type="checkbox"></th>
-                        <th style="" class="manage-column column-link-website" scope="col"><?php echo  __("Website name", "ultimate-blogroll") ?></th>
-                        <th style="" class="manage-column column-link-date" scope="col"><?php echo  __("URL", "ultimate-blogroll") ?></th>
+                        <th style="" class="manage-column ub-column-fat " scope="col"><?php echo  __("Website name", "ultimate-blogroll") ?></th>
+                        <th style="" class="manage-column ub-column-fat " scope="col"><?php echo  __("URL", "ultimate-blogroll") ?></th>
                         <th style="" class="manage-column" scope="col"><?php echo  __("Last 48h in", "ultimate-blogroll") ?></th>
                         <th style="" class="manage-column" scope="col"><?php echo  __("Last 48h out", "ultimate-blogroll") ?></th>
                         <th style="" class="manage-column" scope="col"><?php echo  __("Total in", "ultimate-blogroll") ?></th>

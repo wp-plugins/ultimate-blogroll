@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class UbLinkpartnerMapper {
+class UbLinkpartnerRepository {
     /**
      * This query requests every column from the linkpartners
      * Is used for the overview in the admin panel
@@ -93,7 +93,7 @@ class UbLinkpartnerMapper {
      */
     public function checkreciprocalLink($url) {
             $html = false;
-            if(UbMapper::getInstance(UbMapper::Install)->isCurlWorking()) {
+            if(UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->isCurlWorking()) {
                 $crl = curl_init();
                 $timeout = 5;
                 curl_setopt ($crl, CURLOPT_URL,$url);
@@ -107,7 +107,7 @@ class UbLinkpartnerMapper {
             if($html === false)
                 return false;
             $html = strtolower($html);
-            $website_url = strtolower(UbMapper::getInstance(UbMapper::Settings)->getConfig("website_url"));
+            $website_url = strtolower(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("website_url"));
 
             $found = false;
             if (preg_match_all('/<a\s[^>]*href=([\"\']??)([^" >]*?)\\1([^>]*)>/siU', $html, $matches, PREG_SET_ORDER)) {
@@ -168,7 +168,7 @@ class UbLinkpartnerMapper {
             'website_url' => $website_url,
             'website_backlink' => $reciprocal,
             'website_last_update' => time(),
-            'website_change_id' => UbMapper::getInstance(UbMapper::Install)->makeRandom(50),
+            'website_change_id' => UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->makeRandom(50),
             'website_date_added' => time(),
             'website_has_backlink' => $has_link_back,
             'website_ip' => $_SERVER['REMOTE_ADDR'],
@@ -218,7 +218,7 @@ class UbLinkpartnerMapper {
         $result["website_url"] = $website_url;
         $result["website_backlink"] = $reciprocal;
         $result["website_last_update"] = time();
-        $result["website_change_id"] = UbMapper::getInstance(UbMapper::Install)->makeRandom(50);
+        $result["website_change_id"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->makeRandom(50);
         $result["website_date_added"] = time();
         $result["website_has_backlink"] = $has_link_back;
         $result["website_ip"] = $_SERVER['REMOTE_ADDR'];

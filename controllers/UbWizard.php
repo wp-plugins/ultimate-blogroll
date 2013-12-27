@@ -13,7 +13,7 @@ class UbWizard {
     public function show() {
         global $wp_registered_sidebars;
         //All the pages published for step 1
-        $allPages = UbMapper::getInstance(UbMapper::Install)->getPublishedPages();
+        $allPages = UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->getPublishedPages();
         if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["save"])) {
             if(isset($_POST["frmCreate"])) {//create a new page
                 $post = array(
@@ -24,9 +24,9 @@ class UbWizard {
                     'post_content' => __('This is now an ultimate blogroll page, check out the page "Ultimate blogroll" details at your right if you want to change this', "ultimate-blogroll"),
                 );
                 $post_id = wp_insert_post($post);
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $post_id );
+                UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages", $post_id );
             } else {//save the selected pages
-                UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $_POST["pages"] );
+                UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages", $_POST["pages"] );
             }
             if(empty($_POST["sides"])) {
                 $frmSelectedWidgetBars = array();
@@ -47,7 +47,7 @@ class UbWizard {
             //get all the sidebars
             $widgets = get_option("sidebars_widgets");
             //delete all the ultimate-blogroll references
-            $widgets = array_map(array(UbMapper::getInstance(UbMapper::Settings), 'RemoveExistingWidget'), $widgets);
+            $widgets = array_map(array(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings), 'RemoveExistingWidget'), $widgets);
             foreach($frmSelectedWidgetBars as $bars) {
                 array_unshift($widgets[$bars], "ultimate-blogroll");
             }
@@ -57,7 +57,7 @@ class UbWizard {
             $frmSides = array();
             $frmCreate = "";
             $frmPageName = "Ultimate Blogroll";
-            $frmSelectedPage = UbMapper::getInstance(UbMapper::Settings)->getConfig("pages");
+            $frmSelectedPage = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages");
             $frmImport = "checked";
 
             //get all the sidebars with the ultimate-blogroll plugin in.

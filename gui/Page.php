@@ -41,7 +41,7 @@
                         echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"])."><img style=\"width: ".$gui["logo_width"]."px; max-height: ".$gui["logo_height"]."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                     else {
-                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".UbMapper::Instance()->GetConfig("logo_width")."px; max-height: ".UbMapper::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".UbPersistenceRouter::Instance()->GetConfig("logo_width")."px; max-height: ".UbPersistenceRouter::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                 } else {
                     echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";

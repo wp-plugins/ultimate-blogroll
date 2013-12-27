@@ -15,15 +15,21 @@ class UbMain
      * @param $linkpartner
      * @param $id
      */
+
     public function sendMail($linkpartner, $id) {
         ob_start();
         require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Mail.php");
         $body = ob_get_clean();
         $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: Wordpress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
-        $subject = __("New link submitted at", "ultimate-blogroll")." ".get_bloginfo('siteurl').''."\r\n";
-        @mail(UbMapper::getInstance(UbMapper::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
+        $headers .= 'Content-type: text/html; charset='.get_option('blog_charset') . "\r\n";
+        $headers .= 'From: WordPress Ultimate Blogroll <'.get_bloginfo('admin_email').'> '."\r\n";
+        $subject = __("New link submitted at", "ultimate-blogroll")." ".home_url().''."\r\n";
+        if(function_exists('wp_mail')) {
+            add_filter('wp_mail_charset',create_function('', 'return \''.get_option('blog_charset').'\'; '));
+            wp_mail(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
+        } else {
+            mail(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("blogroll_contact"), $subject, $body, $headers);
+        }
     }
     /**
     * @param $order

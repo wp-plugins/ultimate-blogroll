@@ -28,8 +28,8 @@ class UbImportExport {
      * If the user is not satisfied, he needs to get out nicely
      */
     public function exportToWordpress() {
-        $linksFromWordpress         = UbMapper::getInstance(UbMapper::ImportExport)->GetBlogrollWordpress();
-        $linksFromUltimateBlogroll  = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners();
+        $linksFromWordpress         = UbPersistenceRouter::getInstance(UbPersistenceRouter::ImportExport)->GetBlogrollWordpress();
+        $linksFromUltimateBlogroll  = UbPersistenceRouter::getInstance(UbPersistenceRouter::Linkpartner)->getLinkpartners();
         foreach($linksFromUltimateBlogroll as $u) {
             if($this->CheckIfExists($u["website_url"], $linksFromWordpress, "link_url") === false) {
                 $result = array();
@@ -40,7 +40,7 @@ class UbImportExport {
                 //$result["link_owner"]       = $user_id;
                 $result["link_image"]       = $u["website_image"];
                 //$result                     = array_map ( array($this, 'map_entities'), $result );
-                UbMapper::getInstance(UbMapper::ImportExport)->addLinkpartnerToWordpress($result);
+                UbPersistenceRouter::getInstance(UbPersistenceRouter::ImportExport)->addLinkpartnerToWordpress($result);
             }
         }
     }
@@ -48,13 +48,13 @@ class UbImportExport {
      * Import the links from Wordpress into Ultimate Blogroll
      */
     public function importToUltimateBlogroll() {
-        $linksFromWordpress         = UbMapper::getInstance(UbMapper::ImportExport)->GetBlogrollWordpress();
-        $linksFromUltimateBlogroll  = UbMapper::getInstance(UbMapper::Linkpartner)->getLinkpartners();
+        $linksFromWordpress         = UbPersistenceRouter::getInstance(UbPersistenceRouter::ImportExport)->GetBlogrollWordpress();
+        $linksFromUltimateBlogroll  = UbPersistenceRouter::getInstance(UbPersistenceRouter::Linkpartner)->getLinkpartners();
         foreach($linksFromWordpress as $link) {
             if($this->CheckIfExists($link["link_url"], $linksFromUltimateBlogroll, "website_url") === false) {
                 $url = parse_url($link["link_url"]);
-                $link["domain"] = $url["host"];
-                UbMapper::getInstance(UbMapper::ImportExport)->AddLinkpartnerFromWordpress($link);
+                $link["controllers"] = $url["host"];
+                UbPersistenceRouter::getInstance(UbPersistenceRouter::ImportExport)->AddLinkpartnerFromWordpress($link);
             }
         }
     }

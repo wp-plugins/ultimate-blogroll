@@ -1,4 +1,5 @@
 <?php
+//error_reporting(-1);
 /*
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
@@ -33,9 +34,9 @@ define("UB_PLUGIN_DIR", ABSPATH."wp-content".DIRECTORY_SEPARATOR."plugins".DIREC
 define("UB_PUBLIC_URL", $protocol.$_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["SCRIPT_NAME"]."?");
 define("UB_ASSETS_URL", plugins_url('assets/', __FILE__));
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/assets/languages/' );
-require_once("domain" . DIRECTORY_SEPARATOR . "UbController.php");
-require_once("persistence" . DIRECTORY_SEPARATOR . "UbMapper.php");
-require_once("domain" . DIRECTORY_SEPARATOR . "UbMain.php");
+require_once("controllers" . DIRECTORY_SEPARATOR . "UbControllerRouter.php");
+require_once("persistence" . DIRECTORY_SEPARATOR . "UbPersistenceRouter.php");
+require_once("controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
 /**
  * Checks if we are in the admin panel
  */

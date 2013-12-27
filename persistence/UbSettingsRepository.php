@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class UbSettingsMapper {
+class UbSettingsRepository {
     /**
      * Checks if the ultimate blogroll settings are already stored
      * @return bool

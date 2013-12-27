@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class UbImportExportMapper {
+class UbImportExportRepository {
     /**
      * Get all the linkpartners from wordpress
      * Get the blogroll links from wordpress
@@ -29,9 +29,9 @@ class UbImportExportMapper {
         $result = array();
         $result["website_name"]             = $data["link_name"];
         $result["website_description"]      = $data["link_description"];
-        $result["website_domein"]           = $data["domain"];
+        $result["website_domein"]           = $data["controllers"];
         $result["website_url"]              = $data["link_url"];
-        $result["website_change_id"]        = UbMapper::getInstance(UbMapper::Install)->makeRandom(50);
+        $result["website_change_id"]        = UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->makeRandom(50);
         $result["website_date_added"]       = time();
         $result["website_ip"]               = $_SERVER['REMOTE_ADDR'];
         if($data["link_visible"] == "Y")

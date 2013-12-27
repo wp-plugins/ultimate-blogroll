@@ -15,13 +15,13 @@ class UbInstall {
      * @return void
      */
     public function admin_notices() {
-        if(UbMapper::getInstance("Install")->isGetExternalSiteWorking() !== true && UbMapper::getInstance(UbMapper::Settings)->getConfig("reciprocal_link") == "yes") {
+        if(UbPersistenceRouter::getInstance("Install")->isGetExternalSiteWorking() !== true && UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("reciprocal_link") == "yes") {
             require_once(UB_PLUGIN_DIR."gui/notices/SocketError.php");
         }
-        if(UbMapper::getInstance("Install")->doRequiredTablesExist() !== true) {
+        if(UbPersistenceRouter::getInstance("Install")->doRequiredTablesExist() !== true) {
             require_once(UB_PLUGIN_DIR."gui/notices/TablesDoNotExist.php");
         }
-        $pages = UbMapper::getInstance(UbMapper::Settings)->getConfig("pages");
+        $pages = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages");
         if( empty( $pages ) ) {
             require_once(UB_PLUGIN_DIR."gui/notices/noPageWasSet.php");
         }
@@ -41,7 +41,7 @@ class UbInstall {
      */
     function ubActivate() {
         wp_schedule_event(time(), 'hourly', 'ub_hourly_event');
-        if(UbMapper::getInstance("Settings")->doesConfigExist() !== true){
+        if(UbPersistenceRouter::getInstance("Settings")->doesConfigExist() !== true){
             $default = array();
             $default["website_url"]             = get_bloginfo('siteurl');
             $default["website_title"]           = get_bloginfo('blogname');
@@ -81,13 +81,13 @@ class UbInstall {
             $default["data_version"]            = 4;
             add_option("ultimate_blogroll_settings", $default, "", "yes");
         }
-        if(UbMapper::getInstance("Install")->doRequiredTablesExist() !== true) {
-            UbMapper::getInstance("Install")->installDatabase();
+        if(UbPersistenceRouter::getInstance("Install")->doRequiredTablesExist() !== true) {
+            UbPersistenceRouter::getInstance("Install")->installDatabase();
         }
         //import all the pages with the <!--ultimate-blogroll--> tag
-        $pages = UbMapper::getInstance(UbMapper::Install)->getPagesWithUltimateBlogrollTag();
+        $pages = UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->getPagesWithUltimateBlogrollTag();
         foreach($pages as $page) {
-            UbMapper::getInstance(UbMapper::Settings)->setConfig("pages", $page["id"]);
+            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages", $page["id"]);
         }
     }
 

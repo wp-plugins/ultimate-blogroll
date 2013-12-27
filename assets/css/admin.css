@@ -112,11 +112,8 @@ ul.succes {
 #ub_code {
     border: 1px solid #DFDFDF;
 }
-.column-link-website {
-    width: 20%;
-}
-.column-link-date {
-    width: 20%;
+.ub-column-fat {
+    width: 15%;
 }
 .inactive {
     background-color: #EEEEEE;
@@ -126,24 +123,6 @@ ul.succes {
     height: 22px;
     background-image: url("../images/exclamation.png");
 }
-/*th.header {*/
-    /*background-image: url("../images/bg.gif")!important;*/
-	/*background-repeat: no-repeat;*/
-	/*background-position: center right;*/
-	/*cursor: pointer;*/
-/*}*/
-/*th.headerSortUp {*/
-    /*background-image: url("../images/asc.gif")!important;*/
-    /*#background-repeat: no-repeat;*/
-    /*#background-position: center right;*/
-    /*#cursor: pointer;*/
-/*}*/
-/*th.headerSortDown {*/
-	/*background-image: url("../images/desc.gif")!important;*/
-    /*#background-repeat: no-repeat;*/
-    /*#background-position: center right;*/
-    /*#cursor: pointer;*/
-/*}*/
 .placeholder {
     color: #aaa;
 }

@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class UbErrorMapper {
+class UbErrorRepository {
     private $error = array();
     /**
      * Get all the errors as an array

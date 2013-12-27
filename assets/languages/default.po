@@ -213,7 +213,7 @@ msgstr "Website link terug"
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbLinkpartner.php:261
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbPage.php:71
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbPage.php:72
-msgid "must be under the same (sub)domain as the"
+msgid "must be under the same (sub)controllers as the"
 msgstr "moet onder hetzelfde (sub)domein zijn als"
 
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbLinkpartner.php:82
@@ -225,7 +225,7 @@ msgstr "Heeft geen link terug."
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbLinkpartner.php:88
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbLinkpartner.php:273
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbPage.php:82
-msgid "Website domain"
+msgid "Website controllers"
 msgstr "Website domein"
 
 #: C:\xampp\htdocs\wordpress\wp-content\plugins\ultimate-blogroll/domain/UbLinkpartner.php:88
