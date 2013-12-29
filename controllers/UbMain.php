@@ -12,11 +12,13 @@ class UbMain
     
     /**
      * Send a notification mail that a new linkpartner has been added
+     * Keep parameters $linkpartner and $id, they are passed to Mail.php
      * @param $linkpartner
      * @param $id
      */
 
     public function sendMail($linkpartner, $id) {
+
         ob_start();
         require_once(UB_PLUGIN_DIR."gui".DIRECTORY_SEPARATOR."Mail.php");
         $body = ob_get_clean();
