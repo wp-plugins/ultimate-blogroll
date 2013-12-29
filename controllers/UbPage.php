@@ -149,8 +149,8 @@ class UbPage extends UbMain{
             $gui["logo"]                = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo");
             $gui["logo_usage"]          = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_usage");
             $gui["table_links"]         = UbPersistenceRouter::getInstance(UbPersistenceRouter::Linkpartner)->getLinkpartnersPage(
-                                            $this->GetOrder(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending")),
-                                            $this->GetOrderBy(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by"))
+                                            UbSortingHelper::GetOrder(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending")),
+                                            UbSortingHelper::GetOrderBy(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by"))
                                           );
             $gui["url"]                 = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("website_url");
             $gui["title"]               = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("website_title");

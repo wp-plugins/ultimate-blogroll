@@ -18,7 +18,7 @@
             if(@$gui["support"] == "yes" && ++$tel == $rand) {
 
                 echo "<tr>";
-                echo "<td><a href=\"http://www.cadeauwebwinkel.be\" title=\"Cadeau (kado) of origineel geschenk voor verjaardag, Valentijn en Moederdag\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">Cadeauwebwinkel.be</a></td>";
+                echo "<td><a href=\"http://www.cadeauwebwinkel.be\" title=\"Cadeau (kado) of origineel geschenk voor verjaardag, Valentijn en Moederdag\" ".UbHtmlHelper::GetTarget($gui["target"]).UbHtmlHelper::GetFollow($gui["nofollow"]).">Cadeauwebwinkel.be</a></td>";
                 echo "<td>n/a</td>";
                 echo "<td>n/a</td>";
                 echo "<td>n/a</td>";
@@ -35,16 +35,16 @@
                 if(!empty($links["website_image"]) && $gui["logo"] == "yes") {
                     $logo_usage = $gui["logo_usage"];
                     if($logo_usage == "text") {
-                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".UbHtmlHelper::GetTarget($gui["target"]).UbHtmlHelper::GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";
                     }
                     elseif($logo_usage == "image") {
-                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"])."><img style=\"width: ".$gui["logo_width"]."px; max-height: ".$gui["logo_height"]."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".UbHtmlHelper::GetTarget($gui["target"]).UbHtmlHelper::GetFollow($gui["nofollow"])."><img style=\"width: ".$gui["logo_width"]."px; max-height: ".$gui["logo_height"]."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                     else {
-                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".UbPersistenceRouter::Instance()->GetConfig("logo_width")."px; max-height: ".UbPersistenceRouter::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
+                        echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" ".UbHtmlHelper::GetTarget($gui["target"]).UbHtmlHelper::GetFollow($gui["nofollow"]).">".$links["website_name"]."<img style=\"width: ".UbPersistenceRouter::Instance()->GetConfig("logo_width")."px; max-height: ".UbPersistenceRouter::Instance()->GetConfig("logo_height")."px;\" src=\"".$links["website_image"]."\" alt=\"".($links["website_description"])."\" /></a></td>";
                     }
                 } else {
-                    echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".$this->GetTarget($gui["target"]).$this->GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";
+                    echo "<td class=\"first\"><a href=\"".$links["website_url"]."\" title=\"".($links["website_description"])."\"".UbHtmlHelper::GetTarget($gui["target"]).UbHtmlHelper::GetFollow($gui["nofollow"]).">".$links["website_name"]."</a></td>";
                 }
 /*
                 if(!empty($links["website_image"])) {

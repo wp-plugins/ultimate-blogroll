@@ -14,13 +14,22 @@ class MyNewWidget extends WP_Widget {
         parent::__construct( false, 'ub2' );
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
+    private function AddWebsiteURL($url)
+    {
+        return rtrim($url, '/');
+    }
+
     function widget( $args, $instance ) {
         extract($args);
         $linkpartners = UbPersistenceRouter::getInstance(UbPersistenceRouter::Linkpartner)->
             getLinkpartnersWidget(
-                $this->GetLimit(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("limit_linkpartners")),
-                $this->GetOrder(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending")),
-                $this->GetOrderBy(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by"))
+                UbSortingHelper::GetLimit(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("limit_linkpartners")),
+                UbSortingHelper::GetOrder(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending")),
+                UbSortingHelper::GetOrderBy(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by"))
             );
         $gui = "";
         $gui .= $before_widget;
@@ -32,16 +41,16 @@ class MyNewWidget extends WP_Widget {
                 if(!empty($linkpartner["website_image"]) && UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo") == "yes") {
                     $logo_usage = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_usage");
                     if($logo_usage == "text") {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".UbHtmlHelper::GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).UbHtmlHelper::GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
                     }
                     elseif($logo_usage == "image") {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow"))."><img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".UbHtmlHelper::GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).UbHtmlHelper::GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow"))."><img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
                     }
                     else {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."<img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
+                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".UbHtmlHelper::GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).UbHtmlHelper::GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."<img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
                     }
                 } else {
-                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
+                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".UbHtmlHelper::GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).UbHtmlHelper::GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
                 }
             }
         }
@@ -53,7 +62,6 @@ class MyNewWidget extends WP_Widget {
         }
         $gui .= "</ul>";
         $gui .= $after_widget;
-        var_dump("bla");
         echo $gui;
     }
 
@@ -82,60 +90,7 @@ class UbWidget extends UbMain {
         register_widget_control('Ultimate Blogroll', array($this, 'widgetControl'));
     }
 
-    /**
-     * Show the widget
-     * @param $args
-     */
-    public function widgetCreator($args) {
-        extract($args);
-        $linkpartners = UbPersistenceRouter::getInstance(UbPersistenceRouter::Linkpartner)->
-                getLinkpartnersWidget(
-            $this->GetLimit(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("limit_linkpartners")),
-            $this->GetOrder(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending")),
-            $this->GetOrderBy(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by"))
-        );
-        $gui = "";
-        $gui .= $before_widget;
-        $gui .= $before_title . htmlentities(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("widget_title"), ENT_QUOTES) . $after_title;
-        $gui .= "<ul>";
-        if(!empty($linkpartners))
-        {
-            foreach($linkpartners as $linkpartner) {
-                if(!empty($linkpartner["website_image"]) && UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo") == "yes") {
-                    $logo_usage = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_usage");
-                    if($logo_usage == "text") {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
-                    }
-                    elseif($logo_usage == "image") {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow"))."><img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
-                    }
-                    else {
-                        $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" ".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."<img style=\"width: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_width")."px; max-height: ".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("logo_height")."px;\" src=\"".$linkpartner["website_image"]."\" alt=\"".($linkpartner["website_description"])."\" /></a></li>";
-                    }
-                } else {
-                    $gui .= "<li><a href=\"".$linkpartner["website_url"]."\" title=\"".($linkpartner["website_description"])."\"".$this->GetTarget(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("target")).$this->GetFollow(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("nofollow")).">".$linkpartner["website_name"]."</a></li>";
-                }
-            }
-        }
-        $permalink = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages");
-        if(!empty($permalink) && $permalink != "")
-        {
-            //$gui .= "<li><a href=\"".get_permalink(UbMapper::getInstance(UbMapper::Settings)->getConfig("permalink"))."\">".__("More", "ultimate-blogroll")."</a></li>";
-            $gui .= "<li><a href=\"".$this->AddWebsiteURL(get_permalink(UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages")))."#wp-add-your-site\">".__("Add link", "ultimate-blogroll")."</a></li>";
-        }
-        $gui .= "</ul>";
-        $gui .= $after_widget;
-        echo $gui;
-    }
 
-    /**
-     * @param $url
-     * @return string
-     */
-    private function AddWebsiteURL($url)
-    {
-        return rtrim($url, '/');
-    }
 
     /**
      * The widget control, here you have the widget options.
@@ -187,39 +142,4 @@ class UbWidget extends UbMain {
         echo "</select></p>";
         echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
     }
-    
-    /**
-     * @param $target
-     * @return string
-     */
-    /*
-    private function GetTarget($target) {
-        switch($target) {
-            case "_blank":
-                $result = "_blank";
-                break;
-            case "_top":
-                $result = "_top";
-                break;
-            case "_none":
-                $result = "_none";
-                break;
-            default:
-                $result = "_blank";
-                break;
-        }
-        return " target=\"".$result."\"";
-    }*/
-
-    /**
-     * @param $follow
-     * @return string
-     */
-    /*
-    private function GetFollow($follow){
-        if(!is_home() && $follow == "yes") {
-            return " rel=\"nofollow\"";
-        }
-    }
-    */
 }

@@ -37,6 +37,8 @@ load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __F
 require_once("controllers" . DIRECTORY_SEPARATOR . "UbControllerRouter.php");
 require_once("persistence" . DIRECTORY_SEPARATOR . "UbPersistenceRouter.php");
 require_once("controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
+require_once("tools".DIRECTORY_SEPARATOR."UbSortingHelper.php");
+require_once("tools".DIRECTORY_SEPARATOR."UbHtmlHelper.php");
 /**
  * Checks if we are in the admin panel
  */
@@ -85,7 +87,7 @@ if (is_admin()) {
 //here we initiate the Ultimate Blogroll page. This is the page where users can register their website
 add_filter('the_content', array(UbControllerRouter::getInstance(UbControllerRouter::Page), 'createPage'));
 //initiate the widgets
-add_action("plugins_loaded", array(UbControllerRouter::getInstance(UbControllerRouter::Widget), "widgetInit"));
+//add_action("plugins_loaded", array(UbControllerRouter::getInstance(UbControllerRouter::Widget), "widgetInit"));
 
 require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWidget.php");
 function myplugin_register_widgets() {
