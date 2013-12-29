@@ -6,7 +6,33 @@
  * Time: 22:21
  * To change this template use File | Settings | File Templates.
  */
- 
+
+class MyNewWidget extends WP_Widget {
+
+    function MyNewWidget() {
+        // Instantiate the parent object
+        parent::__construct( false, 'ub2' );
+    }
+
+    function widget( $args, $instance ) {
+        var_dump($args);
+        var_dump($instance);
+        // Widget output
+    }
+
+    function update( $new_instance, $old_instance ) {
+        // Save widget options
+    }
+
+    function form( $instance ) {
+        // Output admin widget options form
+    }
+}
+
+
+
+
+
 class UbWidget extends UbMain {
     public function __construct() {
         parent::__construct();

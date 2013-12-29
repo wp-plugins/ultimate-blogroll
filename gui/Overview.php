@@ -1,4 +1,4 @@
-<?php require_once("Header.php"); ?>
+<?php require_once("shared".DIRECTORY_SEPARATOR."Header.php"); ?>
 <div class="wrap">
     <div class="icon32" id="icon-themes"></div>
     <h2><?php echo __("Overview", "ultimate-blogroll"); ?></h2>

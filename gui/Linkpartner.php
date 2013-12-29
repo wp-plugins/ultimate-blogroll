@@ -1,4 +1,4 @@
-<?php require_once("Header.php"); ?>
+<?php require_once("shared".DIRECTORY_SEPARATOR."Header.php"); ?>
 <script src="<?php echo UB_ASSETS_URL; ?>js/jquery.placeholder.min.js" type="text/javascript"></script>
 <script type='text/javascript'>
 jQuery(document).ready(function($) {

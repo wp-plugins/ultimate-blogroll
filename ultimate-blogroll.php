@@ -1,5 +1,5 @@
 <?php
-//error_reporting(-1);
+error_reporting(-1);
 /*
 Plugin Name: Ultimate Blogroll
 Plugin URI: http://ultimateblogroll.gheerardyn.be
@@ -34,7 +34,7 @@ define("UB_PLUGIN_DIR", ABSPATH."wp-content".DIRECTORY_SEPARATOR."plugins".DIREC
 define("UB_PUBLIC_URL", $protocol.$_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["SCRIPT_NAME"]."?");
 define("UB_ASSETS_URL", plugins_url('assets/', __FILE__));
 load_plugin_textdomain( 'ultimate-blogroll', null, dirname( plugin_basename( __FILE__ ) ) . '/assets/languages/' );
-require_once("controllers" . DIRECTORY_SEPARATOR . "UbControllerRouter.php");
+require_once("controllers" . DIRECTORY_SEPARATOR . "UbControllerRouterRouter.php");
 require_once("persistence" . DIRECTORY_SEPARATOR . "UbPersistenceRouter.php");
 require_once("controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
 /**
@@ -42,18 +42,18 @@ require_once("controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
  */
 if (is_admin()) {
     //plugin is actived, deactived, uninstalled. What should happen now?
-    register_activation_hook(__FILE__, array(UbController::getInstance(UbController::Install), "ubActivate"));
-    register_deactivation_hook(__FILE__, array(UbController::getInstance(UbController::Install), "ubDeactivate"));
-    register_uninstall_hook(__FILE__, array(UbController::getInstance(UbController::Install), "ubUninstall"));
+    register_activation_hook(__FILE__, array(UbControllerRouter::getInstance(UbControllerRouter::Install), "ubActivate"));
+    register_deactivation_hook(__FILE__, array(UbControllerRouter::getInstance(UbControllerRouter::Install), "ubDeactivate"));
+    register_uninstall_hook(__FILE__, array(UbControllerRouter::getInstance(UbControllerRouter::Install), "ubUninstall"));
     //check if the plugin is working properly, if not what user interaction is required to solve the issue?
-    add_action("admin_notices", array(UbController::getInstance(UbController::Install), "admin_notices"));
+    add_action("admin_notices", array(UbControllerRouter::getInstance(UbControllerRouter::Install), "admin_notices"));
     //show Ultimate Blogroll in the admin menu (wordpress admin)
     add_action("admin_menu", "ub_admin_menu");
     //check if a page is an Ultimate Blogroll page
-    add_action("publish_page", array(UbController::getInstance(UbController::Settings), "pages"));
-    add_action("edit_post", array(UbController::getInstance(UbController::Settings), "pages"));
+    add_action("publish_page", array(UbControllerRouter::getInstance(UbControllerRouter::Settings), "pages"));
+    add_action("edit_post", array(UbControllerRouter::getInstance(UbControllerRouter::Settings), "pages"));
     $plugin = plugin_basename(__FILE__);
-    add_filter('plugin_action_links_'.$plugin, array(UbController::getInstance(UbController::Install), 'plugins_link'), 10, 2 );
+    add_filter('plugin_action_links_'.$plugin, array(UbControllerRouter::getInstance(UbControllerRouter::Install), 'plugins_link'), 10, 2 );
     /**
      * This function is called from admin_menu()
      * It checks which page/function should be called
@@ -64,40 +64,47 @@ if (is_admin()) {
         switch(@$_GET["page"])
         {
             case "ultimate-blogroll-overview":
-                UbController::getInstance(UbController::Linkpartner)->index();
+                UbControllerRouter::getInstance(UbControllerRouter::Linkpartner)->index();
                 break;
             case "ultimate-blogroll-add-linkpartner":
-                UbController::getInstance(UbController::Linkpartner)->addLinkpartner(true);
+                UbControllerRouter::getInstance(UbControllerRouter::Linkpartner)->addLinkpartner(true);
                 break;
             case "ultimate-blogroll-settings":
-                UbController::getInstance(UbController::Settings)->index();
+                UbControllerRouter::getInstance(UbControllerRouter::Settings)->index();
                 break;
             case "ultimate-blogroll-import-export":
-                UbController::getInstance(UbController::ImportExport)->index();
+                UbControllerRouter::getInstance(UbControllerRouter::ImportExport)->index();
                 break;
             default:
-                UbController::getInstance(UbController::Overview)->index();
+                UbControllerRouter::getInstance(UbControllerRouter::Overview)->index();
                 break;
         }
     }
 }
 
 //here we initiate the Ultimate Blogroll page. This is the page where users can register their website
-add_filter('the_content', array(UbController::getInstance(UbController::Page), 'createPage'));
+add_filter('the_content', array(UbControllerRouter::getInstance(UbControllerRouter::Page), 'createPage'));
 //initiate the widgets
-add_action("plugins_loaded", array(UbController::getInstance(UbController::Widget), "widgetInit"));
+add_action("plugins_loaded", array(UbControllerRouter::getInstance(UbControllerRouter::Widget), "widgetInit"));
+
+require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWidget.php");
+function myplugin_register_widgets() {
+    register_widget( 'MyNewWidget' );
+}
+add_action( 'widgets_init', 'myplugin_register_widgets' );
+
 //register the wordpress cronjob callback function to check backlinks of the linkpartners
-add_action('check_linkpartners', array(UbController::getInstance(UbController::Linkpartner), "checkLinkpartners"));
+add_action('check_linkpartners', array(UbControllerRouter::getInstance(UbControllerRouter::Linkpartner), "checkLinkpartners"));
 //make sure jquery is loaded, in some rare cases and basic blogs jquery is not automatically loaded
 //use the wordpress build in jquery file
 wp_enqueue_script('jquery');
 //ajax
-add_action('wp_ajax_nopriv_ub_ajax_action_callback', array(UbController::getInstance(UbController::Linkpartner), 'ub_ajax_action_callback'));
-add_action('wp_ajax_ub_ajax_action_callback', array(UbController::getInstance(UbController::Linkpartner), 'ub_ajax_action_callback'));
+add_action('wp_ajax_nopriv_ub_ajax_action_callback', array(UbControllerRouter::getInstance(UbControllerRouter::Linkpartner), 'ub_ajax_action_callback'));
+add_action('wp_ajax_ub_ajax_action_callback', array(UbControllerRouter::getInstance(UbControllerRouter::Linkpartner), 'ub_ajax_action_callback'));
 //check for inlinks
-UbController::getInstance(UbController::Linkpartner)->checkInlinks();
-add_action('ub_hourly_event', array(UbController::getInstance(UbController::Linkpartner), 'ub_hourly_task'));
-add_action('wp_head', array(UbController::getInstance(UbController::Page), 'ub_javascript_init'));
+UbControllerRouter::getInstance(UbControllerRouter::Linkpartner)->checkInlinks();
+add_action('ub_hourly_event', array(UbControllerRouter::getInstance(UbControllerRouter::Linkpartner), 'ub_hourly_task'));
+add_action('wp_head', array(UbControllerRouter::getInstance(UbControllerRouter::Page), 'ub_javascript_init'));
 add_action( 'admin_init', 'ub_admin_init' );
 function ub_admin_init() {
     global $pagenow;
@@ -177,5 +184,5 @@ function ub_admin_menu(){
         "ultimate_blogroll" //the function linked to the slug, without this function your slug is useless
     );
     add_action('admin_print_styles-'.$page, 'ub_admin_style_load');
-    add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(UbController::getInstance(UbController::Settings), "pagesWidget"), "page", "side", "high");
+    add_meta_box( "ultimate-blogroll", "Ultimate Blogroll", array(UbControllerRouter::getInstance(UbControllerRouter::Settings), "pagesWidget"), "page", "side", "high");
 }

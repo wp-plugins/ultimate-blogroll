@@ -41,7 +41,7 @@ class UbWizard {
             }
             $frmImport = "";
             if(isset($_POST["frmImport"])) {
-                UbController::getInstance(UbController::ImportExport)->importToUltimateBlogroll();
+                UbControllerRouter::getInstance(UbControllerRouter::ImportExport)->importToUltimateBlogroll();
                 $frmImport = "checked";
             }
             //get all the sidebars
@@ -83,6 +83,6 @@ class UbWizard {
                 $sidebars_names[] = $side;
             }
         }
-        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "Wizard.php");
+        require_once(UB_PLUGIN_DIR . "gui" . DIRECTORY_SEPARATOR . "UbWizard".DIRECTORY_SEPARATOR. "show.php");
     }
 }

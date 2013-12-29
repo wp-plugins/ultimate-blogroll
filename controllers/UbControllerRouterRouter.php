@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
  
-class UbController {
+class UbControllerRouter {
     private static $instance = array();
 
     /*
@@ -31,49 +31,49 @@ class UbController {
      * @return void
      */
     public static function getInstance($class) {
-        if(!isset(UbController::$instance[$class])) {
+        if(!isset(UbControllerRouter::$instance[$class])) {
             switch($class) {
-                case UbController::Main:
+                case UbControllerRouter::Main:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
-                    UbController::$instance[$class] = new UbMain();
+                    UbControllerRouter::$instance[$class] = new UbMain();
                     break;
-                case UbController::Linkpartner:
+                case UbControllerRouter::Linkpartner:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbLinkpartner.php");
-                    UbController::$instance[$class] = new UbLinkpartner();
+                    UbControllerRouter::$instance[$class] = new UbLinkpartner();
                     break;
-                case UbController::Settings:
+                case UbControllerRouter::Settings:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbSettings.php");
-                    UbController::$instance[$class] = new UbSettings();
+                    UbControllerRouter::$instance[$class] = new UbSettings();
                     break;
-                case UbController::AdminPageWidget:
+                case UbControllerRouter::AdminPageWidget:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbAdminPageWidget.php");
-                    UbController::$instance[$class] = new UbAdminPageWidget();
+                    UbControllerRouter::$instance[$class] = new UbAdminPageWidget();
                     break;
-                case UbController::Install:
+                case UbControllerRouter::Install:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbInstall.php");
-                    UbController::$instance[$class] = new UbInstall();
+                    UbControllerRouter::$instance[$class] = new UbInstall();
                     break;
-                case UbController::ImportExport:
+                case UbControllerRouter::ImportExport:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbImportExport.php");
-                    UbController::$instance[$class] = new UbImportExport();
+                    UbControllerRouter::$instance[$class] = new UbImportExport();
                     break;
-                case UbController::Page:
+                case UbControllerRouter::Page:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbPage.php");
-                    UbController::$instance[$class] = new UbPage();
+                    UbControllerRouter::$instance[$class] = new UbPage();
                     break;
-                case UbController::Widget:
+                case UbControllerRouter::Widget:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWidget.php");
-                    UbController::$instance[$class] = new UbWidget();
+                    UbControllerRouter::$instance[$class] = new UbWidget();
                     break;
-                case UbController::Wizard:
+                case UbControllerRouter::Wizard:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWizard.php");
-                    UbController::$instance[$class] = new UbWizard();
+                    UbControllerRouter::$instance[$class] = new UbWizard();
                     break;
                 default:
                     trigger_error("Controller does not exists", E_USER_ERROR);
                     break;
             }
         }
-        return UbController::$instance[$class];
+        return UbControllerRouter::$instance[$class];
     }
 }

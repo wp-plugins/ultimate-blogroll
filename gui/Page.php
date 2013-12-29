@@ -1,4 +1,4 @@
-<?php require_once("Header.php"); ?>
+<?php require_once("shared".DIRECTORY_SEPARATOR."Header.php"); ?>
 <p><?php echo __("The following links are from yesterday and today.<br />You can add your website at the bottom of this page.", "ultimate-blogroll") ?></p>
 <table class="ub_table Widget_widgetCreator" cellspacing="1" id="ultimate-blogroll-table">
     <tr class="first">

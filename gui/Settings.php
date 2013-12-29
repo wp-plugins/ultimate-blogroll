@@ -1,4 +1,4 @@
-<?php require_once("Header.php"); ?>
+<?php require_once("shared".DIRECTORY_SEPARATOR."Header.php"); ?>
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
     $('.fight_spam :checkbox').iphoneStyle({

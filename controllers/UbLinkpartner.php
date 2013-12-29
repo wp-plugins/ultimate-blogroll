@@ -25,7 +25,7 @@ class UbLinkpartner extends UbMain {
                 $this->edit(is_admin() ? true : false);
                 break;
             case "wizard":
-                UbController::getInstance(UbController::Wizard)->show();
+                UbControllerRouter::getInstance(UbControllerRouter::Wizard)->show();
                 break;
             default:
                 $this->overview();

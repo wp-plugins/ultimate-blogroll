@@ -6,7 +6,7 @@
  * Time: 18:27
  * To change this template use File | Settings | File Templates.
  */
-require_once("Header.php");
+require_once("shared".DIRECTORY_SEPARATOR."Header.php");
 ?>
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
