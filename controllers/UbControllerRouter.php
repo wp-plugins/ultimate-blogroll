@@ -13,11 +13,10 @@ class UbControllerRouter {
     /*
      * Private constructor to make sure this is a singleton class
      */
-    private function Controller() {}
+    private function UbControllerRouter() {}
 
     const Linkpartner   = "Linkpartner";
     const Settings      = "Settings";
-    const AdminPageWidget = "AdminPageWidget";
     const Install       = "Install";
     const ImportExport  = "ImportExport";
     const Page          = "Page";
@@ -44,10 +43,6 @@ class UbControllerRouter {
                 case UbControllerRouter::Settings:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbSettings.php");
                     UbControllerRouter::$instance[$class] = new UbSettings();
-                    break;
-                case UbControllerRouter::AdminPageWidget:
-                    require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbAdminPageWidget.php");
-                    UbControllerRouter::$instance[$class] = new UbAdminPageWidget();
                     break;
                 case UbControllerRouter::Install:
                     require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbInstall.php");
