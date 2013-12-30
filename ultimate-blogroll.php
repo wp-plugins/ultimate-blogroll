@@ -91,7 +91,7 @@ add_filter('the_content', array(UbControllerRouter::getInstance(UbControllerRout
 
 require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWidget.php");
 function myplugin_register_widgets() {
-    register_widget( 'MyNewWidget' );
+    register_widget( 'MyNewWidget2' );
 }
 add_action( 'widgets_init', 'myplugin_register_widgets' );
 

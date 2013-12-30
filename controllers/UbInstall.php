@@ -89,6 +89,8 @@ class UbInstall {
         foreach($pages as $page) {
             UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages", $page["id"]);
         }
+
+
     }
 
     /**

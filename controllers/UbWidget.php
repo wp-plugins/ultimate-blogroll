@@ -7,11 +7,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class MyNewWidget extends WP_Widget {
+class MyNewWidget2 extends WP_Widget {
 
-    function MyNewWidget() {
+    function MyNewWidget2() {
         // Instantiate the parent object
         parent::__construct( false, 'ub2' );
+        $optionName = "widget_".strtolower(get_class($this));
+        $data = get_option($optionName);
+
+        if($data === false ) {
+            $old["widget_title"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("widget_title");
+            $old["limit_linkpartners"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("limit_linkpartners");
+            $old["order_by"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by");
+            $old["ascending"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending");
+            $old["pages"] = UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages");
+            update_option($optionName, $old);
+        }
     }
 
     /**
@@ -66,44 +77,14 @@ class MyNewWidget extends WP_Widget {
     }
 
     function update( $new_instance, $old_instance ) {
+        //var_dump($old_instance);
+        $new_instance["yo"] = "yo";
+        return $new_instance;
+        //die($old_instance);
         // Save widget options
     }
 
     function form( $instance ) {
-        // Output admin widget options form
-    }
-}
-
-
-
-
-
-class UbWidget extends UbMain {
-    public function __construct() {
-        parent::__construct();
-    }
-    /**
-     * Initiate and register the widgets
-     */
-    public function widgetInit() {
-        register_sidebar_widget('Ultimate Blogroll', array($this, 'widgetCreator'));
-        register_widget_control('Ultimate Blogroll', array($this, 'widgetControl'));
-    }
-
-
-
-    /**
-     * The widget control, here you have the widget options.
-     * The control options can be found in the widget section of the wordpress admin section.
-     */
-    public function widgetControl() {
-        if(isset($_POST["ub_submit"])) {
-            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("widget_title",       attribute_escape($_POST["widget_title"]));
-            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("limit_linkpartners", intval($_POST["limit_linkpartners"]));
-            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("order_by",           attribute_escape($_POST["order_by"]));
-            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("ascending",          attribute_escape($_POST["ascending"]));
-            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages",          intval($_POST["permalink"]));
-        }
         echo "<style type=\"text/css\">
             .widget_text {
                 width: 220px;
@@ -143,3 +124,73 @@ class UbWidget extends UbMain {
         echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
     }
 }
+
+
+
+
+
+//class UbWidget extends UbMain {
+//    public function __construct() {
+//        parent::__construct();
+//    }
+//    /**
+//     * Initiate and register the widgets
+//     */
+//    public function widgetInit() {
+//        register_sidebar_widget('Ultimate Blogroll', array($this, 'widgetCreator'));
+//        register_widget_control('Ultimate Blogroll', array($this, 'widgetControl'));
+//    }
+//
+//
+//
+//    /**
+//     * The widget control, here you have the widget options.
+//     * The control options can be found in the widget section of the wordpress admin section.
+//     */
+//    public function widgetControl() {
+//        if(isset($_POST["ub_submit"])) {
+//            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("widget_title",       attribute_escape($_POST["widget_title"]));
+//            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("limit_linkpartners", intval($_POST["limit_linkpartners"]));
+//            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("order_by",           attribute_escape($_POST["order_by"]));
+//            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("ascending",          attribute_escape($_POST["ascending"]));
+//            UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->setConfig("pages",          intval($_POST["permalink"]));
+//        }
+//        echo "<style type=\"text/css\">
+//            .widget_text {
+//                width: 220px;
+//            }
+//        </style>";
+//        echo "<p><label>".__("Widget title", "ultimate-blogroll").":</label><br />
+//            <input type=\"text\" class=\"widget_text\" name=\"widget_title\" value=\"".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("widget_title")."\" />
+//        </p>";
+//        echo "<p><label>".__("Limit of linkpartners", "ultimate-blogroll").":</label><br />
+//            <input type=\"text\" class=\"widget_text\" name=\"limit_linkpartners\" value=\"".UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("limit_linkpartners")."\" />
+//        </p>";
+//        echo "<p><label>".__("Order by", "ultimate-blogroll").":</label><br />
+//            <select class=\"widget_text\" name=\"order_by\">
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by") == "id") ? "selected=\"yes\"" : "")." value=\"id\">".__("ID", "ultimate-blogroll")."</option>
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by") == "name") ? "selected=\"yes\"" : "")." value=\"name\">".__("Name", "ultimate-blogroll")."</option>
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by") == "inlinks") ? "selected=\"yes\"" : "")." value=\"inlinks\">".__("Inlinks", "ultimate-blogroll")."</option>
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("order_by") == "outlinks") ? "selected=\"yes\"" : "")." value=\"outlinks\">".__("Outlinks", "ultimate-blogroll")."</option>
+//            </select>
+//        </p>";
+//        echo "<p><label>".__("Ascending/Descending", "ultimate-blogroll").":</label><br />
+//            <select class=\"widget_text\" name=\"ascending\">
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending") == "asc") ? "selected=\"yes\"" : "")." value=\"asc\">".__("Ascending", "ultimate-blogroll")."</option>
+//                <option ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("ascending") == "desc") ? "selected=\"yes\"" : "")." value=\"desc\">".__("Descending", "ultimate-blogroll")."</option>
+//            </select>
+//        </p>";
+//        $pages = UbPersistenceRouter::getInstance(UbPersistenceRouter::Install)->getPublishedPages();
+//        echo "<p><label>".__("Link exchange page", "ultimate-blogroll").":</label><br />
+//            <select class=\"widget_text\" name=\"permalink\">";
+//        if(!empty($pages))
+//        {
+//            foreach($pages as $page)
+//            {
+//                echo "<option value=\"".$page["id"]."\" ".((UbPersistenceRouter::getInstance(UbPersistenceRouter::Settings)->getConfig("pages") == $page["id"]) ? "selected=\"yes\"" : "").">".$page["post_title"]."</option>";
+//            }
+//        }
+//        echo "</select></p>";
+//        echo "<input type=\"hidden\" name=\"ub_submit\" value=\"1\" />";
+//    }
+//}
