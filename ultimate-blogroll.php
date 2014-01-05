@@ -39,6 +39,7 @@ require_once("persistence" . DIRECTORY_SEPARATOR . "UbPersistenceRouter.php");
 require_once("controllers" . DIRECTORY_SEPARATOR . "UbMain.php");
 require_once("tools".DIRECTORY_SEPARATOR."UbSortingHelper.php");
 require_once("tools".DIRECTORY_SEPARATOR."UbHtmlHelper.php");
+require_once("tools".DIRECTORY_SEPARATOR."UbViewHelper.php");
 /**
  * Checks if we are in the admin panel
  */
@@ -90,10 +91,10 @@ add_filter('the_content', array(UbControllerRouter::getInstance(UbControllerRout
 //add_action("plugins_loaded", array(UbControllerRouter::getInstance(UbControllerRouter::Widget), "widgetInit"));
 
 require_once(UB_PLUGIN_DIR . "controllers" . DIRECTORY_SEPARATOR . "UbWidget.php");
-function myplugin_register_widgets() {
-    register_widget( 'MyNewWidget2' );
+function ub_register_widgets() {
+    register_widget( 'UbWidget' );
 }
-add_action( 'widgets_init', 'myplugin_register_widgets' );
+add_action( 'widgets_init', 'ub_register_widgets' );
 
 //register the wordpress cronjob callback function to check backlinks of the linkpartners
 add_action('check_linkpartners', array(UbControllerRouter::getInstance(UbControllerRouter::Linkpartner), "checkLinkpartners"));

@@ -6,8 +6,12 @@
  * Time: 12:12
  */
 class UbHtmlHelper{
-    public static function DropdownList(){
-
+    public static function DropdownList($name, $values, $selectedValue, $class){
+        echo "<select class=\"".$class."\" name=\"".$name."\">";
+        foreach($values as $key => $value) {
+            echo "<option ".(($selectedValue == $key) ? "selected=\"yes\"" : "")." value=\"".$key."\">".$value."</option>";
+        }
+        echo "</select>";
     }
 
     /**
